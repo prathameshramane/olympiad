@@ -1,0 +1,1071 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<body style="padding-top=80px;">
+
+  <style >
+  a {
+    color: rgba(255, 0, 0, 0.7);
+    line-height: inherit;
+    text-decoration: none;
+}
+    a:hover, a:focus {
+    color: red;
+    font-weight: bold;
+     text-shadow: 1px 1px black;
+}
+#dropdownMenuButton:hover{
+    color: red;
+    font-weight: bold;
+     text-shadow: 1px 1px black;
+}
+.row,.group{
+  margin-top: -10px;
+}
+@media (max-width: 767px) {
+  ion-icon{
+    display: none;
+  }
+
+.m-i-i{
+  display: block;
+}
+}
+</style>
+
+                        <!-- hero -->
+                      <section class="container-fluid p-0" >
+                        <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (1).jpg' %});">
+                          <div class="d-flex justify-content-center" >
+                            <div class="d-flex flex-column" style="padding-top: 120px">
+                              <h1 class="site-title  justify-content-center" style="text-align: center;">Your Profile
+                              </h1>
+                              <p class="site-desc"></p>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </section>
+                      {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong>
+                    </div>
+
+                  {% endfor %}
+
+                      <section class="menu" id="menu">
+                        <div class="menu-btn" onclick="menuOpen()" id="menu-ion-icon">
+                            <ion-icon class="m-i-i" name="caret-forward-outline"></ion-icon>
+                        </div>
+                        <h1 style="color: #fff;margin: 20px;">
+                          MENU
+                      </h1>
+                      <hr style="border-bottom: 2px solid #fff; box-shadow: 0px 1px 2px #0009;">
+                        <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Profile
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Profile</a>
+                              {% comment %} <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a> {% endcomment %}
+                              <a class="dropdown-item" href="#" onclick="show('submitdocuments')">Submit Documents</a>
+                              <a class="dropdown-item" href="#">Preview Certificate</a>
+                            </div>
+                          </div>
+                          <!--a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a-->
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Take Exams
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Mock Test</a>
+                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Final exam</a>
+                            </div>
+                          </div>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Result
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('challenge')">Answer keys and challenges</a>
+                              <a class="dropdown-item" href="#" onclick="show('result')">Final Result</a>
+                            </div>
+                          </div>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Free Trial
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('subjects')">Subjects</a>
+                              <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
+                            </div>
+                          </div>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Support
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
+                              <a class="dropdown-item" href="#" onclick="show('invoice')">Invoice</a>
+                              <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
+                            </div>
+                          </div>
+
+
+                          <a href="" class="menu-link">LOGOUT</a>
+                    </section>
+                    <br><br><br>
+                    <div class="container shown" id="profile">
+
+  <br><br><br>
+                        <form action="{% url 'update_student' %}" method="POST">
+                          {% csrf_token %}
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" value = "{{ request.user.first_name}}" readonly="true">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile"> Name</label>
+                          </div>
+                          <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" value="{{ request.user.parent_name }}" readonly="true">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile">Parent / Guardian Name *</label>
+                          </div>
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="calendar-outline"></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" value="{{ request.user.dob }}" readonly="true">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile">Date of Birth *</label>
+                          </div>
+                          <div class="col-md-1"><ion-icon name="mail"></ion-icon></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" value="{{ request.user.email }}"  readonly="true">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile">E-mail *</label>
+                          </div>
+
+                        </div>
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" name ="address" value="{{ request.user.address }}">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label">Flat /House No. / FLoor / Building *</label>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="group col-md-5">
+                              <input type="text" name ="street" value="{{ request.user.street }}">
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="form-label">Colony/ Street / Locality *</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div class="group col-md-5">
+                            <input type="number"  name ="number" value="{{ request.user.number }}" readonly>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile">Mobile Number</label>
+                          </div>
+
+
+                            <div class="col-md-1"></div>
+                            <div class="group col-md-5">
+                              <input type="text"  name ="state" value="{{ request.user.state }}">
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="form-label">State*</label>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+                            <div class="group col-md-5">
+                                <!--input type="text" value="{{ request.user.country.name }}" readonly-->
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label class="form-label-profile" >Country *</label>
+                                {% load countries %}
+                                {% get_countries as countries %}
+                                <select name="country" id = "country"  value="{{ request.user.country.name }}" placeholder="Choose Your country" readonly="true">
+                                {% for country in countries %}
+                                    <option value="{{ country.name }}">{{ country.name }}</option>
+                                {% endfor %}
+                                </select>
+
+                              </div>
+                          <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+
+                          <div class="group col-md-5">
+                            <input type="text"  name ="school_state" value="{{ request.user.school_state }}">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label">School State *</label>
+                        </div>
+
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="school"></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" name ="school" value="{{ request.user.school }}">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label">School Name *</label>
+                          </div>
+                          <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" name ="school_address" value="{{ request.user.school_address }}">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label">School address *</label>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" name ="school_city" value="{{ request.user.school_city }}" >
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile">School City  *</label>
+                          </div>
+                          <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+                          <div class="group col-md-5">
+                            <input type="text" name ="pincode" value="{{ request.user.pincode }}" >
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="form-label-profile">Pincode *</label>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="pencil"></ion-icon></div>
+                            <div class="group col-md-5">
+                                <input type="text" value="{{ request.user.standard }}" readonly="true" >
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label class="form-label-profile">Class *</label>
+                              </div>
+                          <div class="col-md-6">
+                          </div>
+
+                        </div>
+                          <center>
+                          <input type="submit" value='UPDATE' class="review-btn">
+                          </center>
+
+                          </form>
+                        </div>
+
+
+
+
+
+                                                <div class="container hide" id="changepassword">
+                                                  <center><br>
+                                                    <h1 class="register-title">Change Password</h1>
+                                                  </center><br>
+
+                                                  <form action="change-password/" method="POST">
+                                                  {% csrf_token %}
+                                                  <div class="row">
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-11">
+
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+
+                                                      {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
+                                                      <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
+                                                    </div >
+                                                  </div>
+
+                                                  <div class="row">
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-5">
+
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+                                                      {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
+                                                      <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
+                                                    </div >
+                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                                                    <div class="group col-md-5">
+
+                                                      <span class="highlight"></span>
+                                                      <span class="bar"></span>
+                                                      {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
+                                                      <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
+
+                                                    </div >
+                                                    </div>
+
+                                                    <center>
+                                                      <input type="submit" value='UPDATE' class="review-btn">
+                                                      </center>
+                                                      </form>
+                                                </div>
+
+
+
+
+                        <div class="container hide" id="submitdocuments">
+                          <center><br>
+                            <h1 class="register-title">Submit Documents</h1>
+                          </center><br>
+
+                          <ol>
+
+
+                            {% if request.user.marksheet %}
+                            <li>
+                              <strong>Your Marksheet has been submitted.</strong>
+
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Marksheet has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+
+                            {% if request.user.idproof %}
+                            <li>
+                          <strong>Your Id Proof has been submitted.</strong>
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Id has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+                            {% if request.user.idproof %}
+                            <li>
+                              <strong>Your Photograph has been submitted </strong>
+
+                            </li>
+                            {% else %}
+                            <li>
+                            <strong>Your Photograph has  not been submitted submit before exam</strong>
+                            </li>
+                            {% endif %}
+
+
+
+
+
+                            <li>
+                              Only jpeg/jpg and png images are allowed with a maximum size of 200 KB. In case the file size is more than 200 KB, <a href="https://compressimage.toolur.com/">click here</a> to compress image. (supported format – jpeg/jpg and png)
+                            </li>
+                            <li>
+
+
+
+                            </li>
+                          </ol><br>
+                          <form action="{% url 'uploadfiles' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                              <div class="row mt-3">
+                            <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
+                            <div class="col-md-4"><input type="file" name= "idproof" id="idproof"></div>
+                            <div class="col-md-4">
+                            </div>
+                          </div>
+
+
+                          <div class="row mt-3">
+                          <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
+                          <div class="col-md-4"><input type="file" name = "marksheet" id="marksheet"></div>
+                          <div class="col-md-4">
+
+                          
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                        <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
+                        <div class="col-md-4"><input type="file" name = "photograph" id="photograph"></div>
+                        <div class="col-md-4">
+
+                          
+                        </div>
+                      </div>
+
+                        <center>
+                          <input type="submit" value='Upload' class="review-btn">
+                          </center>
+                        </form>
+
+                        
+
+
+                        <div class="container hide" id="slot">
+                          <center><br>
+                            <h1 class="register-title">Book Your Exam Slot</h1>
+                          </center>
+                          <h3><b>Points to note: </b></h3>
+
+                          <h4>
+                            <ol>
+                              <li>All the timings are in Indian Standard Time (IST).</li>
+                              <li>If you want to edit your pre-booked slot, you can do so by clicking the edit button. Editing of slot is chargeable @ Rs. 30 per slot change.</li>
+                            </ol>
+                              <div class="row table-head">
+                                <div class="col-md-4">
+                                  <b>Exam name</b>
+                                </div>
+                                <div class="col-md-2">
+                                  <b>Exam type</b>
+                                </div>
+                                <div class="col-md-2">
+                                  <b>Exam Date</b>
+                                </div>
+                                <div class="col-md-2">
+                                  <b>Slot time</b>
+                                </div>
+                                <div class="col-md-2">
+                                  <b>Action</b>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                              <div class="row">
+                                <div class="col-md-4 exam-name">
+                                  International Mathematics Olympiad (IMO)
+                                </div>
+                                <div class="col-md-2">
+                                  Final Exam
+                                </div>
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Exam date:</b></p>May 21,2019
+                                </div>
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Slot time:</b></p>12:00
+                                </div>
+                                <div class="col-md-2">
+                                  <a href="" class="slot-btn disabled">BOOK</a>
+                                  <a href="" class="slot-btn">EDIT</a>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+
+                              <div class="row">
+                                <div class="col-md-4  exam-name">
+                                  International Mathematics Olympiad (IMO)
+                                </div>
+                                <div class="col-md-2">
+                                  Final Exam
+                                </div>
+                                <div class="col-md-2">
+                                 <p class="slot-para"><b>Exam date:</b></p> May 21,2019
+                                </div>
+                                <div class="col-md-2">
+                                 <p class="slot-para"><b>Slot time:</b></p> 12:00
+                                </div>
+                                <div class="col-md-2">
+                                  <a href="" class="slot-btn disabled">BOOK</a>
+                                  <a href="" class="slot-btn">EDIT</a>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+
+                              <div class="row">
+                                <div class="col-md-4  exam-name">
+                                  International Mathematics Olympiad (IMO)
+                                </div>
+                                <div class="col-md-2">
+                                  Final Exam
+                                </div>
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Exam date:</b></p>May 21,2019
+                                </div>
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Slot time:</b></p>--:--
+                                </div>
+                                <div class="col-md-2">
+                                  <a href="" class="slot-btn">BOOK</a>
+                                  <a href="" class="slot-btn disabled">EDIT</a>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                              <br>
+
+                          </h4>
+                        </div>
+
+                        <div class="container hide" id="mocktest">
+                          <center><br>
+                            <h1 class="register-title">Mock Test</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="container hide" id="challenge">
+                          <center><br>
+                            <h1 class="register-title">View Challenge and answers</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="container hide" id="result">
+                          <center><br>
+                            <h1 class="register-title">Results</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                        </div>
+
+
+
+                        <div class="container hide" id="subjects">
+                          <center><br>
+                            <h1 class="register-title">Subjects</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-6">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Duration</b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Action</b>
+                            </div>
+                          </div>
+
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                          </div>
+
+
+                    <div class="container hide" id="challenge-one">
+                          <center><br>
+                            <h1 class="register-title">CHALLENGES</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-6">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Duration</b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Action</b>
+                            </div>
+                          </div>
+
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                          </div>
+
+                          <div class="container hide" id="invoice">
+                            <center><br>
+                                <h1 class="register-title">INVOICE</h1>
+                              </center>
+                              <div class="row table-head">
+                                  <div class="col-md-4">
+                                      <p><b>Subject Name</b></p>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <p><b>Amount Paid</b></p>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <p><b>Transaction Date:</b></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p><b>Transaction Status:</b></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p><b>Action</b></p>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="slot-para"><b>Name:</b></div>
+                                    IMO,ISO,IEO,ICO,IGKO,ICTO
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Amount paid:</b></div>
+                                    1350
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Transaction Date:</b></div>
+                                    2020-05-05 16:58:49
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Transaction Status:</b></div>
+                                    Complete
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Action :</b></div>
+                                    <a href="">Download</a>
+                                  </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                    <br>
+                          </div>
+
+                          <div class="backdrop" id="feedback" >
+                            <div class="feedback">
+                                <button class="close-btn" onclick="feedback()"><ion-icon style="color: #fff;" name="close"></ion-icon></button>
+                                <center>
+                                    <h1 class="register-title">FEEDBACK FORM</h1>
+                                  </center>
+                                  <div class="container">
+                                      <div class="row">
+                                    <div class="col-md-6">
+                                    How likely would you recommend this test to your friends on a scale of 1 to 10? *
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5">
+                                        <select id="country" name="country" class="select-css">
+                                            <option value=1">1</option>
+                                            <option value=2">2</option>
+                                            <option value=3">3</option>
+                                            <option value=4">4</option>
+                                            <option value=5">5</option>
+                                            <option value=6">6</option>
+                                            <option value=7">7</option>
+                                            <option value=8">8</option>
+                                            <option value=9">9</option>
+                                            <option value="10">10</option>
+
+                                        </select>
+                                    </div>
+                                  </div>
+                                  <hr style="border-bottom: 1px #0009;">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                        If you are happy about the initiative which Unicus Olympiads is taking to conduct Summer Olympiads, then do share a testimonial below. (we may publish the testimonial)
+                                      </div>
+                                      <div class="col-md-1"></div>
+                                      <div class="col-md-5">
+                                          <textarea name="" id="" cols="30" rows="5"></textarea>
+                                      </div>
+                                  </div>
+                                <hr style="border-bottom: 1px #0009;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        We would love to hear your comments/suggestions to improve the platform.*
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5">
+                                        <textarea name="" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <center>
+                                <button class="review-btn">S U B M I T</button>
+                            </center>
+                            <hr style="border-bottom: 1px #0009;">
+                            <center>
+                                <button class="review-btn">JOIN GROUP</button>
+                            </center>
+                            <hr style="border-bottom: 1px #0009;">
+
+                            </div>
+                            </div>
+{% endblock %}
+
+{% block js %}
+              <!-- vendors -->
+
+      <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+              <script>
+                function show(id){
+                    var x = document.getElementById(id)
+                    x.classList.remove('hide');
+                    x.classList.add('shown');
+                    siblings = getSiblings(x)
+                    for( i in siblings){
+                      if(siblings[i].tagName == 'DIV'){
+                      siblings[i].classList.add('hide');
+                      siblings[i].classList.remove('shown')
+                      ;}
+                    }
+                    menuOpen();
+              }
+              let getSiblings = function (e) {
+                // for collecting siblings
+                let siblings = [];
+                // if no parent, return no sibling
+                if(!e.parentNode) {
+                    return siblings;
+                }
+                // first child of the parent node
+                let sibling  = e.parentNode.firstChild;
+
+                // collecting siblings
+                while (sibling) {
+                    if (sibling.nodeType === 1 && sibling !== e) {
+                        siblings.push(sibling);
+                    }
+                    sibling = sibling.nextSibling;
+                }
+                return siblings;
+              };
+
+              </script>
+                              <script>
+                                function menuOpen() {
+                                       var element = document.getElementById("menu");
+                                       element.classList.toggle("menu-open");
+                                       var elementone = document.getElementById("menu-ion-icon");
+                                       elementone.classList.toggle("menu-ion-icon");
+                               }
+                             </script>
+                                  <script>
+                                    $(window).scroll(function(){$('.menu').toggleClass('menu-scrolled', $(this).scrollTop() > 0);});
+                                  </script>
+{% endblock %}
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

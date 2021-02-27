@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="di">
+    <br><br><br><br>
+</div>
+<div class="show-book-modal" id="edit-modal">
+    <center>
+        <h2>Edit Slot</h2>
+
+
+        <table>
+        <tr>
+          <th>Quiz Name </th>
+          <th>Date & Time</th>
+            <th>Select the Slot you want to Change</th>
+        </tr>
+        <form  action="" method="post">
+          {% csrf_token %}
+
+        {% if request.user.final_cyberolym %}
+
+
+        <tr>
+          <td>Cyber Olympiad</td>
+          <td>{{ request.user.cybertime }}</td>
+
+          <td>  <input type="radio" value="cyber" name="change"></input></td>
+
+        </tr>
+
+        {% endif %}
+
+
+        {% if request.user.final_mathsolym %}
+
+
+        <tr>
+          <td>Maths Olympiad</td>
+          <td>{{ request.user.mathtime }}</td>
+  <td>  <input type="radio"  value="math" name="change"></input></td>
+        {% endif %}
+
+
+        {% if request.user.final_scienceolym %}
+
+
+        <tr>
+          <td>Science Olympiad</td>
+          <td>{{ request.user.sciencetime }}</td>
+          <td>  <input type="radio"  value="science" name="change"></input></td>
+        {% endif %}
+
+        {% if request.user.final_generalolym %}
+
+
+        <tr>
+
+          <td>Gk Olympiad</td>
+          <td>{{ request.user.gktime }}</td>
+          <td>  <input type="radio" value="gk" name="change"></input></td>
+
+        {% endif %}
+
+        {% if request.user.final_reasoningolym %}
+
+
+        <tr>
+
+          <td>Reasoning Olympiad</td>
+          <td>{{ request.user.reasoningtime }}</td>
+          <td>  <input type="radio"  value="reasoning" name="change"></input></td>
+
+        {% endif %}
+
+        {% if request.user.final_englisholym %}
+
+
+        <tr>
+          <td>English Olympiad</td>
+          <td>{{ request.user.englishtime }}</td>
+          <td>  <input type="radio" id="question" value="english" name="change"></input></td>
+
+        {% endif %}
+
+
+
+
+      </table>
+    </center>
+<div class="row">
+    <p><b>1. All the timings are in Indian Standard Time (IST).</b></p>
+    <p><b>2. If you want to edit your pre-booked slot, you can do so by selecting from above and then clicking the edit button. Editing of slot is chargeable @ Rs. 30 per slot change.</b></p>
+</div>
+
+
+<center>
+   <input type="submit" value='Edit' class="review-btn">
+</center>
+
+</form>
+<!--div class="row">
+    <div class="col-md-6">
+        Select Exam :
+    </div>
+    <div class="col-md-6">
+      <form  action="" method="post">
+        {% csrf_token %}
+
+      <input type="text" id="field" name = "amount">
+        <ul>
+          <li>
+
+
+            {% if request.user.final_scienceolym %}
+            <input type="checkbox"  value = "True" name="scienceolym" id="isso" onchange="add(this)"> <label for="isso">ISSO Level1</label><br>
+            {% endif %}
+            {% if request.user.final_mathsolym %}
+            <input type="checkbox"  value = "True" name="mathsolym" id="ismo" onchange="add(this)"> <label for="isso">ISMO Level1</label><br>
+            {% endif %}
+            {% if request.user.final_generalolym %}
+            <input type="checkbox"  value = "True" name="generalolym" id="isgko" onchange="add(this)"> <label for="isso">ISGKO Level1</label><br>
+            {% endif %}
+            {% if request.user.final_englisholym %}
+            <input type="checkbox"  value = "True"  name="englisholym" id="iseo" onchange="add(this)"> <label for="isso">ISEO Level1</label><br>
+            {% endif %}
+            {% if request.user.final_cyberolym %}
+            <input type="checkbox"  value = "True" name="cyberolym" id="isco" onchange="add(this)"> <label for="isso">ISCO Level1</label><br>
+            {% endif %}
+            {% if request.user.final_reasoningolym %}
+            <input type="checkbox"  value = "True" name="reasoning" id="iscto" onchange="add(this)"> <label for="isso">ISCTO Level1</label><br>
+            {% endif %}
+            {% if not request.user.final_scienceolym and not request.user.final_mathsolym and not request.user.final_generalolym  and not request.user.final_cyberolym and not request.user.final_reasoningolym and not request.user.final_generalolym %}
+            <p>Sorry, you have no subscriptions</p>
+            {% endif %}
+          </li>
+        </ul>
+    </div>
+</div--><br>
+
+   <!--/form -->
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    total = 0;
+        function add(e){
+            var element = document.getElementById('field');
+            if(e.checked){
+            total = total + 30;
+            }else{
+              total = total - 30;
+              if(total<0){
+                total = 0;
+              }
+            }
+            element.value = total.toString();
+        }
+    </script>
+{% endblock %}

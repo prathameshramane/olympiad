@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Subject{% endblock %}
+{% block body %}
+{% load static %}
+                            <div class="container-fluid p-0" >
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/english_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                                <div class="d-flex justify-content-center" >
+                                  <div class="d-flex flex-column" style="padding-top: 120px">
+                                    <h1 class="site-title" style="text-align: center;color: red">English
+                                    </h1>
+                                    <p class="site-desc"></p>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <section>
+                                <div>
+
+                                  <div class="container row">
+                                    <!-- <p>Click on the below questions to solve your queries</p> -->
+                                    <p>The International School English Olympiad (ISEO) is the english olympiad exam for the year 2020. Classes 1-12 can take part in this exam comprising mocks and one final paper. 
+                                        The Mock Tests can be attempted three times before giving the final exam.  
+                                        ISEO provides a stronger and more dignified grasp over english. 
+                                        The exam pattern is of MCQ (Multiple Choice Questions) type.
+                                        Students of class 1 to 4 will get     minutes to complete the exam and students of class 5 to 12 will get a total of    minutes.
+                                        A comprehensive report divided into various categories ( for example- grammar, comprehension,reading, etc) will be provided to each student on evaluation of results.
+                                        For any guidance, book recommendation or exam tips please visit the exam preparation of this website.
+
+                                        <br><br>
+
+                                      The exam will be divided into sections as follows: <br><br>
+
+                                      <strong>Class 1-12:</strong>  &nbsp   Word and Structure Knowledge <br>
+                                                                            Reading <br>
+                                                                            Spoken and Written Expression <br>
+<br><br>
+                                      <!-- Achievers section -->
+
+                                    <!-- Achievers section -->
+                                  </p>
+                                  <p>
+                                    <a href="{% url 'rankingcriteria' %}">Ranking Criteria</a> -  For ranking criteria of all subjects, please visit here<br>
+                                    <a href="/markingscheme/english">Marking Scheme</a><br>
+                                    <a href="/syllabus/english/1">Syllabus</a> - The syllabus for the English olympiad 2020 comprises topics covered in the IGCSE, CBSE and ICSE syllabus’.  Visit here<br>
+                                    <a href="/samplepaper/english/1">Sample Papers</a> - For viewing sample papers of all subjects, please visit here
+                                  </p>
+                                  </div>
+                                </section>
+                              </div>
+{% endblock %}

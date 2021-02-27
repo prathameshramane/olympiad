@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- head -->
+  <meta charset="utf-8">
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <!-- Stylesheets -->
+  <title>{% block title %} {% endblock %}</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'Style.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic' rel='stylesheet' type='text/css'>
+
+  <!-- Owl Stylesheets -->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'Owl/docs/assets/ico/apple-touch-icon-144-precomposed.png' %}">
+  <link rel="shortcut icon" href="{% static 'Owl/docs/assets/ico/favicon.png' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+
+</head>
+<body>
+
+  
+{% block body %}{% endblock %}
+
+
+            <!-- vendors -->
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="{% static 'Owl/docs/assets/vendors/highlight.js' %}"></script>
+            <script src="{% static 'Owl/docs/assets/js/app.js' %}"></script>
+            <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+            <script>
+              $(window).scroll(function(){$('nav').toggleClass('scrolled', $(this).scrollTop() > 0);});
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.umo').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.ugko').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.uso').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.ustp').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.ueo').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            {% block js %}{% endblock %}
+          </body>
+          </html>

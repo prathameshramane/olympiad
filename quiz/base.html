@@ -1,0 +1,783 @@
+  {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- head -->
+  <meta charset="utf-8">
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <!-- Stylesheets -->
+  <title>{% block title %} {% endblock %}</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'Style.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'Owl/docs/assets/css/docs.theme.min.css' %}">
+  <link rel="stylesheet" href="{% static 'Stock/Chart.min.css' %}">
+
+  <!-- Owl Stylesheets -->
+  <link rel="stylesheet" href="{% static 'Owl/docs/assets/owlcarousel/assets/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'Owl/docs/assets/owlcarousel/assets/owl.theme.default.min.css' %}">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'Owl/docs/assets/ico/apple-touch-icon-144-precomposed.png' %}">
+  <link rel="shortcut icon" href="{% static 'Owl/docs/assets/ico/favicon.png' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+
+  <!-- javascript -->
+  <script src="{% static 'Owl/docs/assets/vendors/jquery.min.js' %}"></script>
+  <script src="{% static 'Owl/docs/assets/owlcarousel/owl.carousel.js' %}"></script>
+
+</head>
+<body>
+
+  <header class="header_area" id="header" >
+    <nav class="navbar navbar-expand-lg " >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i></i>
+        </span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}"><img class="img-responsive" src="{% static 'screenshots/logo1.jpg' %}" style="float: left">  </a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <div class="dropdown nav-item">
+                  <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Olympiads
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-1" aria-labelledby="dropdownMenuButton">
+                    <div class="umo"><a class="dropdown-item"  href="#">ISMO</a>
+                      <div class="row drop-right">
+                        <div class="col-lg-4">
+                          <table>
+                            <tr>
+                              <th colspan="2" ><a href="#" style="color: black"> Syllabus</a></td>
+                              </tr>
+                              <tr>
+                                <td><a href="/syllabus/maths/1">Class 1</a></td>
+                                <td><a href="/syllabus/maths/8">Class 8</a></td>
+                              </tr>
+                              <tr>
+                                <a><td><a href="/syllabus/maths/2">Class 2</a></td></a>
+                                <a><td><a href="/syllabus/maths/9">Class 9</a></td></a>
+                              </tr>
+
+                              <tr>
+                                <a><td><a href="/syllabus/maths/3">Class 3</a></td></a>
+                                <a><td><a href="/syllabus/maths/10">Class 10</a></td></a>
+                              </tr>
+                              <tr>
+                                <a><td><a href="/syllabus/maths/4">Class 4</a></td></a>
+                                <a><td><a href="/syllabus/maths/11">Class 11</a></td></a>
+                              </tr>
+                              <tr>
+                                <a><td><a href="/syllabus/maths/5">Class 5</a></td></a>
+                                <a><td><a href="/syllabus/maths/12">Class 12</a></td></a>
+                              </tr>
+                              <tr>
+                                <a><td><a href="/syllabus/maths/6">Class 6</a></td></a>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <a><td><a href="/syllabus/maths/7">Class 7</a></td></a>
+                                <td></td>
+                              </tr>
+                            </table>
+                          </div>
+                          <div class="col-lg-4">
+                            <table>
+                              <tr>
+                                <th colspan="2" ><a href="" style="color: black"> Sample Paper</a></td>
+                                </tr>
+                                <tr>
+                                  <td><a href="/samplepaper/maths/1">Class 1</a></td>
+                                  <td><a href="/samplepaper/maths/8">Class 8</a></td>
+                                </tr>
+                                <tr>
+                                  <a><td><a href="/samplepaper/maths/2">Class 2</a></td></a>
+                                  <a><td><a href="/samplepaper/maths/9">Class 9</a></td></a>
+                                </tr>
+
+                                <tr>
+                                  <a><td><a href="/samplepaper/maths/3">Class 3</a></td></a>
+                                  <a><td><a href="/samplepaper/maths/10">Class 10</a></td></a>
+                                </tr>
+                                <tr>
+                                  <a><td><a href="/samplepaper/maths/4">Class 4</a></td></a>
+                                  <a><td><a href="/samplepaper/maths/11">Class 11</a></td></a>
+                                </tr>
+                                <tr>
+                                  <a><td><a href="/samplepaper/maths/5">Class 5</a></td></a>
+                                  <a><td><a href="/samplepaper/maths/12">Class 12</a></td></a>
+                                </tr>
+                                <tr>
+                                  <a><td><a href="/samplepaper/maths/6">Class 6</a></td></a>
+                                  <td></td>
+                                </tr>
+                                <tr>/
+                                  <a><td><a href="/samplepaper/maths/7">Class 7</a></td></a>
+                                  <td></td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div class="col-lg-4">
+                             <a href="{% url 'examdates' %}"><b>Exam Dates</b></a>
+                             <a><b><a href="{% url 'awards' %}">Awards</b></a><br>
+                             <a><b><a href="/markingscheme/maths">Marking Scheme</b></a><br>
+                             <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
+                             <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
+                             <a><b><a href="/subjects/maths">About ISMO</b></a><br>
+                              <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
+
+                           </div>
+                         </div></div>
+                         <div class="uso"><a class="dropdown-item"  href="#">ISSO</a>
+                          <div class="row drop-right-2">
+                            <div class="col-lg-4">
+                              <table>
+                                <tr>
+                                  <th colspan="2" ><a href="" style="color: black"> Syllabus</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td><a href="/syllabus/science/1">Class 1</a></td>
+                                    <td><a href="/syllabus/science/8">Class 8</a></td>
+                                  </tr>
+                                  <tr>
+                                    <a><td><a href="/syllabus/science/2">Class 2</a></td></a>
+                                    <a><td><a href="/syllabus/science/9">Class 9</a></td></a>
+                                  </tr>
+
+                                  <tr>
+                                    <a><td><a href="/syllabus/science/3">Class 3</a></td></a>
+                                    <a><td><a href="/syllabus/science/10">Class 10</a></td></a>
+                                  </tr>
+                                  <tr>
+                                    <a><td><a href="/syllabus/science/4">Class 4</a></td></a>
+                                    <a><td><a href="/syllabus/science/11">Class 11</a></td></a>
+                                  </tr>
+                                  <tr>
+                                    <a><td><a href="/syllabus/science/5">Class 5</a></td></a>
+                                    <a><td><a href="/syllabus/science/12">Class 12</a></td></a>
+                                  </tr>
+                                  <tr>
+                                    <a><td><a href="/syllabus/science/6">Class 6</a></td></a>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <a><td><a href="/syllabus/science/7">Class 7</a></td></a>
+                                    <td></td>
+                                  </tr>
+                                </table>
+                              </div>
+                              <div class="col-lg-4">
+                                <table>
+                                  <tr>
+                                    <th colspan="2" ><a href="" style="color: black"> Sample Paper</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td><a href="/samplepaper/science/1">Class 1</a></td>
+                                      <td><a href="/samplepaper/science/8">Class 8</a></td>
+                                    </tr>
+                                    <tr>
+                                      <a><td><a href="/samplepaper/science/2">Class 2</a></td></a>
+                                      <a><td><a href="/samplepaper/science/9">Class 9</a></td></a>
+                                    </tr>
+
+                                    <tr>
+                                      <a><td><a href="/samplepaper/science/3">Class 3</a></td></a>
+                                      <a><td><a href="/samplepaper/science/10">Class 10</a></td></a>
+                                    </tr>
+                                    <tr>
+                                      <a><td><a href="/samplepaper/science/4">Class 4</a></td></a>
+                                      <a><td><a href="/samplepaper/science/11">Class 11</a></td></a>
+                                    </tr>
+                                    <tr>
+                                      <a><td><a href="/samplepaper/science/5">Class 5</a></td></a>
+                                      <a><td><a href="/samplepaper/science/12">Class 12</a></td></a>
+
+                                    </tr>
+                                    <tr>
+                                      <a><td><a href="/samplepaper/science/6">Class 6</a></td></a>
+                                      <td></td>
+                                    </tr>
+                                    <tr>
+                                      <a><td><a href="/samplepaper/science/7">Class 7</a></td></a>
+                                      <td></td>
+                                    </tr>
+                                  </table>
+                                </div>
+                                <div class="col-lg-4">
+                                  <a href="{% url 'examdates' %}"><b>Exam Dates</b></a>
+                                  <a><b><a href="{% url 'awards' %}">Awards</b></a><br>
+                                  <a><b><a href="/markingscheme/science">Marking Scheme</b></a><br>
+                                  <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
+                                  <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
+                                  <a><b><a href="/subjects/science">About ISSO</b></a><br>
+                                   <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
+
+                                </div>
+                             </div></div>
+                             <div class="ugko"><a class="dropdown-item"  href="#">ISGKO</a>
+                              <div class="row drop-right-3">
+                                <div class="col-lg-4">
+                                  <table>
+                                    <tr>
+                                      <th colspan="2" ><a href="" style="color: black"> Syllabus</a></td>
+                                      </tr>
+                                      <tr>
+                                        <td><a href="/syllabus/gk/1">Class 1</a></td>
+                                        <td><a href="/syllabus/gk/8">Class 8</a></td>
+                                      </tr>
+                                      <tr>
+                                        <a><td><a href="/syllabus/gk/2">Class 2</a></td></a>
+                                        <a><td><a href="/syllabus/gk/9">Class 9</a></td></a>
+                                      </tr>
+
+                                      <tr>
+                                        <a><td><a href="/syllabus/gk/3">Class 3</a></td></a>
+                                        <a><td><a href="/syllabus/gk/10">Class 10</a></td></a>
+                                      </tr>
+                                      <tr>
+                                        <a><td><a href="/syllabus/gk/4">Class 4</a></td></a>
+                                        <a><td><a href="/syllabus/gk/11">Class 11</a></td></a>
+                                      </tr>
+                                      <tr>
+                                        <a><td><a href="/syllabus/gk/5">Class 5</a></td></a>
+                                        <a><td><a href="/syllabus/gk/12">Class 12</a></td></a>
+                                      </tr>
+                                      <tr>
+                                        <a><td><a href="/syllabus/gk/6">Class 6</a></td></a>
+                                        <td></td>
+                                      </tr>
+                                      <tr>
+                                        <a><td><a href="/syllabus/gk/7">Class 7</a></td></a>
+                                        <td></td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                  <div class="col-lg-4">
+                                    <table>
+                                      <tr>
+                                        <th colspan="2" ><a href="" style="color: black"> Sample Paper</a></td>
+                                        </tr>
+                                        <tr>
+                                          <td><a href="/samplepaper/gk/1">Class 1</a></td>
+                                          <td><a href="/samplepaper/gk/8">Class 8</a></td>
+                                        </tr>
+                                        <tr>
+                                          <a><td><a href="/samplepaper/gk/2">Class 2</a></td></a>
+                                          <a><td><a href="/samplepaper/gk/9">Class 9</a></td></a>
+                                        </tr>
+
+                                        <tr>
+                                          <a><td><a href="/samplepaper/gk/3">Class 3</a></td></a>
+                                          <a><td><a href="/samplepaper/gk/10">Class 10</a></td></a>
+                                        </tr>
+                                        <tr>
+                                          <a><td><a href="/samplepaper/gk/4">Class 4</a></td></a>
+                                          <a><td><a href="/samplepaper/gk/11">Class 11</a></td></a>
+                                        </tr>
+                                        <tr>
+                                          <a><td><a href="/samplepaper/gk/5">Class 5</a></td></a>
+                                          <a><td><a href="/samplepaper/gk/12">Class 12</a></td></a>
+                                        </tr>
+                                        <tr>
+                                          <a><td><a href="/samplepaper/gk/6">Class 6</a></td></a>
+                                          <td></td>
+                                        </tr>
+                                        <tr>
+                                          <a><td><a href="/samplepaper/gk/7">Class 7</a></td></a>
+                                          <td></td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                    <div class="col-lg-4">
+                                      <a href="{% url 'examdates' %}"><b>Exam Dates</b></a>
+                                      <a><b><a href="{% url 'awards' %}">Awards</b></a><br>
+                                      <a><b><a href="/marlingscheme/gk">Marking Scheme</b></a><br>
+                                      <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
+                                      <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
+                                      <a><b><a href="/subjects/gk">About ISGKO</b></a><br>
+                                       <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
+
+                                    </div>
+                                 </div></div>
+                                 <div class="ueo"><a class="dropdown-item"  href="#">ISEO</a>
+                                  <div class="row drop-right-4">
+                                    <div class="col-lg-4">
+                                      <table>
+                                        <tr>
+                                          <th colspan="2" ><a href="" style="color: black"> Syllabus</a></td>
+                                          </tr>
+                                          <tr>
+                                            <td><a href="/syllabus/english/1">Class 1</a></td>
+                                            <td><a href="/syllabus/english/8">Class 8</a></td>
+                                          </tr>
+                                          <tr>
+                                            <a><td><a href="/syllabus/english/2">Class 2</a></td></a>
+                                            <a><td><a href="/syllabus/english/9">Class 9</a></td></a>
+                                          </tr>
+
+                                          <tr>
+                                            <a><td><a href="/syllabus/english/3">Class 3</a></td></a>
+                                            <a><td><a href="/syllabus/english/10">Class 10</a></td></a>
+                                          </tr>
+                                          <tr>
+                                            <a><td><a href="/syllabus/english/4">Class 4</a></td></a>
+                                            <a><td><a href="/syllabus/english/11">Class 11</a></td></a>
+                                          </tr>
+                                          <tr>
+                                            <a><td><a href="/syllabus/english/5">Class 5</a></td></a>
+                                            <a><td><a href="/syllabus/english/12">Class 12</a></td></a>
+                                          </tr>
+                                          <tr>
+                                            <a><td><a href="/syllabus/english/6">Class 6</a></td></a>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <a><td><a href="/syllabus/english/7">Class 7</a></td></a>
+                                            <td></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <table>
+                                          <tr>
+                                            <th colspan="2" ><a href="" style="color: black"> Sample Paper</a></td>
+                                            </tr>
+                                            <tr>
+                                              <td><a href="/samplepaper/english/1">Class 1</a></td>
+                                              <td><a href="/samplepaper/english/8">Class 8</a></td>
+                                            </tr>
+                                            <tr>
+                                              <a><td><a href="/samplepaper/english/2">Class 2</a></td></a>
+                                              <a><td><a href="/samplepaper/english/9">Class 9</a></td></a>
+                                            </tr>
+
+                                            <tr>
+                                              <a><td><a href="/samplepaper/english/3">Class 3</a></td></a>
+                                              <a><td><a href="/samplepaper/english/10">Class 10</a></td></a>
+                                            </tr>
+                                            <tr>
+                                              <a><td><a href="/samplepaper/english/4">Class 4</a></td></a>
+                                              <a><td><a href="/samplepaper/english/11">Class 11</a></td></a>
+                                            </tr>
+                                            <tr>
+                                              <a><td><a href="/samplepaper/english/5">Class 5</a></td></a>
+                                              <a><td><a href="/samplepaper/english/12">Class 12</a></td></a>
+                                            </tr>
+                                            <tr>
+                                              <a><td><a href="/samplepaper/english/6">Class 6</a></td></a>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <a><td><a href="/samplepaper/english/7">Class 7</a></td></a>
+                                              <td></td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                        <div class="col-lg-4">
+                                          <a href="{% url 'examdates' %}"><b>Exam Dates</b></a>
+                                          <a><b><a href="{% url 'awards' %}">Awards</b></a><br>
+                                          <a><b><a href="/markingscheme/english">Marking Scheme</b></a><br>
+                                          <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
+                                          <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
+                                          <a><b><a href="/subjects/english">About ISEO</b></a><br>
+                                           <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
+
+                                        </div>
+                                     </div></div>
+
+                                     <div class="ueo"><a class="dropdown-item"  href="#">ISCO</a>
+                                      <div class="row drop-right-4">
+                                        <div class="col-lg-4">
+                                          <table>
+                                            <tr>
+                                              <th colspan="2" ><a href="" style="color: black"> Syllabus</a></td>
+                                              </tr>
+                                              <tr>
+                                                <td><a href="/syllabus/cyber/1">Class 1</a></td>
+                                                <td><a href="/syllabus/cyber/8">Class 8</a></td>
+                                              </tr>
+                                              <tr>
+                                                <a><td><a href="/syllabus/cyber/2">Class 2</a></td></a>
+                                                <a><td><a href="/syllabus/cyber/9">Class 9</a></td></a>
+                                              </tr>
+
+                                              <tr>
+                                                <a><td><a href="/syllabus/cyber/3">Class 3</a></td></a>
+                                                <a><td><a href="/syllabus/cyber/10">Class 10</a></td></a>
+                                              </tr>
+                                              <tr>
+                                                <a><td><a href="/syllabus/cyber/4">Class 4</a></td></a>
+                                                <a><td><a href="/syllabus/cyber/11">Class 11</a></td></a>
+                                              </tr>
+                                              <tr>
+                                                <a><td><a href="/syllabus/cyber/5">Class 5</a></td></a>
+                                                <a><td><a href="/syllabus/cyber/12">Class 12</a></td></a>
+                                              </tr>
+                                              <tr>
+                                                <a><td><a href="/syllabus/cyber/6">Class 6</a></td></a>
+                                                <td></td>
+                                              </tr>
+                                              <tr>
+                                                <a><td><a href="/syllabus/cyber/7">Class 7</a></td></a>
+                                                <td></td>
+                                              </tr>
+                                            </table>
+                                          </div>
+                                          <div class="col-lg-4">
+                                            <table>
+                                              <tr>
+                                                <th colspan="2" ><a href="" style="color: black"> Sample Paper</a></td>
+                                                </tr>
+                                                <tr>
+                                                  <td><a href="/samplepaper/cyber/1">Class 1</a></td>
+                                                  <td><a href="/samplepaper/cyber/8">Class 8</a></td>
+                                                </tr>
+                                                <tr>
+                                                  <a><td><a href="/samplepaper/cyber/2">Class 2</a></td></a>
+                                                  <a><td><a href="/samplepaper/cyber/9">Class 9</a></td></a>
+                                                </tr>
+
+                                                <tr>
+                                                  <a><td><a href="/samplepaper/cyber/3">Class 3</a></td></a>
+                                                  <a><td><a href="/samplepaper/cyber/10">Class 10</a></td></a>
+                                                </tr>
+                                                <tr>
+                                                  <a><td><a href="/samplepaper/cyber/4">Class 4</a></td></a>
+                                                  <a><td><a href="/samplepaper/cyber/11">Class 11</a></td></a>
+                                                </tr>
+                                                <tr>
+                                                  <a><td><a href="/samplepaper/cyber/5">Class 5</a></td></a>
+                                                  <a><td><a href="/samplepaper/cyber/12">Class 12</a></td></a>
+                                                </tr>
+                                                <tr>
+                                                  <a><td><a href="/samplepaper/cyber/6">Class 6</a></td></a>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <a><td><a href="/samplepaper/cyber/7">Class 7</a></td></a>
+                                                  <td></td>
+                                                </tr>
+                                              </table>
+                                            </div>
+                                            <div class="col-lg-4">
+                                              <a href="{% url 'examdates' %}"><b>Exam Dates</b></a>
+                                              <a><b><a href="{% url 'awards' %}">Awards</b></a><br>
+                                              <a><b><a href="/markingscheme/cyber">Marking Scheme</b></a><br>
+                                              <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
+                                              <a><b><a href="{% url 'rankingcriteria' %}">Ranking Criteria</b></a><br>
+                                              <a><b><a href="/subjects/english">About ISCO</b></a><br>
+                                               <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
+
+                                            </div>
+                                         </div></div>
+
+                                         <div class="usto"><a class="dropdown-item"  href="#">ISCTO</a>
+                                          <div class="row drop-right-6">
+                                            <div class="col-lg-4">
+                                              <table>
+                                                <tr>
+                                                  <th colspan="2" ><a href="" style="color: black"> Syllabus </a></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><a href="/syllabus/ct/1">Class 1</a></td>
+                                                    <td><a href="/syllabus/ct/8">Class 8</a></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <a><td><a href="/syllabus/ct/2">Class 2</a></td></a>
+                                                    <a><td><a href="/syllabus/ct/9">Class 9</a></td></a>
+                                                  </tr>
+
+                                                  <tr>
+                                                    <a><td><a href="/syllabus/ct/3">Class 3</a></td></a>
+                                                    <a><td><a href="/syllabus/ct/10">Class 10</a></td></a>
+                                                  </tr>
+                                                  <tr>
+                                                    <a><td><a href="/syllabus/ct/4">Class 4</a></td></a>
+                                                    <a><td><a href="/syllabus/ct/11">Class 11</a></td></a>
+                                                  </tr>
+                                                  <tr>
+                                                    <a><td><a href="/syllabus/ct/5">Class 5</a></td></a>
+                                                    <a><td><a href="/syllabus/ct/12">Class 12</a></td></a>
+                                                  </tr>
+                                                  <tr>
+                                                    <a><td><a href="/syllabus/ct/6">Class 6</a></td></a>
+                                                    <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <a><td><a href="/syllabus/ct/7">Class 7</a></td></a>
+                                                    <td></td>
+                                                  </tr>
+                                                </table>
+                                              </div>
+                                              <div class="col-lg-4">
+                                                <table>
+                                                  <tr>
+                                                    <th colspan="2" ><a href="" style="color: black"> Sample Paper </a></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><a href="/samplepaper/ct/6">Class 6</a></td>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <a><td><a href="/samplepaper/ct/7">Class 7</a></td></a>
+                                                      <a><td></td></a>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <a><td><a href="/samplepaper/ct/8">Class 8/a></td></a>
+                                                      <a><td></td></a>
+                                                    </tr>
+                                                    <tr>
+                                                      <a><td><a href="/samplepaper/ct/9">Class 9</a></td></a>
+                                                      <a><td></td></a>
+                                                    </tr>
+                                                    <tr>
+                                                      <a><td><a href="/samplepaper/ct/10">Class 10</a></td></a>
+                                                      <a><td></td></a>
+                                                    </tr>
+                                                    <tr>
+                                                      <a><td><a href="/samplepaper/ct/11">Class 11</a></td></a>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <a><td><a href="/samplepaper/ct/12">Class 12</a></td></a>
+                                                      <td></td>
+                                                    </tr>
+                                                  </table>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                  <a href="{% url 'examdates' %}"><b>Exam Dates</b></a>
+                                                  <a><b><a href="{% url 'awards' %}">Awards</b></a><br>
+                                                  <a><b><a href="/markingscheme/ct">Marking Scheme</b></a><br>
+                                                  <a><b><a href="{% url 'applyindividual' %}">How to participate</b></a><br>
+                                                  <a><b><a href="/rankingcriteria/">Ranking Criteria</b></a><br>
+                                                  <a><b><a href="/subjects/ct">About ISCTO</b></a><br>
+                                                   <a><b><a href="{% url 'faqs' %}">FAQs</b></a><br>
+
+                                                </div>
+                                             </div></div>
+                                           </div>
+                                         </div>
+                                  <div class="dropdown nav-item">
+                                    <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Quick Links
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="{% url 'faqs' %}">FAQs</a>
+                                      <a class="dropdown-item" href="{% url 'applyschool' %}">School Registration</a>
+                                      <a class="dropdown-item" href="{% url 'coordinator' %}">Become a co-rodinator</a>
+                                      <a class="dropdown-item" href="{% url 'examdates' %}">Exam Dates</a>
+                                      <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
+                                      <a class="dropdown-item" href="{% url 'awards' %}">Awards</a>
+                                      <!-- <a class="dropdown-item" href="#">Scholarships</a> -->
+                                      <a class="dropdown-item" href="{% url 'career' %}">Career</a>
+                                      <a class="dropdown-item" href="{% url 'workshops' %}">Educational Workshop</a>
+                                      <a class="dropdown-item" href="{% url 'workshops' %}">Training Workshop</a>
+                                    </div>
+                                  </div>
+
+                                  <li class="nav-item ml-3">
+                                    <a class="nav-link" href="#">Subject Rankers</a>
+                                  </li>
+                                  
+                                  <li class="nav-item ml-3">
+                                    <a class="nav-link" href="#">Free Trial</a>
+                                  </li>
+                                  {% if user.is_authenticated %}
+
+                                  <li class="nav-item ml-3">
+                                    <a class="nav-link" href="{% url 'quiz_index' %}">Quizzes</a>
+                                  </li>
+
+                                    <li class="nav-item ml-3">
+                                      <a class="nav-link" href="{% url 'quiz_progress' %}">Progress</a>
+                                    </li>
+
+                                  {% else %}
+                                  <li class="nav-item ml-3">
+                                    <a class="nav-link" href="{% url 'loginhandle' %}">Login</a>
+                                  </li>
+
+                                  {% endif %}
+                                  <div class="dropdown nav-item">
+                                    <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {% if user.is_authenticated %}
+                                      hi!
+                                      {{ user.username}}
+                                      {% else %}
+                                      Register
+                                      {% endif %}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      {% if user.is_authenticated %}
+                                      <a href="{% url 'profile'%}" class="dropdown-item">Dashboard</a>
+                                      <a  class="dropdown-item" href="{% url 'subscriptions' %}">Subscriptions</a>
+                                      <a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
+                                      <a class="dropdown-item" href="{% url 'changeslot' %}">Change Slot</a>
+
+                                      <a class="dropdown-item" href="{% url 'profile' %}">Your Profile</a>
+                                      <a class="dropdown-item" href="#">My Result : Enroll for notification</a>
+                                      <a class="dropdown-item" href="#">Map Your Enrollment</a>
+                                      <a class="dropdown-item" href="#">View Result</a>
+                                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
+
+
+                                      {% else %}
+                                      <a class="dropdown-item" href="{% url 'applyindividual' %}">Apply Individually</a>
+                                      <a class="dropdown-item" href="{% url 'applyschool' %}">Register your school</a>
+                                      {% endif %}
+                                    </div>
+                                  </div>
+
+                                </ul>
+                              </div>
+                            </nav>
+
+                          </div>
+                        </div></div>
+                      </header>
+                      <!-- header -->
+{% block body %}{% endblock %}
+
+<!-- ***** Footer Area Start ***** -->
+<section style="background: #131627">
+  <footer class="fancy-footer-area fancy-bg-dark" >
+    <div class="footer-content section-padding-80-50">
+      <div class="container">
+        <div class="row">
+          <!-- Footer Widget -->
+
+
+          <!-- Footer Widget -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="single-footer-widget">
+              <h6 style="font-weight: bold; color: white">Link Categories</h6>
+              <ul class="footer-ul">
+                <li><a href="{% url 'faqs' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> FAQs</a></li>
+                <li><a href="{% url 'applyschool' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Register Your School</a></li>
+                <li><a href="/samplepaper/maths/1" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sample Papers</a></li>
+                <li><a href="{% url 'awards' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i>Awards & Recognition</a></li>
+                <li><a href="#" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Subject Rankers</a></li>
+                <li><a href="{% url 'examdates' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Schedule</a></li>
+                <li><a href="{% url 'examprep' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Exam Preparation</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Footer Widget -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="single-footer-widget" >
+              <h6 style="font-weight: bold; color: white">Contact Us</h6>
+              <p style="color: #B5AEB0">686-6688 <br>info@gmail.com
+              </p>
+              <p style="color: #B5AEB0">40 Sreet 133/2 <br>India</p>
+              <p style="color: #B5AEB0">Open hours: 8.00-18.00 Mon-Fri</p>
+            </div>
+          </div>
+          <!-- Footer Widget -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="single-footer-widget">
+              <h6 style="font-weight: bold; color: white">Contact Us</h6>
+              <form class="single-footer-widget" role="form">
+                <div class="row" style="font: yellow">
+                 <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control form-control-name" name="name" id="name" placeholder="Name" type="text" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                   <input class="form-control form-control-email" name="email" id="email"
+                   placeholder="E-mail" type="email" required>
+                 </div>
+               </div>
+
+             </div>
+             <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input class="form-control form-control-phone" name="phone" id="phone" placeholder="Phone Number" type="tel" required>
+                </div>
+              </div>
+             </div>
+             <div class="form-group">
+               <textarea class="form-control form-control-message" name="message" id="message" placeholder="Message" rows="3" required></textarea>
+             </div>
+             <div class="text-right"><br>
+              <a href="#" class="btn fancy-btn">Send Message</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" style="color: #fff;">
+  CopyRight &#169; by International Student Olympiad Foundation . <a href="{% url 'privacypolicy' %}">Privacy Policy</a>
+</div>
+</footer>
+<!-- Footer -->
+</section>
+<!-- ./Footer -->
+
+            <!-- vendors -->
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="{% static 'Owl/docs/assets/vendors/highlight.js' %}"></script>
+            <script src="{% static 'Owl/docs/assets/js/app.js' %}"></script>
+            <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+            <script>
+              $(window).scroll(function(){$('nav').toggleClass('scrolled', $(this).scrollTop() > 0);});
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.umo').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.ugko').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.uso').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.ustp').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            <script>
+              $(document).ready(function(){
+                $('.ueo').on("click", function(e){
+                  e.stopPropagation();
+                });
+              });
+            </script>
+            {% block js %}{% endblock %}
+          </body>
+          </html>

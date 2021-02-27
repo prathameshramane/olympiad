@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+{% block title %} Apply Individual {% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="container-fluid p-0" >
+  <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (2).jpg' %});">
+    <div class="d-flex justify-content-center" >
+      <div class="d-flex flex-column" style="padding-top: 120px">
+        <h1 class="site-title  justify-content-center" style="text-align: center;">Apply Individual
+        </h1>
+        <p class="site-desc"></p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<br><br>
+
+<div class="container">
+  <center><br>
+    <h1 class="register-title">Individual Registration Form</h1>
+  </center><br>
+
+<div class="row">
+  <ol>
+    <li>Please check and recheck all entries before registering as editing of information will not be allowed after submission.</li>
+    <li>School Name & Student Name will be printed on the certificate. So they must be mentioned as you would like them to appear on the certificate.</li>
+    <li>The certificate, if applicable, will be sent to home address. Hence, make sure that the home address is correct.</li>
+  </ol><br>
+</div>
+<div class="row">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>{{message}}</strong>
+
+    </div>
+    {% endfor %}
+</div>
+
+    <form method="post" name="form4" action="" class="fm" onsubmit="return regEx()">
+      <div class="row">
+        <h2>Personal Details</h2>
+
+      </div><br>
+    <div class="row">
+
+      {% csrf_token %}
+
+
+      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="text" name="first_name" id="first_name" >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="first_name" class="form-label">First Name *</label>
+      </div>
+
+      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+      <div class="group col-md-5">
+          <input type="text" name="last_name" id="last_name" >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="last_name" class="form-label">Last Name *</label>
+      </div>
+
+
+
+
+      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+      <div class="group col-md-5">
+          <input type="text" name="parent_name" id="parent_name" >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="parent_name" class="form-label">Parent/Guardian name*</label>
+      </div>
+
+
+
+
+      <div class="col-md-1"><ion-icon name="calendar-outline"></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="date"  name = "dob" id = "dob" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for = "dob" class="form-label form-label-profile">Date of Birth *</label>
+      </div>
+
+      <div class="col-md-1"><ion-icon name="call"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input  type="tel" name ="number" id="number"  required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for ="number" class="form-label">Mobile Number</label>
+      </div>
+
+      <div class="col-md-1"><ion-icon name="mail"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+      <input type="text"  name = "email" id = "email" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label class="form-label" for = "email" >E-mail *</label>
+      </div>
+
+
+
+
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="text" name= "address" id = "address" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for= "address"  class="form-label">Flat /House No. / FLoor / Building *</label>
+      </div>
+
+
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="text" name="street" id="street" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label class="form-label">Colony/ Street / Locality *</label>
+      </div>
+
+
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="text" name ="state" id = "state" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="state"   class="form-label">Home City , pincode and state*</label>
+      </div>
+
+
+
+
+
+      <div class="col-md-1"><ion-icon name="pencil"></ion-icon></div>
+      <div class="group col-md-5">
+      {% load countries %}
+      {% get_countries as countries %}
+      <select name="country" id = "country" placeholder="Choose Your country" required>
+      {% for country in countries %}
+          <option value="{{ country.code }}">{{ country.name }}</option>
+      {% endfor %}
+      </select>
+
+
+      </div>
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input name = "pincode" id = "pincode" type="text" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for ="pincode"class="form-label">Pincode *</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <h2>School Details</h2><br>
+    </div><br>
+    <div class="row">
+      <div class="col-md-1"><ion-icon name="school"></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="TEXT" name ="school" id = "school" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="school" class="form-label">School Name *</label>
+      </div>
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input name = "school_address" id = "school_address" type="text" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for ="school_address" class="form-label">School address *</label>
+      </div>
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input name = "school_state" id = "school_state"  type="TEXT" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for ="school_state" class="form-label">School State  *</label>
+      </div>
+
+
+
+
+      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="group col-md-5">
+        <input name = "school_city" id = "school_city"  type="TEXT" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for ="school_city" class="form-label">School City  *</label>
+      </div>
+
+
+      <div class="col-md-1"><ion-icon name="pencil"></ion-icon></div>
+      <div class="group col-md-5">
+        <select name="standard" id = "standard" class="select-css">
+          <option value="01">Class 1</option>
+          <option value="02">Class 2</option>
+          <option value="03">Class 3</option>
+          <option value="04">Class 4</option>
+          <option value="05">Class 5</option>
+          <option value="06">Class 6</option>
+          <option value="07">Class 7</option>
+          <option value="08">Class 8</option>
+          <option value="09">Class 9</option>
+          <option value="10">Class 10</option>
+          <option value="11">Class 11</option>
+          <option value="12">Class 12</option>
+
+      </select>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+
+    <div class="row">
+      <h2>Security Details</h2>
+    </div><br>
+<div class="row">
+    
+      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="text" name="ref_code" id="ref_code" >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="ref_code" class="form-label">REFERRAL CODE if any</label>
+      </div>
+
+      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+      <div class="group col-md-5">
+          <input type="text" name="username" id="username" >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="username" class="form-label">Choose a Username*</label>
+      </div>
+  
+    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="password" name = "password" id="password"  required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label  for="password" class="form-label">Password *</label>
+      </div >
+
+      <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+      <div class="group col-md-5">
+        <input type="password" name = "confirmpassword" id="confirmpassword"  required onchange="cp()">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label  for="password" class="form-label">Confirm Password *</label>
+        <p style="color: red;display: none;" id="s-t">Passwords does'nt match</p>
+      </div >
+
+      </div>
+    <div class="row instructions">
+
+      <p><b>Important Instructions : </b></p>
+      <ul style="list-style-type:disc">
+        <li>International School Olympiads is based on the combined syllabus of the CBSE, ICSE and IGCSE boards.</li>
+        <li>International School Olympiads conducts examinations in both online and offline modes.
+          <ul style="list-style-type: circle;">
+            <li>In case of online mode, the exam will be conducted online i.e. either on laptop or desktop. The students will have to take the exams from their residence or any other place where they have access to computer with good Internet connectivity (2 Mbps) and latest version of the browser (preferably Google Chrome). If schools have subscribed for online mode of exam, then they may decide to conduct these exams using their computer lab.</li>
+            <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
+          </ul>
+        </li>
+        <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
+        <li>The online mode of examinations will be thoroughly invigilated. Hence, the provision of a webcam is compulsory on every laptop/desktop.</li>
+        <li>To know more about the exam and answer key dates, please check the <a href="{% url 'examdates' %}">exam dates</a> page.</li>
+        <li>Students will be provided with 3 Mock Tests which can be attempted upto 3 times by a student.</li>
+        <li>For further information, read the <a href="{% url 'faqs' %}">Frequently Asked Questions (FAQs)</a> thoroughly.        </li>
+        <li>Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at     </li>
+      </ul>
+      <br>
+      </div>
+      <div class="row">
+      <input type="checkbox" name="" id="checkbox" id="cbc" onchange="sub(this)">
+      <span class="check-label"> I acknowledge that I have read all the above instructions</span>
+      <br><br>
+    </div>
+      <center>
+      <input class="review-btn" type="submit" name="submit" value="Submit" id="sb" disabled>
+
+      </form>
+      </center>
+    </div>
+
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+var a = false;
+function cp(){
+  b = document.getElementById('password');
+  c = document.getElementById('confirmpassword');
+  d = document.getElementById('s-t')
+  if(b.value == c.value){
+    a = true;
+    d.style.display = "none";
+  }else{
+    a = false;
+    d.style.display = "block";
+  }
+}
+function sub(e){
+  n = document.getElementById('sb');
+  if(e.checked && a){
+    n.disabled = false
+  }else{
+    n.disabled = true
+  }
+}
+  function regEx()
+  {
+  function testName()
+  {
+      var name = document.form4.first_name.value;
+      var letters = /^[a-zA-Z_ ]+$/;
+      if (!name.match(letters)){
+      alert("Name can have only letters.");
+      return false;
+      }
+      return true;
+  }
+
+  function testName1()
+  {
+      var name = document.form4.last_name.value;
+      var letters = /^[a-zA-Z_ ]+$/;
+      if (!name.match(letters)){
+      alert("Name can have only letters.");
+      return false;
+      }
+      return true;
+  }
+  function testZip()
+  {
+      var zip = document.form4.number.value;
+
+
+      if (!zip.match(/^\d{10}$/)){
+      alert("A number has 10 integers.");
+      return false;
+      }
+      return true;
+  }
+  function pincode()
+  {
+      var zip = document.form4.pincode.value;
+
+
+      if (!zip.match(/^\d{6}$/)){
+      alert("A pincode has 6 integers.");
+      return false;
+      }
+      return true;
+  }
+
+
+  return testName()&&testZip()&&pincode()&&testName1();
+
+  }
+
+
+</script>
+{% endblock %}

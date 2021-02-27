@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<div class="container-fluid p-0" >
+    <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download.jpg' %});">
+      <div class="d-flex justify-content-center" >
+        <div class="d-flex flex-column" style="padding-top: 120px">
+          <h1 class="site-title  justify-content-center" style="text-align: center;">Syllabus
+          </h1>
+          <p class="site-desc"></p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row pl-5 pr-5">
+    <h1 class="sample-title"  >
+      International {{name}} Olympiad Class {{class}} Syllabus
+    </h1>
+</div>
+<hr style="border-bottom: 1px solid #666; margin-left: 50px; margin-right: 50px;  " /><br>
+
+<div class="row">
+    <div class="col-md-4 sample-buttons">
+      <a class="btn syllabus-btn" href="/ms/all/" style="color: #fff;">Marking Scheme</a>
+      <a class="btn syllabus-btn" href="/samplepaper/{{name1}}/1" style="color: #fff;">Sample Papers</a>
+      <a class="btn syllabus-btn" href="{% url 'rankingcriteria' %}" style="color: #fff;">Ranking Criteria</a>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        <h5><b>Classes</b></h5>
+        <a href="/syllabus/{{name1}}/1" style="padding: 10px;" >Class 1</a>
+        <a href="/syllabus/{{name1}}/2" style="padding: 10px;" >Class 2</a>
+        <a href="/syllabus/{{name1}}/3" style="padding: 10px;" >Class 3</a>
+        <a href="/syllabus/{{name1}}/4" style="padding: 10px;" >Class 4</a>
+        <a href="/syllabus/{{name1}}/5" style="padding: 10px;" >Class 5</a>
+        <a href="/syllabus/{{name1}}/6" style="padding: 10px;" >Class 6</a>
+        <a href="/syllabus/{{name1}}/7" style="padding: 10px;" >Class 7</a>
+        <a href="/syllabus/{{name1}}/8" style="padding: 10px;" >Class 8</a>
+        <a href="/syllabus/{{name1}}/9" style="padding: 10px;" >Class 9</a>
+        <a href="/syllabus/{{name1}}/10" style="padding: 10px;" >Class 10</a>
+        <a href="/syllabus/{{name1}}/11" style="padding: 10px;" >Class 11</a>
+        <a href="/syllabus/{{name1}}/12" style="padding: 10px;" >Class 12</a>
+        <br>
+        <br>
+        <p>
+            {% if syllabus %}
+            {% for i in syllabus %}
+            <b>Syllabus : </b><br>
+            <p>{{i.syllabus}}</p>
+            {% endfor %}
+            {% else %}
+            <p>We will update you soon.</p>
+            {% endif %}
+              <br><br>
+        </p>
+    </div>
+</div>
+{% endblock %}

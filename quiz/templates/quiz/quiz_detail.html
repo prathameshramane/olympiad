@@ -1,0 +1,129 @@
+{% extends 'basetest2.html' %}
+{% load i18n %}
+{% block body %}
+{% load static %}
+<div class="test-title">
+    <div class="rows upper-bar">
+        <div style="background:lightblue;transform:skewX(20deg);min-height:60px;margin-left:10px;margin-right:10px;border-left:20px double white;border-right:20px double white;">
+        <div style="transform:skewX(-20deg);">
+        <!--upper bar with logo and menus-->
+        <div class="container-fluid">
+        <!--space for logo-->
+        <div class="col-sm-1 logo">
+            <img src="{% static 'screenshots/logo1.jpg' %}"style="height: 90px">
+  
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+  </div>
+    <div class="row">
+        <div class="col-md-12">
+        <center>
+            <h2 style="font-style: italic;color: #ff9876;">Please read the following instructions carefully.</h2>
+        </center>
+    </div><br>
+<div class="container">
+    <div class="row p-5" style="border: 1px solid #676767;border-radius: 5px;box-shadow: 0px 1px 2px #676767;">
+        <div class="col-md-6">
+            <h3>
+            <ul style="list-style: disc;">
+                <li>This exam is an objective type exam with <b>Multiple Choice Questions (MCQs)</b>. Each question has 4 options of which only 1 option is <b>correct</b>.</li><br>
+                <li>The duration of the exam is <b>60 minutes</b> The exam countdown time will begin as soon as you click on <b>Start Test</b> button at the bottom.</li><br>
+                <li>You can click the buttons to navigate the questions. But make sure you click the <b>Next</b> button when you select the <b>Correct Answer</b>. Your answer is saved only when you click on the next button.</li><br>
+                <li>There is a <b>‘Select and mark for review’</b> option for you to review the question again.</li><br>
+                <li>When you select the <b>'Clear Answer'</b> unselects the answer and mark the questi.on as <b>Not Answered</b>.</li><br>
+            </ul>
+        </h3>
+        </div>
+        <div class="col-md-6">
+            <h3>
+                <ul style="list-style: disc;">
+                <li>Always click on <b>‘Finish’</b> to submit your answers. The answers cannot be changed once you click on <b>Finish</b>. So, make sure to review all the questions before ending the exam.</li><br>
+                <li>When the exam countdown time finishes, the exam will end by default. A pop up will come. Make sure that you click OK on this pop up to submit your exam.</li><br>
+                <li>This exam is proctored. The exam won’t start until you start your camera.</li><br>
+                <li>You may be barred from the exam or required to appear for retest if you are found using unfair means or if any suspicious activity is detected.</li><br>
+                <li>The last 10 questions in the test are Scholar Section questions.</li><br>
+                </ul>
+            </h3>
+        </div>
+    </div>
+
+    <div class="row p-5" style="border: 1px solid #676767;border-radius: 5px;box-shadow: 0px 1px 2px #676767;">
+        <h3 class="animated-text" style="font-style: italic;color: #ff0000;">Please Note :  Anyone found taking videos or screenshots of the exam will be disqualified without notice.</h3>
+    </div>
+
+<div class="row">
+    <div class="col-md-6">
+    <div class="row mt-5">
+        <h3>The question palette at the top of the screen shows one of the following status of each question.</h3>
+    </div>
+    <div class="row p-5 q-type q-type-1">
+        <span></span><h3 class="m-3">You have visited the question.</h3>
+    </div>
+    <div class="row p-5 q-type q-type-2">
+        <span></span><h3 class="m-3">You have answered the question.</h3>
+    </div>
+    <div class="row p-5 q-type q-type-3">
+        <span></span><h3 class="m-3">You have marked the question.</h3>
+    </div>
+    <div class="row p-5 q-type q-type-4">
+        <span></span><h3 class="m-3">You have answered but marked question for review</h3>
+    </div>
+    </div>
+
+<div class="col-md-6">
+        
+
+        <br>
+        <div class="declaration-teststart p-5">
+            <input type="checkbox" name="" id="checkbox" onchange="abc()">
+            <span class="check-label-one">
+                <h3>I hereby declare that: </h3><br>
+                <ol>
+                    <li class="ml-5">The computer available to me is in proper working condition.</li>
+                    <li class="ml-5">I have read and understood the instructions given above.</li>
+                    <br><br>
+                <h3 id="date"></h3>
+
+                </ol>
+            </span>
+            <br><br>
+        </div>
+        <br><br>
+        <center>
+            {% comment %} <a class=" btn camera-btn disabled" href="" id="button-abc" >Start Quiz</a> {% endcomment %}
+            <p>
+{% comment %} <p>dhcvbefhvbhefbih</p> {% endcomment %}
+  <a href="{% url 'quiz_question' quiz_name=quiz.url %}" class=" btn camera-btn disabled" id="button-abc">
+	{% trans "Start quiz" %}
+  </a>
+</p>
+        </center>
+</div>
+
+</div>
+    
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+window.onload = times()
+    function times(){
+        var currentdate = new Date();
+        var days = ['Monday','Tuesday','Wednesday' , 'Thrusday' , 'Friday' , 'Saturday' , 'Sunday']
+    var datetime = days[currentdate.getDay()-1].toUpperCase() + ' ' + currentdate.getDate() + "/" + currentdate.getMonth() + "/" + currentdate.getFullYear() + ' ' + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds() ;
+    document.getElementById('date').innerHTML = datetime; 
+    setTimeout(times,1000);
+    }
+</script>
+    <script>
+        function abc(){
+            var x = document.getElementById('button-abc');
+            x.classList.toggle('disabled')
+        }
+    </script>
+{% endblock %}

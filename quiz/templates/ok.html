@@ -1,0 +1,908 @@
+
+{% extends 'base.html' %}
+{% block body %}
+ <style >
+  a {
+    color: rgba(255, 0, 0, 0.7);
+    line-height: inherit;
+    text-decoration: none;
+}
+    a:hover, a:focus {
+    color: red;
+    font-weight: bold;
+     text-shadow: 1px 1px black;
+}
+#dropdownMenuButton:hover{
+    color: red;
+    font-weight: bold;
+     text-shadow: 1px 1px black;
+}
+</style>
+
+  
+                      <!-- hero -->
+                      <div class="container-fluid p-0" >
+                        <div class="site-content" style="height: 450px; background-image: url('Stock/download (1).jpg');">
+                          <div class="d-flex justify-content-center" >
+                            <div class="d-flex flex-column" style="padding-top: 120px">
+                              <h1 class="site-title  justify-content-center" style="text-align: center;">Subscriptions
+                              </h1>
+                              <p class="site-desc"></p>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu" id="menu">
+                        <div class="menu-btn" onclick="menuOpen()" id="menu-ion-icon">
+                            <ion-icon name="caret-forward-outline"></ion-icon>
+                        </div>
+                        <h1 style="color: #fff;margin: 20px;">
+                          MENU
+                      </h1>
+                      <hr style="border-bottom: 2px solid #fff; box-shadow: 0px 1px 2px #0009;">
+                        <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Profile
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="profile.html">Profile</a>
+                              <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a>
+                              <a class="dropdown-item" href="#" onclick="show('submitdocuments')">Submit Documents</a>
+                              <a class="dropdown-item" href="#">Preview Certificate</a>
+                            </div>
+                          </div>
+                          <a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Take Exams
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Mock Test</a>
+                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Final exam</a>
+                            </div>
+                          </div>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Result
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('challenge')">Answer keys and challenges</a>
+                              <a class="dropdown-item" href="#" onclick="show('result')">Final Result</a>
+                            </div>
+                          </div>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Free Trial
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('subjects')">Subjects</a>
+                              <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
+                            </div>
+                          </div>
+                          <div class="dropdown nav-item">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Support
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Subscriptions</a>
+                              <a class="dropdown-item" href="#" onclick="show('invoice')">Invoice</a>
+                              <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
+                            </div>
+                          </div>
+                          <a href="" class="menu-link">LOGOUT</a>
+                    </div>
+                    
+                    
+                    
+                        <div class="container hide" id="changepassword">
+                          <center><br>
+                            <h1 class="register-title">Change Password</h1>
+                          </center><br>
+                          
+                          <div class="row">
+                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                            <div class="group col-md-11">      
+                              <input type="password" required>
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="form-label">Old Password *</label>
+                            </div >
+                          </div>
+                    
+                          <div class="row">
+                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                            <div class="group col-md-5">      
+                              <input type="password" required>
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="form-label">New Password *</label>
+                            </div >
+                            <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                            <div class="group col-md-5">      
+                              <input type="password" required>
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="form-label">Confirm Password *</label>
+                            </div >
+                            </div>
+                    
+                            <center>
+                              <button class="review-btn">UPDATE </button>
+                              </center>
+                        </div>
+                        
+                    
+                    
+                        <div class="container hide" id="submitdocuments">
+                          <center><br>
+                            <h1 class="register-title">Submit Documents</h1>
+                          </center><br>
+                    
+                          <ol>
+                            <li>
+                              Make sure you submit the required documents before the exam.
+                            </li>
+                            <li>
+                              Only jpeg/jpg and png images are allowed with a maximum size of 200 KB. In case the file size is more than 200 KB, <a href="https://compressimage.toolur.com/">click here</a> to compress image. (supported format – jpeg/jpg and png)
+                            </li>
+                          </ol><br>
+                    
+                          <div class="row mt-3">
+                            <form>
+                            <div class="col-md-4">School ID Proof (pdf, jpg and png formats accepted):</div>
+                            <div class="col-md-4"><input type="file"></div>
+                            <div class="col-md-4">
+                                  <embed src="1.jpg" width="100%" height="auto" />
+                            </div>
+                          </div>
+                          <div class="row mt-3">
+                          <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
+                          <div class="col-md-4"><input type="file"></div>
+                          <div class="col-md-4">
+                                <embed src="1.jpg" width="100%" height="auto" />
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                        <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
+                        <div class="col-md-4"><input type="file"></div>
+                        <div class="col-md-4">
+                              <embed src="1.jpg" width="100%" height="auto" />
+                        </div>
+                      </div>
+                        </form>
+                    
+                        <center>
+                          <button class="review-btn">UPDATE </button>
+                          </center>
+                        </div>
+                    
+                    
+                        <div class="container hide" id="slot">
+                          <center><br>
+                            <h1 class="register-title">Book Your Exam Slot</h1>
+                          </center>
+                          <h3><b>Points to note: </b></h3>
+                    
+                          <h4>
+                            <ol>
+                              <li>All the timings are in Indian Standard Time (IST).</li>
+                              <li>If you want to edit your pre-booked slot, you can do so by clicking the edit button. Editing of slot is chargeable @ Rs. 30 per slot change.</li>
+                            </ol>
+                              <div class="row table-head">
+                                <div class="col-md-4">
+                                  <b>Exam name</b>
+                                </div>
+                                <div class="col-md-2">
+                                  <b>Exam type</b>
+                                </div>
+                                <div class="col-md-2">
+                                  <b>Exam Date</b>
+                                </div>   
+                                <div class="col-md-2">
+                                  <b>Slot time</b>
+                                </div>            
+                                <div class="col-md-2">
+                                  <b>Action</b>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                              <div class="row">
+                                <div class="col-md-4 exam-name">
+                                  International Mathematics Olympiad (IMO)
+                                </div>
+                                <div class="col-md-2">
+                                  Final Exam
+                                </div>
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Exam date:</b></p>May 21,2019
+                                </div>   
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Slot time:</b></p>12:00
+                                </div>            
+                                <div class="col-md-2">
+                                  <a href="" class="slot-btn disabled">BOOK</a>
+                                  <a href="" class="slot-btn">EDIT</a>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                    
+                              <div class="row">
+                                <div class="col-md-4  exam-name">
+                                  International Mathematics Olympiad (IMO)
+                                </div>
+                                <div class="col-md-2">
+                                  Final Exam
+                                </div>
+                                <div class="col-md-2">
+                                 <p class="slot-para"><b>Exam date:</b></p> May 21,2019
+                                </div>   
+                                <div class="col-md-2">
+                                 <p class="slot-para"><b>Slot time:</b></p> 12:00
+                                </div>            
+                                <div class="col-md-2">
+                                  <a href="" class="slot-btn disabled">BOOK</a>
+                                  <a href="" class="slot-btn">EDIT</a>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                    
+                              <div class="row">
+                                <div class="col-md-4  exam-name">
+                                  International Mathematics Olympiad (IMO)
+                                </div>
+                                <div class="col-md-2">
+                                  Final Exam
+                                </div>
+
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Exam date:</b></p>May 21,2019
+                                </div>   
+                                <div class="col-md-2">
+                                  <p class="slot-para"><b>Slot time:</b></p>--:--
+                                </div>            
+                                <div class="col-md-2">
+                                  <a href="" class="slot-btn">BOOK</a>
+                                  <a href="" class="slot-btn disabled">EDIT</a>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                              <br>
+                    
+                          </h4>
+                        </div>
+                    
+                        <div class="container hide" id="mocktest">
+                          <center><br>
+                            <h1 class="register-title">Mock Test</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            </div>
+                    
+                          </div>
+                        </div>
+                    
+                        <div class="container hide" id="challenge">
+                          <center><br>
+                            <h1 class="register-title">View Challenge and answers</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            </div>
+                    
+                          </div>
+                        </div>
+                    
+                        <div class="container hide" id="result">
+                          <center><br>
+                            <h1 class="register-title">Results</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                1
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <a href="">
+                            International Mathematics Olympiad (IMO)
+                                </a>
+                            </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                        </div>
+                    
+                    
+                    
+                        <div class="container hide" id="subjects">
+                          <center><br>
+                            <h1 class="register-title">Subjects</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-6">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Duration</b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Action</b>
+                            </div>
+                          </div>
+                    
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                          </div>
+                    
+                    
+                    <div class="container hide" id="challenge-one">
+                          <center><br>
+                            <h1 class="register-title">CHALLENGES</h1>
+                          </center>
+                          <div class="row table-head">
+                            <div class="col-md-2">
+                                  <b>Sr. no.</b>
+                            </div>
+                            <div class="col-md-6">
+                              <b><p>
+                                <b>Name</b>
+                              </p></b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Duration</b>
+                            </div>
+                            <div class="col-md-2">
+                              <b>Action</b>
+                            </div>
+                          </div>
+                    
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                    
+                            <div class="row">
+                              <div class="col-md-2">
+                                    1
+                              </div>
+                              <div class="col-md-6">
+                                International General Knowledge Olympiad (IGKO)
+                              </div>
+                      
+                              <div class="col-md-2">
+                                <b>60 min</b>
+                              </div>
+                              <div class="col-md-2">
+                                <a href="" class="slot-btn">TAKE EXAM</a>
+                              </div>
+                            </div>
+                            <hr style="border-bottom: 1px solid #0009;">
+                          </div>
+                          
+                          <div class="container hide" id="invoice">
+                            <center><br>
+                                <h1 class="register-title">INVOICE</h1>
+                              </center>
+                              <div class="row table-head">
+                                  <div class="col-md-4">
+                                      <p><b>Subject Name</b></p>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <p><b>Amount Paid</b></p>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <p><b>Transaction Date:</b></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p><b>Transaction Status:</b></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p><b>Action</b></p>
+                                </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="slot-para"><b>Name:</b></div>
+                                    IMO,ISO,IEO,ICO,IGKO,ICTO
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Amount paid:</b></div>
+                                    1350
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Transaction Date:</b></div>
+                                    2020-05-05 16:58:49
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Transaction Status:</b></div>
+                                    Complete
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="slot-para"><b>Action :</b></div>
+                                    <a href="">Download</a>
+                                  </div>
+                              </div>
+                              <hr style="border-bottom: 1px solid #0009;">
+                    <br>
+                          </div>
+                    
+                          <div class='container shown'>
+                            <form action="" id="theForm" style="padding: 20px">
+                              <legend>
+                Select The Subscriptions And Read The Below Instructions Before Purchasing
+            </legend>
+            <form action="" method="post" class="third" >
+    {% csrf_token %}
+    <input id="student_email" name="student_email">
+
+    <label for="mathsolym">MATHS OLYMPIAD(150)</label>
+    <input type="checkbox" value="True" id="mathsolym" name="mathsolym">
+
+    <label for="englisholym">ENGLISH OLYMPIAD(150)</label>
+    <input type="checkbox" value="True" id="englisholym" name="englisholym">
+
+    <label for="scienceolym">SCIENCE OLYMPIAD(150)</label>
+    <input type="checkbox" value="True" id="scienceolym" name="scienceolym">
+
+    <label for="cyberolym">CYBER OLYMPIAD(150)</label>
+    <input type="checkbox" value="True" id="cyberolym" name="cyberolym">
+
+    <label for="reasoningolym">REASONONG OLYMPIAD(150)</label>
+    <input type="checkbox" value="True" id="reasoningolym" name="reasoningolym">
+
+    <label for="internationalspell">INTERNATIONAL SPELL BEE(150)</label>
+    <input type="checkbox" value="True" id="internationalspell" name="internationalspell">
+
+    <input type="submit" name="submit" value="Submit">
+   </form>
+        {% comment %} <fieldset>
+            
+            <label>
+                <input name="product" value="10.0" type="checkbox" id="p1" style="height: 30px;width: 30px;margin-top: 5px;" onclick="totalIt()"/>
+                <span style="font-size: 15px;">
+                International Mathematics Olympaid(INR 225 / USD 10.0)</span>
+                                    
+            </label>
+            <hr style="border-bottom: 1px solid #0009;">
+            <label>
+                <input name="product" value="10.0" type="checkbox" id="p2" style="height: 30px;width: 30px;margin-top: 5px;" onclick="totalIt()"/>
+                <span style="font-size: 15px;">International Mathematics Olympaid(INR 225 / USD 10.0)</span>
+                           
+            </label>
+            <hr style="border-bottom: 1px solid #0009;">
+            <label>
+                <input name="product" value="10.0" type="checkbox" id="p3" style="height: 30px;width: 30px;margin-top: 5px;" onclick="totalIt()"/>
+                <span style="font-size: 15px;">International Mathematics Olympaid(INR 225 / USD 10.0)</span>
+                                    
+            </label>
+            <hr style="border-bottom: 1px solid #0009;">
+            <label style="font-size: 15px;">
+                Total 
+                <input value="$0.00" readonly="readonly" type="text" id="total"/>
+            </label>
+        </fieldset> {% endcomment %}
+        <!-- <input value="Submit" type="submit"/>
+        <input value="Reset" type="reset"/> -->
+    {% comment %} </form> {% endcomment %}
+                            
+                            <div class="row instructions">
+                                <p><b>Important Instructions : </b></p>
+                                <ul style="list-style-type:disc">
+                                  <li>International Olympiads is a Summer Olympiad. It focuses on assessing the student on the basis of what he/she has studied in the last 2 classes.</li>
+                                  <li>International Olympiads conducts examinations in both online and pen/paper mode
+                                    <ul style="list-style-type: circle;">
+                                      <li>In case of online mode, the exam will be conducted online i.e. either on laptop or desktop. The students will have to take the exams from their residence or any other place where they have access to computer with good Internet connectivity (2 Mbps) and latest version of the browser (preferably Google Chrome). If schools have subscribed for online mode of exam, then they may decide to conduct these exams using their computer lab.</li>
+                                      <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
+                                    </ul>
+                                  </li>
+                                  <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
+                                  <li>The online mode of examinations will be proctored. Hence, webcam is compulsory on every laptop/desktop.</li>
+                                  <li>To know about the exam and answer key dates, please check the <a href="#">exam dates<a> page.</li>
+                                  <li>There will be 1 Mock Test provided to all the students who can attempt this test online for a maximum of 3 times.</li>
+                                  <li>Do read the <a href="#">Frequently Asked Questions (FAQs)</a> thoroughly.</li>
+                                  <li>Kindly make payment only after you have read and accepted the above statements. Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at <a href="">info@-------.com.</a></li>
+                                </ul>
+                                <br>
+                                <input type="checkbox" name="" id="checkbox" style="width: 30px;height: 30px;">
+                                <span class="" style="font-size: 1.5rem;margin-left: 10px;"> I acknowledge that I have read all the above instructions</span>
+                                <br><br>
+                            </div>
+                                <center>
+                                <button class="review-btn">REVIEW AND PAY</button>
+                                </center>
+                          </div>
+                    
+                          <div class="backdrop" id="feedback" >
+                            <div class="feedback">
+                                <button class="close-btn" onclick="feedback()"><ion-icon style="color: #fff;" name="close"></ion-icon></button>
+                                <center>
+                                    <h1 class="register-title">FEEDBACK FORM</h1>
+                                  </center>
+                                  <div class="container">
+                                      <div class="row">
+                                    <div class="col-md-6">
+                                    How likely would you recommend this test to your friends on a scale of 1 to 10? *
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5">
+                                        <select id="country" name="country" class="select-css">
+                                            <option value=1">1</option>
+                                            <option value=2">2</option>
+                                            <option value=3">3</option>
+                                            <option value=4">4</option>
+                                            <option value=5">5</option>
+                                            <option value=6">6</option>
+                                            <option value=7">7</option>
+                                            <option value=8">8</option>
+                                            <option value=9">9</option>
+                                            <option value="10">10</option>
+                                  
+                                        </select>
+                                    </div>
+                                  </div>
+                                  <hr style="border-bottom: 1px #0009;">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                        If you are happy about the initiative which Unicus Olympiads is taking to conduct Summer Olympiads, then do share a testimonial below. (we may publish the testimonial)
+                                      </div>
+                                      <div class="col-md-1"></div>
+                                      <div class="col-md-5">
+                                          <textarea name="" id="" cols="30" rows="5"></textarea>
+                                      </div>
+                                  </div>
+                                <hr style="border-bottom: 1px #0009;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        We would love to hear your comments/suggestions to improve the platform.*
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5">
+                                        <textarea name="" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <center>
+                                <button class="review-btn">S U B M I T</button>
+                            </center>
+                            <hr style="border-bottom: 1px #0009;">
+                            <center>
+                                <button class="review-btn">JOIN GROUP</button>
+                            </center>
+                            <hr style="border-bottom: 1px #0009;">
+                    
+                            </div>
+                            </div>
+                          </div> 
+                          
+
+
+              <!-- vendors -->
+
+            
+      <script>
+function totalIt() {
+  var input = document.getElementsByName("product");
+  var total = 0;
+  for (var i = 0; i < input.length; i++) {
+    if (input[i].checked) {
+      total += parseFloat(input[i].value);
+    }
+  }
+  document.getElementById("total").value = "$" + total.toFixed();
+}
+</script>
+                      <script>
+                        function menuOpen() {
+                               var element = document.getElementById("menu");
+                               element.classList.toggle("menu-open");
+                               var elementone = document.getElementById("menu-ion-icon");
+                               elementone.classList.toggle("menu-ion-icon");
+                       }
+                     </script>
+                          <script>
+                            $(window).scroll(function(){$('.menu').toggleClass('menu-scrolled', $(this).scrollTop() > 0);});
+                          </script>  
+                          
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

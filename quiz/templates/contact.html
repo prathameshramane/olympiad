@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %} Contact {% endblock %}
+{% block body %}
+{% load static %}
+<!-- header -->
+<!-- hero -->
+<div class="container-fluid p-0" >
+  <div class="site-content" style="height: 400px; background-image: url({% static 'Stock/contact_bg.jpg' %});">
+    <div class="d-flex justify-content-center" >
+      <div class="d-flex flex-column" style="padding-top: 80px">
+        <h1 class="site-title  justify-content-center" style="text-align: center;">Contact Us
+        </h1>
+        <p class="site-desc"></p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Hero End -->
+
+
+
+<!-- ***** Contact Area Start ***** -->
+<div class="fancy-contact-area section-padding-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- Google Map -->
+        <div id="googleMap"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <!-- Contact Details -->
+        <div class="contact-details-area">
+          <div class="section-heading">
+            <h2>Contact Us</h2>
+            <p>There are many ways to contact us. You may drop us a line, give us a call or send an email, choose what suits you the most.</p>
+          </div>
+          <p>(+91)686-6688 <br> info.olympiad@gmail.com
+          </p>
+          <p>40 Sreet 133/2 <br>Patna, India</p>
+          <p>Open hours: 8.00-18.00 Mon-Fri <br> Sunday: Closed</p>
+        </div>
+        <!-- Follow Us -->
+
+      </div>
+      <div class="col-12 col-md-6">
+        <!-- Contact Form -->
+        <div class="contact-form-area">
+          <div class="section-heading">
+            <h2>Get In Touch With Us!</h2>
+            <p>Fill out the form below to allow us to solve your queries.</p>
+          </div>
+          <div class="contact-form">
+
+            <form name = "form1" action="{% url 'contact' %}" method="post" onsubmit="return regEx()" >
+            {% csrf_token %}
+              <!-- Message Input Area Start -->
+              <div class="contact_input_area">
+                <div class="row">
+                  <!-- Single Input Area -->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                    </div>
+                  </div>
+                  <!-- Single Input Area -->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                    </div>
+                  </div>
+                  <!-- Single Input Area -->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="phonenum" id="phonenum" placeholder="Phone Number" required>
+                    </div>
+                  </div>
+                  <!-- Single Input Area -->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <textarea name="message" class="form-control" id="message" cols="30" rows="5" placeholder="Messages" required></textarea>
+                    </div>
+                  </div>
+                  <!-- Single Input Area -->
+                  <div class="col-12">
+                    <input type="submit" name="submit" value="Send Message">
+                  </div>
+                </div>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Footer Area Start ***** -->
+{% endblock %}
+{% block js %}
+<script>
+
+            function regEx()
+            {
+            function testName()
+            {
+                var name = document.form1.name.value;
+                var letters = /^[a-zA-Z_ ]+$/;
+                if (!name.match(letters)){
+                alert("Name can have only letters.");
+                return false;
+                }
+                return true;
+            }
+            function testZip()
+            {
+                var zip = document.form1.phonenum.value;
+
+
+                if (!zip.match(/^\d{10}$/)){
+                alert("A number has 10 integers.");
+                return false;
+                }
+                return true;
+            }
+            return testName()&&testZip();
+
+            }
+            
+{% comment %} const name=document.getElementById('name');
+const phonenum=document.getElementById('phonenum');
+console.log(name,phonenum);
+name.addEventListener('blur',()=>{
+  Let regex=/[a-zA-Z]*/;
+  Let str=name.value;
+  console.log("namereg");
+  if(regex.test(str)){
+    console.log("it matched");
+  }
+}) {% endcomment %}
+</script>
+{% endblock %}

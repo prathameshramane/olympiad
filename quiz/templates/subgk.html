@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Subject{% endblock %}
+{% block body %}
+{% load static %}
+                            <div class="container-fluid p-0" >
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/gk_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                                <div class="d-flex justify-content-center" >
+                                  <div class="d-flex flex-column" style="padding-top: 120px">
+                                    <h1 class="site-title" style="text-align: center;color: red">General Knowledge
+                                    </h1>
+                                    <p class="site-desc"></p>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <section>
+                                <div>
+
+                                  <div class="container row">
+                                    <!-- <p>Click on the below questions to solve your queries</p> -->
+                                    <p>The International School General Knowledge Olympiad (IGKO) is an online olympiad held for students of class 1- 12. Students taking part need to appear for three mock exams followed by one final paper.
+                                        The total time allotted to students for completion of the exam is   minutes for classes 1 to 4 and   minutes for classes 5 to 12. 
+                                        The pattern of the exam follows the MCQ type (Multiple Choice Questions).
+                                        The GK olympiad 2020 facilitates the provision of an all-inclusive report of a student’s performance which will be useful in comprehending his/her strengths and weaknesses.
+                                        For any kind of help regarding exam tips, guidance or book recommendations, please visit the exam preparation section.
+                                        <br><br>
+
+                                      The exam will be divided into sections as follows: <br><br>
+
+                                      <strong>Class 1-12:</strong>  &nbsp   General Awareness <br>
+                                      Current Affairs <br>
+                                      Life Skills <br>
+                                       <br><br><br>
+                                      <!-- Achievers section -->
+
+                                    <!-- Achievers section -->
+                                  </p>
+                                  <p>
+                                    <a href="{% url 'rankingcriteria' %}">Ranking Criteria</a> -  For ranking criteria of all subjects, please visit here<br>
+                                    <a href="/markingscheme/gk">Marking Scheme</a><br>
+                                    <a href="/syllabus/gk/1">Syllabus</a> - The syllabus for the General Knowledge olympiad 2020 comprises topics covered in the IGCSE, CBSE and ICSE syllabus’.  Visit here<br>
+                                    <a href="/samplepaper/gk/1">Sample Papers</a> - For viewing sample papers of all subjects, please visit here
+                                  </p>
+                                  </div>
+                                </section>
+                              </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="di">
+    <br><br><br><br>
+</div>
+<div class="show-book-modal book-modal" id="book-modal">
+    <center>
+        <h2>Book Slot</h2>
+    </center>
+<div class="row">
+    <p><b>1. All the timings are in Indian Standard Time (IST).</b></p>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        Select Slot :
+    </div>
+    <div class="col-md-6"></div><br><br>
+</div>
+<form  action="{% url 'changeafterbook' %}" method="post">
+  {% csrf_token %}
+
+{% if request.user.final_englisholym %}
+
+      <div class="row">
+
+        <div class="col-md-6">
+        <p>ISEO LEVEL 1:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="slot" id="iseo" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 11:00 AM - 12:00 PM">06 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 12:15 PM - 01:15 PM">06 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 01:30 PM - 02:30 PM">06 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 02:45 PM - 03:45 PM">06 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 04:00 PM - 05:00 PM">06 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 05:15 PM - 06:15 PM">06 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 11:00 AM - 12:00 PM">20 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 12:15 PM - 01:15 PM">20 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 01:30 PM - 02:30 PM">20 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 02:45 PM - 03:45 PM">20 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 04:00 PM - 05:00 PM">20 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 05:15 PM - 06:15 PM">20 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+        </select>
+      </div>
+
+
+</div>
+{% endif %}
+
+
+    <center>
+       <input type="submit" value='BOOK' class="review-btn">
+    </center>
+
+    </form>
+
+    </div>
+</div><br>
+
+</div>
+{% endblock %}

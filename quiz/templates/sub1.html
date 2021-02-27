@@ -1,0 +1,153 @@
+ {% extends 'base.html' %}
+{% block title %} Subscriptions {% endblock %}
+{% block body %}
+
+<form action="" method="post" class="third" >
+
+
+
+{% csrf_token %}
+
+<div class="form-group">
+<label>Order Amount:</label><br>
+<input class="form-control" name="orderAmount" placeholder=" Amount " id="field"/>
+</div>
+
+{% if stud.final_mathsolym %}
+
+<label for="mathsolym" ><p style="color: grey;"> MATHS OLYMPIAD(150)</p></label>
+<input type="checkbox" value="True" id="mathsolym" name="mathsolym" disabled="true">
+
+{% else %}
+<label for="mathsolym"><p style="color: black;"><strong>MATHS OLYMPIAD(150)</strong></p></label>
+<input type="checkbox" value="True" id="mathsolym" name="mathsolym" onchange="Update(this)">
+{% endif %}
+
+{% if stud.final_englisholym %}
+
+<label for="englisholym"><p style="color: grey;">ENGLISH OLYMPIAD(150)</p></label>
+<input type="checkbox" value="True" id="englisholym" name="englisholym" disabled="true">
+
+{% else %}
+<label for="englisholym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
+<input type="checkbox" value="True" id="englisholym" name="englisholym" onchange="Update(this)">
+{% endif %}
+
+{% if stud.final_scienceolym %}
+
+<label for="scienceolymm"><p style="color: grey;">SCIENCE OLYMPIAD(150)</p></label>
+<input type="checkbox" value="True" id="scienceolymm" name="scienceolym" disabled="true" >
+{% else %}
+<label for="scienceolym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
+<input type="checkbox" value="True" id="scienceolym" name="scienceolym" onchange="Update(this)">
+{% endif %}
+
+{% if stud.final_cyberolym %}
+<label for="cyberolymm"><p style="color: grey;">CYBER OLYMPIAD(150)</p></label>
+<input type="checkbox" value="True" id="cyberolymm" name="cyberolymm" disabled="true" >
+
+{% else %}
+<label for="cyberolym"><p style="color: black;"><strong>CYBER OLYMPIAD(150)</strong></p></label>
+<input type="checkbox" value="True" id="cyberolym" name="cyberolym" onchange="Update(this)">
+{% endif %}
+
+{% if stud.final_reasoningolym %}
+
+<label for="reasoningolymm"><p style="color: grey;">REASONONG OLYMPIAD(150)</p></label>
+<input type="checkbox" value="True" id="reasoningolymm" name="reasoningolymm" disabled="true">
+
+{% else %}
+<label for="reasoningolym"><p style="color: black;"><strong>REASONONG OLYMPIAD(150)</strong></p></label>
+<input type="checkbox" value="True" id="reasoningolym" name="reasoningolym" onchange="Update(this)">
+{% endif %}
+
+{% if stud.final_internationalspell %}
+
+<label for="internationalspelll"><p style="color: grey;">INTERNATIONAL SPELL BEE(150)</p></label>
+<input type="checkbox" value="True" id="internationalspelll" name="internationalspelll" disabled="true">
+
+{% else %}
+<label for="internationalspell"><p style="color: black;"> <strong> INTERNATIONAL SPELL BEE(150)</strong></p></label>
+<input type="checkbox" value="True" id="internationalspell" name="internationalspell" onchange="Update(this)">
+{% endif %}
+<hr>
+
+                          <input type="submit" name="submit" value="Review & Pay">
+
+
+                     </form>
+
+ {% endblock %}
+
+ {% block js %}
+    <script>
+        var price = 0;
+        function Update(e){
+        var element = document.getElementById('field');
+        if(e.checked){
+            price = price + 150;
+        }else if(!(e.checked)){
+            if(price>0){
+                price = price - 150;
+                if(price < 0){
+                    price = 0
+                }
+            }
+        }
+        element.value = price.toString();
+    }
+    </script>
+ {% endblock %}
+ {% comment %}
+ <!-- {% block js %}
+ <script>
+ var e1=document.getElementById("mathsolymm");
+ function Run1() {
+            e1.style["background-color"] = "green";
+            e1.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed";
+        }
+  Run1();
+
+  var e2  =document.getElementById("englisholymm");
+  function Run2() {
+            e2.style["background-color"] = "green";
+            e2.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed";
+        }
+Run2();
+
+var e3  =document.getElementById("englisholymm");
+function Run3() {
+            e3.style["background-color"] = "green";
+            e3.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed";
+        }
+Run3();
+
+var e4  =document.getElementById("cyberolymm");
+function Run4() {
+            e4.style["background-color"] = "green";
+            e4.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed";
+        }
+Run4();
+
+var e5  =document.getElementById("reasoningolymm");
+function Run5() {
+            e5.style["background-color"] = "green";
+            e5.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed";
+        }
+  Run5();
+
+  var e6  =document.getElementById("internationalspelll");
+  function Run6() {
+            e6.style["background-color"] = "green";
+            e6.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed";
+        }
+Run6();
+ </script>
+ {% endblock %} -->
+{% endcomment %}

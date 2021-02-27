@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+{% load i18n%}
+{% load static %}
+
+
+
+{% block title %} {{ quiz.title }} {% endblock %}
+{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+
+{% block body %}
+<div id="body">
+  <style>
+      div, .container-fluid
+      {
+          border:0px solid black;
+      }
+      .question-grid
+      {
+          padding-top:15px;
+      }
+      #timer
+      {
+          font-family: 'Orbitron', sans-serif;
+          font-weight:900;
+          font-size:150%;
+      }
+      button
+      {
+          margin:3px;
+      }
+      .pgr{
+          width: auto;
+          padding: 5px;
+          border: 1px solid #0009;
+          margin: 10px;
+          border-radius: 10px;
+          box-shadow: 2px 3px 5px #0002;
+          cursor: pointer;
+      }
+      #questions
+      {
+          padding:3%;
+          padding-top:0.5%;
+          font-weight:900;
+          font-size:150%;
+          vertical-align:middle;
+      }
+      .question-grid{
+          right: 0;
+          width: auto;
+      }
+      #questionrow
+      {
+          min-height:300px;
+      }
+      .td, .th
+      {
+          cursor:pointer;
+          text-align:center;
+          border: 1px solid #0009;
+      }
+      .td:hover
+      {
+          background:black;
+          color:white;
+      }
+      .td:onclick
+      {
+          color:white;
+      }
+      a
+      {
+          cursor:pointer;
+      }
+      button
+      {
+          width:100px;
+      }
+      .question-no{
+          display: none;
+          transition: 0.7s;
+      }
+      .show-question{
+          display: block;
+      }
+      </style>
+
+{% comment %}<div class="test-title">
+  <div class="rows upper-bar">
+      <div style="background:lightblue;transform:skewX(20deg);min-height:60px;margin-left:10px;margin-right:10px;border-left:20px double white;border-right:20px double white;">
+      <div style="transform:skewX(-20deg);">
+      <!--upper bar with logo and menus-->
+      <div class="container-fluid">
+      <!--space for logo-->
+      <div class="col-sm-1 logo">
+          <img src="{% static 'screenshots/logo1.jpg' %}"style="height: 90px">
+
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+</div>
+{% endcomment %}
+<div class="div" style="background-color: #0005;">
+  <br><br><br><br><br>
+</div>
+{% if previous.answers %}
+
+  <p class="muted"><small>{% trans "The previous question" %}:</small></p>
+  <p>{{ previous.previous_question }}</p>
+
+  {% if previous.previous_outcome %}
+	<div class="alert alert-success">
+  {% else %}
+	<div class="alert alert-warning">
+  {% endif %}
+  	  <p><small>
+		{% trans "Your answer was" %} </small>
+		<strong>
+		  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
+		</strong>
+	  </p>
+
+	</div>
+
+	{% include 'correct_answer.html' %}
+
+	<p><strong>{% trans "Explanation" %}:</strong></p>
+	<div class="well " style="background-color: #fcf8e3;">
+	  <p>{{ previous.previous_question.explanation }}</p>
+	</div>
+
+	<hr>
+
+{% endif %}
+
+<br />
+<script>
+    var video = document.querySelector("#videoElement");
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+          video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }
+    </script>
+
+
+  <p>
+
+    {% comment %} {% for ques in my_ques %}
+        {{ ques }}
+
+
+    {% endfor %}
+
+    {% for my_answer in my_answers %}
+      {% for answer in my_answer %}
+          {{ answer.0 }}
+
+
+      {% endfor %}
+    {% endfor %} {% endcomment %}
+
+
+
+    {% comment %} {% if  my_list %}
+    <div style="float: right;">
+    {% trans "mylist" %}
+    </div>
+    {% endif %}
+
+  </p> {% endcomment %}
+
+  <div class="questions">
+    <!--Content-->
+    <div class="row content container-fluid" style="margin-bottom:0;padding:0;">
+      <!--left column containing instructions and timer-->
+      <div class="col-md-3">
+      <!--timer-->
+      <div class="rows container-fluid" id="timer">
+      Time remaining:<br/>
+      <div class="progress" style="margin-top:3%;">
+      <div class="progress-bar progress-bar-striped" id="#bar" style="width:100%;">
+      1 : 00 : 00
+      </div>
+      </div>
+      </div>
+      <!--instructions-->
+      <div class="rows container-fluid instructions" style="background:#eef7fa;border-radius:10px;padding:10px;">
+      <b>INSTRUCTIONS</b>
+      <p id="marking" style="cursor:pointer;margin-top:20px;"><strong style="padding:2.4%;background:lightblue;border-radius:5px;">Marking scheme <span class="caret"></span></strong>
+      <ul id="marklist">
+      <li>Each correct answer fetches 3 marks</li>
+      <li>An unattempted or unsubmitted question fetches 0 marks</li>
+      </ul>
+      </p>
+      <p id="general" style="cursor:pointer;margin-top:20px;"><strong style="padding:2.4%;background:lightblue;border-radius:5px;">General Instructions <span class="caret"></span></strong>
+      <ul id="generallist">
+      <li>You have one hour to answer all the questions</li>
+      <li>Click on submit to submit your answer and undo to take back your submission. Questions that arent submitted will not be considered.</li>
+      <li>Click on mark to mark a question and unmark to unmark it.</li>
+      </ul>
+      </p>
+      <p id="gridinstruction" style="cursor:pointer;margin-top:20px;"><strong style="padding:2.4%;background:lightblue;border-radius:5px;">In the question grid <span class="caret"></span></strong>
+      <ul id="gridlist">
+      <li>Current question number is <kbd>underlined</kbd></li>
+      <li>Visited questions appear in <kbd>gray</kbd></li>
+      <li>Marked questions appear <kbd>pink</kbd></li>
+      <li>Submitted questions appear <kbd>green</kbd></li>
+      <li>Submitted as well as marked questions appear <kbd>blue</kbd></li>
+      </ul>
+      </div>
+</div>
+
+      <script>
+      //for slide up and down instructions
+      $(document).ready(function(){
+          $("#marking").mousedown(function(){
+              $("#marklist").slideToggle(1000);
+          });
+          $("#general").mousedown(function(){
+              $("#generallist").slideToggle(1000);
+          });
+          $("#gridinstruction").mousedown(function(){
+              $("#gridlist").slideToggle(1000);
+          });
+      });
+      </script>
+    <div class="col-md-6">
+    <form class="form-horizontal" method="POST">
+
+{% for i in my_ques %}
+{% ifequal forloop.counter 1 %}
+<div class="question-no show-question" id={{forloop.counter}}>
+  {% if i %}
+
+
+  {% comment %} <p>
+    <small class="muted">{% trans "Question category" %}:</small>
+    <strong>{{ question.category }}</strong>
+  </p> {% endcomment %}
+
+  {% comment %} <p class="question lead" style="font-size: 2rem;">{{ question.content }}</p> {% endcomment %}
+
+  {{ forloop.counter  }}. )
+   {% if i.question.figure %}
+   {% comment %} {{ i.question.figure }} {% endcomment %}
+      <img src="{{ i.question.figure.url }}" />
+        <br>
+      {% endif %}
+      {% if i.question.img1 %}
+      <img src="{{ i.question.img1.url }}" />
+      {% endif %}
+
+      {% if i.question.img2 %}
+      <img src="{{ i.question.img2.url }}" />
+      <br>
+  
+      {% endif %}
+      
+      {% if i.question.img3 %}
+      <img src="{{ i.question.img3.url }}" />
+      <br>
+  
+      {% endif %}
+
+      {% if i.question.img4 %}
+      <img src="{{ i.question.img4.url }}" />
+      <br>
+      
+      {% endif %}
+
+    <div class="radio">
+    <ul class="list-unstyled">{% csrf_token %}
+<p></p>
+  <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
+<br>
+{% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
+  {% for ans in i.answers %}
+  <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name={{forloop.parentloop.counter}} onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label></li>
+
+   {% endfor %}
+  </ul>
+  </div>
+  {% endif %}
+  </div>
+
+  {% else %}
+  <div class="question-no" id={{forloop.counter}}>
+    {% if i %}
+
+
+    {% comment %} <p>
+      <small class="muted">{% trans "Question category" %}:</small>
+      <strong>{{ question.category }}</strong>
+    </p> {% endcomment %}
+
+    {% comment %} <p class="question lead" style="font-size: 2rem;">{{ question.content }}</p> {% endcomment %}
+    {{ forloop.counter  }}. )
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+     {% if i.question.figure %}
+     {% comment %} {{ i.question.figure }} {% endcomment %}
+        <img src="{{ i.question.figure.url }}" class="question-img"/>
+          <br>
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        {% if i.question.img1 %}
+        <img src="{{ i.question.img1.url }} " class="question-img"/>
+        {% endif %}
+        </div>
+<div class="col-md-6">
+        {% if i.question.img2 %}
+        <img src="{{ i.question.img2.url }} " class="question-img"/>
+        {% endif %}
+      </div>
+
+        <div class="col-md-6">
+        {% if i.question.img3 %}
+        <img src="{{ i.question.img3.url }} " class="question-img"/>
+        {% endif %}
+      </div>
+
+<div class="col-md-6">
+        {% if i.question.img4 %}
+        <img src="{{ i.question.img4.url }}" class="question-img"/>        
+        {% endif %}
+      </div>
+
+      </div>
+      <div class="radio">
+      <ul class="list-unstyled">{% csrf_token %}
+<p></p>
+    <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
+<br>
+{% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
+    {% for ans in i.answers %}
+    <li><label  style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}" name={{forloop.parentloop.counter}} onchange="setAnswered('table{{forloop.counter}}');"></input>{{ ans.1 }}</label></li>
+     {% endfor %}
+    </ul>
+    </div>
+
+    {% endif %}
+    </div>
+{% endifequal %}
+
+{% endfor %}
+<center>
+  <ul class="pager row">
+    <div class="col-sm-3">
+  <li class="previous pgr" id="prev" ><a onclick="(counter>1)?showQuestion(--counter):showQuestion(counter);">Previous</a></li>
+</div>
+<div class="col-md-6"></div>
+<div class="col-sm-3">  <li class="next pgr" id="next"><a onclick="(counter<{{q_length}})?showQuestion(++counter):showQuestion(counter);">Next</a></li>
+</div>
+  </ul>
+</center>
+
+<div class="row container-fluid buttons" style="margin-bottom:0;">
+  <div class="col-sm-3">
+  <center>
+  <button id="mark" type="button" class="btn btn-info" onclick="setMarked();" style="box-shadow: 2px 2px 4px #0004;">
+  Mark
+  </button>
+  </center>
+  </div>
+  <div class="col-sm-3">
+  <center>
+  <button id="unmark" type="button" class="btn btn-info" onclick="unmarkbtn();" style="box-shadow: 2px 2px 4px #0004;">
+  Unmark
+  </button>
+  </center>
+  </div>
+  <div class="col-sm-3">
+  <center>
+  <button id="undo" type="button" class="btn btn-warning" onclick="undobtn();" style="box-shadow: 2px 2px 4px #0004;">
+  Undo
+  </button>
+  </center>
+  </div>
+  <div class="col-md-3">
+    <center>
+    {% if progress.0|add:1 == progress.1 %}
+    <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;">
+    {% else %}
+        <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;">
+    {% endif %}
+  </center>
+  </div>
+  </div>
+</form>
+</div>
+
+    <div class="col-md-3 question-grid" style="margin:0;">
+      <div class="row">
+        {% for i in my_ques %}
+        <div class="col-md-2 td" id='table{{forloop.counter}}' onclick="showQuestion('{{forloop.counter}}');">
+          {{ forloop.counter }}
+        </div>
+        {% endfor %}
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+  </div>
+
+
+<script>
+  var counter = 1;
+  var visited = 0;
+  var attempted = 0;
+  var unattempted = 60;
+  var percentremain=0;
+  var distance = 3600000;
+  var fixed=new Date().getTime();
+  fixed+=distance;
+  var x = setInterval(function() {
+
+  //Test time in milliseconds
+  distance=fixed-(new Date().getTime());
+      percentremain=(distance/36000.0);
+  // Time calculations for days, hours, minutes and seconds
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("timer").innerHTML = "Time remaining:<br/><div class='progress' style='margin-top:3%;'><div class='progress-bar progress-bar-striped' id='#bar' style='width:"+percentremain+"%;'>"+hours + " : "
+  + minutes + " : " + seconds+"</div></div>";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "EXPIRED";
+      counter=61;
+      submitgreen();
+  }
+  }, 1000);
+
+
+
+  $(document).ready(function(){
+    showQuestion(counter);
+  });
+
+  function dialogshow(){
+      var x = document.getElementById('test-dialog');
+      x.classList.add('dialog-show');
+  }
+  function dialoghide(){
+      var x = document.getElementById('test-dialog');
+      x.classList.remove('dialog-show');
+  }
+  function openFullscreen() {
+      var elem = document.getElementById('body');
+      if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+          elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+      }
+      dialoghide();
+      }
+
+      function showQuestion(id){
+          var x = document.getElementsByClassName("question-no");
+              var i;
+              for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+              }
+              counter = id;
+              var element = document.getElementById(id);
+              element.style.display = "block";
+              setVisited(id.toString())
+          }
+          function setVisited(num)
+          {
+              x = document.getElementById("table" + num);
+              if(x.style.background != "rgb(56, 255, 137)" &&  x.style.background != "#38FF89" && x.style.background != "rgb(255, 103, 197)" && x.style.background != "#ff67C5" && x.style.background != "rgb(103, 197, 255)" && x.style.background !="#67c5FF"){
+                  x.style.background = "#676767";
+                  visited++;
+              }
+
+          }
+          function setAnswered(num)
+          {
+              x = document.getElementById('table' + counter.toString());
+              if(x.style.background == "rgb(255, 103, 197)" || x.style.background == "#ff67C5"){
+                  x.style.background = "#67c5ff";
+              }else if(x.style.background == "rgb(56, 255, 137)" || x.style.background == "rgb(103, 197, 255)"){
+                  x.style.background = x.style.background;
+              }else{
+                  x.style.background = "#38FF89";
+              }
+          }
+          function setMarked(){
+              x = document.getElementById("table" + counter.toString());
+              if(x.style.background == "rgb(56, 255, 137)"){
+                  x.style.background = "#67c5ff"
+              }else if(x.style.background == "rgb(255, 103, 197)" || x.style.background == "rgb(103, 197, 255)" || x.style.background == "rgb(255, 103, 197)"){
+                  x.style.background = x.style.background;
+              }
+              else{
+                  x.style.background = "#FF67C5";
+              }
+          }
+          function unmarkbtn(){
+              x = document.getElementById("table" + counter.toString());
+              if(x.style.background == "rgb(103, 197, 255)" || x.style.background == "#67c5ff" || x.style.background == "rgb(56, 255, 137)"){
+                  x.style.background = "#38FF89"
+              }else{
+                  x.style.background = "#676767";
+              }
+          }
+          function undobtn(){
+              options = document.getElementsByName(counter);
+              console.log(options)
+              for(var i=0;i<options.length;i++)
+              {
+                      options[i].checked=false;
+              }
+              x = document.getElementById("table" + counter);
+              if(x.style.background == "rgb(103, 197, 255)" || x.style.background == "#67c5ff"){
+                  x.style.background = "#FF67C5"
+              }else if(x.style.background=="rgb(56, 255, 137)"){
+                  x.style.background = "#676767";
+              }
+              else{
+                  x.style.background = "#676767";
+              }
+          }
+          function submit(){
+
+          }
+
+</script>
+
+
+
+{% endblock %}

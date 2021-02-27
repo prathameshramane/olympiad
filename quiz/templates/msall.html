@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<div class="container-fluid p-0" >
+    <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download.jpg' %});">
+      <div class="d-flex justify-content-center" >
+        <div class="d-flex flex-column" style="padding-top: 120px">
+          <h1 class="site-title  justify-content-center" style="text-align: center;">Marking Scheme
+          </h1>
+          <p class="site-desc"></p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<div class="container shown" id="profile">
+  <br>
+
+  <div class="row">
+    International Olympiads examinations are based on the immediate last 2 classes studied by the student. Find below the marking scheme for Final Exam for all the subjects under International Olympiads.
+<br><br>
+    Please select the subject to get complete detail about the marking scheme about that subject.
+    <br>
+  </div><br>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="marking-scheme-div">
+          <a href="/markingscheme/maths" class="marking-scheme-link">
+            <h1 class="marking-scheme-head">
+                ISMO
+            </h1>
+              <center>
+              <p class="marking-scheme-para">International Student Maths Olympaid</p>
+                </center>
+
+          </a>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="marking-scheme-div">
+        <a href="/markingscheme/science" class="marking-scheme-link">
+          <h1 class="marking-scheme-head">
+              ISSO
+          </h1>
+            <center>
+            <p class="marking-scheme-para">International Student Science Olympaid</p>
+              </center>
+
+        </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="marking-scheme-div">
+        <a href="/markingscheme/english" class="marking-scheme-link">
+          <h1 class="marking-scheme-head">
+              ISEO
+          </h1>
+            <center>
+            <p class="marking-scheme-para">International Student English Olympaid</p>
+              </center>
+
+        </a>
+    </div>
+    </div>
+  </div><br>
+
+    <div class="row">
+      <div class="col-md-4">
+          <div class="marking-scheme-div">
+          <a href="/markingscheme/cyber" class="marking-scheme-link">
+            <h1 class="marking-scheme-head">
+                ISCO
+            </h1>
+              <center>
+              <p class="marking-scheme-para">International Student Cyber Olympaid</p>
+                </center>
+
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="marking-scheme-div">
+        <a href="/markingscheme/gk" class="marking-scheme-link">
+          <h1 class="marking-scheme-head">
+              ISGKO
+          </h1>
+            <center>
+            <p class="marking-scheme-para">International Student General Knowledge Olympaid</p>
+              </center>
+
+        </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="marking-scheme-div">
+        <a href="/markingscheme/ct" class="marking-scheme-link">
+          <h1 class="marking-scheme-head">
+              ISCTO
+          </h1>
+            <center>
+            <p class="marking-scheme-para">International Student Critical Thinking Olympaid</p>
+              </center>
+
+        </a>
+    </div>
+  </div><br>
+</div><br><br>
+</div>
+
+{% endblock %}

@@ -1,0 +1,304 @@
+ {% extends 'base.html' %}
+ {% load static %}
+{% block title %} Subscriptions {% endblock %}
+{% block body %}
+<!--body style="padding-top=80px;">
+ <!--style >
+  a {
+    color: rgba(255, 0, 0, 0.7);
+    line-height: inherit;
+    text-decoration: none;
+}
+    a:hover, a:focus {
+    color: red;
+    font-weight: bold;
+     text-shadow: 1px 1px black;
+}
+#dropdownMenuButton:hover{
+    color: red;
+    font-weight: bold;
+     text-shadow: 1px 1px black;
+}
+</style-->
+
+
+                      <!-- hero -->
+                      <dsectioniv class="container-fluid p-0" >
+                        <div class="site-content" style="height: 450px; background-image: {% static 'Stock/download (1).jpg' %};">
+                          <div class="d-flex justify-content-center" >
+                            <div class="d-flex flex-column" style="padding-top: 120px">
+                              <h1 class="site-title  justify-content-center" style="text-align: center;">Subscriptions
+                              </h1>
+                              <p class="site-desc"></p>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </section>
+
+
+                          <div class='container shown' id="subscriptions">
+                            <form action="" id="theForm" style="padding: 20px" method="POST">
+                              <legend>
+                Select The Subscriptions And Read The Below Instructions Before Purchasing
+            </legend-->
+            <form action="" method="post" class="third" >
+
+
+
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label>Order Amount:</label><br>
+      <input class="form-control" name="orderAmount" placeholder=" Amount " id="field"/>
+    </div>
+
+    {% if stud.final_mathsolym %}
+
+    <label for="mathsolym" ><p style="color: grey;"> MATHS OLYMPIAD(150)</p></label>
+        <input type="checkbox" value="True" id="mathsolym" name="mathsolym" disabled="true">
+
+        {% else %}
+        <label for="mathsolym"><p style="color: black;"><strong>MATHS OLYMPIAD(150)</strong></p></label>
+        <input type="checkbox" value="True" id="mathsolym" name="mathsolym" onchange="Update(this)">
+       {% endif %}
+
+    {% if stud.final_englisholym %}
+
+    <label for="englisholym"><p style="color: grey;">ENGLISH OLYMPIAD(150)</p></label>
+        <input type="checkbox" value="True" id="englisholym" name="englisholym" disabled="true">
+
+        {% else %}
+        <label for="englisholym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
+        <input type="checkbox" value="True" id="englisholym" name="englisholym" onchange="Update(this)">
+        {% endif %}
+
+    {% if stud.final_scienceolym %}
+
+    <label for="scienceolymm"><p style="color: grey;">SCIENCE OLYMPIAD(150)</p></label>
+        <input type="checkbox" value="True" id="scienceolymm" name="scienceolym" disabled="true" >
+        {% else %}
+        <label for="scienceolym"><p style="color: black;"><strong>SCIENCE OLYMPIAD(150)</strong></p></label>
+        <input type="checkbox" value="True" id="scienceolym" name="scienceolym" onchange="Update(this)">
+        {% endif %}
+
+    {% if stud.final_cyberolym %}
+    <label for="cyberolymm"><p style="color: grey;">CYBER OLYMPIAD(150)</p></label>
+        <input type="checkbox" value="True" id="cyberolymm" name="cyberolymm" disabled="true" >
+
+        {% else %}
+        <label for="cyberolym"><p style="color: black;"><strong>CYBER OLYMPIAD(150)</strong></p></label>
+        <input type="checkbox" value="True" id="cyberolym" name="cyberolym" onchange="Update(this)">
+        {% endif %}
+
+    {% if stud.final_reasoningolym %}
+
+      <label for="reasoningolymm"><p style="color: grey;">REASONONG OLYMPIAD(150)</p></label>
+        <input type="checkbox" value="True" id="reasoningolymm" name="reasoningolymm" disabled="true">
+
+        {% else %}
+        <label for="reasoningolym"><p style="color: black;"><strong>REASONONG OLYMPIAD(150)</strong></p></label>
+        <input type="checkbox" value="True" id="reasoningolym" name="reasoningolym" onchange="Update(this)">
+        {% endif %}
+
+    {% if stud.final_internationalspell %}
+
+    <label for="internationalspelll"><p style="color: grey;">INTERNATIONAL SPELL BEE(150)</p></label>
+        <input type="checkbox" value="True" id="internationalspelll" name="internationalspelll" disabled="true">
+
+        {% else %}
+        <label for="internationalspell"><p style="color: black;"> <strong> INTERNATIONAL SPELL BEE(150)</strong></p></label>
+        <input type="checkbox" value="True" id="internationalspell" name="internationalspell" onchange="Update(this)">
+        {% endif %}
+
+    <div class="row instructions">
+      <p><b>Important Instructions : </b></p>
+      <ul style="list-style-type:disc">
+        <li>International Olympiads is a Summer Olympiad. It focuses on assessing the student on the basis of what he/she has studied in the last 2 classes.</li>
+        <li>International Olympiads conducts examinations in both online and pen/paper mode
+          <ul style="list-style-type: circle;">
+            <li>In case of online mode, the exam will be conducted online i.e. either on laptop or desktop. The students will have to take the exams from their residence or any other place where they have access to computer with good Internet connectivity (2 Mbps) and latest version of the browser (preferably Google Chrome). If schools have subscribed for online mode of exam, then they may decide to conduct these exams using their computer lab.</li>
+            <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
+          </ul>
+        </li>
+        <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
+        <li>The online mode of examinations will be proctored. Hence, webcam is compulsory on every laptop/desktop.</li>
+        <li>To know about the exam and answer key dates, please check the <a href="#">exam dates<a> page.</li>
+        <li>There will be 1 Mock Test provided to all the students who can attempt this test online for a maximum of 3 times.</li>
+        <li>Do read the <a href="#">Frequently Asked Questions (FAQs)</a> thoroughly.</li>
+        <li>Kindly make payment only after you have read and accepted the above statements. Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at <a href="">info@-------.com.</a></li>
+      </ul>
+      <br>
+      <input type="checkbox" name="" id="checkbox" style="width: 30px;height: 30px;" onchange="toggleDisable()">
+      <span class="" style="font-size: 1.5rem;margin-left: 10px;"> I acknowledge that I have read all the above instructions</span>
+      <br><br>
+  </div>        
+  <center>
+    <input type="submit" name="submit" id="review-btn" value="Review & Pay" class="review-btn" style="border-radius: 10px; background-color: #F50905;background-image: linear-gradient(450deg, rgba(242,157,148,0.5) 50%, #F50905cd);"  disabled = true>
+
+  </center>
+</form>
+
+    </form>
+
+                           
+                               
+                          </div>
+
+                          <div class="backdrop" id="feedback" >
+                            <div class="feedback">
+                                <button class="close-btn" onclick="feedback()"><ion-icon style="color: #fff;" name="close"></ion-icon></button>
+                                <center>
+                                    <h1 class="register-title">FEEDBACK FORM</h1>
+                                  </center>
+                                  <div class="container">
+                                      <div class="row">
+                                    <div class="col-md-6">
+                                    How likely would you recommend this test to your friends on a scale of 1 to 10? *
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5">
+                                        <select id="country" name="country" class="select-css">
+                                            <option value=1">1</option>
+                                            <option value=2">2</option>
+                                            <option value=3">3</option>
+                                            <option value=4">4</option>
+                                            <option value=5">5</option>
+                                            <option value=6">6</option>
+                                            <option value=7">7</option>
+                                            <option value=8">8</option>
+                                            <option value=9">9</option>
+                                            <option value="10">10</option>
+
+                                        </select>
+                                    </div>
+                                  </div>
+                                  <hr style="border-bottom: 1px #0009;">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                        If you are happy about the initiative which Unicus Olympiads is taking to conduct Summer Olympiads, then do share a testimonial below. (we may publish the testimonial)
+                                      </div>
+                                      <div class="col-md-1"></div>
+                                      <div class="col-md-5">
+                                          <textarea name="" id="" cols="30" rows="5"></textarea>
+                                      </div>
+                                  </div>
+                                <hr style="border-bottom: 1px #0009;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        We would love to hear your comments/suggestions to improve the platform.*
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5">
+                                        <textarea name="" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <center>
+                                <button class="review-btn">S U B M I T</button>
+                            </center>
+                            <hr style="border-bottom: 1px #0009;">
+                            <center>
+                                <button class="review-btn">JOIN GROUP</button>
+                            </center>
+                            <hr style="border-bottom: 1px #0009;">
+
+                            </div>
+                            </div>
+                          </div>
+
+
+
+              <!-- vendors -->
+
+              <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+      <script>
+function totalIt() {
+  var input = document.getElementsByName("product");
+  var total = 0;
+  for (var i = 0; i < input.length; i++) {
+    if (input[i].checked) {
+      total += parseFloat(input[i].value);
+    }
+  }
+  document.getElementById("total").value = "$" + total.toFixed();
+}
+</script>
+                      <script>
+                        function menuOpen() {
+                               var element = document.getElementById("menu");
+                               element.classList.toggle("menu-open");
+                               var elementone = document.getElementById("menu-ion-icon");
+                               elementone.classList.toggle("menu-ion-icon");
+                       }
+                     </script>
+                          <script>
+                            $(window).scroll(function(){$('.menu').toggleClass('menu-scrolled', $(this).scrollTop() > 0);});
+                          </script>
+                        <script>
+                          function show(id){
+                              var x = document.getElementById(id)
+                              x.classList.remove('hide');
+                              x.classList.add('shown');
+                              siblings = getSiblings(x)
+                              for( i in siblings){
+                                if(siblings[i].tagName == 'DIV'){
+                                siblings[i].classList.add('hide');
+                                siblings[i].classList.remove('shown')
+                                ;}
+                              }
+                              menuOpen();
+                        }
+                        let getSiblings = function (e) {
+                          // for collecting siblings
+                          let siblings = [];
+                          // if no parent, return no sibling
+                          if(!e.parentNode) {
+                              return siblings;
+                          }
+                          // first child of the parent node
+                          let sibling  = e.parentNode.firstChild;
+
+                          // collecting siblings
+                          while (sibling) {
+                              if (sibling.nodeType === 1 && sibling !== e) {
+                                  siblings.push(sibling);
+                              }
+                              sibling = sibling.nextSibling;
+                          }
+                          return siblings;
+                        };
+
+                        </script>
+                        <script>
+                          var price = 0;
+                          function Update(e){
+                          var element = document.getElementById('field');
+                          if(e.checked){
+                              price = price + 150;
+                          }else if(!(e.checked)){
+                              if(price>0){
+                                  price = price - 150;
+                                  if(price < 0){
+                                      price = 0
+                                  }
+                              }
+                          }
+                          element.value = price.toString();
+                      }
+                      </script>
+                      <script>
+                        function toggleDisable(){
+                          var element = document.getElementById('review-btn');
+                          console.log(element.disabled);
+                            if(element.disabled === true){
+                              element.disabled = false;
+                            }else{
+                              element.disabled = true;
+                            }
+                          console.log(element.disabled);
+                        }
+                      </script>
+
+{% endblock %}

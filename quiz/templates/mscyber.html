@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+                      <!-- hero -->
+                      <div class="container-fluid p-0" >
+                        <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download.jpg' %});">
+                          <div class="d-flex justify-content-center" >
+                            <div class="d-flex flex-column" style="padding-top: 120px">
+                              <h1 class="site-title  justify-content-center" style="text-align: center;">Marking Scheme
+                              </h1>
+                              <p class="site-desc"></p>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="menu" id="menu">
+                        <div class="menu-btn" onclick="menuOpen()" id="menu-ion-icon">
+                            <ion-icon name="caret-forward-outline"></ion-icon>
+                        </div>
+                        <h1 style="color: #fff;margin: 20px;">
+                            MENU
+                        </h1>
+                        <hr style="border-bottom: 2px solid #fff; box-shadow: 0px 1px 2px #0009;">
+                        <br>
+                          <a href="#" class="menu-link-rest">ABOUT ISCO</a><br><br>
+                          <a href="/syllabus/cyber/1" class="menu-link-rest">SYLLABUS</a><br><br>
+                          <a href="/samplepaper/cyber/1" class="menu-link-rest">SAMPLE PAPERS</a><br><br>
+                          <a href="/rankingcriteria/" class="menu-link-rest">RANKING CRITERIA</a><br>
+                    </div>
+                    
+                    <div class="container"><br>
+                        <div class="row">
+                      <a href="/markingscheme/all" class="new-btn">All</a>
+                      <a href="/markingscheme/maths" class="new-btn">ISMO</a>
+                      <a href="/markingscheme/cyber" class="new-btn">ISCO</a>
+                      <a href="/markingscheme/gk" class="new-btn">ISGKO</a>
+                      <a href="/markingscheme/english" class="new-btn">ISEO</a>
+                      <a href="/markingscheme/science" class="new-btn">ISSO</a>
+                      <a href="/markingscheme/ct" class="new-btn">ISCTO</a>
+                    </div>
+                    <div class="row">
+                      <h3><b>International Student Cyber Olympiad </b></h3>
+                    </div>
+                      <div class="row">
+                        <h4 style="margin-top: 0px;">
+                         LEVEL 1:   
+                        </h4>
+                      </div>
+                        <br>
+                      <div class="row ms-head table-head">
+                        <div class="col-md-2">Classes</div>
+                        <div class="col-md-10">
+                            <div class="row">
+                        <div class="col-md-5">Section</div>
+                        <div class="col-md-3">Total Questions</div>
+                        <div class="col-md-2">Marks per Questions</div>
+                        <div class="col-md-2">Total Marks</div>
+                            </div>
+                            </div>
+                      </div>
+                      <!-- <hr style="border-bottom: 1px solid #fff;"> -->
+                    <div class="row">
+                        <div class="col-md-2 ms-head  pt-3 pb-3" class="boldon">1st to 4th</div>
+                        <div class="col-md-10">
+                            <div class="row pt-3 pb-3">
+                                <div class="col-md-5">LOGICAL REASONING</div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div> 5</div>
+                                <div class="col-md-2"><div class="slot-para">Marks per Question:</div>1</div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div> 5</div>
+                            </div>
+                            <div class="row  pt-3 pb-3">
+                                <div class="col-md-5">COMPUTERS AND IT</div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div>25</div>
+                                <div class="col-md-2"><div class="slot-para">Marks per Question:</div>1</div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div> 25</div>
+                            </div>
+                            <div class="row  pt-3 pb-3">
+                                <div class="col-md-5">ACHIEVERS SECTION</div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div>5</div>
+                                <div class="col-md-2"><div class="slot-para">Marks per Question:</div>2</div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div> 10</div>
+                            </div>
+                            <div class="row  pt-3 pb-3" style="border: 1px solid #0009;">
+                                <div class="col-md-5"><b>Grand Total</b></div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div><b>35</b></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div><b>40</b></div>
+                            </div>
+                        </div>
+                      </div>
+                    
+                      <div class="row">
+                        <div class="col-md-2 ms-head  pt-3 pb-3" class="boldon">5th to 10th</div>
+                        <div class="col-md-10">
+                            <div class="row pt-3 pb-3">
+                                <div class="col-md-5">LOGICAL REASONING</div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div> 10</div>
+                                <div class="col-md-2"><div class="slot-para">Marks per Question:</div>1</div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div> 10</div>
+                            </div>
+                            <div class="row  pt-3 pb-3">
+                                <div class="col-md-5">COMPUTERS AND IT</div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div>35</div>
+                                <div class="col-md-2"><div class="slot-para">Marks per Question:</div>1</div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div> 35</div>
+                            </div>
+                            <div class="row  pt-3 pb-3">
+                                <div class="col-md-5">ACHIEVERS SECTION</div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div>5</div>
+                                <div class="col-md-2"><div class="slot-para">Marks per Question:</div>3</div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div> 15</div>
+                            </div>
+                            <div class="row  pt-3 pb-3" style="border: 1px solid #0009;">
+                                <div class="col-md-5"><b>Grand Total</b></div>
+                                <div class="col-md-3"><div class="slot-para">Total Questions:</div><b>50</b></div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2"> <div class="slot-para">Total MarKs:</div><b>60</b></div>
+                            </div>
+                        </div>
+                      </div>
+                    </div><br><br>
+                    
+                    {% endblock %}
+                        {% block js %}
+              </script>
+                              <script>
+                                function menuOpen() {
+                                       var element = document.getElementById("menu");
+                                       element.classList.toggle("menu-open");
+                                       var elementone = document.getElementById("menu-ion-icon");
+                                       elementone.classList.toggle("menu-ion-icon");
+                               }
+                             </script>
+                                  <script>
+                                    $(window).scroll(function(){$('.menu').toggleClass('menu-scrolled', $(this).scrollTop() > 0);});
+                                  </script>
+           {% endblock %}
+
+
+
+
+

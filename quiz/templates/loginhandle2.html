@@ -1,0 +1,29 @@
+
+{% extends "base.html" %} {% block content %}
+
+
+
+
+    <form action="" method="post">
+      {% csrf_token %}
+
+
+
+        {% if user.is_authenticated %}
+
+
+
+          {% else %}
+          <label for="uname" >REGISTERED username:</label>
+      <input type="text" name="email" id="email" placeholder="enter your username" required><br><br>
+
+      <label for="pass" >Password:</label>
+      <input type="password" id="pass" name="pass" placeholder="password" required><br>
+      <br>
+
+      <input type="submit" name="login" value="Login">
+      <br><br><br>
+           {% endif %}
+
+    </form>
+    {% endblock %}

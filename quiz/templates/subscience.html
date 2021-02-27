@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Subject{% endblock %}
+{% block body %}
+{% load static %}
+                            <div class="container-fluid p-0" >
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/science_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                                <div class="d-flex justify-content-center" >
+                                  <div class="d-flex flex-column" style="padding-top: 120px">
+                                    <h1 class="site-title" style="text-align: center;color: red">Science
+                                    </h1>
+                                    <p class="site-desc"></p>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <section>
+                                <div>
+
+                                  <div class="container row">
+                                    <!-- <p>Click on the below questions to solve your queries</p> -->
+                                    <p>The International School Science Olympiad (ISSO) is an online Olympiad conducted for classes 1-12. The exam will have Mock Tests and one Final Exam.
+                                      Each student can attempt the Mock Tests upto three times. 
+                                      The exam consists of multiple choice questions (MCQ type). The total time for the examination is 1 hour for classes 1 to 12.
+                                      Unlike the tests at local and regional levels, ISSO provides a stronger hold of insight and judgement of scientific facts and the challenges ahead. A comprehensive report of a student’s individual performance, which will be provided after the results are evaluated, is divided into various categories that help the student assess his/her strengths and weaknesses.
+                                      Please refer to the exam preparation section for better guidance,book recommendations and exam tips.<br><br>
+
+                                      The exam will be divided into sections as follows: <br><br>
+
+                                      <strong>Class 1-10:</strong>  &nbsp   Science section<br><br>
+                                      <!-- Achievers section -->
+
+                                      <strong>Class 11&12: </strong> &nbspPhysics & Chemistry<br>
+                                      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp Mathematics/Biology <br>
+                                    <!-- Achievers section -->
+                                  </p>
+                                  <p>
+                                    <a href="{% url 'rankingcriteria' %}">Ranking Criteria</a> -  For ranking criteria of all subjects, please visit here<br>
+                                    <a href="/markingscheme/science">Marking Scheme</a><br>
+                                    <a href="/syllabus/science/1">Syllabus</a> - The syllabus for the science olympiad 2020 comprises topics covered in the IGCSE, CBSE and ICSE syllabus’.  Visit here<br>
+                                    <a href="/samplepaper/science/1">Sample Papers</a> - For viewing sample papers of all subjects, please visit here
+
+                                  </p>
+                                  </div>
+                                </section>
+                              </div>
+{% endblock %}

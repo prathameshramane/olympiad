@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>This is my index page</h1>
+
+{% if user.is_authenticated %}
+<a class="nav-link" href="{% url 'logout' %}">logout</a>
+<h2>
+  LOGGED IN AS-{{user.username}}
+</h2>
+
+{% else %}
+  <a href="{% url 'register' %}" class="nav-link">register</a>
+  <a href="{% url 'loginhandle' %}" class="nav-link">login</a>
+{% endif %}
+
+
+
+
+{% endblock  %}

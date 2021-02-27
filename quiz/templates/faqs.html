@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %} FAQs {% endblock %}
+{% block body %}
+{% load static %}
+
+<!-- hero -->
+<div class="container-fluid p-0" >
+  <div class="site-content" style="height: 600px; background-image: url({% static 'Stock/faq_bg.jpg' %});">
+    <div class="d-flex justify-content-center" >
+      <div class="d-flex flex-column" style="padding-top: 80px">
+        <h1 class="site-title" style="text-align: center;">Frequently Asked Questions
+        </h1>
+        <p class="site-desc"></p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div>
+  <section>
+    <div>
+
+      <div class="container">
+        <p>Click on the below questions to solve your queries</p>
+        <div id="accordion" class="accordion">
+          <div class="card mb-0">
+            <!-- FAQ 1 -->
+            <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+              <a class="card-title"><i class="fa fa-book" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>1. Who all are eligible to sit for Olympiads?</a>
+            </div>
+            <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
+              <p>All the students of classes 1-11 (Academic year 2020-21) are eligible to give the Final Exam.<br>
+                Class 1 => Class 1 (2020-21) / Pre-primary (2019-20) (Exam for class 1 students will be parent/teacher assisted)<br>
+                Class 2 => Class 2 (2020-21) / Class 1 (2019-20)<br>
+                Class 3 => Class 3 (2020-21) / Class 2 (2019-20)<br>
+                ...<br>
+                ...<br>
+                Class 11 => Class 11 (2020-21) / Class 10 (2019-20)</p>
+              </div>
+              <!-- FAQ 2 -->
+              <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                <a class="card-title"><i class="fa fa-pencil" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>2. What will be the mode of exam?  </a>
+              </div>
+              <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
+                <p> Olympiads conducts both online and pen/paper exams. Do note that the registrations to pen/paper exam are possible only through schools.  </p>
+              </div>
+
+              <!-- FAQ 3 -->
+              <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                <a class="card-title"> <i class="fa fa-group" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>3. Can a school register for  Olympiads?  </a>
+              </div>
+              <div id="collapseThree" class="collapse" data-parent="#accordion">
+                <div class="card-body">Yes, a school can register for  Olympiads in any of the modes of the exam. In either case, kindly send us an email at info@olympiads.com and we’ll email you the prospectus.  </div>
+              </div>
+
+              <!-- FAQ 4 -->
+              <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                <a class="card-title"> <i class="fa fa-user" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>4.Can I register individually for  Olympiads? </a>
+              </div>
+              <div id="collapseFour" class="collapse" data-parent="#accordion">
+                <div class="card-body">A student must not be denied any exam if his/her school is not participating. Hence, one of the objectives of  Olympiads is to enable every student to take Olympiad exams and compete against his/her peers across India and abroad. In case, a student is unable to register for Olympiad exam through school, he/she can register for  Olympiads directly. </div>
+              </div>
+
+              <!-- FAQ 5 -->
+              <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                <a class="card-title"> <i class="fa fa-file" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>5. Which all subjects are covered under Olympiads?  </a>
+              </div>
+              <div id="collapseFive" class="collapse" data-parent="#accordion">
+                <div class="card-body">Olympiads is organised for the following subjects:<br>
+
+                 Mathematics Olympiad (UMO)<br>
+                 Science Olympiad (USO)<br>
+                 English Olympiad (UEO)<br>
+                 General Knowledge Olympiad (UGKO)<br>
+                 Cyber Olympiad (UCO)<br>
+                 Critical Thinking Olympiad (UCTO)<br>
+
+               Please note that the students of Class 1 (2020-21) can register for English, Mathematics and Science only. While the students of classes 2 to 11 (2020-21) can register for all the 6 subjects.   </div>
+             </div>
+
+             <!-- FAQ 6 -->
+             <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+              <a class="card-title"> <i class="fa fa-child" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>6. How will it be possible for a student of class 1 (2020-21) to appear for online exams?
+              </a>
+            </div>
+            <div id="collapseSix" class="collapse" data-parent="#accordion">
+              <div class="card-body">The Olympiads for class 1 students are more of a fun activity. As the kids are entering the learning phase of their life, we are trying to give them an exposure through these fun-filled exams. Do note that these exams will be parent-assisted. The duration of the exam will be of 45 minutes with 25 questions only.</div>
+            </div>
+
+            <!-- FAQ 7-->
+            <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+              <a class="card-title"> <i class="fa fa-exclamation" style="font-size: 20px; padding: 5px" aria-hidden="true"></i>7. What is Free Trial?
+              </a>
+            </div>
+            <div id="collapseSeven" class="collapse" data-parent="#accordion">
+              <div class="card-body">Free Trial is an opportunity for the students to give a full-fledged paper of Olympiads without any payment. This will help the students in understanding the exam type and hence taking the decision to register with Olympiads.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ***** Footer Area Start ***** -->
+{% endblock %}

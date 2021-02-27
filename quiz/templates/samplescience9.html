@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container-fluid p-0" >
+  <div class="site-content" style="height: 450px; background-image: {% static 'Stock/download.jpg' %};">
+    <div class="d-flex justify-content-center" >
+      <div class="d-flex flex-column" style="padding-top: 120px">
+        <h1 class="site-title  justify-content-center" style="text-align: center;">Sample Papers
+        </h1>
+        <p class="site-desc"></p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row pl-5 pr-5">
+  <h1 class="sample-title"  >
+    International Student Science Olympiad Class 9 Sample Papers
+  </h1>
+</div>
+<hr style="border-bottom: 1px solid #666; margin-left: 50px; margin-right: 50px;  " /><br>
+
+<div class="container">
+<div class="row">
+  <div class="col-md-7">
+   
+    <p>
+        <b>Sample Papers of ISSO for Class 9:</b>
+    </p>
+<embed src="{% static 'pdfs/Class 9 SCIENCE.pdf' %}" width="100%" height="600px" />
+    <br>
+  </div>
+  <div class="col-md-1">
+
+  </div>
+  <div class="col-md-4" style="max-height: 70vh;overflow-y: scroll;">
+    <h2 style="font-size: 1.5rem;">All Sample Papers</h2>
+    <br>
+    <div class="sphead"  onclick="spshow('ismo')">
+      <a style="color: #fff;">
+      ISMO Papers <span>+</span>
+      </a>
+    </div>
+    <div class="samplepaper" id="ismo"><br>
+    <a href="/samplepaper/maths/1" class="sample-btn">ISMO Sample Papers for Class 01</a><hr>
+    <a href="/samplepaper/maths/2" class="sample-btn">ISMO Sample Papers for Class 02</a><hr>
+    <a href="/samplepaper/maths/3" class="sample-btn">ISMO Sample Papers for Class 03</a><hr>
+    <a href="/samplepaper/maths/4" class="sample-btn">ISMO Sample Papers for Class 04</a><hr>
+    <a href="/samplepaper/maths/5" class="sample-btn">ISMO Sample Papers for Class 05</a><hr>
+    <a href="/samplepaper/maths/6" class="sample-btn">ISMO Sample Papers for Class 06</a><hr>
+    <a href="/samplepaper/maths/7" class="sample-btn">ISMO Sample Papers for Class 07</a><hr>
+    <a href="/samplepaper/maths/8" class="sample-btn">ISMO Sample Papers for Class 08</a><hr>
+    <a href="/samplepaper/maths/9" class="sample-btn">ISMO Sample Papers for Class 09</a><hr>
+    <a href="/samplepaper/maths/10" class="sample-btn">ISMO Sample Papers for Class 10</a><hr>
+    <a href="/samplepaper/maths/11" class="sample-btn">ISMO Sample Papers for Class 11</a><hr>
+    <a href="/samplepaper/maths/12" class="sample-btn">ISMO Sample Papers for Class 12</a><hr>
+  </div>
+  <div class="sphead"  onclick="spshow('iseo')">
+    <a style="color: #fff;">
+    ISEO Papers <span>+</span>
+    </a>
+  </div>
+  <div class="samplepaper" id="iseo"><br>
+  <a href="/samplepaper/english/1" class="sample-btn">ISEO Sample Papers for Class 01</a><hr>
+  <a href="/samplepaper/english/2" class="sample-btn">ISEO Sample Papers for Class 02</a><hr>
+  <a href="/samplepaper/english/3" class="sample-btn">ISEO Sample Papers for Class 03</a><hr>
+  <a href="/samplepaper/english/4" class="sample-btn">ISEO Sample Papers for Class 04</a><hr>
+  <a href="/samplepaper/english/5" class="sample-btn">ISEO Sample Papers for Class 05</a><hr>
+  <a href="/samplepaper/english/6" class="sample-btn">ISEO Sample Papers for Class 06</a><hr>
+  <a href="/samplepaper/english/7" class="sample-btn">ISEO Sample Papers for Class 07</a><hr>
+  <a href="/samplepaper/english/8" class="sample-btn">ISEO Sample Papers for Class 08</a><hr>
+  <a href="/samplepaper/english/9" class="sample-btn">ISEO Sample Papers for Class 09</a><hr>
+  <a href="/samplepaper/english/10" class="sample-btn">ISEO Sample Papers for Class 10</a><hr>
+  <a href="/samplepaper/english/11" class="sample-btn">ISEO Sample Papers for Class 11</a><hr>
+  <a href="/samplepaper/english/12" class="sample-btn">ISEO Sample Papers for Class 12</a><hr>
+</div>
+<div class="sphead"  onclick="spshow('isso')">
+  <a style="color: #fff;">
+  ISSO Papers <span>+</span>
+  </a>
+</div>
+<div class="samplepaper" id="isso"><br>
+<a href="/samplepaper/science/1" class="sample-btn">ISSO Sample Papers for Class 01</a><hr>
+<a href="/samplepaper/science/2" class="sample-btn">ISSO Sample Papers for Class 02</a><hr>
+<a href="/samplepaper/science/3" class="sample-btn">ISSO Sample Papers for Class 03</a><hr>
+<a href="/samplepaper/science/4" class="sample-btn">ISSO Sample Papers for Class 04</a><hr>
+<a href="/samplepaper/science/5" class="sample-btn">ISSO Sample Papers for Class 05</a><hr>
+<a href="/samplepaper/science/6" class="sample-btn">ISSO Sample Papers for Class 06</a><hr>
+<a href="/samplepaper/science/7" class="sample-btn">ISSO Sample Papers for Class 07</a><hr>
+<a href="/samplepaper/science/8" class="sample-btn">ISSO Sample Papers for Class 08</a><hr>
+<a href="/samplepaper/science/9" class="sample-btn">ISSO Sample Papers for Class 09</a><hr>
+<a href="/samplepaper/science/10" class="sample-btn">ISSO Sample Papers for Class 10</a><hr>
+<a href="/samplepaper/science/11" class="sample-btn">ISSO Sample Papers for Class 11</a><hr>
+<a href="/samplepaper/science/12" class="sample-btn">ISSO Sample Papers for Class 12</a><hr>
+</div>
+<div class="sphead"  onclick="spshow('isco')">
+<a style="color: #fff;">
+ISCO Papers <span>+</span>
+</a>
+</div>
+<div class="samplepaper" id="isco"><br>
+<a href="/samplepaper/cyber/1" class="sample-btn">ISCO Sample Papers for Class 01</a><hr>
+<a href="/samplepaper/cyber/2" class="sample-btn">ISCO Sample Papers for Class 02</a><hr>
+<a href="/samplepaper/cyber/3" class="sample-btn">ISCO Sample Papers for Class 03</a><hr>
+<a href="/samplepaper/cyber/4" class="sample-btn">ISCO Sample Papers for Class 04</a><hr>
+<a href="/samplepaper/cyber/5" class="sample-btn">ISCO Sample Papers for Class 05</a><hr>
+<a href="/samplepaper/cyber/6" class="sample-btn">ISCO Sample Papers for Class 06</a><hr>
+<a href="/samplepaper/cyber/7" class="sample-btn">ISCO Sample Papers for Class 07</a><hr>
+<a href="/samplepaper/cyber/8" class="sample-btn">ISCO Sample Papers for Class 08</a><hr>
+<a href="/samplepaper/cyber/9" class="sample-btn">ISCO Sample Papers for Class 09</a><hr>
+<a href="/samplepaper/cyber/10" class="sample-btn">ISCO Sample Papers for Class 10</a><hr>
+<a href="/samplepaper/cyber/11" class="sample-btn">ISCO Sample Papers for Class 11</a><hr>
+<a href="/samplepaper/cyber/12" class="sample-btn">ISCO Sample Papers for Class 12</a><hr>
+</div>
+<div class="sphead"  onclick="spshow('iscto')">
+<a style="color: #fff;">
+ISCTO Papers <span>+</span>
+</a>
+</div>
+<div class="samplepaper" id="iscto"><br>
+<a href="/samplepaper/ct/6" class="sample-btn">ISCTO Sample Papers for Class 06</a><hr>
+<a href="/samplepaper/ct/7" class="sample-btn">ISCTO Sample Papers for Class 07</a><hr>
+<a href="/samplepaper/ct/8" class="sample-btn">ISCTO Sample Papers for Class 08</a><hr>
+<a href="/samplepaper/ct/9" class="sample-btn">ISCTO Sample Papers for Class 09</a><hr>
+<a href="/samplepaper/ct/10" class="sample-btn">ISCTO Sample Papers for Class 10</a><hr>
+<a href="/samplepaper/ct/11" class="sample-btn">ISCTO Sample Papers for Class 11</a><hr>
+<a href="/samplepaper/ct/12" class="sample-btn">ISCTO Sample Papers for Class 12</a><hr>
+</div>
+<div class="sphead"  onclick="spshow('isgko')">
+<a style="color: #fff;">
+ISGKO Papers <span>+</span>
+</a>
+</div>
+<div class="samplepaper" id="isgko"><br>
+<a href="/samplepaper/gk/1" class="sample-btn">ISGKO Sample Papers for Class 01</a><hr>
+<a href="/samplepaper/gk/2" class="sample-btn">ISGKO Sample Papers for Class 02</a><hr>
+<a href="/samplepaper/gk/3" class="sample-btn">ISGKO Sample Papers for Class 03</a><hr>
+<a href="/samplepaper/gk/4" class="sample-btn">ISGKO Sample Papers for Class 04</a><hr>
+<a href="/samplepaper/gk/5" class="sample-btn">ISGKO Sample Papers for Class 05</a><hr>
+<a href="/samplepaper/gk/6" class="sample-btn">ISGKO Sample Papers for Class 06</a><hr>
+<a href="/samplepaper/gk/7" class="sample-btn">ISGKO Sample Papers for Class 07</a><hr>
+<a href="/samplepaper/gk/8" class="sample-btn">ISGKO Sample Papers for Class 08</a><hr>
+<a href="/samplepaper/gk/9" class="sample-btn">ISGKO Sample Papers for Class 09</a><hr>
+<a href="/samplepaper/gk/10" class="sample-btn">ISGKO Sample Papers for Class 10</a><hr>
+<a href="/samplepaper/gk/11" class="sample-btn">ISGKO Sample Papers for Class 11</a><hr>
+<a href="/samplepaper/gk/12" class="sample-btn">ISGKO Sample Papers for Class 12</a><hr>
+</div>
+</div>
+</div>
+</div><br><br>
+
+{% endblock %}
+{% block js %}
+<script>
+  function spshow(a){
+    var element = document.getElementById(a);
+    element.classList.toggle('spshow');
+  }
+</script>
+{% endblock %}

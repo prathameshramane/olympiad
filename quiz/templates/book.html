@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="di">
+    <br><br><br><br>
+</div>
+<div class="show-book-modal book-modal" id="book-modal">
+    <center>
+        <h2>Book Slot</h2>
+    </center>
+<div class="row">
+    <p><b>1. All the timings are in Indian Standard Time (IST).</b></p>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        Select Slot :
+    </div>
+    <div class="col-md-6"></div><br><br>
+</div>
+<form  action="" method="post">
+  {% csrf_token %}
+    {% if request.user.scienceolym %}
+<div class="row">
+
+
+
+  <div class="col-md-6">
+  <p>ISSO LEVEL 1:</p>
+  </div>
+    <div class="col-md-6">
+
+
+        <select name="scienceslot" id="isgko" class="select-css">
+          <option value="nil">SELECT</option>
+            <option value="1_{{ request.user.standard }}scienceolym@04 Dec, 2020 11:00 AM - 12:00 PM">04 Dec, 2020 11:00 AM - 12:00 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@04 Dec, 2020 12:15 PM - 01:15 PM">04 Dec, 2020 12:15 PM - 01:15 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@04 Dec, 2020 01:30 PM - 02:30 PM">04 Dec, 2020 01:30 PM - 02:30 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@04 Dec, 2020 02:45 PM - 03:45 PM">04 Dec, 2020 02:45 PM - 03:45 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@04 Dec, 2020 04:00 PM - 05:00 PM">04 Dec, 2020 04:00 PM - 05:00 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@04 Dec, 2020 05:15 PM - 06:15 PM">04 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+            <option value="1_{{ request.user.standard }}scienceolym@24 Dec, 2020 11:00 AM - 12:00 PM">24 Dec, 2020 11:00 AM - 12:00 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@24 Dec, 2020 12:15 PM - 01:15 PM">24 Dec, 2020 12:15 PM - 01:15 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@24 Dec, 2020 01:30 PM - 02:30 PM">24 Dec, 2020 01:30 PM - 02:30 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@24 Dec, 2020 02:45 PM - 03:45 PM">24 Dec, 2020 02:45 PM - 03:45 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@24 Dec, 2020 04:00 PM - 05:00 PM">24 Dec, 2020 04:00 PM - 05:00 PM</option>
+            <option value="1_{{ request.user.standard }}scienceolym@24 Dec, 2020 05:15 PM - 06:15 PM">24 Dec, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+      </div>
+
+
+</div>
+{% endif %}
+{% if request.user.englisholym %}
+
+      <div class="row">
+
+        <div class="col-md-6">
+        <p>ISEO LEVEL 1:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="englishslot" id="iseo" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 11:00 AM - 12:00 PM">06 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 12:15 PM - 01:15 PM">06 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 01:30 PM - 02:30 PM">06 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 02:45 PM - 03:45 PM">06 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 04:00 PM - 05:00 PM">06 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Dec, 2020 05:15 PM - 06:15 PM">06 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 11:00 AM - 12:00 PM">20 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 12:15 PM - 01:15 PM">20 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 01:30 PM - 02:30 PM">20 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 02:45 PM - 03:45 PM">20 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 04:00 PM - 05:00 PM">20 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Dec, 2020 05:15 PM - 06:15 PM">20 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+        </select>
+      </div>
+
+
+</div>
+{% endif %}
+{% if request.user.generalolym %}
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISGKO LEVEL 1:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="gkslot" id="isso" class="select-css">
+          <option value="nil">SELECT</option>
+
+          <option value="1_{{ request.user.standard }}generalolym@14 Dec, 2020 11:00 AM - 12:00 PM">14 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Dec, 2020 12:15 PM - 01:15 PM">14 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Dec, 2020 01:30 PM - 02:30 PM">14 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@14 Dec, 2020 02:45 PM - 03:45 PM">14 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Dec, 2020 04:00 PM - 05:00 PM">14 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Dec, 2020 05:15 PM - 06:15 PM">14 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+          <option value="1_{{ request.user.standard }}generalolym@26 Dec, 2020 11:00 AM - 12:00 PM">26 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Dec, 2020 12:15 PM - 01:15 PM">26 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Dec, 2020 01:30 PM - 02:30 PM">26 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Dec, 2020 02:45 PM - 03:45 PM">26 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Dec, 2020 04:00 PM - 05:00 PM">26 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Dec, 2020 05:15 PM - 06:15 PM">26 Dec, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+      </div>
+      </div>
+      {% endif %}
+      {% if request.user.mathsolym %}
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISMO LEVEL 1:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="mathslot" id="ismo" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Dec, 2020 11:00 AM - 12:00 PM">19 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Dec, 2020 12:15 PM - 01:15 PM">19 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Dec, 2020 01:30 PM - 02:30 PM">19 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Dec, 2020 02:45 PM - 03:45 PM">19 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Dec, 2020 04:00 PM - 05:00 PM">19 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Dec, 2020 05:15 PM - 06:15 PM">19 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+
+          <option value="1_{{ request.user.standard }}mathsolym@28 Dec, 2020 11:00 AM - 12:00 PM">28 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Dec, 2020 12:15 PM - 01:15 PM">28 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Dec, 2020 01:30 PM - 02:30 PM">28 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Dec, 2020 02:45 PM - 03:45 PM">28 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Dec, 2020 04:00 PM - 05:00 PM">28 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Dec, 2020 05:15 PM - 06:15 PM">28 Dec, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+      </div>
+      </div>
+      {% endif %}
+      {% if request.user.cyberolym %}
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISCO LEVEL 1:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="cyberslot" id="isco" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Dec, 2020 11:00 AM - 12:00 PM">05 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Dec, 2020 12:15 PM - 01:15 PM">05 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Dec, 2020 01:30 PM - 02:30 PM">05 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Dec, 2020 02:45 PM - 03:45 PM">05 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Dec, 2020 04:00 PM - 05:00 PM">05 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Dec, 2020 05:15 PM - 06:15 PM">05 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+
+          <option value="1_{{ request.user.standard }}cyberolym@23 Dec, 2020 11:00 AM - 12:00 PM">23 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Dec, 2020 12:15 PM - 01:15 PM">23 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Dec, 2020 01:30 PM - 02:30 PM">23 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Dec, 2020 02:45 PM - 03:45 PM">23 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Dec, 2020 04:00 PM - 05:00 PM">23 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Dec, 2020 05:15 PM - 06:15 PM">23 Dec, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+      </div>
+      </div>
+      {% endif %}
+
+      {% if request.user.reasoningolym %}
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISCTO LEVEL 1:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="reasoningslot" id="iscto" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Dec, 2020 11:00 AM - 12:00 PM">16 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Dec, 2020 12:15 PM - 01:15 PM">16 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Dec, 2020 01:30 PM - 02:30 PM">16 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Dec, 2020 02:45 PM - 03:45 PM">16 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Dec, 2020 04:00 PM - 05:00 PM">16 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Dec, 2020 05:15 PM - 06:15 PM">16 Dec, 2020 05:15 PM - 06:15 PM</option>
+
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Dec, 2020 11:00 AM - 12:00 PM">27 Dec, 2020 11:00 AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Dec, 2020 12:15 PM - 01:15 PM">27 Dec, 2020 12:15 PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@>27 Dec, 2020 01:30 PM - 02:30 PM">27 Dec, 2020 01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Dec, 2020 02:45 PM - 03:45 PM">27 Dec, 2020 02:45 PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Dec, 2020 04:00 PM - 05:00 PM">27 Dec, 2020 04:00 PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Dec, 2020 05:15 PM - 06:15 PM">27 Dec, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+    {% endif %}
+
+    <center>
+       <input type="submit" value='BOOK' class="review-btn">
+    </center>
+
+    </form>
+    {% comment %}
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISGKO LEVEL 2:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="" id="isgko2" class="select-css">
+          <option value="25 Jan, 2020 11:00:00">25 Jan, 2020 11:00 AM - 12:00 PM</option>
+          <option value="25 Jan, 2020 12:15:00">25 Jan, 2020 12:15 PM - 01:15 PM</option>
+          <option value="25 Jan, 2020 13:30:00">25 Jan, 2020 01:30 PM - 02:30 PM</option>
+          <option value="25 Jan, 2020 14:45:00">25 Jan, 2020 02:45 PM - 03:45 PM</option>
+          <option value="25 Jan, 2020 16:00:00">25 Jan, 2020 04:00 PM - 05:00 PM</option>
+          <option value="25 Jan, 2020 17:15:00">25 Jan, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>ISEO LEVEL 2:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="" id="iseo2" class="select-css">
+
+          <option value="31 Jan, 2020 12:15:00">31 Jan, 2020 12:15 PM - 01:15 PM</option>
+          <option value="31 Jan, 2020 13:30:00">31 Jan, 2020 01:30 PM - 02:30 PM</option>
+          <option value="31 Jan, 2020 14:45:00">31 Jan, 2020 02:45 PM - 03:45 PM</option>
+          <option value="31 Jan, 2020 11:00:00">31 Jan, 2020 11:00 AM - 12:00 PM</option>
+          <option value="31 Jan, 2020 16:00:00">31 Jan, 2020 04:00 PM - 05:00 PM</option>
+          <option value="31 Jan, 2020 17:15:00">31 Jan, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISSO LEVEL 2:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="" id="isso2" class="select-css">
+
+          <option value="29 Jan, 2020 11:00:00">29 Jan, 2020 11:00 AM - 12:00 PM</option>
+          <option value="29 Jan, 2020 12:15:00">29 Jan, 2020 12:15 PM - 01:15 PM</option>
+          <option value="29 Jan, 2020 13:30:00">29 Jan, 2020 01:30 PM - 02:30 PM</option>
+          <option value="29 Jan, 2020 14:45:00">29 Jan, 2020 02:45 PM - 03:45 PM</option>
+          <option value="29 Jan, 2020 16:00:00">29 Jan, 2020 04:00 PM - 05:00 PM</option>
+          <option value="29 Jan, 2020 17:15:00">29 Jan, 2020 05:15 PM - 06:15 PM</option>
+
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISMO LEVEL 2:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="" id="ismo2" class="select-css">
+          <option value="2 Jan, 2020 11:00:00">02 Jan, 2020 11:00 AM - 12:00 PM</option>
+          <option value="2 Jan, 2020 12:15:00">02 Jan, 2020 12:15 PM - 01:15 PM</option>
+          <option value="2 Jan, 2020 13:30:00">02 Jan, 2020 01:30 PM - 02:30 PM</option>
+          <option value="2 Jan, 2020 14:45:00">02 Jan, 2020 02:45 PM - 03:45 PM</option>
+          <option value="2 Jan, 2020 16:00:00">02 Jan, 2020 04:00 PM - 05:00 PM</option>
+          <option value="2 Jan, 2020 17:15:00">02 Jan, 2020 05:15 PM - 06:15 PM</option>
+
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISCO LEVEL 2:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="" id="isco2" class="select-css">
+          <option value="15 Jan, 2020 11:00:00">15 Jan, 2020 11:00 AM - 12:00 PM</option>
+          <option value="15 Jan, 2020 12:15:00">15 Jan, 2020 12:15 PM - 01:15 PM</option>
+          <option value="15 Jan, 2020 13:30:00">15 Jan, 2020 01:30 PM - 02:30 PM</option>
+          <option value="15 Jan, 2020 14:45:00">15 Jan, 2020 02:45 PM - 03:45 PM</option>
+          <option value="15 Jan, 2020 16:00:00">15 Jan, 2020 04:00 PM - 05:00 PM</option>
+          <option value="15 Jan, 2020 17:15:00">15 Jan, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+        <p>ISGKO LEVEL 2:</p>
+        </div>
+        <div class="col-md-6">
+        <select name="" id="iscto" class="select-css">
+          <option value="22 Jan, 2020 11:00:00">22 Jan, 2020 11:00 AM - 12:00 PM</option>
+          <option value="22 Jan, 2020 12:15:00">22 Jan, 2020 12:15 PM - 01:15 PM</option>
+          <option value="22 Jan, 2020 13:30:00">22 Jan, 2020 01:30 PM - 02:30 PM</option>
+          <option value="22 Jan, 2020 14:45:00">22 Jan, 2020 02:45 PM - 03:45 PM</option>
+          <option value="22 Jan, 2020 16:00:00">22 Jan, 2020 04:00 PM - 05:00 PM</option>
+          <option value="22 Jan, 2020 17:15:00">22 Jan, 2020 05:15 PM - 06:15 PM</option>
+        </select>
+        </div>
+    </div>
+    {% endcomment %}
+    </div>
+</div><br>
+
+</div>
+{% endblock %}

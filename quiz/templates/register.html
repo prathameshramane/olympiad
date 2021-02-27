@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<!--link rel="stylesheet" href="style.css"-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .primary{
+            padding: 5px;
+            text-align: center;
+            color: black;
+            font-weight: 700;
+
+        }
+        .second{
+            text-align: center;
+            margin-top: 4px;
+
+        }
+
+        .third{
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        .msg{
+            margin-top:12px;
+            margin-left: 5px;
+            margin-right: 25px;
+            border: 3px solid black;
+            border-radius: 10px;
+            background-color: rosybrown;
+            padding: 3PX;
+        }
+        .fm{
+            margin-left: 25px;
+            margin-top: 18px;
+        }
+    </style>
+
+</head>
+<body>
+		<h3 class="primary"> Registration</h3>
+
+            <h4 class="second"> Welcome</h4>
+            <div class="third">
+
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>{{message}}</strong>
+
+                  </div>
+                  {% endfor %}
+
+            <center>
+              <form  method="post" action="" class="fm">
+                {% csrf_token %}
+                <label for="ref_code">REFERRAL CODE</label>
+                <input type="text" name="ref_code" id="ref_code"  placeholder="Enter REFERRAL CODE if any"><br><br>
+
+                <label for="first_name" >Fisrt NAME :</label>
+                <input type="text" name="first_name" id="first_name"  placeholder="Enter your first_name" required><br><br>
+
+                <label for="last_name" >last NAME :</label>
+                <input type="text" name="last_name" id="last_name"  placeholder="Enter your last_name" required><br><br>
+
+                <label for="last_name" >Choose a username:</label>
+                <input type="text" name="username" id="username"  placeholder="user_name" required><br><br>
+
+                <label for="parent_name" >PARENT'S Name:</label>
+                <input type="text" name="parent_name" id="parent_name" placeholder="Parent's Name" required><br><br>
+
+                <label for="email" >EMAIL :</label>
+                <input type="email" name="email" id="email" placeholder="enter email id" required><br><br>
+
+                <label for="dob" >DOB:</label>
+                <input type="date" name="dob" id="dob" placeholder="DOB" required><br><br>
+
+                <label for="address" >Address:</label>
+                <input type="text" name="address" id="address" placeholder="address" required><br><br>
+
+                <label for="school" >SCHOOL:</label>
+                <input type="text" name="school" id="school"  placeholder="enter your school name" required><br><br>
+
+                <label for="school_address" >school_address:</label>
+              #  <input type="text" name="school_address" id="school_address"  placeholder="enter your school address" required><br><br>
+
+                <label for="school_state" >SCHOOL_STATE:</label>
+          #      <input type="text" name="school_state" id="school_state"  placeholder="enter your school state" required><br><br>
+
+                <label for="school_city" >SCHOOL_CITY:</label>
+          #      <input type="text" name="school_city" id="school_city"  placeholder="enter your school city" required><br><br>
+
+                <label for="pincode" >pincode:</label>
+          #      <input type="number" name="pincode" id="pincode"  placeholder="enter your pincode" required><br><br>
+
+                <label for="number" >CONTACT:</label>
+          #      <input type="text" id="number" name="number" placeholder="Enter contact no" required><br>
+
+                <label for="password" >Password:</label>
+          #      <input type="password" id="password" name="password" placeholder="password" required><br>
+
+                <label for="standard" >CLASS:</label>
+
+            #    <select name="standard" id = "standard" placeholder="Choose Your Standard" required>
+                  <option value="3">Pre-Nursery</option>
+        					<option value="4">Nursery</option>
+        					<option value="1">Class 1</option>
+        					<option value="2">Class 2</option>
+        					<option value="3">Class 3</option>
+        					<option value="4">Class 4</option>
+        					<option value="5">Class 5</option>
+                  <option value="6">Class 6</option>
+        					<option value="7">Class 7</option>
+        					<option value="8">Class 8</option>
+        					<option value="9">Class 9</option>
+        					<option value="10">Class 10</option>
+                  <option value="11">Class 11</option>
+        					<option value="12">Class 12</option>
+				        </select><br><br>
+
+                <label for="country" >Country</label>
+                {% load countries %}
+          #      {% get_countries as countries %}
+                <select name="country" id = "country" placeholder="Choose Your country" required>
+                {% for country in countries %}
+                    <option value="{{ country.code }}">{{ country.name }}</option>
+                {% endfor %}
+                </select>
+
+
+
+
+                <input type="submit" name="submit" value="Submit">
+
+
+              </form>
+
+
+            </center>
+
+
+            </div>
+</body>
+</html>
