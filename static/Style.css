@@ -113,18 +113,33 @@ header{
     font-size: 1.2rem;
   }
 }
-/*
-#div_left{
-  width: 50%;
-   height: 50%;
-  float: left;
-}*/
 
-/*#div_right{
+#div_left{
+  width: 70%;
+   height: 50%;
+   float: left;
+   
+}
+
+#div_right{
   width: 50%; 
   height: 50%;
+  
+  
 }
-*/
+
+.background{
+  background-color: grey;
+  padding-top: 30px;
+  
+  
+}
+#pad{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 30px;
+  
+}
 #form-group{
   padding: 10px;
   background: rgba(4, 21, 51);

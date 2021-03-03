@@ -1,90 +1,67 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "base.html" %} {% load i18n %} {% load quiz_tags %} {% block title %}
+{% trans "Progress Page" %} {% endblock %} {% block description %} {% trans
+"User Progress Page" %} {% endblock %} {% block body %} {% comment %} {% if
+cat_scores %}
 
-{% load quiz_tags %}
+<h1>{% trans "Question Category Scores" %}</h1>
 
-{% block title %} {% trans "Progress Page" %} {% endblock %}
-{% block description %} {% trans "User Progress Page" %} {% endblock %}
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>{% trans "Category" %}</th>
+      <th>{% trans "Correctly answererd" %}</th>
+      <th>{% trans "Total Questions" %}</th>
+      <th>%</th>
+    </tr>
+  </thead>
 
-{% block body %}
+  <tbody>
+    {% for cat, value in cat_scores.items %}
+    <tr>
+      <td>{{ cat }}</td>
+      <td>{{ value.0 }}</td>
+      <td>{{ value.1 }}</td>
+      <td>{{ value.2 }}</td>
+    </tr>
 
-{% comment %}
+    {% endfor %}
+  </tbody>
+</table>
 
-  {% if cat_scores %}
+{% endif %} {% endcomment %} {% if exams %}
 
-  <h1>{% trans "Question Category Scores" %}</h1>
-
-  <table class="table table-bordered table-striped">
-
-	<thead>
-	  <tr>
-		<th>{% trans "Category" %}</th>
-		<th>{% trans "Correctly answererd" %}</th>
-		<th>{% trans "Total Questions" %}</th>
-		<th>%</th>
-	  </tr>
-	</thead>
-
-	<tbody>
-
-
-	  {% for cat, value in cat_scores.items %}
-	  <tr>
-		<td>{{ cat }}</td>
-		<td>{{ value.0 }}</td>
-		<td>{{ value.1 }}</td>
-		<td>{{ value.2 }}</td>
-	  </tr>
-
-	  {% endfor %}
-
-	</tbody>
-
-  </table>
-
-
-  {% endif %}
-
-  {% endcomment %}
-
-  {% if exams %}
-
-  <hr>
-
-  <h1>{% trans "Previous exam papers" %}</h1>
+<div class="background">
+  <center><h1>{% trans "Previous exam papers" %}</h1></center>
   <p class="lead">
-	{% trans "Below are the results of exams that you have sat." %}
+    {% trans "Below are the results of exams that you have sat." %}
   </p>
+</div>
 
-  <table class="table table-bordered table-striped">
+  <div class="container px-5">
+    <table id="pad" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>{% trans "Quiz Title" %}</th>
+          <th>{% trans "Score" %}</th>
+          <th>{% trans "Possible Score" %}</th>
+          <th>%</th>
+        </tr>
+      </thead>
 
-	<thead>
-	  <tr>
-		<th>{% trans "Quiz Title" %}</th>
-		<th>{% trans "Score" %}</th>
-		<th>{% trans "Possible Score" %}</th>
-		<th>%</th>
-	  </tr>
-	</thead>
+      <tbody>
+        {% for exam in exams %}
 
-	<tbody>
+        <tr>
+          <td>{{ exam.quiz.title }}</td>
+          <td>{{ exam.current_score }}</td>
+          <td>{{ exam.get_max_score }}</td>
+          <td>{{ exam.get_percent_correct }}</td>
+        </tr>
 
-	  {% for exam in exams %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-	  <tr>
-		<td>{{ exam.quiz.title }}</td>
-		<td>{{ exam.current_score }}</td>
-		<td>{{ exam.get_max_score }}</td>
-		<td>{{ exam.get_percent_correct }}</td>
-	  </tr>
+  {% endif %} {% endblock %}
 
-	  {% endfor %}
-
-	</tbody>
-
-  </table>
-
-  {% endif %}
-
-
-{% endblock %}

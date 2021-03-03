@@ -553,12 +553,10 @@ from django.http import HttpResponse
 
 
 def subscribe(request):
-    print ("hibhai")
     mode = "PROD"
     student = request.user
     stud=Student.objects.get(pk=student.id)
     if request.method=='POST':
-        print ("hibhaiji")
         student = request.user
         sub=Student.objects.get(pk=student.id)
         mathsolym=request.POST.get('mathsolym', False)
@@ -581,11 +579,8 @@ def subscribe(request):
         if(sub.generalolym==False):
             sub.generalolym= generalolym
 
-        print ("hi")
         print(request.user.first_name)
         sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
-
-        print('lost')
 
 
         student = request.user
@@ -626,7 +621,6 @@ def subscribe(request):
         secret = secretKey.encode('utf-8')
         signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
         if mode == 'PROD':
-
             url = "https://www.cashfree.com/checkout/post/submit"
         else:
             url = "https://prod.cashfree.com/billpay/checkout/post/submit"
