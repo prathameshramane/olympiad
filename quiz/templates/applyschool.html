@@ -94,6 +94,7 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">Name *</label>
+                        <p style="color: red; display: none;" id="name-error">*Name can have only letters. </p>
                       </div>
 
                       <div class="group col-md-11" >
@@ -101,6 +102,7 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">E-mail id *</label>
+                        <p style="color: red; display: none;" id="email-error">*Invalid Email </p>
                       </div>
                       <div class="group col-md-11" >
                             <label for="country" >Country</label>
@@ -117,6 +119,7 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">Contact Number *</label>
+                        <p style="color: red; display: none;" id="contact-error">*A contact has 10 integers. </p>
                       </div>
                       <div class="group col-md-11" >
                         <input type="text" class="school-input" name="school_name" id="school_name" required>
@@ -141,6 +144,8 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">School Pincode *</label>
+                        <p style="color: red; display: none;" id="pincode-error">*Invalid Pincode </p>
+
                       </div>
                       <div class="group col-md-11" >
                         <input type="text" class="school-input" name="school_website" id="school_website" required>
@@ -153,21 +158,25 @@
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">School email *</label>
+                        <p style="color: red; display: none;" id="semail-error">*Invalid Email </p>
+
                       </div>
                       <div class="group col-md-11" >
                         <input type="text" class="school-input" name="pname" id="pname" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">Principal Name *</label>
+                        <p style="color: red; display: none;" id="pname-error">*Name can have only letters. </p>
                       </div>
                       <div class="group col-md-11" >
                         <input type="text" class="school-input" name="pmobile" id="pmobile" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label class="form-label">Principal Mobile Number *</label>
+                        <p style="color: red; display: none;" id="pcontact-error">*A contact must have 10 integers. </p>
+
                       </div>
                       <div class="col-md-11">
-                        <h3><b>You are*</b></h3>
                         <input type="radio" id="offline" name="exammode" value="offline">
                         <label for="offline" class="radio-label">Pen / Paper</label>
                         <input type="radio" id="online" name="exammode" value="online">
@@ -193,49 +202,108 @@
             {
             function testName()
             {
-                var name = document.form5.pname.value;
-                var letters = /^[a-zA-Z_ ]+$/;
-                if (!name.match(letters)){
-                alert("Name can have only letters.");
+                var name = document.form5.name.value
+                var pname = document.form5.pname.value;
+                var letters = /^[A-Za-z\s]+$/;
+                if (!name.match(letters) && !pname.match(letters)){
+                // alert("Name can have only letters.");
+                document.getElementById("name-error").style.display = "block";
+                document.getElementById("pname-error").style.display = "block";
                 return false;
+                } else if (!name.match(letters) && pname.match(letters)) {
+                  document.getElementById("name-error").style.display = "block";
+                  document.getElementById("pname-error").style.display = "none";
+                  return false
+                } else if (name.match(letters) && !pname.match(letters)) {
+                  document.getElementById("name-error").style.display = "none";
+                  document.getElementById("pname-error").style.display = "block";
+                  return false;
+                } else if (name.match(letters) && pname.match(letters)){
+                  document.getElementById("name-error").style.display = "none";
+                  document.getElementById("pname-error").style.display = "none";
+                  return true;
                 }
-                return true;
             }
             function testZip()
-            {
-                var zip = document.form5.pmobile.value;
-
-
-                if (!zip.match(/^\d{10}$/)){
-                alert("A contact has 10 integers.");
-                return false;
-                }
-                return true;
-            }
-            function testNum()
-            {
-                var zip = document.form5.contact.value;
-
-
-                if (!zip.match(/^\d{10}$/)){
-                alert("A contact has 10 integers.");
-                return false;
-                }
-                return true;
-            }
-            function testPin()
             {
                 var zip = document.form5.school_pincode.value;
 
 
-                if (!zip.match(/^\d{6}$/)){
-                alert("A pincode has 10 integers.");
+                if (!zip.match(/^[0-9]*$/)){
+                // alert("A contact has 10 integers.");
+                document.getElementById("pincode-error").style.display = "block";
+                return false;
+                } else {
+                  document.getElementById("pincode-error").style.display = "none";
+                return true;
+                }
+            }
+            function testNum()
+            {
+                var contact = document.form5.contact.value;
+                var pcontact = document.form5.pmobile.value;
+
+
+                if (!contact.match(/^\d{10}$/) && !pcontact.match(/^\d{10}$/)){
+                  // alert("A contact has 10 integers.");
+                  document.getElementById("contact-error").style.display = "block";
+                document.getElementById("pcontact-error").style.display = "block";
                 return false;
                 }
-                return true;
+                else if (contact.match(/^\d{10}$/) && !pcontact.match(/^\d{10}$/)){
+                  // alert("A contact has 10 integers.");
+                document.getElementById("contact-error").style.display = "none";
+                document.getElementById("pcontact-error").style.display = "block";
+                return false;
+                }
+                else if (!contact.match(/^\d{10}$/) && pcontact.match(/^\d{10}$/)){
+                  // alert("A contact has 10 integers.");
+                  document.getElementById("contact-error").style.display = "block";
+                  document.getElementById("pcontact-error").style.display = "none";
+                return false;
+                }else if (contact.match(/^\d{10}$/) && pcontact.match(/^\d{10}$/)){
+                document.getElementById("contact-error").style.display = "none";
+                  document.getElementById("pcontact-error").style.display = "none";
+                  return true;
+                }
             }
-            return testName()&&testZip()&&testNum()&&testPin();
+            function testEmail()
+            {
+              var email_regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+                var email = document.form5.email.value;
+                var semail = document.form5.school_email.value;
 
+
+                if (!email.match(email_regex) && !semail.match(email_regex)){
+                // alert("A pincode has 10 integers.");
+                document.getElementById("email-error").style.display = "block";
+                document.getElementById("semail-error").style.display = "block";
+                return false;
+                }
+                 else if (email.match(email_regex) && !semail.match(email_regex)){
+                // alert("A pincode has 10 integers.");
+                document.getElementById("email-error").style.display = "none";
+                document.getElementById("semail-error").style.display = "block";
+                return false;
+                }
+                else if (!email.match(email_regex) && semail.match(email_regex)){
+                // alert("A pincode has 10 integers.");
+                document.getElementById("email-error").style.display = "block";
+                document.getElementById("semail-error").style.display = "none";
+                return false;
+                }
+                else if (email.match(email_regex) && semail.match(email_regex)){
+                // alert("A pincode has 10 integers.");
+                document.getElementById("email-error").style.display = "none";
+                document.getElementById("semail-error").style.display = "none";
+                return true;
+                }
+            }
+            testName();
+            testEmail();
+            testNum();
+            testEmail();
+            return testName()&&testZip()&&testNum()&&testEmail();
             }
 
 

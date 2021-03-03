@@ -96,16 +96,9 @@
             {% comment %} <a class=" btn camera-btn disabled" href="" id="button-abc" >Start Quiz</a> {% endcomment %}
             <p>
 {% comment %} <p>dhcvbefhvbhefbih</p> {% endcomment %}
-{% if request.path == "/trial/101cyberolym/"%}
   <a href="{% url 'trial_quiz_question' quiz_name=quiz.url %}" class=" btn camera-btn disabled" id="button-abc">
 	{% trans "Start quiz" %}
   </a>
-{% endif %}
-{% if request.path == "/101cyberolym/"%}
-  <a href="{% url 'quiz_question' quiz_name=quiz.url %}" class=" btn camera-btn disabled" id="button-abc">
-	{% trans "Start quiz" %}
-  </a>
-{% endif %}
 </p>
         </center>
 </div>

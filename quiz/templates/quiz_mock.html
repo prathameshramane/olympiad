@@ -33,7 +33,7 @@
 			  <td>{{ quiz.exam_paper }}</td>
 			  <td>{{ quiz.single_attempt }}</td>
 			  <td>
-				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				<a href="{% url 'trial_quiz_start_page' slug=quiz.url %}">
 				  {% trans "View details" %}
 				</a>
 			</tr>

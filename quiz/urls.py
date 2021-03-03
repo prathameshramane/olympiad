@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import QuizListView, CategoriesListView,\
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake,change_password,uploadfiles, index,changeslot,profile,bookslot, login_user, logout_user,contact,examdates,faqs,coordinator,mock,register_school,myquiz,home,handlerequest,handleresponse
+    QuizMarkingDetail, QuizDetailView, QuizTake,change_password,uploadfiles, index,changeslot,profile,bookslot, login_user, logout_user,contact,examdates,faqs,coordinator,mock,register_school,myquiz,home,handlerequest,handleresponse,  FreeTrial
 from django.urls import path
 from django.urls import path
 from . import views
@@ -97,6 +97,14 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                        url(regex=r'^(?P<quiz_name>[\w-]+)/take/$',
                            view=QuizTake.as_view(),
                            name='quiz_question'),
+
+                       url(regex=r'^trial/(?P<slug>[\w-]+)/$',
+                           view=QuizDetailView.as_view(),
+                           name='trial_quiz_start_page'),
+
+                       url(regex=r'^trial/(?P<quiz_name>[\w-]+)/take/$',
+                           view=FreeTrial.as_view(),
+                           name='trial_quiz_question'),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

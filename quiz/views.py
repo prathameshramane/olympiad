@@ -1276,6 +1276,139 @@ class QuizTake(TemplateView):
 
         return render(self.request, 'result.html', results)
 
+class FreeTrial(TemplateView):
+    template_name = 'trial_questions.html'
+
+
+    def dispatch(self, request, *args, **kwargs):
+        self.quiz = get_object_or_404(Quiz, url=self.kwargs['quiz_name'])
+
+
+        if self.quiz.draft and not request.user.has_perm('quiz.change_quiz'):
+            raise PermissionDenied
+
+        self.logged_in_user = self.request.user.is_authenticated
+
+        if self.logged_in_user:
+            self.sitting = Sitting.objects.user_sitting(request.user,self.quiz)
+
+            allquestion = self.quiz.get_questions()
+
+            self.progress = self.sitting.progress()
+            print(allquestion)
+            global bro
+            progress, c = Progress.objects.get_or_create(user=self.request.user)
+            if(request.method=='POST'):
+
+                bro = 0
+                for ques in allquestion:
+                    # if(request.POST==None):
+                    #     self.question = ques
+                    #     answer = Answer.objects.get(id=guess)
+                    #     self.sitting.add_incorrect_question(self.question)
+                    #     progress.update_score(self.question, 0, 1)
+                    # else:
+                    guess =request.POST.get('%s'%ques.id,00)
+                    print(guess)
+                    
+                    self.question = ques
+                    if(guess==00):
+                        print("*************************************")
+                        # self.sitting.add_incorrect_question(self.question)
+                        # progress.update_score(self.question, 0, 1)
+                    else:
+                        answer = Answer.objects.get(id=guess)
+                        print(answer)
+                        print("*************************************")
+
+                        if answer.correct is True:
+                            bro = bro+1
+                            self.sitting.add_to_score(1)
+                            progress.update_score(self.question, 1, 1)
+                        else:
+                            self.sitting.add_incorrect_question(self.question)
+                            progress.update_score(self.question, 0, 1)
+
+                    self.previous = {}
+
+                    self.sitting.add_user_answer(self.question, guess)
+
+                print(bro)
+                return self.final_result_user()
+
+        return super(FreeTrial, self).dispatch(request, *args, **kwargs)
+
+    # def get_form(self, form_class=QuestionForm):
+    #     if self.logged_in_user:
+    #         self.question = self.sitting.get_first_question()
+    #         self.progress = self.sitting.progress()
+    #     return form_class(**self.get_form_kwargs())
+
+    # def get_form_kwargs(self):
+    #     kwargs = super(QuizTake, self).get_form_kwargs()
+
+    #     return dict(kwargs, question=self.question ,my_ques = my_ques)
+
+
+    answers = []
+    def get_context_data(self, **kwargs):
+        context = super(FreeTrial, self).get_context_data(**kwargs)
+        # print(self.quiz.get_questions())
+        allquestion = self.quiz.get_questions()
+        my_answers=[]
+        d=[]
+        q = {
+                'question': '',
+                'answers': []
+            }
+        for ques in allquestion:
+            # q = {}
+            my_answers=[]
+            q = {
+                'question': '',
+                'answers': []
+            }
+            q['question'] = ques
+            ques_c = MCQQuestion.objects.get(id = int(ques.id))
+            ques_choices = [x for x in ques_c.get_answers_list()]
+            # q[ques.content]=ques_choices
+            # print(ques_choices)
+            for choice in ques_choices:
+                my_answers.append(choice)
+            # print(q)
+                # q[ques.content]=choice[1]
+            q['answers']=my_answers
+            # print(q)
+                # q.answers.append(choice[1])
+            d.append(q)
+
+        context['my_ques'] = d
+        if hasattr(self, 'previous'):
+            context['previous'] = self.previous
+        if hasattr(self, 'progress'):
+            context['progress'] = self.progress
+        context['q_length'] = len(d)
+        return context
+
+
+    def final_result_user(self):
+        per = (bro/self.sitting.get_max_score)*100
+        results = {
+            'quiz': self.quiz,
+            'score': bro,
+            'max_score': self.sitting.get_max_score,
+            'percent': per,
+            'sitting': self.sitting,
+
+            #'previous': self.previous,
+        }
+
+        self.sitting.mark_quiz_complete()
+
+        if self.quiz.exam_paper is False:
+            self.sitting.delete()
+
+        return render(self.request, 'result.html', results)
 
 
 

@@ -207,6 +207,8 @@
     <form class="form-horizontal" method="POST">
 
 {% for i in my_ques %}
+{% if forloop.counter <= 15 %}
+
 
 {% ifequal forloop.counter 1 %}
 <div class="question-no show-question" id={{forloop.counter}}>
@@ -324,6 +326,8 @@
     </div>
 {% endifequal %}
 
+{% endif %}
+
 {% endfor %}
 <center>
   <ul class="pager row">
@@ -374,9 +378,11 @@
     <div class="col-md-3 question-grid" style="margin:0;">
       <div class="row">
         {% for i in my_ques %}
+        {% if forloop.counter <= 15 %}
         <div class="col-md-2 td" id='table{{forloop.counter}}' onclick="showQuestion('{{forloop.counter}}');">
           {{ forloop.counter }}
         </div>
+        {% endif %}
         {% endfor %}
       </div>
       </div>
