@@ -32,6 +32,7 @@ from django.template.loader import render_to_string
 from quiz.tokens import account_activation_token
 from django.contrib.auth.models import User
 from mcq.models import MCQQuestion,Answer
+import razorpay
 
 my_list =[]
 my_answers= []
@@ -509,8 +510,7 @@ def handleresponse(request):
 
 
     print(request)
-    if computedsignature==postData['signature']:
-
+    if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
         context['is_paid']= True
 
         """
@@ -617,7 +617,7 @@ def subscribe(request):
 
             signatureData += key+postData[key]
         message = signatureData.encode('utf-8')
-          #get secret key from your config
+        #get secret key from your config
         secret = secretKey.encode('utf-8')
         signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
         if mode == 'PROD':
@@ -642,6 +642,114 @@ def subscribe(request):
 
 
     return render(request,"subscriptions2.html",{'stud':stud})
+
+
+def razorpay_create(request):
+    if request.method == "POST":
+        student = request.user
+        stud=Student.objects.get(pk=student.id)
+        name = stud.first_name
+        amount = int(request.POST.get('orderAmount')) * 100
+        # client = razorpay.Client(auth =("rzp_test_oHT0aGujmMUN3v" , "g7yaOh08gGOAOEk1yWevGNPr"))
+        # payment = client.order.create({'amount':amount, 'currency':'INR','payment_capture':'1' })
+        print(name, amount)
+        
+        return HttpResponse("Hello Prathamesh")
+        # return render(request, 'index.html' ,{'payment':payment})
+    return render(request, 'index.html')    
+
+
+def razor_pay_subcribe(request):
+    mode = "PROD"
+    student = request.user
+    stud=Student.objects.get(pk=student.id)
+    if request.method=='POST':
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+        mathsolym=request.POST.get('mathsolym', False)
+        scienceolym=request.POST.get('scienceolym',False)
+        englisholym=request.POST.get('englisholym', False)
+        reasoningolym=request.POST.get('reasoningolym', False)
+        cyberolym=request.POST.get('cyberolym', False)
+        generalolym=request.POST.get('generalolym', False)
+
+        if(sub.mathsolym==False):
+            sub.mathsolym=mathsolym
+        if(sub.scienceolym==False):
+            sub.scienceolym=scienceolym
+        if(sub.englisholym==False):
+            sub.englisholym=englisholym
+        if(sub.reasoningolym==False):
+            sub.reasoningolym=reasoningolym
+        if(sub.cyberolym==False):
+            sub.cyberolym= cyberolym
+        if(sub.generalolym==False):
+            sub.generalolym= generalolym
+
+        print(request.user.first_name)
+        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
+
+
+        student = request.user
+        sub=Student.objects.get(pk=student.id)
+
+        sub.order_number = sub.order_number+1
+        sub.save(update_fields=['order_number'])
+
+        temp = str(request.user.username)+str('_')+str(request.user.order_number)
+
+        print(temp)
+
+        postData = {
+                  "appId" : '58782c06ab69a52be2f34bd7b28785',
+                  "orderId" : temp,
+                  "orderAmount" : request.POST['orderAmount'],
+                  "orderCurrency" : 'INR',
+                  "orderNote" : "payment",
+                  "customerName" : str(request.user.first_name),
+                  "customerPhone" : str(request.user.number),
+                  "customerEmail" : str(request.user.email),
+                  "returnUrl" : 'http://127.0.0.1:8000/response/',
+                  "notifyUrl" : 'https://github.com/'
+        }
+
+
+        print(postData)
+
+        # lst2=[]
+        # lst.append(postData)
+        sortedKeys = sorted(postData)
+        signatureData = ""
+        for key in sortedKeys:
+
+            signatureData += key+postData[key]
+        message = signatureData.encode('utf-8')
+        #get secret key from your config
+        secret = secretKey.encode('utf-8')
+        signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
+        if mode == 'PROD':
+            url = "https://www.cashfree.com/checkout/post/submit"
+        else:
+            url = "https://prod.cashfree.com/billpay/checkout/post/submit"
+
+        context = {
+            'postData' : postData,
+            'url' : url,
+            'signature' :signature,
+            'mathsolym':mathsolym,
+            'scienceolym':scienceolym,
+            'englisholym':englisholym,
+            'reasoningolym':reasoningolym,
+            'cyberolym':cyberolym,
+            'generalolym': generalolym
+
+        }
+
+        return render(request,'request.html', context)
+
+
+    return render(request,"subscriptions2.html",{'stud':stud})
+
 
 
 def examdates(request):
@@ -1477,7 +1585,7 @@ def login_user(request):
             if user.email_confirmed:
                 login(request, user)
                 messages.success(request, 'You have successfully logged in')
-                return render(request, 'index.html')
+                return redirect("/profile")
             else:
                 messages.error(request, 'Email not confirmed yet!')
         else:

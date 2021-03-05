@@ -39,7 +39,7 @@
 
 
 
-                            <form action="" id="theForm" style="padding: 20px" method="POST">
+   <form action="{% url 'razorpay_create' %}" id="theForm" style="padding: 20px" method="POST">
                               <!--legend>
                 Select The Subscriptions And Read The Below Instructions Before Purchasing
             </legend-->
@@ -130,10 +130,8 @@
 
   </table>
 </div>
-            <form action="" method="post" class="third" >
-
-
-
+    
+  <form action="" method="post" class="third" >
     {% csrf_token %}
     <div class="form-group row">
       <label>Order Amount:</label><br>
@@ -239,6 +237,33 @@
 <input type="submit" value='Review & Pay' id="review-btn" disabled class="review-btn">  </center>
 </form>
 
+
+{% if payment %}
+
+<div class="container mx-auto text-center mt-4" >
+    {{payment.amount}} <br>
+    {{payment.id}}
+    <form action="/success" method="POST">
+        <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_oHT0aGujmMUN3v"
+        data-amount="{{payment.amount}}"
+        data-currency="INR"
+        data-order_id="{{ payment.id }}"
+        data-buttontext="Pay with Razorpay"
+        data-name="Coffe Corp"
+        data-description="Thanks for buying me a coffee"
+        data-image="https://example.com/your_logo.jpg"
+        data-prefill.name="Abhijeet"
+        data-theme.color="#F37254"
+        id="razor_pay"
+      ></script>
+      <input type="hidden" custom="Hidden Element" name="hidden" />
+    </form>
+  </div>
+</div>
+
+{% endif %}
 
 
 
@@ -392,7 +417,7 @@ function totalIt() {
                         function toggleDisable(){
                           var element = document.getElementById('review-btn');
                           console.log(element.disabled);
-                            if(element.disabled === true){
+                            if(document.getElementById("checkbox").checked === true){
                               element.disabled = false;
                             }else{
                               element.disabled = true;

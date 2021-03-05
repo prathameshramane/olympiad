@@ -63,8 +63,8 @@
                               Profile
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Profile</a>
-                              {% comment %} <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a> {% endcomment %}
+                              <a class="dropdown-item" href="#" onclick="show('profile')">Profile</a>
+                              <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a> 
                               <a class="dropdown-item" href="#" onclick="show('submitdocuments')">Submit Documents</a>
                               <a class="dropdown-item" href="#">Preview Certificate</a>
                             </div>
@@ -115,12 +115,7 @@
                     <br><br><br>
                     <div class="container shown" id="profile">
 
- {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    <strong>{{message}}</strong>
-
-                  </div>
-                  {% endfor %} <br><br><br>
+ <br><br><br>
                         <form action="{% url 'update_student' %}" method="POST">
                           {% csrf_token %}
                         <div class="row">
@@ -285,8 +280,13 @@
                                                   <center><br>
                                                     <h1 class="register-title">Change Password</h1>
                                                   </center><br>
-
-                                                  <form action="change-password/" method="POST">
+                                                  {% for message in messages %}
+                                                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                                      <strong>{{message}}</strong>
+                                  
+                                                    </div>
+                                                    {% endfor %}
+                                                  <form action="{% url 'change_password' %}" method="POST">
                                                   {% csrf_token %}
                                                   <div class="row">
                                                     <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
@@ -464,7 +464,7 @@
                         <img src="{{stud.photograph.url}}" width="5" height="5">
                               <embed src="{{stud.photograph.url}}" width="100%" height="auto" /> {% endcomment %}
                         </div>
-                      </div>
+                   
                       <div class="container">
                         <center>
                           <input type="submit" value='Upload' class="review-btn">
@@ -474,8 +474,6 @@
                       </div>
                       </form>
                         </div>
-                        
-
 
                         <div class="container hide" id="slot">
                           <center><br>
@@ -1006,7 +1004,7 @@
 
                           <div class="backdrop" id="feedback" >
                             <div class="feedback">
-                                <button class="close-btn" onclick="feedback()"><ion-icon style="color: #fff;" name="close"></ion-icon></button>
+                                <button class="close-btn" onclick="feedback()"><ion-icon style="color: #fff" name="close"></ion-icon></button>
                                 <center>
                                     <h1 class="register-title">FEEDBACK FORM</h1>
                                   </center>
@@ -1064,6 +1062,7 @@
 
                             </div>
                             </div>
+                            
 {% endblock %}
 
 {% block js %}

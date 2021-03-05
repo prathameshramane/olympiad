@@ -30,15 +30,30 @@ cat_scores %}
 
 {% endif %} {% endcomment %} {% if exams %}
 
-<div class="background">
-  <center><h1>{% trans "Previous exam papers" %}</h1></center>
-  <p class="lead">
+<!-- <div class="background">
+  <center><h1 class="text-white" style="
+    margin-top: 90px;
+    margin-bottom: -5px;">{% trans "Previous exam papers" %}</h1>
+  <p class="lead text-white m-auto">
     {% trans "Below are the results of exams that you have sat." %}
   </p>
-</div>
+  </center>
+  
+</div> -->
+<div class="d" style="background-color: #0007;"><br><br><br><br><br></div>
 
-  <div class="container px-5">
-    <table id="pad" class="table table-bordered table-striped">
+  <div class="container row">
+    <div>
+      <center><h1 style="
+        margin-top: 90px;
+        margin-bottom: -5px;">{% trans "Previous exam papers" %}</h1>
+      <p class="lead  m-auto">
+        {% trans "Below are the results of exams that you have sat." %}
+      </p>
+      </center>
+      
+    </div>
+    <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>{% trans "Quiz Title" %}</th>

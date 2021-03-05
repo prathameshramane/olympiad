@@ -56,6 +56,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         # path
                         path('syllabus/<olympiad>/<std>',view=views.syllabus,name='syllabus'),
 
+                        path('razorpay',view = views.razorpay_create, name="razorpay_create"),
 
 
                         url(regex=r'^$', view=index, name='index'),
