@@ -129,7 +129,7 @@ header{
 }
 
 .background{
-  background-color: grey;
+  background-image: url(./Stock/isaac-smith-6EnTPvPPL6I-unsplash.jpg);
   padding-top: 30px;
   
   
@@ -617,7 +617,7 @@ img{
 }
 
 .site-title{
-	margin-top:  30%;
+	margin-top:  20%;
 	margin-bottom: 3%;
 	font-size: 50px;
 	vertical-align: center
@@ -931,7 +931,7 @@ section .section-title {
     display: inline-block;
     width: 50%;
     float: left;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .single-footer-widget ul li a {
