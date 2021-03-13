@@ -52,6 +52,9 @@
 	   </div>
 	</div>
 	</div>
+	<center>
+		<a  href="{% url 'index' %}">Your payment is successful click on the link to enable the subscription for the Booked Slot</a>
+	</center>
 	{% else %}
 	<div class="container">
 	<div class="panel panel-danger">
@@ -92,11 +95,9 @@
 	  </div>
 	</div>
 	</div>
-	{% endif %}
-
 	<center>
-
-		<a  href="{% url 'index' %}">Your payment is successful click on the link to enable the subscription for the Booked Slot</a>
+		<a  href="{% url 'index' %}">Back to home</a>
 	</center>
+	{% endif %}
 </body>
 </html>

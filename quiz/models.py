@@ -16,7 +16,7 @@ from .validators import csv_file_validator
 from django.contrib import messages
 from django_countries.fields import CountryField
 from django.contrib.auth.models import AbstractUser
-
+import datetime
 
 class Student(AbstractUser):
     id=models.AutoField(primary_key=True)
@@ -182,10 +182,6 @@ class CategoryManager(models.Manager):
 
         new_category.save()
         return new_category
-
-
-
-
 
 class Category(models.Model):
 
@@ -856,3 +852,15 @@ class Syllabus(models.Model):
 
     def __str__(self):
         return self.olympiad_name + self.std
+
+
+class Feedback(models.Model):
+    feedbackId = models.AutoField
+    rating = models.CharField(max_length=500)
+    suggestion = models.CharField(max_length=500)
+    review = models.CharField(max_length=500)
+    feedbackBy = models.CharField(max_length=500)
+    date = models.DateTimeField(default=datetime.datetime.today)
+
+    def __str__(this):
+        return f"{this.feedbackBy}"

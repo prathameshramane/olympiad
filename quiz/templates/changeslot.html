@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<div class="di">
-    <br><br><br><br>
-</div>
-<div class="show-book-modal" id="edit-modal">
+<div class="d" style="background-color: #0007;"><br><br><br><br></div>
+<div class="show-book-modal container" id="edit-modal">
     <center>
         <h2>Edit Slot</h2>
 
@@ -15,7 +13,7 @@
           <th>Date & Time</th>
             <th>Select the Slot you want to Change</th>
         </tr>
-        <form  action="" method="post">
+        <form  action="" method="post" onsubmit="return submit_form()">
           {% csrf_token %}
 
         {% if request.user.final_cyberolym %}
@@ -25,7 +23,7 @@
           <td>Cyber Olympiad</td>
           <td>{{ request.user.cybertime }}</td>
 
-          <td>  <input type="radio" value="cyber" name="change"></input></td>
+          <td>  <input type="radio" value="cyber" id="cyber" name="change"></input></td>
 
         </tr>
 
@@ -38,7 +36,7 @@
         <tr>
           <td>Maths Olympiad</td>
           <td>{{ request.user.mathtime }}</td>
-  <td>  <input type="radio"  value="math" name="change"></input></td>
+  <td>  <input type="radio"  value="math" id="math" name="change"></input></td>
         {% endif %}
 
 
@@ -48,7 +46,7 @@
         <tr>
           <td>Science Olympiad</td>
           <td>{{ request.user.sciencetime }}</td>
-          <td>  <input type="radio"  value="science" name="change"></input></td>
+          <td>  <input type="radio"  value="science" id="science" name="change"></input></td>
         {% endif %}
 
         {% if request.user.final_generalolym %}
@@ -58,7 +56,7 @@
 
           <td>Gk Olympiad</td>
           <td>{{ request.user.gktime }}</td>
-          <td>  <input type="radio" value="gk" name="change"></input></td>
+          <td>  <input type="radio" value= "gk" id= "gk" name="change"></input></td>
 
         {% endif %}
 
@@ -69,7 +67,7 @@
 
           <td>Reasoning Olympiad</td>
           <td>{{ request.user.reasoningtime }}</td>
-          <td>  <input type="radio"  value="reasoning" name="change"></input></td>
+          <td>  <input type="radio"  value="reasoning" id="reasoning" name="change"></input></td>
 
         {% endif %}
 
@@ -79,7 +77,7 @@
         <tr>
           <td>English Olympiad</td>
           <td>{{ request.user.englishtime }}</td>
-          <td>  <input type="radio" id="question" value="english" name="change"></input></td>
+          <td>  <input type="radio" id="question" value="english" id="english" name="change"></input></td>
 
         {% endif %}
 
@@ -95,7 +93,7 @@
 
 
 <center>
-   <input type="submit" value='Edit' class="review-btn">
+   <input type="submit" value='Edit' class="review-btn" id="submit-btn">
 </center>
 
 </form>
@@ -156,6 +154,18 @@
               }
             }
             element.value = total.toString();
+        }
+        function submit_form(){
+
+          if (document.getElementById("cyber").checked  ||
+          document.getElementById("math").checked  ||
+          document.getElementById("science").checked  ||
+          document.getElementById("reasoning").checked  ||
+          document.getElementById("question").checked ) {
+            return true
+          } else {
+            return false
+          }
         }
     </script>
 {% endblock %}

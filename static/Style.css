@@ -69,6 +69,32 @@ header{
   display: none;
 }
 
+/* Certificate */
+.certificate-name {
+  position: absolute;
+  display: block;
+  width: 90%;
+  margin: 236px auto;
+  text-align: center;
+  font-size: 26px;
+}
+
+@media only screen and (max-width: 990px) {
+  .certificate-name {
+    width: 83%;
+    margin: 125px auto;
+    font-size: 22px;
+  }
+}
+
+@media only screen and (max-width: 510px) {
+  .certificate-name {
+    width: 81%;
+    margin: 92px auto;
+    font-size: 17px;
+  }
+}
+
 
 /*==================================================HERO======================================*/
 .hero{

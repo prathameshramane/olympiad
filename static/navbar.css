@@ -18,6 +18,8 @@
       max-height: 700px;
       height: auto;
       transition: 1s;
+      
+
   }
   .rest{
       background-color: #0009;
@@ -390,7 +392,7 @@ input[type = "text"]:focus,input[type = "tel"]:focus,.select-css:focus{ outline:
       background-color: #F50905;
       background-image: linear-gradient(450deg, rgba(242,157,148,0.5) 50%, #F50905cd);
       border: none;
-      margin: 5%;
+      margin: 0% auto 5% auto;
       color: #fff;
       font-family: 'Lato';
       border-radius: 10px;
@@ -399,7 +401,7 @@ input[type = "text"]:focus,input[type = "tel"]:focus,.select-css:focus{ outline:
   }
   @media (max-width: 490px){
     .review-btn{font-size: 13px;}
-}
+    }
 @media (max-width: 400px){
     .review-btn{width: 80%;
         font-size: 11px;

@@ -35,7 +35,7 @@
 
                         <!-- hero -->
                       <section class="container-fluid p-0" >
-                        <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (1).jpg' %});">
+                        <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (1).jpg' %});" >
                           <div class="d-flex justify-content-center" >
                             <div class="d-flex flex-column" style="padding-top: 120px">
                               <h1 class="site-title  justify-content-center" style="text-align: center;">Your Profile
@@ -48,7 +48,7 @@
                         </div>
                       </section>
 
-                      <section class="menu" id="menu">
+                      <section class="menu" id="menu" style="padding: 10px;">
                         <p class="menu-text" id="menu-text"> <<  CLICK TO VIEW MORE</p>
                         <p class="menu-text-one" id="menu-text-one"> CLICK TO VIEW MORE  >></p>
                         <div class="menu-btn" onclick="menuOpen()" id="menu-ion-icon">
@@ -66,11 +66,11 @@
                               <a class="dropdown-item" href="#" onclick="show('profile')">Profile</a>
                               <a class="dropdown-item" href="#" onclick="show('changepassword')">Change Passwords</a> 
                               <a class="dropdown-item" href="#" onclick="show('submitdocuments')">Submit Documents</a>
-                              <a class="dropdown-item" href="#">Preview Certificate</a>
+                              <a class="dropdown-item" data-toggle="modal" data-target="#previewCerificate">Preview Certificate</a>
                             </div>
                           </div>
                           {% comment %} <a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a> {% endcomment %}
-                          <div class="dropdown nav-item">
+                          <!-- <div class="dropdown nav-item">
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Take Exams
                             </button>
@@ -78,7 +78,7 @@
                               <a class="dropdown-item" href="#" onclick="show('mocktest')">Mock Test</a>
                               <a class="dropdown-item" href="#" onclick="show('mocktest')">Final exam</a>
                             </div>
-                          </div>
+                          </div> -->
                           <div class="dropdown nav-item">
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Result
@@ -88,15 +88,24 @@
                               <a class="dropdown-item" href="#" onclick="show('result')">Final Result</a>
                             </div>
                           </div>
-                          {% comment %} <div class="dropdown nav-item">
-                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <div class="dropdown nav-item">
+                            <button class="btn nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="location.href='/mock'">
                               Free Trial
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" onclick="show('subjects')">Subjects</a>
+                            {% comment %} <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
                               <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
-                            </div>
-                          </div> {% endcomment %}
+                            </div> {% endcomment %}
+                          </div> 
+                         <div class="dropdown nav-item">
+                            <button class="btn nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="location.href='/quizzes'">
+                              Give Quiz
+                            </button>
+                            {% comment %} <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
+                              <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
+                            </div> {% endcomment %}
+                          </div> 
                           <div class="dropdown nav-item">
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Support
@@ -105,7 +114,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
                               <a class="dropdown-item" href="/invoice_view" onclick="show('invoice')">Invoice</a>
-                              <a class="dropdown-item" href="#" onclick="feedback()">Feedback</a>
+                              <a class="dropdown-item" data-toggle="modal" data-target="#feedback">Feedback</a>
                             </div>
                           </div>
 
@@ -113,9 +122,12 @@
                           <a href="" class="menu-link">LOGOUT</a>
                     </section>
                     <br><br><br>
+
                     <div class="container shown" id="profile">
 
  <br><br><br>
+
+ 
                         <form action="{% url 'update_student' %}" method="POST">
                           {% csrf_token %}
                         <div class="row">
@@ -273,58 +285,59 @@
                         </div>
 
 
+                      <div class="container hide" id="changepassword">
+                        <center><br>
+                          <h1 class="register-title">Change Password</h1>
+                        </center><br>
+                        {% for message in messages %}
+                        <div class="container">
+                          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>{{message}}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        </div>
+                          {% endfor %}
+                        <form action="{% url 'change_password' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                          <div class="group col-md-11">
 
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
 
+                            {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
+                            <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
+                          </div >
+                        </div>
 
-                                                <div class="container hide" id="changepassword">
-                                                  <center><br>
-                                                    <h1 class="register-title">Change Password</h1>
-                                                  </center><br>
-                                                  {% for message in messages %}
-                                                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                                                      <strong>{{message}}</strong>
-                                  
-                                                    </div>
-                                                    {% endfor %}
-                                                  <form action="{% url 'change_password' %}" method="POST">
-                                                  {% csrf_token %}
-                                                  <div class="row">
-                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                                                    <div class="group col-md-11">
+                        <div class="row">
+                          <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                          <div class="group col-md-5">
 
-                                                      <span class="highlight"></span>
-                                                      <span class="bar"></span>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
+                            <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
+                          </div >
+                          <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
+                          <div class="group col-md-5">
 
-                                                      {% comment %} <label  for="oldpass">Old Password *</label> {% endcomment %}
-                                                      <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
-                                                    </div >
-                                                  </div>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
+                            <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
 
-                                                  <div class="row">
-                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                                                    <div class="group col-md-5">
+                          </div >
+                          </div>
 
-                                                      <span class="highlight"></span>
-                                                      <span class="bar"></span>
-                                                      {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
-                                                      <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
-                                                    </div >
-                                                    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-                                                    <div class="group col-md-5">
-
-                                                      <span class="highlight"></span>
-                                                      <span class="bar"></span>
-                                                      {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
-                                                      <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
-
-                                                    </div >
-                                                    </div>
-
-                                                    <center>
-                                                      <input type="submit" value='UPDATE' class="review-btn">
-                                                      </center>
-                                                      </form>
-                                                </div>
+                          <center>
+                            <input type="submit" value='UPDATE' class="review-btn">
+                            </center>
+                            </form>
+                    </div>
 
 
 
@@ -464,6 +477,7 @@
                         <img src="{{stud.photograph.url}}" width="5" height="5">
                               <embed src="{{stud.photograph.url}}" width="100%" height="auto" /> {% endcomment %}
                         </div>
+                      
                    
                       <div class="container">
                         <center>
@@ -474,6 +488,8 @@
                       </div>
                       </form>
                         </div>
+                       
+                       
 
                         <div class="container hide" id="slot">
                           <center><br>
@@ -654,9 +670,9 @@
 
                         <div class="container hide" id="challenge">
                           <center><br>
-                            <h1 class="register-title">View Challenge and answers</h1>
+                            <h1 class="register-title">No Answer keys available!</h1>
                           </center>
-                          <div class="row table-head">
+                          <!-- <div class="row table-head">
                             <div class="col-md-2">
                                   <b>Sr. no.</b>
                             </div>
@@ -733,14 +749,14 @@
 
                             </div>
 
-                          </div>
+                          </div> -->
                         </div>
 
                         <div class="container hide" id="result">
                           <center><br>
-                            <h1 class="register-title">Results</h1>
+                            <h1 class="register-title">No results are available</h1>
                           </center>
-                          <div class="row table-head">
+                          <!-- <div class="row table-head">
                             <div class="col-md-2">
                                   <b>Sr. no.</b>
                             </div>
@@ -763,7 +779,7 @@
                             International Mathematics Olympiad (IMO)
                                 </a>
                             </div>
-                            </div>
+                            </div> -->
                             <hr style="border-bottom: 1px solid #0009;">
                         </div>
 
@@ -860,7 +876,8 @@
                             </div>
                             <hr style="border-bottom: 1px solid #0009;">
                           </div>
-
+                        </div>
+                      </div>
 
                     <div class="container hide" id="challenge-one">
                           <center><br>
@@ -1002,66 +1019,83 @@
                     <br>
                           </div>
 
-                          <div class="backdrop" id="feedback" >
-                            <div class="feedback">
-                                <button class="close-btn" onclick="feedback()"><ion-icon style="color: #fff" name="close"></ion-icon></button>
-                                <center>
-                                    <h1 class="register-title">FEEDBACK FORM</h1>
-                                  </center>
-                                  <div class="container">
-                                      <div class="row">
-                                    <div class="col-md-6">
-                                    How likely would you recommend this test to your friends on a scale of 1 to 10? *
-                                    </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-5">
-                                        <select id="country" name="country" class="select-css">
-                                            <option value=1">1</option>
-                                            <option value=2">2</option>
-                                            <option value=3">3</option>
-                                            <option value=4">4</option>
-                                            <option value=5">5</option>
-                                            <option value=6">6</option>
-                                            <option value=7">7</option>
-                                            <option value=8">8</option>
-                                            <option value=9">9</option>
-                                            <option value="10">10</option>
-
-                                        </select>
-                                    </div>
-                                  </div>
-                                  <hr style="border-bottom: 1px #0009;">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                        If you are happy about the initiative which Unicus Olympiads is taking to conduct Summer Olympiads, then do share a testimonial below. (we may publish the testimonial)
-                                      </div>
-                                      <div class="col-md-1"></div>
-                                      <div class="col-md-5">
-                                          <textarea name="" id="" cols="30" rows="5"></textarea>
-                                      </div>
-                                  </div>
-                                <hr style="border-bottom: 1px #0009;">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        We would love to hear your comments/suggestions to improve the platform.*
-                                    </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-5">
-                                        <textarea name="" id="" cols="30" rows="5"></textarea>
-                                    </div>
+                          <div class="modal fade" id="previewCerificate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Certificate</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
                                 </div>
+                                <div class="modal-body" style="position: relative;">
+                                  <div class="container">
+                                    <p class="certificate-name">{{ request.user.first_name}} {{request.user.last_name}}</p>
+                                    <img src="{% static 'Stock/certificate.jpeg' %}" alt="" srcset="">
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
                             </div>
-                            <center>
-                                <button class="review-btn">S U B M I T</button>
-                            </center>
-                            <hr style="border-bottom: 1px #0009;">
-                            <center>
-                                <button class="review-btn">JOIN GROUP</button>
-                            </center>
-                            <hr style="border-bottom: 1px #0009;">
+                          </div>
 
+                          <div class="modal fade" id="feedback" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Feedback</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+
+                                  <form action="{% url 'feedback' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                      <label for="rating">Please provide comments or suggestions to improve our platform</label>
+                                      <p style="margin-bottom: 0.0rem;" id="ratingValue">10</p>
+                                      <input type="range" class="form-control-range" id="rating" name="rating" onchange="changeRating()">
+                                      <script>
+                                        value = document.getElementById("rating").value
+                                        document.getElementById("ratingValue").innerText = value/10
+                                        function changeRating(){
+                                          value = document.getElementById("rating").value
+                                          document.getElementById("ratingValue").innerText = value/10
+                                        }
+                                      </script>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label for="suggestions">Please provide comments or suggestions to improve our platform</label>
+                                      <textarea class="form-control" id="suggestions" name="suggestions" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label for="review">If you are happy with this initiative of conducting School Olympiads , please share a testimonial (we may publish the testimonial).</label>
+                                      <textarea class="form-control" id="review" name="review" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </form>
+                                </div>
+                              
+                              </div>
                             </div>
-                            </div>
+                          </div>
+
+                          {% if feedback %}
+                          <script>
+                            Swal.fire({
+                             title: 'Submitted!',
+                             text: 'Thanks For the feedback',
+                             icon: 'success',
+                             confirmButtonText: 'Ok'
+                             })
+                          </script>
+                          {% endif %}
                             
 {% endblock %}
 
@@ -1120,4 +1154,6 @@
                                   <script>
                                     $(window).scroll(function(){$('.menu').toggleClass('menu-scrolled', $(this).scrollTop() > 0);});
                                   </script>
+                                   
+                                  
 {% endblock %}

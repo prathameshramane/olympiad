@@ -17,7 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect
-from .models import Student, Contact, Coordinator, School_register, Invoice,Syllabus,Standard
+from .models import Student, Contact, Coordinator, School_register, Invoice,Syllabus,Standard, Feedback
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -32,6 +32,7 @@ from django.template.loader import render_to_string
 from quiz.tokens import account_activation_token
 from django.contrib.auth.models import User
 from mcq.models import MCQQuestion,Answer
+from django.http import HttpResponse
 import razorpay
 
 my_list =[]
@@ -127,7 +128,7 @@ def changeslot(request):
 @csrf_exempt
 def response_changeslot(request):
 
-
+        print(request.POST)
         postData = {
         "orderId" : request.POST['orderId'],
         "orderAmount" : request.POST['orderAmount'],
@@ -139,7 +140,7 @@ def response_changeslot(request):
         "txTime" : request.POST['txTime']
         }
 
-        print(postData)
+        # print(postData)
         signatureData = ""
         signatureData = postData['orderId'] + postData['orderAmount'] + postData['referenceId'] + postData['txStatus'] + postData['paymentMode'] + postData['txMsg'] + postData['txTime']
 
@@ -155,9 +156,8 @@ def response_changeslot(request):
         }
 
 
-        print(request)
-        if computedsignature==postData['signature']:
-
+        # print(request)
+        if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
             context['is_paid']= True
 
 
@@ -237,7 +237,6 @@ def changeafterbook(request):
         }
 
         return render(request,'request.html', context)
-        print(quiz)
 
     return render(request,'changeslot.html')
 
@@ -393,8 +392,9 @@ def bookslot(request):
 
     return render(request,'book.html')
 
-def profile(request):
-    return render(request,'dashboard.html')
+def profile(request,context={"feedback":False}):
+    print(context)
+    return render(request,'dashboard.html',context)
 
 secretKey = "bb221fbe28841cb1a7eb30599b5dcad2a3e8dae2"
 #@app.route('/request', methods=["POST"])
@@ -451,6 +451,7 @@ def handlerequest(request):
 #@app.route('/response', methods=["GET","POST"])
 @csrf_exempt
 def handleresponse(request):
+    print(request.POST)
 
     postData = {
     "orderId" : request.POST['orderId'],
@@ -510,46 +511,41 @@ def handleresponse(request):
 
 
     print(request)
-    if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
+    # if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
+    if request.POST.get("txStatus") == "OK":
         context['is_paid']= True
 
-        """
-        student = request.user
-        sub=Student.objects.get(pk=student.id)
-        if(sub.mathsolym==True):
-            sub.final_mathsolym=mathsolym
-        if(sub.scienceolym==True):
-            sub.final_scienceolym=scienceolym
-        if(sub.englisholym==True):
-            sub.final_englisholym=englisholym
-        if(sub.reasoningolym==True):
-            sub.final_reasoningolym=reasoningolym
-        if(sub.cyberolym==True):
-            sub.final_cyberolym= cyberolym
-        if(sub.generalolym==True):
-            sub.final_generalolym=generalolym
-        print ("hi")
-        print(request.user.first_name)
-        sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
+    """
+    student = request.user
+    sub=Student.objects.get(pk=student.id)
+    if(sub.mathsolym==True):
+        sub.final_mathsolym=mathsolym
+    if(sub.scienceolym==True):
+        sub.final_scienceolym=scienceolym
+    if(sub.englisholym==True):
+        sub.final_englisholym=englisholym
+    if(sub.reasoningolym==True):
+        sub.final_reasoningolym=reasoningolym
+    if(sub.cyberolym==True):
+        sub.final_cyberolym= cyberolym
+    if(sub.generalolym==True):
+        sub.final_generalolym=generalolym
+    print ("hi")
+    print(request.user.first_name)
+    sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
 
 
-        sub.mathsolym = False;
-        sub.scienceolym = False;
-        sub.englisholym = False;
-        sub.reasoningolym = False;
-        sub.cyberolym = False;
-        sub.generalolym = False;
-        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
-        """
-
-
-
-
-
+    sub.mathsolym = False;
+    sub.scienceolym = False;
+    sub.englisholym = False;
+    sub.reasoningolym = False;
+    sub.cyberolym = False;
+    sub.generalolym = False;
+    sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
+    """
 
     return render(request,'response.html', context)
 
-from django.http import HttpResponse
 
 
 def subscribe(request):
@@ -565,6 +561,7 @@ def subscribe(request):
         reasoningolym=request.POST.get('reasoningolym', False)
         cyberolym=request.POST.get('cyberolym', False)
         generalolym=request.POST.get('generalolym', False)
+        print(request.POST)
 
         if(sub.mathsolym==False):
             sub.mathsolym=mathsolym
@@ -641,115 +638,7 @@ def subscribe(request):
         return render(request,'request.html', context)
 
 
-    return render(request,"subscriptions2.html",{'stud':stud})
-
-
-def razorpay_create(request):
-    if request.method == "POST":
-        student = request.user
-        stud=Student.objects.get(pk=student.id)
-        name = stud.first_name
-        amount = int(request.POST.get('orderAmount')) * 100
-        # client = razorpay.Client(auth =("rzp_test_oHT0aGujmMUN3v" , "g7yaOh08gGOAOEk1yWevGNPr"))
-        # payment = client.order.create({'amount':amount, 'currency':'INR','payment_capture':'1' })
-        print(name, amount)
-        
-        return HttpResponse("Hello Prathamesh")
-        # return render(request, 'index.html' ,{'payment':payment})
-    return render(request, 'index.html')    
-
-
-def razor_pay_subcribe(request):
-    mode = "PROD"
-    student = request.user
-    stud=Student.objects.get(pk=student.id)
-    if request.method=='POST':
-        student = request.user
-        sub=Student.objects.get(pk=student.id)
-        mathsolym=request.POST.get('mathsolym', False)
-        scienceolym=request.POST.get('scienceolym',False)
-        englisholym=request.POST.get('englisholym', False)
-        reasoningolym=request.POST.get('reasoningolym', False)
-        cyberolym=request.POST.get('cyberolym', False)
-        generalolym=request.POST.get('generalolym', False)
-
-        if(sub.mathsolym==False):
-            sub.mathsolym=mathsolym
-        if(sub.scienceolym==False):
-            sub.scienceolym=scienceolym
-        if(sub.englisholym==False):
-            sub.englisholym=englisholym
-        if(sub.reasoningolym==False):
-            sub.reasoningolym=reasoningolym
-        if(sub.cyberolym==False):
-            sub.cyberolym= cyberolym
-        if(sub.generalolym==False):
-            sub.generalolym= generalolym
-
-        print(request.user.first_name)
-        sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
-
-
-        student = request.user
-        sub=Student.objects.get(pk=student.id)
-
-        sub.order_number = sub.order_number+1
-        sub.save(update_fields=['order_number'])
-
-        temp = str(request.user.username)+str('_')+str(request.user.order_number)
-
-        print(temp)
-
-        postData = {
-                  "appId" : '58782c06ab69a52be2f34bd7b28785',
-                  "orderId" : temp,
-                  "orderAmount" : request.POST['orderAmount'],
-                  "orderCurrency" : 'INR',
-                  "orderNote" : "payment",
-                  "customerName" : str(request.user.first_name),
-                  "customerPhone" : str(request.user.number),
-                  "customerEmail" : str(request.user.email),
-                  "returnUrl" : 'http://127.0.0.1:8000/response/',
-                  "notifyUrl" : 'https://github.com/'
-        }
-
-
-        print(postData)
-
-        # lst2=[]
-        # lst.append(postData)
-        sortedKeys = sorted(postData)
-        signatureData = ""
-        for key in sortedKeys:
-
-            signatureData += key+postData[key]
-        message = signatureData.encode('utf-8')
-        #get secret key from your config
-        secret = secretKey.encode('utf-8')
-        signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
-        if mode == 'PROD':
-            url = "https://www.cashfree.com/checkout/post/submit"
-        else:
-            url = "https://prod.cashfree.com/billpay/checkout/post/submit"
-
-        context = {
-            'postData' : postData,
-            'url' : url,
-            'signature' :signature,
-            'mathsolym':mathsolym,
-            'scienceolym':scienceolym,
-            'englisholym':englisholym,
-            'reasoningolym':reasoningolym,
-            'cyberolym':cyberolym,
-            'generalolym': generalolym
-
-        }
-
-        return render(request,'request.html', context)
-
-
-    return render(request,"subscriptions2.html",{'stud':stud})
-
+    return render(request,"subscriptions2.html",{'stud':stud})  
 
 
 def examdates(request):
@@ -845,12 +734,13 @@ def change_password(request):
 
                 student.set_password(newpass)
                 student.save(update_fields=['password'])
-                messages.success(request, 'Password changed successful')
+                messages.success(request, 'Password changed successful. Login again.')
+                return redirect('/loginhandle')
             else:
-                messages.error(request, 'Wrong user password ')
+                messages.warning(request, 'Wrong user password ')
 
         else:
-            messages.error(request, 'Password entered do not match')
+            messages.warning(request, 'Password entered do not match')
 
     return render(request,'changepassword.html')
 
@@ -924,7 +814,7 @@ def contact(request):
         messages.success(request, ('You will be contacted soon by our team'))
         coordinate.save()
 
-    return render(request,"contact.html")
+    return render(request,"index.html")
 
 
 def coordinator(request):
@@ -1075,6 +965,8 @@ class QuizListView(ListView):
         print("wd2d")
         print(self)
         queryset = super(QuizListView, self).get_queryset()
+
+
 def mock(request):
     if request.user.is_authenticated:
         all_quizzes = Quiz.objects.all()
@@ -1679,12 +1571,14 @@ def paper(request):
     return render(request,"paper.html")
 
 
-
-
-
-
-
-
+def feedback(request):
+    rating = int(request.POST.get("rating"))/10
+    suggestions = request.POST.get("suggestions")
+    review = request.POST.get("review")
+    name = f"{request.user.first_name} {request.user.last_name}"
+    newFeedback = Feedback(rating=rating, suggestion=suggestions, review=review, feedbackBy=name)
+    newFeedback.save()
+    return render("/profile")
 
 
 def samplepaper(request,sub,std):

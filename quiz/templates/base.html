@@ -663,7 +663,8 @@
           <div class="col-12 col-sm-6 col-lg-4">
             <div class="single-footer-widget">
               <h6 style="font-weight: bold; color: white">Contact Us</h6>
-              <form class="single-footer-widget" role="form">
+              <form class="single-footer-widget" role="form" action="{% url 'contact'%}" method="POST">
+                {% csrf_token %}
                 <div class="row" style="font: yellow">
                  <div class="col-md-6">
                   <div class="form-group">
@@ -681,7 +682,7 @@
              <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <input class="form-control form-control-phone" name="phone" id="phone" placeholder="Phone Number" type="tel" required>
+                  <input class="form-control form-control-phone" name="phonenum" id="phone" placeholder="Phone Number" type="tel" required>
                 </div>
               </div>
              </div>
@@ -689,7 +690,7 @@
                <textarea class="form-control form-control-message" name="message" id="message" placeholder="Message" rows="3" required></textarea>
              </div>
              <div class="text-right"><br>
-              <a href="#" class="btn fancy-btn">Send Message</a>
+              <button type="submit" class="btn fancy-btn text-white">Send Message</button>
             </div>
           </form>
         </div>
@@ -713,6 +714,7 @@
             <script src="{% static 'Owl/docs/assets/vendors/highlight.js' %}"></script>
             <script src="{% static 'Owl/docs/assets/js/app.js' %}"></script>
             <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
             <script>
               $(window).scroll(function(){$('nav').toggleClass('scrolled', $(this).scrollTop() > 0);});
             </script>

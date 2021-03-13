@@ -38,8 +38,8 @@
                       </section>
 
 
-
-   <form action="{% url 'razorpay_create' %}" id="theForm" style="padding: 20px" method="POST">
+  {% comment %} {% url 'razor_pay_subcribe' %} {% endcomment %}
+   <form action="" id="theForm" style="padding: 20px" method="POST">
                               <!--legend>
                 Select The Subscriptions And Read The Below Instructions Before Purchasing
             </legend-->
@@ -243,7 +243,8 @@
 <div class="container mx-auto text-center mt-4" >
     {{payment.amount}} <br>
     {{payment.id}}
-    <form action="/success" method="POST">
+    <form id="razorpay_form" action="{% url "response" %}" method="POST" style="display: none;">
+        
         <script
         src="https://checkout.razorpay.com/v1/checkout.js"
         data-key="rzp_test_oHT0aGujmMUN3v"
@@ -260,6 +261,9 @@
       ></script>
       <input type="hidden" custom="Hidden Element" name="hidden" />
     </form>
+    <script>
+      razorpay_btn = document.querySelector("#razorpay_form .razorpay-payment-button").click()
+    </script>
   </div>
 </div>
 
