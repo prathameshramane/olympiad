@@ -38,7 +38,7 @@
                         <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (1).jpg' %});" >
                           <div class="d-flex justify-content-center" >
                             <div class="d-flex flex-column" style="padding-top: 120px">
-                              <h1 class="site-title  justify-content-center" style="text-align: center;">Your Profile
+                              <h1 class="site-title  justify-content-center" style="text-align: center;">Welcome, {{request.user.first_name}} {{request.user.last_name}}
                               </h1>
                               <p class="site-desc"></p>
 
@@ -89,22 +89,22 @@
                             </div>
                           </div>
                          <div class="dropdown nav-item">
-                            <button class="btn nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="location.href='/mock'">
+                            {% comment %} <button class="btn nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="location.href='/mock'">
                               Free Trial
-                            </button>
+                            </button> {% endcomment %}
                             {% comment %} <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
                               <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
                             </div> {% endcomment %}
                           </div> 
                          <div class="dropdown nav-item">
-                            <button class="btn nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="location.href='/quizzes'">
+                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                               Give Quiz
                             </button>
-                            {% comment %} <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
-                              <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
-                            </div> {% endcomment %}
+                              <!-- <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a> -->
+                            </div>
                           </div> 
                           <div class="dropdown nav-item">
                             <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,8 +112,8 @@
                             </button>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
-                              <a class="dropdown-item" href="/invoice_view" onclick="show('invoice')">Invoice</a>
+                              {% comment %} <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
+                              <a class="dropdown-item" href="/invoice_view" onclick="show('invoice')">Invoice</a> {% endcomment %}
                               <a class="dropdown-item" data-toggle="modal" data-target="#feedback">Feedback</a>
                             </div>
                           </div>
@@ -784,99 +784,82 @@
                         </div>
 
 
+                        {% load i18n %}
+                        {% load quiz_tags %}
+                        <div class="container row hide" id="subjects">
+                         
+                          {% if quiz_list %}
+                  
+                            <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                              <th>{% trans "Name" %}</th>
+                              <th>{% trans "Duration" %}</th>
+                              <th>{% trans "Time" %}</th>
+                              <th>{% trans "Action" %}</th>
+                            </tr>
+                            </thead>
 
-                        <div class="container hide" id="subjects">
-                          <center><br>
-                            <h1 class="register-title">Subjects</h1>
-                          </center>
-                          <div class="row table-head">
-                            <div class="col-md-2">
-                                  <b>Sr. no.</b>
-                            </div>
-                            <div class="col-md-6">
-                              <b><p>
-                                <b>Name</b>
-                              </p></b>
-                            </div>
-                            <div class="col-md-2">
-                              <b>Duration</b>
-                            </div>
-                            <div class="col-md-2">
-                              <b>Action</b>
-                            </div>
-                          </div>
+                            <tbody>
 
-                            <hr style="border-bottom: 1px solid #0009;">
+                              {% for quiz in quiz_list %}
 
-                            <div class="row">
-                              <div class="col-md-2">
-                                    1
-                              </div>
-                              <div class="col-md-6">
-                                International General Knowledge Olympiad (IGKO)
-                              </div>
+                              <tr>
+                              <td>{{ quiz.0.title }}</td>
+                              <td>60 mins</td>
+                              <td>{{quiz.1}}</td>
+                          
+                              <td>
+                              <button onclick="takeExam('{% url 'quiz_start_page' slug=quiz.0.url %}', '{{quiz.1}}')"  class="slot-btn">TAKE EXAM</a>
+                            </tr>
 
-                              <div class="col-md-2">
-                                <b>60 min</b>
-                              </div>
-                              <div class="col-md-2">
-                                <a href="" class="slot-btn">TAKE EXAM</a>
-                              </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
+                              {% endfor %}
+                            </tbody>
 
-                            <div class="row">
-                              <div class="col-md-2">
-                                    1
-                              </div>
-                              <div class="col-md-6">
-                                International General Knowledge Olympiad (IGKO)
-                              </div>
-
-                              <div class="col-md-2">
-                                <b>60 min</b>
-                              </div>
-                              <div class="col-md-2">
-                                <a href="" class="slot-btn">TAKE EXAM</a>
-                              </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-
-                            <div class="row">
-                              <div class="col-md-2">
-                                    1
-                              </div>
-                              <div class="col-md-6">
-                                International General Knowledge Olympiad (IGKO)
-                              </div>
-
-                              <div class="col-md-2">
-                                <b>60 min</b>
-                              </div>
-                              <div class="col-md-2">
-                                <a href="" class="slot-btn">TAKE EXAM</a>
-                              </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-
-                            <div class="row">
-                              <div class="col-md-2">
-                                    1
-                              </div>
-                              <div class="col-md-6">
-                                International General Knowledge Olympiad (IGKO)
-                              </div>
-
-                              <div class="col-md-2">
-                                <b>60 min</b>
-                              </div>
-                              <div class="col-md-2">
-                                <a href="" class="slot-btn">TAKE EXAM</a>
-                              </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-                          </div>
-                        </div>
+                            </table>
+                          
+                            <script>
+                              function takeExam(url, time) {
+                                console.log(url, time);
+                                date = time;
+                                date = date.replace(",","").split(" ");
+                                start_time = new Date(`${date[1]}, ${date[0]}, ${date[2]}`)
+                                end_time = new Date(`${date[1]}, ${date[0]}, ${date[2]}`)
+                                current_time = Date.now()
+                                if(date[4] == "AM"){
+                                  start_time.setHours(date[3].substr(0,2),date[3].substr(3,2))
+                                  end_time.setHours(date[6].substr(0,2),date[6].substr(3,2))
+                                } else {
+                                  start_time.setHours(Number(date[3].substr(0,2)) + 12,date[3].substr(3,2))
+                                  end_time.setHours(Number(date[6].substr(0,2)) + 12,date[6].substr(3,2))
+                                }
+                                console.log(start_time)
+                                console.log(end_time)
+                                console.log(current_time)
+                                if (current_time < start_time){
+                                  Swal.fire({
+                                    icon: 'error',
+                                    title: 'Too Early',
+                                    text: 'You can give exam is the given time slot only',
+                                    })
+                                }
+                                if (current_time > end_time){
+                                  Swal.fire({
+                                    icon: 'error',
+                                    title: 'Time up',
+                                    text: 'The time to give this exam is over',
+                                    })
+                                }
+                                if(current_time > start_time && current_time < end_time){
+                                  location.href = url
+                                }
+                                
+                              } 
+                            </script>
+                            {% else %}
+                              <p>{% trans "There are no available Test. Please Purchase Subscription" %}.</p><br><br>
+                            {% endif %}
+                            
                       </div>
 
                     <div class="container hide" id="challenge-one">

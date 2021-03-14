@@ -392,8 +392,40 @@ def bookslot(request):
     return render(request,'book.html')
 
 def profile(request,context={"feedback":False}):
-    print(context)
-    return render(request,'dashboard.html',context)
+    all_quizzes = Quiz.objects.all()
+    # print(all_quizzes)
+
+    quizlist=[]
+    for quiz in all_quizzes:
+
+        if quiz.title.find('_')!=-1:
+            _,quiz_title = quiz.title.split('_', 1)
+        else:
+            quiz_title= quiz.title
+
+        #print(quiz)
+        #print(quiz.title[0:2])
+
+        #print(quiz_title[0:2])
+        b = quiz_title[2:]
+
+        # print(request.user.standard)
+        # print(quiz_title[0:2])
+        if str(request.user.standard if len(request.user.standard) > 1 else "0" + str(request.user.standard))==str(quiz_title[0:2]):
+            if quiz_title[2:]=='mathsolym' and request.user.final_mathsolym==True:
+                quizlist.append([quiz, request.user.mathtime])
+            if quiz_title[2:]=='scienceolym' and request.user.final_scienceolym==True:
+                quizlist.append([quiz, request.user.sciencetime])
+            if quiz_title[2:]=='englisholym' and request.user.final_englisholym==True:
+                quizlist.append([quiz, request.user.englishtime])
+            if quiz_title[2:]=='generalolym' and request.user.final_generalolym==True:
+                quizlist.append([quiz, request.user.generaltime])
+            if quiz_title[2:]=='cyberolym' and request.user.final_cyberolym==True:
+                quizlist.append([quiz, request.user.cybertime])
+            if quiz_title[2:]=='reasoningolym' and request.user.final_reasoningolym==True:
+                quizlist.append([quiz, request.user.reasoningtime])
+    print(quizlist)
+    return render(request,'dashboard.html',{"quiz_list": quizlist})
 
 secretKey = "bb221fbe28841cb1a7eb30599b5dcad2a3e8dae2"
 #@app.route('/request', methods=["POST"])
@@ -635,7 +667,6 @@ def subscribe(request):
         }
 
         return render(request,'request.html', context)
-
 
     return render(request,"subscriptions2.html",{'stud':stud})  
 
