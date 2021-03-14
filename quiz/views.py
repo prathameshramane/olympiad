@@ -33,7 +33,6 @@ from quiz.tokens import account_activation_token
 from django.contrib.auth.models import User
 from mcq.models import MCQQuestion,Answer
 from django.http import HttpResponse
-import razorpay
 
 my_list =[]
 my_answers= []
