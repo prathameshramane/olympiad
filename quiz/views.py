@@ -843,8 +843,8 @@ def contact(request):
         coordinate=Contact(name=name,email=email,phonenum=phonenum,message=message)
         messages.success(request, ('You will be contacted soon by our team'))
         coordinate.save()
-
-    return render(request,"index.html")
+        return render(request,"index.html")
+    return render(request,"contact.html")
 
 
 def coordinator(request):

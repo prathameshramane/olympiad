@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
-
+<style>
+  .box {
+  background-color: lightgrey;
+  width: 800px;
+  border: 15px solid grey;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+ 
+}
+</style>
 <div class="d" style="background-color: #0007;"><br><br><br><br></div>
-<div class="show-book-modal container" id="edit-modal">
+<div class=" box show-book-modal container" id="edit-modal">
     <center>
         <h2>Edit Slot</h2>
 
@@ -156,16 +168,36 @@
             element.value = total.toString();
         }
         function submit_form(){
-
-          if (document.getElementById("cyber").checked  ||
-          document.getElementById("math").checked  ||
-          document.getElementById("science").checked  ||
-          document.getElementById("reasoning").checked  ||
-          document.getElementById("question").checked ) {
+          var return_bool = false
+          if(document.getElementById("cyber")) {
+            return_bool = return_bool || document.getElementById("cyber").checked
+          }
+          if(document.getElementById("math")) {
+            return_bool = return_bool || document.getElementById("math").checked
+          }
+          if(document.getElementById("science")) {
+            return_bool = return_bool || document.getElementById("science").checked
+          }
+          if(document.getElementById("reasoning")) {
+            return_bool = return_bool || document.getElementById("reasoning").checked
+          }
+          if(document.getElementById("question")) {
+            return_bool = return_bool || document.getElementById("question").checked
+          }
+          if(document.getElementById("english")) {
+            return_bool = return_bool || document.getElementById("english").checked
+          }
+          if (return_bool) {
             return true
           } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'No slot selected',
+              text: 'Please select a slot',
+              })
             return false
           }
         }
+       
     </script>
 {% endblock %}
