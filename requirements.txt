@@ -23,7 +23,7 @@ docopt==0.6.2
 entrypoints==0.3
 et-xmlfile==1.0.1
 future==0.18.2
-grpcio==1.36.1
+grpcio==1.35.0
 grpcio-tools==1.30.0
 gunicorn==20.0.4
 html5lib==1.1
@@ -73,6 +73,7 @@ pyparsing==2.4.6
 PyPDF2==1.26.0
 python-bidi==0.4.2
 python-dateutil==2.7.5
+python-decouple==3.4
 pythonanywhere==0.8.2
 pytz==2019.3
 pywinpty==0.5.5
@@ -80,7 +81,8 @@ PyYAML==5.3.1
 pyzmq==17.1.2
 qtconsole==4.4.3
 query-string==2019.4.13
-reportlab==3.5.65
+razorpay==1.2.0
+reportlab==3.5.59
 requests==2.22.0
 send-email==201212
 Send2Trash==1.5.0
