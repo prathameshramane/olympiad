@@ -17,6 +17,9 @@
       {
           padding-top:15px;
       }
+      #question {
+        margin-right:10px;
+      }
       #timer
       {
           font-family: 'Orbitron', sans-serif;
@@ -132,19 +135,7 @@
 {% endif %}
 
 <br />
-<script>
-    var video = document.querySelector("#videoElement");
 
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function (stream) {
-          video.srcObject = stream;
-        })
-        .catch(function (err0r) {
-          console.log("Something went wrong!");
-        });
-    }
-    </script>
 
 
   <p>
@@ -185,9 +176,25 @@
       <div class="progress-bar progress-bar-striped" id="#bar" style="width:100%;">
       1 : 00 : 00
       </div>
-      </div>
-      </div>
+    </div>
+  </div>
+  <video id="videoElement" style="width: 220px; background-color: #222;color: white;">Allow Camera Access</video>
 </div>
+
+<script>
+  var video = document.querySelector("#videoElement");
+  //Core
+  window.navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+          video.srcObject = stream;
+          video.onloadedmetadata = (e) => {
+              video.play();
+          };
+      })
+      .catch( () => {
+          alert('You have give browser the permission to run Webcam and mic ;( ');
+      });
+  </script>
 
       <script>
       //for slide up and down instructions

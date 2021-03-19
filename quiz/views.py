@@ -888,7 +888,6 @@ def register_school(request):
     return render(request,"applyschool.html")
 
 
-
 def register(request):
     if(request.method=='POST'):
 
@@ -942,7 +941,6 @@ def register(request):
 
 
     return render(request,'applyindividual.html')
-
 
 
 class ActivateAccount(View):
@@ -1064,7 +1062,6 @@ def myquiz(request):
                 quizlist.append(quiz)
     print(quizlist)
     return render(request, 'quiz_list.html', {"quiz_list": quizlist})
-
 
 
 class QuizDetailView(DetailView):

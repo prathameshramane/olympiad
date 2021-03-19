@@ -7,14 +7,18 @@
       align-items: center;
       justify-content: center;
   background-color: lightgrey;
-  width: 700px;
+  width: auto;
+  max-width: 700px;
   border: 15px solid black;
   margin-bottom: 80px;
   
   }
 .box1{
   background-color: lightgrey;
-  width: 1000px;
+  width: auto;
+  width: auto;
+  max-width: 1000px;
+  
   border: 15px solid rgb(185, 61, 61);
   padding: 50px;
   justify-content: center;
@@ -124,6 +128,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
+                              <a class="dropdown-item" href="{% url 'quiz_progress' %}">Progress</a>
                               <!-- <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a> -->
                             </div>
                           </div> 
@@ -140,7 +145,7 @@
                           </div>
 
 
-                          <a href="" class="menu-link">LOGOUT</a>
+                          <a href="{% url 'logout' %}" class="menu-link">LOGOUT</a>
                     </section>
                     <br><br><br>
 

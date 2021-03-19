@@ -33,13 +33,13 @@
                     
                     <div class="container"><br>
                         <div class="row">
-                      <a href="markingscheme/all" class="new-btn">All</a>
-                      <a href="markingscheme/maths" class="new-btn">ISMO</a>
-                      <a href="markingscheme/cyber" class="new-btn">ISCO</a>
-                      <a href="markingscheme/gk" class="new-btn">ISGKO</a>
-                      <a href="markingscheme/english" class="new-btn">ISEO</a>
-                      <a href="markingscheme/science" class="new-btn">ISSO</a>
-                      <a href="markingscheme/ct" class="new-btn">ISCTO</a>
+                      <a href="{% url 'markingscheme' sub="all" %}" class="new-btn">All</a>
+                      <a href="{% url 'markingscheme' sub="maths" %}" class="new-btn">ISMO</a>
+                      <a href="{% url 'markingscheme' sub="cyber" %}" class="new-btn">ISCO</a>
+                      <a href="{% url 'markingscheme' sub="gk" %}" class="new-btn">ISGKO</a>
+                      <a href="{% url 'markingscheme' sub="english" %}" class="new-btn">ISEO</a>
+                      <a href="{% url 'markingscheme' sub="science" %}" class="new-btn">ISSO</a>
+                      <a href="{% url 'markingscheme' sub="ct" %}" class="new-btn">ISCTO</a>
                     </div>
                     <div class="row">
                       <h3><b>International Student Science Olympiad </b></h3>
