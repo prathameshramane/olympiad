@@ -33,6 +33,7 @@ from quiz.tokens import account_activation_token
 from django.contrib.auth.models import User
 from mcq.models import MCQQuestion,Answer
 from django.http import HttpResponse
+import os
 
 my_list =[]
 my_answers= []
@@ -70,6 +71,8 @@ lst=[]
 import hashlib
 import hmac
 import base64
+import socket
+
 
 
 
@@ -185,7 +188,8 @@ def changeafterbook(request):
         sub.save(update_fields=['order_number'])
 
         temp = str(request.user.username)+str('_')+str(request.user.order_number)
-
+        host = request.build_absolute_uri('/').strip("/")
+        print("Host ",host)
         postData = {
                   "appId" : '58782c06ab69a52be2f34bd7b28785',
                   "orderId" : temp,
@@ -195,7 +199,7 @@ def changeafterbook(request):
                   "customerName" : str(request.user.first_name),
                   "customerPhone" : str(request.user.number),
                   "customerEmail" : str(request.user.email),
-                  "returnUrl" : 'http://127.0.0.1:8000/response_changeslot/',
+                  "returnUrl" : f'{host}/response_changeslot/',
                   "notifyUrl" : 'https://github.com/'
         }
 
@@ -436,7 +440,8 @@ def handlerequest(request):
 
     if request.method =='POST':
         print('lost')
-
+        host = request.build_absolute_uri('/').strip("/")
+        print("Host ",host)
         postData = {
                   "appId" : '58782c06ab69a52be2f34bd7b28785',
                   "orderId" : request.POST['orderId'],
@@ -446,7 +451,7 @@ def handlerequest(request):
                   "customerName" : request.user.first_name,
                   "customerPhone" : request.user.number,
                   "customerEmail" : request.user.email,
-                  "returnUrl" : 'http://127.0.0.1:8000/response/',
+                  "returnUrl" : f'{host}/response/',
                   "notifyUrl" : 'https://github.com/'
         }
         print(postData)
@@ -543,7 +548,7 @@ def handleresponse(request):
 
     print(request)
     # if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
-    if request.POST.get("txStatus") == "OK":
+    if request.POST.get("txStatus") == "SUCCESS":
         context['is_paid']= True
 
     """
@@ -621,6 +626,9 @@ def subscribe(request):
 
         print(temp)
 
+        host = request.build_absolute_uri('/').strip("/")
+        print("Host ",host)
+
         postData = {
                   "appId" : '58782c06ab69a52be2f34bd7b28785',
                   "orderId" : temp,
@@ -630,7 +638,7 @@ def subscribe(request):
                   "customerName" : str(request.user.first_name),
                   "customerPhone" : str(request.user.number),
                   "customerEmail" : str(request.user.email),
-                  "returnUrl" : 'http://127.0.0.1:8000/response/',
+                  "returnUrl" : f'{host}/response/',
                   "notifyUrl" : 'https://github.com/'
         }
 
@@ -642,7 +650,6 @@ def subscribe(request):
         sortedKeys = sorted(postData)
         signatureData = ""
         for key in sortedKeys:
-
             signatureData += key+postData[key]
         message = signatureData.encode('utf-8')
         #get secret key from your config
@@ -785,8 +792,8 @@ def update_student(request):
 
         sub.country =request.POST['country']
         sub.address = request.POST['address']
-        sub.street= request.POST['street']
-        sub.country= request.POST['country']
+        sub.city= request.POST['city']
+        sub.school_country = request.POST['school_country']
         sub.state=request.POST['state']
         sub.school=request.POST['school']
         sub.school_state = request.POST['school_state']
@@ -795,7 +802,8 @@ def update_student(request):
         sub.pincode = request.POST['pincode']
         sub.number=request.POST['number']
 
-        sub.save(update_fields=['country','address',"street",'state','school','school_state',"school_address",'school_city','pincode','number'])
+        sub.save(update_fields=['country','address',"city",'state','school','school_state',"school_address",'school_city','pincode','number'])
+        messages.success(request, 'Information Updated successfully!')
         return render(request,"dashboard.html")
 
     return render(request,"subscriptions2.html")
@@ -887,6 +895,11 @@ def register_school(request):
 
     return render(request,"applyschool.html")
 
+def checkKey(dict, key):  
+    if key in dict.keys():
+        return True
+    else:
+        return False
 
 def register(request):
     if(request.method=='POST'):
@@ -898,19 +911,63 @@ def register(request):
         username= request.POST['username']
         parent_name = request.POST['parent_name']
         dob = request.POST['dob']
-        country =request.POST['country']
-        address = request.POST['address']
-        street= request.POST['street']
-        state=request.POST['state']
-        school=request.POST['school']
-        school_state = request.POST['school_state']
-        school_address=request.POST['school_address']
-        school_city=request.POST['school_city']
-        pincode = request.POST['pincode']
-        number=request.POST['number']
         email = request.POST['email']
-        password =request.POST['password']
         standard = request.POST['standard']
+        number = request.POST['number']
+        if checkKey(request.POST, 'country'):
+            country =request.POST['country']
+        else:
+            country = "Not Available"
+
+        if checkKey(request.POST, 'address'):    
+            address = request.POST['address']
+        else:
+            address = "Not Available"
+
+        if checkKey(request.POST, 'city'):    
+            city = request.POST['city']
+        else:
+            city = "Not Available"
+
+        if checkKey(request.POST, 'state'):    
+            state = request.POST['state']
+        else:
+            state = "Not Available"
+
+        if checkKey(request.POST, 'school'):    
+            school = request.POST['school']
+        else:
+            school = "Not Available"
+
+        if checkKey(request.POST, 'school_state'):    
+            school_state = request.POST['school_state']
+        else:
+            school_state = "Not Available"
+
+        if checkKey(request.POST, 'school_address'):    
+            school_address = request.POST['school_address']
+        else:
+            school_address = "Not Available"
+
+        if checkKey(request.POST, 'school_city'):    
+            school_city = request.POST['school_city']
+        else:
+            school_city = "Not Available"
+
+        if checkKey(request.POST, 'school_country'):    
+            school_country = request.POST['school_country']
+        else:
+            school_country = "Not Available"
+
+        if checkKey(request.POST, 'pincode'):    
+            pincode = request.POST['pincode']
+        else:
+            pincode = 0
+
+        if checkKey(request.POST, 'password'):    
+            password = request.POST['password']
+        else:
+            password = "Not Available"
 
         if(Student.objects.filter(email=email).exists()):
             messages.warning(request,"Email already exists")
@@ -918,7 +975,7 @@ def register(request):
             if(Student.objects.filter(username=username).exists()):
                 messages.warning(request,"Username already exists")
             else:
-                student_context=Student(ref_code = ref_code ,first_name=first_name,username=username, last_name=last_name,parent_name = parent_name,dob = dob,country= country,address= address,street=street,state=state,school=school,school_state= school_state,school_address= school_address,school_city= school_city,pincode=pincode,number=number,email=email,standard= standard)
+                student_context=Student(ref_code = ref_code ,first_name=first_name,username=username, last_name=last_name,parent_name = parent_name,dob = dob,country= country,address= address,city=city,state=state,school=school,school_state= school_state,school_address= school_address,school_city= school_city,school_country=school_country,pincode=pincode,number=number,email=email,standard= standard)
                 student_context.set_password(password)
                 student_context.save()
                 # messages.success(request, 'Registration successful')
@@ -926,7 +983,7 @@ def register(request):
 
 
                 current_site = get_current_site(request)
-                subject = 'Activate Your Crest Olympiad Account'
+                subject = 'Activate Your School Olympiad Account'
                 message = render_to_string('account_activation_email.html', {
                 'user': student_context,
                 'domain': current_site.domain,
@@ -937,8 +994,7 @@ def register(request):
 
 
                 messages.success(request, ('Please Confirm your email to complete registration.'))
-                return render(request,"login.html")
-
+                return redirect('loginhandle')
 
     return render(request,'applyindividual.html')
 
@@ -1433,9 +1489,7 @@ class FreeTrial(TemplateView):
 
 
 
-def index(request):
-
-
+def index(request):                             
     if request.user.is_authenticated:
 
         student = request.user
@@ -1605,7 +1659,8 @@ def feedback(request):
     name = f"{request.user.first_name} {request.user.last_name}"
     newFeedback = Feedback(rating=rating, suggestion=suggestions, review=review, feedbackBy=name)
     newFeedback.save()
-    return render("/profile")
+    messages.success(request, 'Feedback Submitted Successfully!')
+    return redirect("profile")
 
 
 def samplepaper(request,sub,std):

@@ -2,8 +2,23 @@
 {% block title %}Subject{% endblock %}
 {% block body %}
 {% load static %}
+<style>
+  .box{
+    background-color:whitesmoke;
+    width:auto ;
+    display: flex;
+    height: auto;
+    border: 60px solid black;
+    border-radius: 50px;
+    margin: 50px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+</style>
                             <div class="container-fluid p-0" >
-                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/CriticalT_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/CriticalT_bg.jpg' %});background-size:cover;background-repeat:no-repeat;">
                                 <div class="d-flex justify-content-center" >
                                   <div class="d-flex flex-column" style="padding-top: 120px">
                                     <h1 class="site-title" style="text-align: center;color: red">Critical Thinking
@@ -20,10 +35,10 @@
                               <section>
                                 <div>
 
-                                  <div class="container row">
+                                  <div class="box container row">
                                     <!-- <p>Click on the below questions to solve your queries</p> -->
-                                    <p>The International School Logical Reasoning Olympiad (ISLRO) is based on forming judgements and testing Logical Reasoning skills.Classes 1-12 can take part in this exam comprising three mocks and one final paper. 
-                                        Students of class 1 to 4 will get     minutes to complete the exam and students of class 5 to 12 will get a total of    minutes.
+                                    <p>The International School Logical Reasoning Olympiad (ISLRO) is based on forming judgements and testing Logical Reasoning skills.Classes 1-10 can take part in this exam comprising three mocks and one final paper. 
+                                        Students of class 1 to 4 will get     minutes to complete the exam and students of class 5 to 10 will get a total of    minutes.
                                         The exam will follow the pattern of multiple choice questions.
                                         Students taking part in the logical reasoning olympiad will receive a comprehensive report of their performances to help them assess their strengths and weaknesses.
                                         The exam preparation page provides all kinds of book recommendations, tips and guidance. Please visit for further information.                                        
@@ -31,7 +46,7 @@
 
                                       The exam will be divided into sections as follows: <br><br>
 
-                                      <strong>Class 1-12:</strong>  &nbsp   Logical Reasoning <br>
+                                      <strong>Class 1-10:</strong>  &nbsp   Logical Reasoning <br>
 <br><br>
                                       <!-- Achievers section -->
 

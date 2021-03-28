@@ -4,44 +4,79 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block body %}
+
+  <style>
+    .box{
+      align-items: center;
+      justify-content: center;
+  background-color: lightgrey;
+  width: auto;
+  max-width: 700px;
+  border: 15px solid black;
+  margin-bottom: 80px;
+  
+  }
+  </style>
 <div class="d" style="background-color: #0007;"><br><br><br><br><br></div><br><br><br>
 <div class="container row">
-<h2>{% trans "List of quizzes" %}</h2>
     {% if quiz_list %}
-		<table class="table table-bordered table-striped resp-table">
+	<h2>{% trans "List of quizzes" %}</h2>
+	<table class="table table-bordered table-striped resp-table">
 
-		  <thead>
+		<thead>
+		  <tr>
+			<th>{% trans "Title" %}</th>
+			<th>{% trans "Category" %}</th>
+		  
+			<th>{% trans "Give Exam" %}</th>
+		  </tr>
+		</thead>
+
+		<tbody>
+
+	  {% for quiz in quiz_list %}
+
+
+
 			<tr>
-			  <th>{% trans "Title" %}</th>
-			  <th>{% trans "Category" %}</th>
-			  <th>{% trans "Exam" %}</th>
-			  <th>{% trans "Single attempt" %}</th>
-			  <th></th>
-			</tr>
-		  </thead>
+			  {% if quiz.category|slugify ==  "mathsolym" %}
+			  <td>Mathematics Olympiad</td>
+			  {% endif %}
+			  {% if quiz.category|slugify ==  "scienceolym" %}
+			  <td>Science Olympiad</td>
+			  {% endif %}
+			  {% if quiz.category|slugify ==  "cyberolym" %}
+			  <td>Cyber Olympiad</td>
+			  {% endif %}
+			  {% if quiz.category|slugify ==  "generalolym" %}
+			  <td>General Olympiad</td>
+			  {% endif %}
+			  {% if quiz.category|slugify ==  "englisholym" %}
+			  <td>English Olympiad</td>
+			  {% endif %}
+			  {% if quiz.category|slugify ==  "reasoningolym" %}
+			  <td>Reasoning Olympiad</td>
+			  {% endif %}
+			<td>Class {{ quiz.title|slice:"2:4" }}</td>
+			
+			<td>
+			  <a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				{% trans "View details" %}
+			  </a>
+		  </tr>
 
-		  <tbody>
+	  {% endfor %}
+		</tbody>
 
-        {% for quiz in quiz_list %}
-
-  			<tr>
-			  <td>{{ quiz.title }}</td>
-			  <td>{{ quiz.category }}</td>
-			  <td>{{ quiz.exam_paper }}</td>
-			  <td>{{ quiz.single_attempt }}</td>
-			  <td>
-				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
-				  {% trans "View details" %}
-				</a>
-			</tr>
-
-        {% endfor %}
-		  </tbody>
-
-		</table>
+	  </table>
 
 	{% else %}
-        <p>{% trans "There are no available quizzes" %}.</p><br><br>
+        <div class=" box container" style="margin-top:60px;">
+			<center><br>
+				<h6 style="color: red;font-size: 3rem;margin-bottom:0px;" class="register-title ">There are no available quizzes.Please book an exam.</h6><br>
+				<a href="{% url 'subscriptions' %}" style="margin-bottom: 10px;">Click here to book an exam</a>
+			</center>
+			</div>
 	{% endif %}
 </div><br><br>
 {% endblock %}

@@ -2,6 +2,20 @@
 {% block title %} Contact {% endblock %}
 {% block body %}
 {% load static %}
+<body style="background: lightgray;">
+  
+</body>
+<style>
+  .box{
+    background-color: rgb(248, 165, 116);
+    width:auto ;
+    display: flex;
+    height: auto;
+    border: 60px solid lightcyan;
+    border-radius: 50px;
+    margin: 50px 50px;
+    }
+</style>
 <!-- header -->
 <!-- hero -->
 <div class="container-fluid p-0" >
@@ -30,7 +44,7 @@
         <div id="googleMap"></div>
       </div>
     </div>
-
+<div class="box">
     <div class="row">
       <div class="col-12 col-md-6">
         <!-- Contact Details -->
@@ -98,6 +112,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <!-- ***** Footer Area Start ***** -->
 {% endblock %}

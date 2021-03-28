@@ -2,8 +2,23 @@
 {% block title %}Subject{% endblock %}
 {% block body %}
 {% load static %}
+<style>
+  .box{
+    background-color:whitesmoke;
+    width:auto ;
+    display: flex;
+    height: auto;
+    border: 60px solid black;
+    border-radius: 50px;
+    margin: 50px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+</style>
                             <div class="container-fluid p-0" >
-                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/english_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/english_bg.jpg' %});background-size:cover;background-repeat:no-repeat;">
                                 <div class="d-flex justify-content-center" >
                                   <div class="d-flex flex-column" style="padding-top: 120px">
                                     <h1 class="site-title" style="text-align: center;color: red">English
@@ -20,13 +35,13 @@
                               <section>
                                 <div>
 
-                                  <div class="container row">
+                                  <div class="box container row">
                                     <!-- <p>Click on the below questions to solve your queries</p> -->
-                                    <p>The International School English Olympiad (ISEO) is the english olympiad exam for the year 2020. Classes 1-12 can take part in this exam comprising mocks and one final paper. 
+                                    <p>The International School English Olympiad (ISEO) is the english olympiad exam for the year 2020. Classes 1-10 can take part in this exam comprising mocks and one final paper. 
                                         The Mock Tests can be attempted three times before giving the final exam.  
                                         ISEO provides a stronger and more dignified grasp over english. 
                                         The exam pattern is of MCQ (Multiple Choice Questions) type.
-                                        Students of class 1 to 4 will get     minutes to complete the exam and students of class 5 to 12 will get a total of    minutes.
+                                        Students of class 1 to 4 will get     minutes to complete the exam and students of class 5 to 10 will get a total of    minutes.
                                         A comprehensive report divided into various categories ( for example- grammar, comprehension,reading, etc) will be provided to each student on evaluation of results.
                                         For any guidance, book recommendation or exam tips please visit the exam preparation of this website.
 
@@ -34,7 +49,7 @@
 
                                       The exam will be divided into sections as follows: <br><br>
 
-                                      <strong>Class 1-12:</strong>  &nbsp   Word and Structure Knowledge <br>
+                                      <strong>Class 1-10:</strong>  &nbsp   Word and Structure Knowledge <br>
                                                                             Reading <br>
                                                                             Spoken and Written Expression <br>
 <br><br>

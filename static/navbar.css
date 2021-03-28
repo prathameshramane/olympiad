@@ -162,13 +162,13 @@ input[type = "text"]:focus,input[type = "tel"]:focus,.select-css:focus{ outline:
   }
   /* LABEL ======================================= */
   .form-label{
-    color:#999; 
+    color:rgb(255, 255, 255); 
     font-size:15px;
     font-weight:normal;
     position:absolute;
     pointer-events:none;
     left:20px;
-    top:5px;
+    top:-24px;
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
@@ -183,7 +183,7 @@ input[type = "text"]:focus,input[type = "tel"]:focus,.select-css:focus{ outline:
     input[type = "tel"]:valid ~ .form-label 		{
     top:-20px;
     font-size:14px;
-    color:#E35B64;
+    color:#ffffff;
   }
   input[type = "text"]:focus ~ .form-label-subs,
     input[type = "text"]:valid ~ .form-label-subs{
@@ -468,6 +468,12 @@ header{
     border-radius: 5px;
     box-shadow: 0px 5px 7px #6f6f6f;
 }
+
+@media only screen and (max-width: 450px) {
+    .fee h1 {
+        font-size: 1.4rem;
+    }
+  }
 
 .benefit{
     padding: 10px;

@@ -96,12 +96,11 @@
             {% comment %} <a class=" btn camera-btn disabled" href="" id="button-abc" >Start Quiz</a> {% endcomment %}
             <p>
 {% comment %} <p>dhcvbefhvbhefbih</p> {% endcomment %}
-{% if request.path == "/trial/101cyberolym/"%}
+{% if request.path|slice:"0:7" == "/trial/"%}
   <a href="{% url 'trial_quiz_question' quiz_name=quiz.url %}" class=" btn camera-btn disabled" id="button-abc">
 	{% trans "Start quiz" %}
   </a>
-{% endif %}
-{% if request.path == "/101cyberolym/"%}
+{% else %}
   <a href="{% url 'quiz_question' quiz_name=quiz.url %}" class=" btn camera-btn disabled" id="button-abc">
 	{% trans "Start quiz" %}
   </a>

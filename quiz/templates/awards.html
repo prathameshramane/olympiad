@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load static %}
+<style>
+  .box{
+            box-sizing:content-box;
+            background-color: rgb(240, 171, 114);
+            border-width: 20px;
+            margin: 50px 50px 50px 50px;
+            border-radius: 10px;
+        }
+</style>
                       <!-- hero -->
                       <div class="container-fluid p-0" >
                         <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/awards_bg.jpg' %});">
@@ -15,7 +24,7 @@
                           </div>
                         </div>
                       </div>
-
+<div class="box">
                       <div>
                         <section class="justify-content-center" >
                           <div>
@@ -134,5 +143,6 @@ Day wise list of places which students will explore during ISRO & NASA tour to g
 
 </div>
 </section>
+</div>
 </div>
 {% endblock %}

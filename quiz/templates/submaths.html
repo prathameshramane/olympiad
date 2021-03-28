@@ -2,8 +2,23 @@
 {% block title %}Subject{% endblock %}
 {% block body %}
 {% load static %}
+<style>
+  .box{
+    background-color:whitesmoke;
+    width:auto ;
+    display: flex;
+    height: auto;
+    border: 60px solid black;
+    border-radius: 50px;
+    margin: 50px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+</style>
                             <div class="container-fluid p-0" >
-                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/math_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/math_bg.jpg' %});background-size:cover;background-repeat:no-repeat;">
                                 <div class="d-flex justify-content-center" >
                                   <div class="d-flex flex-column" style="padding-top: 120px">
                                     <h1 class="site-title" style="text-align: center;color: red">Mathematics
@@ -20,11 +35,11 @@
                               <section>
                                 <div>
 
-                                  <div class="container row">
+                                  <div class="box container row">
                                     <!-- <p>Click on the below questions to solve your queries</p> -->
-                                    <p>The International School Mathematics Olympiad (ISMO) is an international competitive exam for students ranging from class 1 to 12. The exam pattern will follow mock tests and one final exam. 
+                                    <p>The International School Mathematics Olympiad (ISMO) is an international competitive exam for students ranging from class 1 to 10. The exam pattern will follow mock tests and one final exam. 
                                         The Mock Tests can be given three times after which the candidate must appear for the final exam.
-                                        The total time given for the examination is    for classes 1 and     for classes 2 to 12.
+                                        The total time given for the examination is    for classes 1 and     for classes 2 to 10.
                                         The exam follows the multiple choice question pattern.
                                         Unlike the tests at local and regional levels, ISMO provides a stronger grasp of topics and applications.
                                         Once the exam is completed, an extensive report of the student’s performance will be provided which can help him/her get to know his/her strengths and weaknesses.
@@ -33,7 +48,7 @@
 
                                       The exam will be divided into sections as follows: <br><br>
 
-                                      <strong>Class 1-12:</strong>  &nbsp   Mathematics section<br><br>
+                                      <strong>Class 1-10:</strong>  &nbsp   Mathematics section<br><br>
                                       <!-- Achievers section -->
 
                                     <!-- Achievers section -->

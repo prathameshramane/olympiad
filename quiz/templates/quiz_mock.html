@@ -16,9 +16,8 @@
 			<tr>
 			  <th>{% trans "Title" %}</th>
 			  <th>{% trans "Category" %}</th>
-			  <th>{% trans "Exam" %}</th>
-			  <th>{% trans "Single attempt" %}</th>
-			  <th></th>
+			
+			  <th>{% trans "Give Exam" %}</th>
 			</tr>
 		  </thead>
 
@@ -29,10 +28,26 @@
 
 
   			<tr>
-			  <td>{{ quiz.title }}</td>
-			  <td>{{ quiz.category }}</td>
-			  <td>{{ quiz.exam_paper }}</td>
-			  <td>{{ quiz.single_attempt }}</td>
+				{% if quiz.category|slugify ==  "mathsolym" %}
+				<td>Mathematics Olympiad</td>
+				{% endif %}
+				{% if quiz.category|slugify ==  "scienceolym" %}
+				<td>Science Olympiad</td>
+				{% endif %}
+				{% if quiz.category|slugify ==  "cyberolym" %}
+				<td>Cyber Olympiad</td>
+				{% endif %}
+				{% if quiz.category|slugify ==  "generalolym" %}
+				<td>General Olympiad</td>
+				{% endif %}
+				{% if quiz.category|slugify ==  "englisholym" %}
+				<td>English Olympiad</td>
+				{% endif %}
+				{% if quiz.category|slugify ==  "reasoningolym" %}
+				<td>Reasoning Olympiad</td>
+				{% endif %}
+			  <td>Class {{ quiz.title|slice:"2:4" }}</td>
+			  
 			  <td>
 				<a href="{% url 'trial_quiz_start_page' slug=quiz.url %}">
 				  {% trans "View details" %}

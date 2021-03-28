@@ -2,265 +2,534 @@
 {% block title %} Home {% endblock %}
 {% block body %}
 {% load static %}
+<style>
+  div.main {
+    max-width: 475px;
+    margin: 100px auto;
+    display: flex;
+  }
+
+
+  @media only screen and (max-width: 1303px) {
+    div.main {
+      width: 400px;
+    }
+  }
+
+  @media only screen and (max-width: 972px) {
+    div.main {
+      display: none;
+    }
+  }
+
+  h3 {
+    text-align: center;
+
+    font-family: sans-serif;
+
+  }
+
+  div.register {
+
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    font-size: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+  }
+
+  form#register {
+    margin-left: 30px
+  }
+
+  label {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-style: italic;
+
+  }
+
+  input#name {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: 0;
+    padding: 4px;
+    background-color: #fff;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+
+  }
+
+  input#btn_submit {
+    width: 200px;
+    padding: 4px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: sans-serif;
+    border: none;
+    border-radius: 3px;
+    background-color: rgba(250, 100, 0, 0.8);
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 8px;
+
+  }
+
+  label,
+  h3 {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    color: white;
+  }
+</style>
 <section style="padding-top: 0; margin-bottom: 0">
 
   <!-- <div id="div_left" class="d-none d-lg-block " > -->
-    <div class="container-fluid p-0">
-      <div class="site-content" style="height: 640px;">
-        <div class="d-flex justify-content-center" >
-          <div class="d-flex flex-column" style="padding-top: 80px">
-            <h1 class="site-title" style="text-align: center;">International Student Olympiad Foundation
-            </h1>
-            <p class="site-desc"></p>
+  <div class="container-fluid p-0">
+    <div class="site-content" style="height: 740px;">
+      <div class="container">
+        <div class="row" style="max-width: 100.5rem;">
+          <div class="col">
+            <div class="d-flex justify-content-center">
+              <div class="d-flex flex-column" style="padding-top: 80px">
+                <h1 class="site-title" style="text-align: center; margin-top: 25%;">
+                  International Student Olympiad Foundation
+                </h1>
 
-            <div class="d-flex flex-row" style="display: flex; justify-content: center;">
+                <div class="d-flex flex-row" style="display: flex; justify-content: center;">
 
-              {% if  not request.user.is_authenticated %}
-
-              <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal"  data-target="#exampleModalLong">Login</a>
-              <button type="button" class="btn fancy-btn fancy-active m-5" style="align-content: center;" data-toggle="modal" data-target="#exampleModala">Register</button>
-              {% endif %}
-              <!-- Modal -->
-              <div class="modal fade bd-example-modal-sm" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="{% url 'loginhandle' %}" class="login-form" method= "post">
-
-                        {% csrf_token %}
-                        <div class="txtb">
-                          <input type="text" name = "username" placeholder="Username">
-                          <span data-placeholder="Username"></span>
+                  {% if  not request.user.is_authenticated %}
+                  <button type="button" class="btn fancy-btn fancy-active m-2" style="align-content: center;"
+                    data-toggle="modal" data-target="#exampleModalLong">Login</button>
+                  <button type="button" class="btn fancy-btn fancy-active m-2"
+                    onclick="window.location = '/applyindividual'">Register</button>
+                  {% endif %}
+                  <!-- Modal -->
+                  <div class="modal fade bd-example-modal-sm" id="exampleModalLong" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
+                        <form action="{% url 'loginhandle' %}" class="login-form" method="post">
+                          {% csrf_token %}
+                          <div class="modal-body">
 
-                        <div class="txtb">
-                          <input type="password" name = "password" placeholder="Password">
-                          <span data-placeholder="Password"></span>
+                            <div class="txtb">
+                              <input type="text" name="username" placeholder="Username">
+                              <span data-placeholder="Username"></span>
+                            </div>
+
+                            <div class="txtb">
+                              <input type="password" name="password" placeholder="Password">
+                              <span data-placeholder="Password"></span>
+                            </div>
+
+                            <div class="row px-3 mb-4">
+                              <div class="custom-control custom-checkbox custom-control-inline"></div> <a href="#"
+                                class="ml-auto mb-0 text-sm">Forgot Password?</a>
+                            </div>
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="modal fade bd-example-modal-sm" id="exampleModala" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Register Individually / For School</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <a class="btn fancy-btn fancy-active" href="{% url 'applyindividual' %}">
+                                Individually
+                              </a><a class="btn fancy-btn fancy-active" href="{% url 'applyschool' %}">
+                                School
+                              </a>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
                         </div>
-
-
-                        <div class="row px-3 mb-4">
-                          <div class="custom-control custom-checkbox custom-control-inline"></div> <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a>
-                        </div>
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Login</button>
+                      </div>
                     </div>
                   </div>
-                    </form>
                 </div>
               </div>
-
-
-<!-- <button type="button" class="btn fancy-btn" data-toggle="modal" data-target="#exampleModal">
-Register
-</button>
-
-Modal -->
-<div class="modal fade bd-example-modal-sm" id="exampleModala" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-<div class="modal-dialog modal-sm" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLongTitle">Register Individually / For School</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-<div class="modal-body">
-<a class="btn fancy-btn fancy-active" href="{% url 'applyindividual' %}">
-Individually
-</a><a class="btn fancy-btn fancy-active"  href="{% url 'applyschool' %}">
-School
-</a>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- =================================================================== -->
-
-<!-- <div class="section-1"> -->
-  <section style="background-color:#F7F7F7; text-align: center;">
-    <div class="container text-center ">
-
-
-      <div class="row">
-        <div class="col-12">
-          <div class="section-heading text-center">
-            <h2 style="margin-top: 0">Exams We Provide</h2>
-            <!-- <p>We Are A Creative Digital Agency. Focused on Growing Brands Online</p> -->
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 col-sm-6 item">
-          <div class="card item-card card-block">
-            <img src="{% static 'Stock/science_bg.jpeg' %}"style="height: 160px" alt="Science Olympiads" class="rounded-top">
-
-            <h5 class="card-title  mt-3 mb-3">Science</h5>
-            <p class="card-text">Science: The International School Science Olympiad (ISSO) is an online Olympiad conducted
-for classes 1-12. The exam will have three Mock Tests and one Final Exam.</p> 
-            <a href="/subjects/science" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-
+          {% if  not request.user.is_authenticated %}
+          <div class="col" id="quick-registration">
+            <div class="main">
+              <div class="register">
+                {% csrf_token %}
+                <h3> Individual Applicant</h3>
+                <form id="register" method="POST" action="{% url 'applyindividual'%}">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name"
+                          aria-describedby="emailHelp" required>
+                        <div class="invalid-feedback" style="font-size: 12px;">
+                          Please provide a valid First Name.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name"
+                          aria-describedby="emailHelp" required>
+                        <div class="invalid-feedback" style="font-size: 12px;">
+                          Please provide a valid Last Name.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="parent_name">Parent's Name</label>
+                        <input type="text" class="form-control" id="parent_name" name="parent_name"
+                          aria-describedby="emailHelp" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                          required>
+                        <div class="invalid-feedback" style="font-size: 12px;">
+                          Please provide a valid Email.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="number">Phone Number</label>
+                        <input type="text" class="form-control" id="number" aria-describedby="emailHelp" name="number"
+                          required>
+                        <div class="invalid-feedback" style="font-size: 12px;">
+                          Please provide a valid mobile number.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label for="dob">Date of Birth *</label>
+                      <input type="date" name="dob" id="dob" required>
+                      <div class="invalid-feedback" style="font-size: 12px;">
+                        Please provide a valid date
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label for="standard">Class </label>
+                      <select name="standard" id="standard" class="select-css">
+                        <option value="01">Class 1</option>
+                        <option value="02">Class 2</option>
+                        <option value="03">Class 3</option>
+                        <option value="04">Class 4</option>
+                        <option value="05">Class 5</option>
+                        <option value="06">Class 6</option>
+                        <option value="07">Class 7</option>
+                        <option value="08">Class 8</option>
+                        <option value="09">Class 9</option>
+                        <option value="10">Class 10</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                          name="username" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                          aria-describedby="emailHelp" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" aria-describedby="emailHelp"
+                          name="confirmPassword" required>
+                        <div class="invalid-feedback" style="font-size: 12px;">
+                          Password don't match. Please check again.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="button" value="Submit" name="btn_submit" id="btn_submit" onclick="regEx()" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-md-4 col-sm-6 item">
-          <div class="card item-card card-block">
-
-            <img src='{% static "Stock/english_bg.jpeg" %}' style="height: 160px" alt="English Olympiads" class="rounded-top">
-            <h5 class="card-title  mt-3 mb-3">English</h5>
-            <p class="card-text">The International School English Olympiad (ISEO) is the english olympiad exam for the
-year 2020. Classes 1-12 can take part in this exam comprising three mocks and one final paper.</p> 
-            <a href="/subjects/english" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-          </div>
-        </div>
-        <div class="col-md-4  col-sm-6 item">
-          <div class="card item-card card-block">
-            <img src="{% static 'Stock/math_bg.jpeg' %}" style="height: 160px" alt="Mathematics Olympiads" class="rounded-top">
-            <h5 class="card-title  mt-3 mb-3">Mathematics</h5>
-            <p class="card-text">The International School Mathematics Olympiad (ISMO) is an international
-competitive exam for students ranging from class 1 to 12. The exam pattern will follow three
-mock tests and one final exam.</p> 
-            <a href="/subjects/maths" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-
-          </div>
+          {% endif %}
+          <script>
+            console.log(window.screen.width)
+            if (window.screen.width <= 972) {
+              document.getElementById(" quick-registration").style.display = "none";
+            } else {
+              document.getElementById("quick-registration").style.display = "block";
+            }
+          </script>
         </div>
       </div>
     </div>
+  </div>
+</section>
+<!--===================================================================-->
 
-    <div class="container mt-2">
+<!-- <div class="section-1"> -->
+<section style="background-color:#F7F7F7; text-align: center;">
+  <div class="container text-center ">
 
-      <div class="row">
-        <div class="col-md-4 col-sm-6 item">
-         <div class="card item-card card-block">
-          <img src="{% static 'Stock/gk_bg.jpeg' %}" style="height: 160px" alt="GK Olympiad" class="rounded-top">
-          <h5 class="card-title  mt-3 mb-3">General Knowledge</h5>
-          <p class="card-text">The International School General Knowledge Olympiad (IGKO) is an online
-olympiad held for students of class 1- 12. Students taking part need to appear for three mock
-exams followed by one final paper upon qualification.</p> 
-          <a href="/subjects/gk"  class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="section-heading text-center">
+          <h2 style="margin-top: 0">Exams We Provide</h2>
+          <!-- <p>We Are A Creative Digital Agency. Focused on Growing Brands Online</p> -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-6 item">
+        <div class="card item-card card-block">
+          <img src="{% static 'Stock/science_bg.jpg' %}" style="height: 160px" alt="Science Olympiads"
+            class="rounded-top">
+
+          <h5 class="card-title  mt-3 mb-3">Science</h5>
+          <p class="card-text">Science: The International School Science Olympiad (ISSO) is an
+            online Olympiad conducted
+            for classes 1-10. The exam will have three Mock Tests and one Final Exam.</p>
+          {% if not request.user.is_authenticated %}
+          <a href="applyindividual/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="subscriptions/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          <a href="/subjects/science" class="btn fancy-btn fancy-active " style="width:100%">Know
+            More</a>
+
         </div>
       </div>
       <div class="col-md-4 col-sm-6 item">
-       <div class="card item-card card-block">
+        <div class="card item-card card-block">
 
-        <img src="{% static 'Stock/cyber_bg.jpeg' %}" style="height : 160px" alt="Cyber Olympiad" class="rounded-top">
-        <h5 class="card-title  mt-3 mb-3">Cyber</h5>
-        <p class="card-text">The International School Cyber Olympiad (ISCO) of the year 2020 will be conducted
-online. Participants can vary from classes 1-12. Students wishing to take part have to clear
-three mock tests followed by one final test.</p> 
-        <a href="/subjects/cyber" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
+          <img src='{% static "Stock/english_bg.jpg" %}' style="height: 160px" alt="English Olympiads"
+            class="rounded-top">
+          <h5 class="card-title  mt-3 mb-3">English</h5>
+          <p class="card-text">The International School English Olympiad (ISEO) is the english
+            olympiad exam for the
+            year 2020. Classes 1-10 can take part in this exam comprising three mocks and one
+            final paper.</p>
+          {% if not request.user.is_authenticated %}
+          <a href="applyindividual/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="subscriptions/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          <a href="/subjects/english" class="btn fancy-btn fancy-active " style="width:100%">Know
+            More</a>
+        </div>
+      </div>
+      <div class="col-md-4  col-sm-6 item">
+        <div class="card item-card card-block">
+          <img src="{% static 'Stock/math_bg.jpg' %}" style="height: 160px" alt="Mathematics Olympiads"
+            class="rounded-top">
+          <h5 class="card-title  mt-3 mb-3">Mathematics</h5>
+          <p class="card-text">The International School Mathematics Olympiad (ISMO) is an
+            international
+            competitive exam for students ranging from class 1 to 10. The exam pattern will follow
+            three
+            mock tests and one final exam.</p>
+          {% if not request.user.is_authenticated %}
+          <a href="applyindividual/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="subscriptions/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          <a href="/subjects/maths" class="btn fancy-btn fancy-active " style="width:100%">Know
+            More</a>
 
+        </div>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 item">
-      <div class="card item-card card-block">
-
-        <img src="{% static 'Stock/CriticalT_bg.jpeg' %}" style="height: 160px" alt="Logical Reasoning Olympiads" class="rounded-top">
-        <h5 class="card-title  mt-3 mb-3">Logical Reasoning</h5>
-        <p class="card-text">The International School Logical Reasoning Olympiad (ISLRO) is based on
-forming judgements and testing Logical Reasoning skills.Classes 1-12 can take part in this
-exam comprising three mocks and one final paper.</p> 
-        <a href="/subjects/ct" class="btn fancy-btn fancy-active " style="width:100%">Know More</a>
-      </div>
-    </div>    
-   
   </div>
-</div>
-</div>
+
+  <div class="container mt-2">
+
+    <div class="row">
+      <div class="col-md-4 col-sm-6 item">
+        <div class="card item-card card-block">
+          <img src="{% static 'Stock/gk_bg.jpg' %}" style="height: 160px" alt="GK Olympiad" class="rounded-top">
+          <h5 class="card-title  mt-3 mb-3">General Knowledge</h5>
+          <p class="card-text">The International School General Knowledge Olympiad (IGKO) is an
+            online
+            olympiad held for students of class 1- 10. Students taking part need to appear for
+            three mock
+            exams followed by one final paper upon qualification.</p>
+          {% if not request.user.is_authenticated %}
+          <a href="applyindividual/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="subscriptions/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          <a href="/subjects/gk" class="btn fancy-btn fancy-active " style="width:100%">Know
+            More</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 item">
+        <div class="card item-card card-block">
+
+          <img src="{% static 'Stock/cyber_bg.jpg' %}" style="height : 160px" alt="Cyber Olympiad" class="rounded-top">
+          <h5 class="card-title  mt-3 mb-3">Cyber</h5>
+          <p class="card-text">The International School Cyber Olympiad (ISCO) of the year 2020
+            will be conducted
+            online. Participants can vary from classes 1-10. Students wishing to take part have to
+            clear
+            three mock tests followed by one final test.</p>
+          {% if not request.user.is_authenticated %}
+          <a href="applyindividual/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="subscriptions/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          <a href="/subjects/cyber" class="btn fancy-btn fancy-active " style="width:100%">Know
+            More</a>
+
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 item">
+        <div class="card item-card card-block">
+
+          <img src="{% static 'Stock/CriticalT_bg.jpg' %}" style="height: 160px" alt="Logical Reasoning Olympiads"
+            class="rounded-top">
+          <h5 class="card-title  mt-3 mb-3">Logical Reasoning</h5>
+          <p class="card-text">The International School Logical Reasoning Olympiad (ISLRO) is
+            based on
+            forming judgements and testing Logical Reasoning skills.Classes 1-10 can take part in
+            this
+            exam comprising three mocks and one final paper.</p>
+          {% if not request.user.is_authenticated %}
+          <a href="applyindividual/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <a href="subscriptions/" class="btn fancy-btn fancy-active " style="width:100%">buy</a>
+          {% endif %}
+          <a href="/subjects/ct" class="btn fancy-btn fancy-active " style="width:100%">Know
+            More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
 
 
 </section>
 {% if user.is_authenticated %}
 {% else %}
 <section class="steps">
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-3">
-  <div class="step">
-  <center>
-  <div class="step-count">
-    1
-  </div>
-</center>
-  <div class="step-content">
-    On completion of registration and payment of fees, book your preferred slot from the
-dashboard.
-  </div>
-</div>
-</div>
-<div class="col-md-3">
-  <div class="step">
-  <center>
-    <div class="step-count">
-      2
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="step">
+          <center>
+            <div class="step-count">
+              1
+            </div>
+          </center>
+          <div class="step-content">
+            On completion of registration and payment of fees, book your preferred slot from the
+            dashboard.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="step">
+          <center>
+            <div class="step-count">
+              2
+            </div>
+          </center>
+          <div class="step-content">
+            Go to the section marked My details and click on Submit documents under it. Upload all
+            required documents over there.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="step">
+          <center>
+            <div class="step-count">
+              3
+            </div>
+          </center>
+          <div class="step-content">
+            For taking Mock tests, go to Take Exam and click on Mock Tests. Your performance can be checked in the
+            Results section. </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="step">
+          <center>
+            <div class="step-count">
+              4
+            </div>
+          </center>
+          <div class="step-content">
+            To give exams as per your booked slots, click on Take Exam and choose the main exam
+            option coming under it. Results will be updated in the
+          </div>
+        </div>
+      </div>
     </div>
-  </center>
-  <div class="step-content">
-     Go to the section marked My details and click on Submit documents under it. Upload all
-required documents over there.
-  </div>
-</div>
-</div>
-<div class="col-md-3">
-  <div class="step">
-  <center>
-    <div class="step-count">
-      3
-    </div>
-  </center>
-  <div class="step-content">
-   For taking Mock tests, go to Take Exam and click on Mock Tests. Your performance can be checked in the Results section.        </div>
-</div>
-</div>
-<div class="col-md-3">
-  <div class="step">
-  <center>
-    <div class="step-count">
-      4
-    </div>
-  </center>
-  <div class="step-content">
-    To give exams as per your booked slots, click on Take Exam and choose the main exam
-option coming under it. Results will be updated in the
-  </div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-4"></div>
-<div class="step-go col-md-4">
-  <center><a href="{% url 'applyindividual'%}" class="step-btn">
-    Start Now
-  </a>
-</center>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="step-go col-md-4">
+        <center><a href="{% url 'applyindividual'%}" class="step-btn">
+            Start Now
+          </a>
+        </center>
 
-</div>
-</div>
+      </div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 {% endif %}
@@ -268,128 +537,224 @@ option coming under it. Results will be updated in the
 
 
 <!--  Demos -->
-<section id="demos" style="padding: 0;  text-align: center;" >
-<div class="container">
-<div class="row">
-<div class="large-12 columns">
-  <div class="owl-carousel owl-theme">
-    <!-- <div class="item"> -->
-      <div class="card item-card card-block">
+<section id="demos" style="padding: 0;  text-align: center;">
+  <div class="container">
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="owl-carousel owl-theme">
+          <!-- <div class="item"> -->
+          <div class="card item-card card-block">
 
-    <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-   <h5 class="card-title  mt-3 mb-3"> Awards</h5>
-    <p class="card-text">Apart from various awards for rank holders, students will receive merit and participation
-certificates as well</p> 
-    <a href="/awards" class="btn btn-purple" style="align-content: center;">Know More</a>
+            <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3"> Awards</h5>
+            <p class="card-text">Apart from various awards for rank holders, students will receive merit and
+              participation
+              certificates as well</p>
+            <a href="/awards" class="btn btn-purple" style="align-content: center;">Know More</a>
 
-  </div>
+          </div>
 
-      <div class="card item-card card-block">
-        <i class="fa fa-file-text" style="font-size:46px; color: #17a2b8; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-        <h5 class="card-title  mt-3 mb-3"> Fees and Exam Dates</h5>
-        <p class="card-text">The fee per subject per student is Rs.225 for Indian students and $10 (USD) for international students. Exam dates  will be announced soon. Stay tuned!</p> 
-        <a href="/examdates" class="btn btn-info " style="align-content: center;">Know More</a>
+          <div class="card item-card card-block">
+            <i class="fa fa-file-text" style="font-size:46px; color: #17a2b8; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3"> Fees and Exam Dates</h5>
+            <p class="card-text">The fee per subject per student is Rs.225 for Indian students and $10 (USD) for
+              international students. Exam dates will be announced soon. Stay tuned!</p>
+            <a href="/examdates" class="btn btn-info " style="align-content: center;">Know More</a>
+
+          </div>
+
+
+
+          <div class="card item-card card-block">
+
+            <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3">Marking Scheme</h5>
+            <p class="card-text"> The total marks of each exam are 40 and 60 for classes 1-4 and 5-10
+              respectively.</p>
+
+            <a href="/markingscheme/all" class="btn btn-primary " style="align-content: center;">Know More</a>
+          </div>
+          <div class="card item-card card-block">
+
+            <i class="fa fa-book" style="font-size:46px; color: #6c757d; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3"> Syllabus</h5>
+            <p class="card-text">The International School Olympiad exams follow the ICSE, CBSE and IGCSE
+              syllabus’.</p>
+
+            <a href="/syllabus/maths/1" class="btn btn-secondary " style="align-content: center;">Know More</a>
+
+          </div>
+          <div class="card item-card card-block">
+
+            <i class="fa fa-paperclip" style="font-size:46px; color: #dc3545; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3">Sample Papers</h5>
+            <p class="card-text">The sample papers provided will guide students regarding exam pattern, type
+              of questions, marking scheme and give them a generalised idea of how the exam is going to be.</p>
+            <a href="/samplepaper/maths/1" class="btn btn-danger " style="align-content: center;">Know More</a>
+          </div>
+          <div class="card item-card card-block">
+
+            <i class="fa fa-list-ol" style="font-size:46px; color: #28a745; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3">Ranking Criteria</h5>
+            <p class="card-text"> The ranking criteria is decided on the total marks secured by individuals after
+              the evaluation of results.</p>
+            <a href="{% url 'rankingcriteria' %}" class="btn btn-success " style="align-content: center;">Know More</a>
+
+          </div>
+          <div class="card item-card card-block">
+
+            <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3"> Results</h5>
+            <p class="card-text">Results of the exams will be updated on the site after thorough evaluation of papers.
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-purple" style="align-content: center;">Know More</a>
+
+          </div>
+          <div class="card item-card card-block">
+
+            <i class="fa fa-rocket" style="font-size:46px; color: orange; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3"> Exam Preparation</h5>
+            <p class="card-text">Join free workshops organized by us for exam preparation tips, guidance,
+              book recommendations, etc.</p>
+            <a href="{% url 'contact' %}" class="btn btn-orange " style="align-content: center;">Know More</a>
+
+          </div>
+          <div class="card item-card card-block">
+
+            <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset"
+              class="rounded-top"></i>
+            <h5 class="card-title  mt-3 mb-3">FAQs</h5>
+            <p class="card-text"> For any further doubts on any given topics, please read the FAQ section.</p>
+
+            <a href="{% url 'faqs' %}" class="btn btn-primary " style="align-content: center;">Know More</a>
+          </div>
+
+
+
+
+        </div>
 
       </div>
-
-
-
-      <div class="card item-card card-block">
-
-       <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-       <h5 class="card-title  mt-3 mb-3">Marking Scheme</h5>
-       <p class="card-text"> The total marks of each exam are 40 and 60 for classes 1-4 and 5-12
-respectively.</p> 
-
-       <a href="/markingscheme/all" class="btn btn-primary " style="align-content: center;">Know More</a>
-     </div><div class="card item-card card-block">
-
-       <i class="fa fa-book" style="font-size:46px; color: #6c757d; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-       <h5 class="card-title  mt-3 mb-3"> Syllabus</h5>
-       <p class="card-text">The International School Olympiad exams follow the ICSE, CBSE and IGCSE
-syllabus’.</p> 
-
-       <a href="/syllabus/maths/1" class="btn btn-secondary " style="align-content: center;">Know More</a>
-
-     </div><div class="card item-card card-block">
-
-      <i class="fa fa-paperclip" style="font-size:46px; color: #dc3545; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-      <h5 class="card-title  mt-3 mb-3">Sample Papers</h5>
-      <p class="card-text">The sample papers provided will guide students regarding exam pattern, type
-of questions, marking scheme and give them a generalised idea of how the exam is going to be.</p> 
-      <a href="/samplepaper/maths/1" class="btn btn-danger " style="align-content: center;">Know More</a>
     </div>
-    <div class="card item-card card-block">
+</section>
+{% endblock %}
+{% block js %}
+<script>
+  $(document).ready(function () {
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+          nav: true
+        },
+        600: {
+          items: 2,
+          nav: false
+        },
+        1000: {
+          items: 4,
+          nav: true,
+          loop: false,
+          margin: 20
+        }
+      }
+    })
+  })
+</script>
+<script>
+  function regEx() {
+    function check_names() {
+      var check = true;
+      const first_name = document.getElementById('first_name');
+      const last_name = document.getElementById('last_name');
+      const name_regex = /^[a-z ,.'-]+$/i;
+      if (!name_regex.test(first_name.value)) {
+        check = false;
+        first_name.classList.add("is-invalid");
+        first_name.classList.remove("is-valid");
+      } else {
+        first_name.classList.add("is-valid");
+        first_name.classList.remove("is-invalid");
+      }
 
-     <i class="fa fa-list-ol" style="font-size:46px; color: #28a745; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-     <h5 class="card-title  mt-3 mb-3">Ranking Criteria</h5>
-     <p class="card-text"> The ranking criteria is decided on the total marks secured by individuals after
-the evaluation of results.</p> 
-     <a href="{% url 'rankingcriteria' %}" class="btn btn-success " style="align-content: center;">Know More</a>
+      if (!name_regex.test(last_name.value)) {
+        check = false;
+        last_name.classList.add("is-invalid");
+        last_name.classList.remove("is-valid");
+      } else {
+        last_name.classList.add("is-valid");
+        last_name.classList.remove("is-invalid");
+      }
 
-   </div><div class="card item-card card-block">
+      const mobile_number = document.getElementById('number');
+      const regEx_Number = /^[0-9]*$/;
+      if (!regEx_Number.test(mobile_number.value) && mobile_number.value.length != 10) {
+        check = false;
+        mobile_number.classList.add("is-invalid");
+        mobile_number.classList.remove("is-valid");
+      } else {
+        mobile_number.classList.add("is-valid");
+        mobile_number.classList.remove("is-invalid");
+      }
 
-    <i class="fa fa-trophy" style="font-size:46px; color: purple; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-    <h5 class="card-title  mt-3 mb-3"> Results</h5>
-    <p class="card-text">Results of the exams will be updated on the site after thorough evaluation of papers.</p> 
-    <a href="{% url 'contact' %}" class="btn btn-purple" style="align-content: center;">Know More</a>
+      const email = document.getElementById('email');
+      const regEx_Email = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+      if (!regEx_Email.test(email.value)) {
+        check = false;
+        email.classList.add("is-invalid");
+        email.classList.remove("is-valid");
+      } else {
+        email.classList.add("is-valid");
+        email.classList.remove("is-invalid");
+      }
 
-  </div>
-  <div class="card item-card card-block">
+      var password = document.getElementById("password")
+      var confirmPassword = document.getElementById("confirmPassword")
 
-    <i class="fa fa-rocket" style="font-size:46px; color: orange; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-    <h5 class="card-title  mt-3 mb-3"> Exam Preparation</h5>
-    <p class="card-text">Join free workshops organized by us for exam preparation tips, guidance,
-book recommendations, etc.</p> 
-    <a href="{% url 'contact' %}" class="btn btn-orange " style="align-content: center;">Know More</a>
+      if (password.value != confirmPassword.value) {
+        check = false;
+        confirmPassword.classList.add("is-invalid");
+        confirmPassword.classList.remove("is-valid");
+      } else {
+        confirmPassword.classList.add("is-valid");
+        confirmPassword.classList.remove("is-invalid");
+      }
 
-  </div>
-   <div class="card item-card card-block">
+      var dob = document.getElementById("dob")
+      if (dob.value == "") {
+        check = false;
+        dob.classList.add("is-invalid");
+        dob.classList.remove("is-valid");
+      } else {
+        dob.classList.add("is-valid");
+        dob.classList.remove("is-invalid");
+      }
+      return check;
+    }
 
-       <i class="fa fa-list" style="font-size:46px; color: #007bff; padding: 10px;" alt="Photo of sunset" class="rounded-top"></i>
-       <h5 class="card-title  mt-3 mb-3">FAQs</h5>
-       <p class="card-text"> For any further doubts on any given topics, please read the FAQ section.</p> 
+    if ((check_names()) == false) {
+      console.log("Returning false");
+      swal("Submission Error", "Please check if all information you entered is valid.", "error");
+    } else {
+      console.log("Returning True");
+      document.getElementById('register').submit();
+    }
 
-       <a href="{% url 'faqs' %}" class="btn btn-primary " style="align-content: center;">Know More</a>
-     </div>
-  
-
-
-
-</div>
-
+  }
+</script>
 </div>
 </div>
 </section>
 {% endblock %}
-{% block js %}
-        <script>
-          $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-              loop: true,
-              margin: 10,
-              responsiveClass: true,
-              responsive: {
-                0: {
-                  items: 1,
-                  nav: true
-                },
-                600: {
-                  items: 2,
-                  nav: false
-                },
-                1000: {
-                  items: 4,
-                  nav: true,
-                  loop: false,
-                  margin: 20
-                }
-              }
-            })
-          })
-        </script>
-      </div>
-    </div>
-  </section>
-{% endblock %}
-  <!-- ***** Footer Area Start ***** -->
+<!-- ***** Footer Area Start ***** -->

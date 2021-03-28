@@ -2,9 +2,54 @@
 {% block title %} Apply School {% endblock %}
 {% block body %}
 {% load static %}
-<div class="container-fluid p-0" >
-  <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (2).jpg' %});">
-    <div class="d-flex justify-content-center" >
+
+<body style="background-color: lightgrey;">
+</body>
+
+<style>
+  .box {
+    box-sizing: content-box;
+    z-index: 0;
+    background-color: rgb(245, 205, 118);
+    border-width: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .border {
+    background-color: lightgray;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: auto;
+    padding: 1%;
+
+      {
+      % comment %
+    }
+
+      {
+      % endcomment %
+    }
+  }
+
+  @media screen and (min-width: 150px) {
+    .container-new {
+      font-size: 2.5rem;
+      margin: auto;
+      width: auto;
+
+    }
+
+    .answer {
+      font-size: 10px;
+      padding: 5px;
+      width: auto;
+    }
+</style>
+<div class="container-fluid p-0">
+  <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download.jpg' %});">
+    <div class="d-flex justify-content-center">
       <div class="d-flex flex-column" style="padding-top: 120px">
         <h1 class="site-title  justify-content-center" style="text-align: center;">Apply School
         </h1>
@@ -15,297 +60,318 @@
     </div>
   </div>
 </div>
-    <div class="container-new">
-        <div class="row school-left">
-            <div class="col-md-6">
-                <h2><b>What's so special about International Olympiads?</b></h2>
-                <br>
-                <h3><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> With so many Olympiad exams around, you should read the following before you offer these exams to your students</h3>
-                <br>
-                <h2><b>Indeed a unique Olympiad Exam!</b></h2>
-                <h3><ol class="answer">
-                    <li><p>Unicus Olympiads is a brainchild of alumni from IIT Delhi, Stanford University, University of Chicago and Oxford University, along with a few other eminent professionals who have worked with the likes of Amazon, Intel, HSBC, Fidelity, GE and A.T. Kearney.
-                    </p></li>
-                    <li><p>We are India's first Summer Olympiad focusing on student's conceptual understanding of previous classes.</p></li>
-                    <li><p>These assessments take place during Summers (May/Jul 2020) when the school curriculum is complete.</p></li>
-                    <li><p>We conduct both, online and pen/paper mode of examination. The online examination is completely proctored through webcams. There's a mock test for you to get the exposure of giving an online exam.</p></li>
-                    <li><p>There would be 3 Practice Tests in the form of downloadable pdf to understand the format of exam.</p></li>
-                </ol></h3>
-            </div>
-            <div class="col-md-6">
-              <div class="fee">
-                <h3><b>Fee Structure and Account Details</b></h3><h4>For classes 2 to 11, the total fee is Rs. 225 (Rs 150 - Registration fee and Rs 75 - cost of 3 Practice Tests) for every subject per student ($10 for International students). While for class 1, the total fee is Rs. 175 (Rs 100 - Registration fee and Rs 75 - cost of 3 Practice Tests) for every subject (English, Mathematics and Science) per student ($8 for International students). There should be minimum 50 students from a school to participate in Unicus Olympiads. <br><br>
-                    The fees must be deposited to the Company's Official Bank Account only: <br><br>
+<div class="box">
+  <div class="container-new">
+    <div class="row school-left">
+      <div class="col-md-6">
+        <h2><b>What's so special about International Olympiads?</b></h2>
+        <br>
+        <h3><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right"
+            aria-hidden="true"></i> With so many Olympiad exams around, you should read the following before you offer
+          these exams to your students</h3>
+        <br>
+        <h2><b>Indeed a unique Olympiad Exam!</b></h2>
+        <h3>
+          <ol class="answer">
+            <li>
+              <p>Unicus Olympiads is a brainchild of alumni from IIT Delhi, Stanford University, University of Chicago
+                and Oxford University, along with a few other eminent professionals who have worked with the likes of
+                Amazon, Intel, HSBC, Fidelity, GE and A.T. Kearney.
+              </p>
+            </li>
+            <li>
+              <p>We are India's first Summer Olympiad focusing on student's conceptual understanding of previous
+                classes.</p>
+            </li>
+            <li>
+              <p>These assessments take place during Summers (May/Jul 2020) when the school curriculum is complete.</p>
+            </li>
+            <li>
+              <p>We conduct both, online and pen/paper mode of examination. The online examination is completely
+                proctored through webcams. There's a mock test for you to get the exposure of giving an online exam.</p>
+            </li>
+            <li>
+              <p>There would be 3 Practice Tests in the form of downloadable pdf to understand the format of exam.</p>
+            </li>
+          </ol>
+        </h3>
+      </div>
+      <div class="col-md-6">
+        <div class="fee">
+          <h3><b>Fee Structure and Account Details</b></h3>
+          <h4>For classes 2 to 11, the total fee is Rs. 225 (Rs 150 - Registration fee and Rs 75 - cost of 3 Practice
+            Tests) for every subject per student ($10 for International students). While for class 1, the total fee is
+            Rs. 175 (Rs 100 - Registration fee and Rs 75 - cost of 3 Practice Tests) for every subject (English,
+            Mathematics and Science) per student ($8 for International students). There should be minimum 50 students
+            from a school to participate in Unicus Olympiads. <br><br>
+            The fees must be deposited to the Company's Official Bank Account only: <br><br>
 
-                    <b>Current A/c Name:</b> Olympiad Square <br>
-                    <b>Account Number:</b> 014064700000202 <br>
-                    <b>Bank Name: </b>Yes Bank, Vatika Business Park, Ground Floor, Sohna Road, Badshahpur, Gurgaon, Haryana <br>
-                    <b>IFSC Code:</b> YESB0000140 <br>
-                    </h4>
-            </div><br>
-            <div class="benefit">
-                <h3><b>Benefit for Schools</b></h3>
-                 <h4>
-                    <ol>
-                        <li>Every school receives a Trophy for Academic Excellence.</li>
-                        <li>The top 10 Principals and Coordinators receive Cash Prizes + Appreciation Awards.</li>
-                    </ol>
-                </h4>
-            </div><br>
-            <div class="fee">
-                <h3><b>Downloads for school</b></h3>
-                <ol>
-                    <li><a href="">School Registration form</a></li>
-                    <li><a href="">Student Registration form</a></li>
-                    <li><a href="">Summarised Student Registration</a></li>
-                    <li><a href="">International Olympiads Brochure</a></li>
-                    <li><a href="">Poster</a></li>
-                </ol>
-            </div><br><br>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <div class="fee"><h1><b>Register for International Olympiads!</b></h1></div>
-                <div class="school-form-one">
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    <strong>{{message}}</strong>
-
-                  </div>
-                  {% endfor %}
-                <h3>If your school is looking for Unicus Olympiads registration then the school Olympiad coordinators can fill the below form. Our representative will contact you within 24 working hours.</h3>
-                <form action="" name="form5" method="post" onsubmit="return regEx()">
-                {% csrf_token %}
-                    <br>
-                    <h3><b>You are*</b></h3>
-                    <input type="radio" id="Principal" name="button" value="Principal">
-                    <label for="Principal" class="radio-label">Principal</label>
-                    <input type="radio" id="Teacher" name="button" value="Teacher">
-                    <label for="Teacher" class="radio-label">Teacher</label><br>
-                    <input type="radio" id="student/parent" name="button" value="student/parent">
-                    <label for="student/parent" class="radio-label">Student/Parent</label>
-                    <input type="radio" id="other" name="button" value="other">
-                    <label for="other"  class="radio-label">Other</label>
-
-                    <div class="group col-md-11 mt-5" >
-                        <input type="text" class="school-input" name="name" id="name" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">Name *</label>
-                        <p style="color: red; display: none;" id="name-error">*Name can have only letters. </p>
-                      </div>
-
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="email" id="email"required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">E-mail id *</label>
-                        <p style="color: red; display: none;" id="email-error">*Invalid Email </p>
-                      </div>
-                      <div class="group col-md-11" >
-                            <label for="country" >Country</label>
-                {% load countries %}
-               {% get_countries as countries %}
-                <select name="country" id = "country" placeholder="Choose Your country" required>
-                {% for country in countries %}
-                    <option value="{{ country.code }}">{{ country.name }}</option>
-                {% endfor %}
-                </select>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="contact" id="contact" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">Contact Number *</label>
-                        <p style="color: red; display: none;" id="contact-error">*A contact has 10 integers. </p>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="school_name" id="school_name" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">School name *</label>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="school_address" id="school_address" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">School Address *</label>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="school_city" id="school_city" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">School city *</label>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="school_pincode" id="school_pincode" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">School Pincode *</label>
-                        <p style="color: red; display: none;" id="pincode-error">*Invalid Pincode </p>
-
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="school_website" id="school_website" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">School website *</label>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="school_email" id="school_email" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">School email *</label>
-                        <p style="color: red; display: none;" id="semail-error">*Invalid Email </p>
-
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="pname" id="pname" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">Principal Name *</label>
-                        <p style="color: red; display: none;" id="pname-error">*Name can have only letters. </p>
-                      </div>
-                      <div class="group col-md-11" >
-                        <input type="text" class="school-input" name="pmobile" id="pmobile" required>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="form-label">Principal Mobile Number *</label>
-                        <p style="color: red; display: none;" id="pcontact-error">*A contact must have 10 integers. </p>
-
-                      </div>
-                      <div class="col-md-11">
-                        <input type="radio" id="offline" name="exammode" value="offline">
-                        <label for="offline" class="radio-label">Pen / Paper</label>
-                        <input type="radio" id="online" name="exammode" value="online">
-                        <label for="online" class="radio-label">Online</label><br>
-                      </div><br>
-                      <div class="col-md-11">
-                          <textarea name="" class="school-textarea" placeholder="Your message..."></textarea>
-                      </div>
-                      <center>
-                        <input type="submit" name="submit" value="Submit" class="review-btn">
-                        </center>
-                </form>
-            </div>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
+            <b>Current A/c Name:</b> Olympiad Square <br>
+            <b>Account Number:</b> 014064700000202 <br>
+            <b>Bank Name: </b>Yes Bank, Vatika Business Park, Ground Floor, Sohna Road, Badshahpur, Gurgaon, Haryana
+            <br>
+            <b>IFSC Code:</b> YESB0000140 <br>
+          </h4>
+        </div><br>
+        <div class="benefit">
+          <h3><b>Benefit for Schools</b></h3>
+          <h4>
+            <ol>
+              <li>Every school receives a Trophy for Academic Excellence.</li>
+              <li>The top 10 Principals and Coordinators receive Cash Prizes + Appreciation Awards.</li>
+            </ol>
+          </h4>
+        </div><br>
+        <div class="fee">
+          <h3><b>Downloads for school</b></h3>
+          <ol>
+            <li><a href="">School Registration form</a></li>
+            <li><a href="">Student Registration form</a></li>
+            <li><a href="">Summarised Student Registration</a></li>
+            <li><a href="">International Olympiads Brochure</a></li>
+            <li><a href="">Poster</a></li>
+          </ol>
+        </div><br><br>
+      </div>
     </div>
-    {% endblock %}
-  {% block js %}
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="fee">
+          <h1><b>Register for International Olympiads!</b></h1>
+        </div>
+        <div class="school-form-one">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+
+          </div>
+          {% endfor %}
+          <h3>If your school is looking for Unicus Olympiads registration then the school Olympiad coordinators can fill
+            the below form. Our representative will contact you within 24 working hours.</h3>
+          <form action="" name="form5" method="post" onsubmit="return regEx()">
+            {% csrf_token %}
+            <div class="border">
+              <br>
+              <h3><b>You are*</b></h3>
+              <input type="radio" id="Principal" name="button" value="Principal">
+              <label for="Principal" class="radio-label">Principal</label>
+              <input type="radio" id="Teacher" name="button" value="Teacher">
+              <label for="Teacher" class="radio-label">Teacher</label><br>
+              <input type="radio" id="student/parent" name="button" value="student/parent">
+              <label for="student/parent" class="radio-label">Student/Parent</label>
+              <input type="radio" id="other" name="button" value="other">
+              <label for="other" class="radio-label">Other</label>
+
+              <div class="group col-md-11 mt-5">
+                <input type="text" class="school-input" name="name" id="name" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">Name *</label>
+                <p style="color: red; display: none;" id="name-error">*Name can have only letters. </p>
+              </div>
+
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="email" id="email" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">E-mail id *</label>
+                <p style="color: red; display: none;" id="email-error">*Invalid Email </p>
+              </div>
+              <div class="group col-md-11">
+                <label for="country">Country</label>
+                {% load countries %}
+                {% get_countries as countries %}
+                <select name="country" id="country" placeholder="Choose Your country" required>
+                  {% for country in countries %}
+                  <option value="{{ country.code }}">{{ country.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="contact" id="contact" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">Contact Number *</label>
+                <p style="color: red; display: none;" id="contact-error">*A contact has 10 integers. </p>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="school_name" id="school_name" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">School name *</label>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="school_address" id="school_address" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">School Address *</label>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="school_city" id="school_city" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">School city *</label>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="school_pincode" id="school_pincode" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">School Pincode *</label>
+                <p style="color: red; display: none;" id="pincode-error">*Invalid Pincode </p>
+
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="school_website" id="school_website" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">School website *</label>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="school_email" id="school_email" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">School email *</label>
+                <p style="color: red; display: none;" id="semail-error">*Invalid Email </p>
+
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="pname" id="pname" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">Principal Name *</label>
+                <p style="color: red; display: none;" id="pname-error">*Name can have only letters. </p>
+              </div>
+              <div class="group col-md-11">
+                <input type="text" class="school-input" name="pmobile" id="pmobile" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="form-label">Principal Mobile Number *</label>
+                <p style="color: red; display: none;" id="pcontact-error">*A contact must have 10 integers. </p>
+
+              </div>
+              <div class="col-md-11">
+                <input type="radio" id="offline" name="exammode" value="offline">
+                <label for="offline" class="radio-label">Pen / Paper</label>
+                <input type="radio" id="online" name="exammode" value="online">
+                <label for="online" class="radio-label">Online</label><br>
+              </div><br>
+              <div class="col-md-11">
+                <textarea name="" class="school-textarea" placeholder="Your message..."></textarea>
+              </div>
+              <center>
+                <input type="submit" name="submit" value="Submit" class="review-btn">
+              </center>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
 <script>
+  function regEx() {
+    function testName() {
+      var name = document.form5.name.value
+      var pname = document.form5.pname.value;
+      var letters = /^[A-Za-z\s]+$/;
+      if (!name.match(letters) && !pname.match(letters)) {
+        // alert("Name can have only letters.");
+        document.getElementById("name-error").style.display = "block";
+        document.getElementById("pname-error").style.display = "block";
+        return false;
+      } else if (!name.match(letters) && pname.match(letters)) {
+        document.getElementById("name-error").style.display = "block";
+        document.getElementById("pname-error").style.display = "none";
+        return false
+      } else if (name.match(letters) && !pname.match(letters)) {
+        document.getElementById("name-error").style.display = "none";
+        document.getElementById("pname-error").style.display = "block";
+        return false;
+      } else if (name.match(letters) && pname.match(letters)) {
+        document.getElementById("name-error").style.display = "none";
+        document.getElementById("pname-error").style.display = "none";
+        return true;
+      }
+    }
 
-            function regEx()
-            {
-            function testName()
-            {
-                var name = document.form5.name.value
-                var pname = document.form5.pname.value;
-                var letters = /^[A-Za-z\s]+$/;
-                if (!name.match(letters) && !pname.match(letters)){
-                // alert("Name can have only letters.");
-                document.getElementById("name-error").style.display = "block";
-                document.getElementById("pname-error").style.display = "block";
-                return false;
-                } else if (!name.match(letters) && pname.match(letters)) {
-                  document.getElementById("name-error").style.display = "block";
-                  document.getElementById("pname-error").style.display = "none";
-                  return false
-                } else if (name.match(letters) && !pname.match(letters)) {
-                  document.getElementById("name-error").style.display = "none";
-                  document.getElementById("pname-error").style.display = "block";
-                  return false;
-                } else if (name.match(letters) && pname.match(letters)){
-                  document.getElementById("name-error").style.display = "none";
-                  document.getElementById("pname-error").style.display = "none";
-                  return true;
-                }
-            }
-            function testZip()
-            {
-                var zip = document.form5.school_pincode.value;
+    function testZip() {
+      var zip = document.form5.school_pincode.value;
 
 
-                if (!zip.match(/^[0-9]*$/)){
-                // alert("A contact has 10 integers.");
-                document.getElementById("pincode-error").style.display = "block";
-                return false;
-                } else {
-                  document.getElementById("pincode-error").style.display = "none";
-                return true;
-                }
-            }
-            function testNum()
-            {
-                var contact = document.form5.contact.value;
-                var pcontact = document.form5.pmobile.value;
+      if (!zip.match(/^[0-9]*$/)) {
+        // alert("A contact has 10 integers.");
+        document.getElementById("pincode-error").style.display = "block";
+        return false;
+      } else {
+        document.getElementById("pincode-error").style.display = "none";
+        return true;
+      }
+    }
+
+    function testNum() {
+      var contact = document.form5.contact.value;
+      var pcontact = document.form5.pmobile.value;
 
 
-                if (!contact.match(/^\d{10}$/) && !pcontact.match(/^\d{10}$/)){
-                  // alert("A contact has 10 integers.");
-                  document.getElementById("contact-error").style.display = "block";
-                document.getElementById("pcontact-error").style.display = "block";
-                return false;
-                }
-                else if (contact.match(/^\d{10}$/) && !pcontact.match(/^\d{10}$/)){
-                  // alert("A contact has 10 integers.");
-                document.getElementById("contact-error").style.display = "none";
-                document.getElementById("pcontact-error").style.display = "block";
-                return false;
-                }
-                else if (!contact.match(/^\d{10}$/) && pcontact.match(/^\d{10}$/)){
-                  // alert("A contact has 10 integers.");
-                  document.getElementById("contact-error").style.display = "block";
-                  document.getElementById("pcontact-error").style.display = "none";
-                return false;
-                }else if (contact.match(/^\d{10}$/) && pcontact.match(/^\d{10}$/)){
-                document.getElementById("contact-error").style.display = "none";
-                  document.getElementById("pcontact-error").style.display = "none";
-                  return true;
-                }
-            }
-            function testEmail()
-            {
-              var email_regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-                var email = document.form5.email.value;
-                var semail = document.form5.school_email.value;
+      if (!contact.match(/^\d{10}$/) && !pcontact.match(/^\d{10}$/)) {
+        // alert("A contact has 10 integers.");
+        document.getElementById("contact-error").style.display = "block";
+        document.getElementById("pcontact-error").style.display = "block";
+        return false;
+      } else if (contact.match(/^\d{10}$/) && !pcontact.match(/^\d{10}$/)) {
+        // alert("A contact has 10 integers.");
+        document.getElementById("contact-error").style.display = "none";
+        document.getElementById("pcontact-error").style.display = "block";
+        return false;
+      } else if (!contact.match(/^\d{10}$/) && pcontact.match(/^\d{10}$/)) {
+        // alert("A contact has 10 integers.");
+        document.getElementById("contact-error").style.display = "block";
+        document.getElementById("pcontact-error").style.display = "none";
+        return false;
+      } else if (contact.match(/^\d{10}$/) && pcontact.match(/^\d{10}$/)) {
+        document.getElementById("contact-error").style.display = "none";
+        document.getElementById("pcontact-error").style.display = "none";
+        return true;
+      }
+    }
+
+    function testEmail() {
+      var email_regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+      var email = document.form5.email.value;
+      var semail = document.form5.school_email.value;
 
 
-                if (!email.match(email_regex) && !semail.match(email_regex)){
-                // alert("A pincode has 10 integers.");
-                document.getElementById("email-error").style.display = "block";
-                document.getElementById("semail-error").style.display = "block";
-                return false;
-                }
-                 else if (email.match(email_regex) && !semail.match(email_regex)){
-                // alert("A pincode has 10 integers.");
-                document.getElementById("email-error").style.display = "none";
-                document.getElementById("semail-error").style.display = "block";
-                return false;
-                }
-                else if (!email.match(email_regex) && semail.match(email_regex)){
-                // alert("A pincode has 10 integers.");
-                document.getElementById("email-error").style.display = "block";
-                document.getElementById("semail-error").style.display = "none";
-                return false;
-                }
-                else if (email.match(email_regex) && semail.match(email_regex)){
-                // alert("A pincode has 10 integers.");
-                document.getElementById("email-error").style.display = "none";
-                document.getElementById("semail-error").style.display = "none";
-                return true;
-                }
-            }
-            testName();
-            testEmail();
-            testNum();
-            testEmail();
-            return testName()&&testZip()&&testNum()&&testEmail();
-            }
-
-
+      if (!email.match(email_regex) && !semail.match(email_regex)) {
+        // alert("A pincode has 10 integers.");
+        document.getElementById("email-error").style.display = "block";
+        document.getElementById("semail-error").style.display = "block";
+        return false;
+      } else if (email.match(email_regex) && !semail.match(email_regex)) {
+        // alert("A pincode has 10 integers.");
+        document.getElementById("email-error").style.display = "none";
+        document.getElementById("semail-error").style.display = "block";
+        return false;
+      } else if (!email.match(email_regex) && semail.match(email_regex)) {
+        // alert("A pincode has 10 integers.");
+        document.getElementById("email-error").style.display = "block";
+        document.getElementById("semail-error").style.display = "none";
+        return false;
+      } else if (email.match(email_regex) && semail.match(email_regex)) {
+        // alert("A pincode has 10 integers.");
+        document.getElementById("email-error").style.display = "none";
+        document.getElementById("semail-error").style.display = "none";
+        return true;
+      }
+    }
+    testName();
+    testEmail();
+    testNum();
+    testEmail();
+    return testName() && testZip() && testNum() && testEmail();
+  }
 </script>
 {% endblock %}

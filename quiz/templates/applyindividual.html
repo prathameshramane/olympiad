@@ -3,9 +3,66 @@
 {% block body %}
 {% load static %}
 
-<div class="container-fluid p-0" >
+<body>
+</body>
+<style>
+  body {
+    background-color: lightgrey;
+  }
+
+  .sizing {
+    box-sizing: content-box;
+    background-color: lightblue;
+    border-width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 25px;
+
+  }
+
+  .sizing1 {
+    box-sizing: content-box;
+    background-color: rgb(255 192 180);
+    border-width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .sizing2 {
+    box-sizing: content-box;
+    background-color: rgb(255 192 180);
+    border-width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .sizing3 {
+    box-sizing: content-box;
+    background-color: rgb(255 192 180);
+    border-width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .sizing4 {
+    box-sizing: content-box;
+    background-color: whitesmoke;
+    border-width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  @media screen and (min-width: 150px) {
+    .container {
+      font-size: 2.5rem;
+      margin: auto;
+      width: 100;
+    }
+  }
+</style>
+<div class="container-fluid p-0">
   <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/download (2).jpg' %});">
-    <div class="d-flex justify-content-center" >
+    <div class="d-flex justify-content-center">
       <div class="d-flex flex-column" style="padding-top: 120px">
         <h1 class="site-title  justify-content-center" style="text-align: center;">Apply Individual
         </h1>
@@ -19,191 +76,278 @@
 <br><br>
 
 <div class="container">
-  <center><br>
-    <h1 class="register-title">Individual Registration Form</h1>
-  </center><br>
+  <div class="sizing">
+    <center><br>
+      <h1 class="register-title">Individual Registration Form</h1>
+    </center><br>
 
-<div class="row">
-  <ol>
-    <li>Please check and recheck all entries before registering as editing of information will not be allowed after submission.</li>
-    <li>School Name & Student Name will be printed on the certificate. So they must be mentioned as you would like them to appear on the certificate.</li>
-    <li>The certificate, if applicable, will be sent to home address. Hence, make sure that the home address is correct.</li>
-  </ol><br>
-</div>
-<div class="row">
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-      <strong>{{message}}</strong>
-
+    <div class="row">
+      <ol>
+        <li>Please check and recheck all entries before registering as editing of information will not be allowed after
+          submission.</li>
+        <li>School Name & Student Name will be printed on the certificate. So they must be mentioned as you would like
+          them to appear on the certificate.</li>
+        <li>The certificate, if applicable, will be sent to home address. Hence, make sure that the home address is
+          correct.</li>
+      </ol><br>
     </div>
-    {% endfor %}
-</div>
+    <div class="row">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
 
-    <form method="post" name="form4" action="" class="fm" onsubmit="return regEx()">
+      </div>
+      {% endfor %}
+    </div>
+  </div><br>
+  <div class="sizing1">
+    <form method="post" name="form4" id='registration_form' action="" class="fm needs-validation">
       <div class="row">
         <h2>Personal Details</h2>
 
       </div><br>
-    <div class="row">
+      <div class="row">
 
-      {% csrf_token %}
+        {% csrf_token %}
 
 
-      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="text" name="first_name" id="first_name" >
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for="first_name" class="form-label">First Name *</label>
+        <div class="col-md-1">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="first_name" id="first_name" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="first_name" class="form-label">First Name *</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Please provide a valid First Name
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="last_name" id="last_name" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="last_name" class="form-label">Last Name *</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Please provide a valid Last Name
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="parent_name" id="parent_name">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="parent_name" class="form-label">Parent/Guardian name*</label>
+        </div>
+
+
+
+
+        <div class="col-md-1">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <label for="dob" class="form-label form-label-profile">Date of Birth *</label>
+          <input type="date" name="dob" id="dob" class="form-control" required>
+          <div class="invalid-feedback" style="font-size: 12px;">
+            Please enter a valid date.
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <ion-icon name="call"></ion-icon>
+          </ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="tel" name="number" id="number" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="number" class="form-label">Mobile Number</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Please provide a valid Mobile Number. The length of the number should be 10.
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <ion-icon name="mail"></ion-icon>
+          </ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="email" id="user_email" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label class="form-label" for="email">E-mail *</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Please provide a valid Email
+          </div>
+        </div>
+
+
+
+
+
+        <div class="col-md-1">
+          <ion-icon name="location"></ion-icon>
+          </ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="address" id="address" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="address" class="form-label">/House No. / Street/ Locality *</label>
+        </div>
+
+
+
+        <div class="col-md-1">
+          <ion-icon name="location"></ion-icon>
+          </ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="city" id="street" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label class="form-label">City *</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Sould be Alphabets only
+          </div>
+        </div>
+
+
+
+        <div class="col-md-1">
+          <ion-icon name="location"></ion-icon>
+          </ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input type="text" name="state" id="state" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="state" class="form-label">State*</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Sould be Alphabets only
+          </div>
+        </div>
+
+
+
+        <div class="col-md-1">
+          <ion-icon name="pencil"></ion-icon>
+        </div>
+        <div class="group col-md-5">
+          {% load countries %}
+          {% get_countries as countries %}
+          <select name="country" id="country" placeholder="Choose Your country" required>
+            {% for country in countries %}
+            <option value="{{ country.code }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+
+
+        </div>
+
+        <div class="col-md-1">
+          <ion-icon name="location"></ion-icon>
+          </ion-icon>
+        </div>
+        <div class="group col-md-5">
+          <input name="pincode" id="pincode" type="text" class="form-control" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="pincode" class="form-label">Pincode *</label>
+          <div class="invalid-feedback" style="font-size: 16px;">
+            Sould be Numeric
+          </div>
+        </div>
       </div>
-
-      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
-      <div class="group col-md-5">
-          <input type="text" name="last_name" id="last_name" >
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for="last_name" class="form-label">Last Name *</label>
-      </div>
-
-
-
-
-      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
-      <div class="group col-md-5">
-          <input type="text" name="parent_name" id="parent_name" >
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for="parent_name" class="form-label">Parent/Guardian name*</label>
-      </div>
-
-
-
-
-      <div class="col-md-1"><ion-icon name="calendar-outline"></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="date"  name = "dob" id = "dob" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for = "dob" class="form-label form-label-profile">Date of Birth *</label>
-      </div>
-
-      <div class="col-md-1"><ion-icon name="call"></ion-icon></ion-icon></div>
-      <div class="group col-md-5">
-        <input  type="tel" name ="number" id="number"  required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for ="number" class="form-label">Mobile Number</label>
-      </div>
-
-      <div class="col-md-1"><ion-icon name="mail"></ion-icon></ion-icon></div>
-      <div class="group col-md-5">
-      <input type="text"  name = "email" id = "email" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label class="form-label" for = "email" >E-mail *</label>
-      </div>
-
-
-
-
-
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="text" name= "address" id = "address" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for= "address"  class="form-label">Flat /House No. / FLoor / Building *</label>
-      </div>
-
-
-
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="text" name="street" id="street" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label class="form-label">Colony/ Street / Locality *</label>
-      </div>
-
-
-
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="text" name ="state" id = "state" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for="state"   class="form-label">Home City , pincode and state*</label>
-      </div>
-
-
-
-
-
-      <div class="col-md-1"><ion-icon name="pencil"></ion-icon></div>
-      <div class="group col-md-5">
-      {% load countries %}
-      {% get_countries as countries %}
-      <select name="country" id = "country" placeholder="Choose Your country" required>
-      {% for country in countries %}
-          <option value="{{ country.code }}">{{ country.name }}</option>
-      {% endfor %}
-      </select>
-
-
-      </div>
-
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
-      <div class="group col-md-5">
-        <input name = "pincode" id = "pincode" type="text" required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label for ="pincode"class="form-label">Pincode *</label>
-      </div>
-    </div>
-
+  </div>
+  <br>
+  <div class="sizing2">
     <div class="row">
       <h2>School Details</h2><br>
     </div><br>
     <div class="row">
-      <div class="col-md-1"><ion-icon name="school"></ion-icon></div>
+      <div class="col-md-1">
+        <ion-icon name="school"></ion-icon>
+      </div>
       <div class="group col-md-5">
-        <input type="TEXT" name ="school" id = "school" required>
+        <input type="TEXT" name="school" id="school" required>
         <span class="highlight"></span>
         <span class="bar"></span>
         <label for="school" class="form-label">School Name *</label>
+
       </div>
 
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="col-md-1">
+        <ion-icon name="pencil"></ion-icon>
+      </div>
       <div class="group col-md-5">
-        <input name = "school_address" id = "school_address" type="text" required>
+        {% load countries %}
+        {% get_countries as countries %}
+        <select name="school_country" id="country" placeholder="Choose Your country" required>
+          {% for country in countries %}
+          <option value="{{ country.code }}">{{ country.name }}</option>
+          {% endfor %}
+        </select>
+
+
+      </div>
+
+      <div class="col-md-1">
+        <ion-icon name="location"></ion-icon>
+        </ion-icon>
+      </div>
+      <div class="group col-md-5">
+        <input name="school_address" id="school_address" type="text" required>
         <span class="highlight"></span>
         <span class="bar"></span>
-        <label for ="school_address" class="form-label">School address *</label>
+        <label for="school_address" class="form-label">School address *</label>
       </div>
 
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="col-md-1">
+        <ion-icon name="location"></ion-icon>
+        </ion-icon>
+      </div>
       <div class="group col-md-5">
-        <input name = "school_state" id = "school_state"  type="TEXT" required>
+        <input name="school_state" id="school_state" class="form-control" type="TEXT" required>
         <span class="highlight"></span>
         <span class="bar"></span>
-        <label for ="school_state" class="form-label">School State  *</label>
+        <label for="school_state" class="form-label">School State *</label>
+        <div class="invalid-feedback" style="font-size: 16px;">
+          Sould be Alphabets only
+        </div>
       </div>
 
 
 
 
-      <div class="col-md-1"><ion-icon name="location"></ion-icon></ion-icon></div>
+      <div class="col-md-1">
+        <ion-icon name="location"></ion-icon>
+        </ion-icon>
+      </div>
       <div class="group col-md-5">
-        <input name = "school_city" id = "school_city"  type="TEXT" required>
+        <input name="school_city" id="school_city" class="form-control" type="TEXT" required>
         <span class="highlight"></span>
         <span class="bar"></span>
-        <label for ="school_city" class="form-label">School City  *</label>
+        <label for="school_city" class="form-label">School City *</label>
+        <div class="invalid-feedback" style="font-size: 16px;">
+          Sould be Alphabets only
+        </div>
       </div>
 
 
-      <div class="col-md-1"><ion-icon name="pencil"></ion-icon></div>
+      <div class="col-md-1">
+        <ion-icon name="pencil"></ion-icon>
+      </div>
       <div class="group col-md-5">
-        <select name="standard" id = "standard" class="select-css">
+        <select name="standard" id="standard" class="select-css">
           <option value="01">Class 1</option>
           <option value="02">Class 2</option>
           <option value="03">Class 3</option>
@@ -214,54 +358,65 @@
           <option value="08">Class 8</option>
           <option value="09">Class 9</option>
           <option value="10">Class 10</option>
-          <option value="11">Class 11</option>
-          <option value="12">Class 12</option>
-
-      </select>
+        </select>
       </div>
       <div class="col-md-6">
       </div>
     </div>
-
+  </div>
+  <br>
+  <div class="sizing3">
     <div class="row">
       <h2>Security Details</h2>
     </div><br>
-<div class="row">
-    
-      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+    <div class="row">
+
+      <div class="col-md-1">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
       <div class="group col-md-5">
-        <input type="text" name="ref_code" id="ref_code" >
+        <input type="text" name="ref_code" id="ref_code">
         <span class="highlight"></span>
         <span class="bar"></span>
         <label for="ref_code" class="form-label">REFERRAL CODE if any</label>
       </div>
 
-      <div class="col-md-1"><ion-icon name="person-circle-outline"></ion-icon></div>
+      <div class="col-md-1">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
       <div class="group col-md-5">
-          <input type="text" name="username" id="username" >
+        <input type="text" name="username" id="username">
         <span class="highlight"></span>
         <span class="bar"></span>
         <label for="username" class="form-label">Choose a Username*</label>
       </div>
-  
-    <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="password" name = "password" id="password"  required>
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label  for="password" class="form-label">Password *</label>
-      </div >
 
-      <div class="col-md-1"><ion-icon name="lock-closed"></ion-icon></div>
-      <div class="group col-md-5">
-        <input type="password" name = "confirmpassword" id="confirmpassword"  required onchange="cp()">
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label  for="password" class="form-label">Confirm Password *</label>
-        <p style="color: red;display: none;" id="s-t">Passwords does'nt match</p>
-      </div >
-
+      <div class="col-md-1">
+        <ion-icon name="lock-closed"></ion-icon>
       </div>
+      <div class="group col-md-5">
+        <input type="password" name="password" id="password" class="form-control" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="password" class="form-label">Password *</label>
+      </div>
+
+      <div class="col-md-1">
+        <ion-icon name="lock-closed"></ion-icon>
+      </div>
+      <div class="group col-md-5">
+        <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="password" class="form-label">Confirm Password *</label>
+        <div class="invalid-feedback" style="font-size: 16px;">
+          Password don't match
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="sizing4">
     <div class="row instructions">
 
       <p><b>Important Instructions : </b></p>
@@ -269,108 +424,179 @@
         <li>International School Olympiads is based on the combined syllabus of the CBSE, ICSE and IGCSE boards.</li>
         <li>International School Olympiads conducts examinations in both online and offline modes.
           <ul style="list-style-type: circle;">
-            <li>In case of online mode, the exam will be conducted online i.e. either on laptop or desktop. The students will have to take the exams from their residence or any other place where they have access to computer with good Internet connectivity (2 Mbps) and latest version of the browser (preferably Google Chrome). If schools have subscribed for online mode of exam, then they may decide to conduct these exams using their computer lab.</li>
+            <li>In case of online mode, the exam will be conducted online i.e. either on laptop or desktop. The students
+              will have to take the exams from their residence or any other place where they have access to computer
+              with good Internet connectivity (2 Mbps) and latest version of the browser (preferably Google Chrome). If
+              schools have subscribed for online mode of exam, then they may decide to conduct these exams using their
+              computer lab.</li>
             <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
           </ul>
         </li>
         <li>In case of offline mode, the exam will be conducted in schools only in pen/paper mode.</li>
-        <li>The online mode of examinations will be thoroughly invigilated. Hence, the provision of a webcam is compulsory on every laptop/desktop.</li>
-        <li>To know more about the exam and answer key dates, please check the <a href="{% url 'examdates' %}">exam dates</a> page.</li>
+        <li>The online mode of examinations will be thoroughly invigilated. Hence, the provision of a webcam is
+          compulsory on every laptop/desktop.</li>
+        <li>To know more about the exam and answer key dates, please check the <a href="{% url 'examdates' %}">exam
+            dates</a> page.</li>
         <li>Students will be provided with 3 Mock Tests which can be attempted upto 3 times by a student.</li>
-        <li>For further information, read the <a href="{% url 'faqs' %}">Frequently Asked Questions (FAQs)</a> thoroughly.        </li>
-        <li>Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at     </li>
+        <li>For further information, read the <a href="{% url 'faqs' %}">Frequently Asked Questions (FAQs)</a>
+          thoroughly. </li>
+        <li>Do note that the fees once paid is non-refundable. For any queries or suggestions, do write to us at </li>
       </ul>
       <br>
-      </div>
-      <div class="row">
-      <input type="checkbox" name="" id="checkbox" id="cbc" onchange="sub(this)">
-      <span class="check-label"> I acknowledge that I have read all the above instructions</span>
-      <br><br>
     </div>
-      <center>
-      <input class="review-btn" type="submit" name="submit" value="Submit" id="sb" disabled>
+  </div><br>
+  <div class="row">
+    <input type="checkbox" name="" id="checkbox" id="cbc" onchange="sub(this)">
+    <span class="check-label"> I acknowledge that I have read all the above instructions</span>
+    <br><br>
+  </div>
+  <center>
+    <input class="review-btn" type='button' name="BtnSubmit" value="Submit" id="sb" onclick="regEx()" disabled>
 
-      </form>
-      </center>
-    </div>
+    </form>
+  </center>
+</div>
 
 
 </div>
 {% endblock %}
 {% block js %}
 <script>
-var a = false;
-function cp(){
-  b = document.getElementById('password');
-  c = document.getElementById('confirmpassword');
-  d = document.getElementById('s-t')
-  if(b.value == c.value){
-    a = true;
-    d.style.display = "none";
-  }else{
-    a = false;
-    d.style.display = "block";
+  function sub(e) {
+    n = document.getElementById('sb');
+    if (e.checked) {
+      n.disabled = false
+    } else {
+      n.disabled = true
+    }
   }
-}
-function sub(e){
-  n = document.getElementById('sb');
-  if(e.checked && a){
-    n.disabled = false
-  }else{
-    n.disabled = true
-  }
-}
-  function regEx()
-  {
-  function testName()
-  {
-      var name = document.form4.first_name.value;
-      var letters = /^[a-zA-Z_ ]+$/;
-      if (!name.match(letters)){
-      alert("Name can have only letters.");
-      return false;
+
+  function regEx() {
+    function check_names() {
+      var check = true
+      const first_name = document.getElementById('first_name');
+      const last_name = document.getElementById('last_name');
+      const city = document.getElementById('street');
+      const state = document.getElementById('state');
+      const school_city = document.getElementById('school_city');
+      const school_state = document.getElementById('school_state');
+      const name_regex = /^[a-z ,.'-]+$/i;
+      if (!name_regex.test(first_name.value)) {
+        check = false;
+        first_name.classList.add("is-invalid");
+        first_name.classList.remove("is-valid");
+      } else {
+        first_name.classList.add("is-valid");
+        first_name.classList.remove("is-invalid");
       }
-      return true;
-  }
 
-  function testName1()
-  {
-      var name = document.form4.last_name.value;
-      var letters = /^[a-zA-Z_ ]+$/;
-      if (!name.match(letters)){
-      alert("Name can have only letters.");
-      return false;
+      if (!name_regex.test(last_name.value)) {
+        check = false;
+        last_name.classList.add("is-invalid");
+        last_name.classList.remove("is-valid");
+      } else {
+        last_name.classList.add("is-valid");
+        last_name.classList.remove("is-invalid");
       }
-      return true;
-  }
-  function testZip()
-  {
-      var zip = document.form4.number.value;
 
-
-      if (!zip.match(/^\d{10}$/)){
-      alert("A number has 10 integers.");
-      return false;
+      if (!name_regex.test(city.value)) {
+        check = false;
+        city.classList.add("is-invalid");
+        city.classList.remove("is-valid");
+      } else {
+        city.classList.add("is-valid");
+        city.classList.remove("is-invalid");
       }
-      return true;
-  }
-  function pincode()
-  {
-      var zip = document.form4.pincode.value;
 
-
-      if (!zip.match(/^\d{6}$/)){
-      alert("A pincode has 6 integers.");
-      return false;
+      if (!name_regex.test(state.value)) {
+        check = false;
+        state.classList.add("is-invalid");
+        state.classList.remove("is-valid");
+      } else {
+        state.classList.add("is-valid");
+        state.classList.remove("is-invalid");
       }
-      return true;
+
+      if (!name_regex.test(school_city.value)) {
+        check = false;
+        school_city.classList.add("is-invalid");
+        school_city.classList.remove("is-valid");
+      } else {
+        school_city.classList.add("is-valid");
+        school_city.classList.remove("is-invalid");
+      }
+
+      if (!name_regex.test(school_state.value)) {
+        check = false;
+        school_state.classList.add("is-invalid");
+        school_state.classList.remove("is-valid");
+      } else {
+        school_state.classList.add("is-valid");
+        school_state.classList.remove("is-invalid");
+      }
+      const mobile_number = document.getElementById('number');
+      const pincode = document.getElementById('pincode');
+      const regEx_Number = /^[0-9]*$/;
+      if (!regEx_Number.test(mobile_number.value) && mobile_number.value.length != 10) {
+        check = false;
+        mobile_number.classList.add("is-invalid");
+        mobile_number.classList.remove("is-valid");
+      } else {
+        mobile_number.classList.add("is-valid");
+        mobile_number.classList.remove("is-invalid");
+      }
+      if (!regEx_Number.test(pincode.value)) {
+        check = false;
+        pincode.classList.add("is-invalid");
+        pincode.classList.remove("is-valid");
+      } else {
+        pincode.classList.add("is-valid");
+        pincode.classList.remove("is-invalid");
+      }
+      const email = document.getElementById('user_email');
+      const regEx_Email = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+      if (!regEx_Email.test(email.value)) {
+        check = false;
+        email.classList.add("is-invalid");
+        email.classList.remove("is-valid");
+      } else {
+        email.classList.add("is-valid");
+        email.classList.remove("is-invalid");
+      }
+
+      var password = document.getElementById("password")
+      var confirmPassword = document.getElementById("confirmpassword")
+
+      if (password.value != confirmPassword.value) {
+        check = false;
+        confirmPassword.classList.add("is-invalid");
+        confirmPassword.classList.remove("is-valid");
+      } else {
+        confirmPassword.classList.add("is-valid");
+        confirmPassword.classList.remove("is-invalid");
+      }
+
+      var dob = document.getElementById("dob")
+      if (dob.value.length == 0) {
+        check = false;
+        dob.classList.add("is-invalid");
+        dob.classList.remove("is-valid");
+      } else {
+        dob.classList.add("is-valid");
+        dob.classList.remove("is-invalid");
+      }
+
+      return check;
+    }
+
+    console.log(check_names())
+    if ((check_names()) == false) {
+      console.log("Returning false");
+      swal("Submission Error", "Please check if all information you entered is valid.", "error");
+    } else {
+      console.log("Returning True");
+      document.getElementById('registration_form').submit();
+    }
   }
-
-
-  return testName()&&testZip()&&pincode()&&testName1();
-
-  }
-
-
 </script>
 {% endblock %}

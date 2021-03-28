@@ -28,7 +28,22 @@ cat_scores %}
   </tbody>
 </table>
 
-{% endif %} {% endcomment %} {% if exams %}
+{% endif %} {% endcomment %} 
+<style>
+    .box{
+      align-items: center;
+      justify-content: center;
+  background-color: lightgrey;
+  width: auto;
+  max-width: 700px;
+  border: 15px solid black;
+  margin-bottom: 80px;
+  
+  }
+  </style>
+  <div class="d" style="background-color: #0007;"><br><br><br><br></div>
+
+{% if exams %}
 
 <!-- <div class="background">
   <center><h1 class="text-white" style="
@@ -40,7 +55,6 @@ cat_scores %}
   </center>
   
 </div> -->
-<div class="d" style="background-color: #0007;"><br><br><br><br><br></div>
 
   <div class="container row">
     <div>
@@ -77,6 +91,15 @@ cat_scores %}
       </tbody>
     </table>
   </div>
-
-  {% endif %} {% endblock %}
+{% else %}
+  <div class=" box container" style="margin-top:60px;">
+    <center><br>
+      <h4 style="color: red;font-size: 3rem;margin-bottom:0px;" class="register-title ">No Progress reports available!</h4><br>
+      <a href="{% url 'quiz_index' %}" style="margin-bottom: 10px;">Click here to give an exam</a> <br>OR<br>
+      <a href="{% url 'quiz_mock' %}" style="margin-bottom: 10px;">Click here for a free trial</a>
+    </center>
+  </div>
+  {% endif %} 
+  
+  {% endblock %}
 

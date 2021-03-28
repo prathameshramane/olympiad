@@ -2,8 +2,23 @@
 {% block title %}Subject{% endblock %}
 {% block body %}
 {% load static %}
+<style>
+  .box{
+    background-color:whitesmoke;
+    width:auto ;
+    display: flex;
+    height: auto;
+    border: 60px solid black;
+    border-radius: 50px;
+    margin: 50px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+</style>
                             <div class="container-fluid p-0" >
-                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/science_bg.jpeg' %});background-size:cover;background-repeat:no-repeat;">
+                              <div class="site-content" style=" height: 720px; background-image: url({% static 'Stock/science_bg.jpg' %});background-size:cover;background-repeat:no-repeat;">
                                 <div class="d-flex justify-content-center" >
                                   <div class="d-flex flex-column" style="padding-top: 120px">
                                     <h1 class="site-title" style="text-align: center;color: red">Science
@@ -20,22 +35,18 @@
                               <section>
                                 <div>
 
-                                  <div class="container row">
+                                  <div class=" box container row">
                                     <!-- <p>Click on the below questions to solve your queries</p> -->
-                                    <p>The International School Science Olympiad (ISSO) is an online Olympiad conducted for classes 1-12. The exam will have Mock Tests and one Final Exam.
+                                    <p>The International School Science Olympiad (ISSO) is an online Olympiad conducted for classes 1-10. The exam will have Mock Tests and one Final Exam.
                                       Each student can attempt the Mock Tests upto three times. 
-                                      The exam consists of multiple choice questions (MCQ type). The total time for the examination is 1 hour for classes 1 to 12.
+                                      The exam consists of multiple choice questions (MCQ type). The total time for the examination is 1 hour for classes 1 to 10.
                                       Unlike the tests at local and regional levels, ISSO provides a stronger hold of insight and judgement of scientific facts and the challenges ahead. A comprehensive report of a student’s individual performance, which will be provided after the results are evaluated, is divided into various categories that help the student assess his/her strengths and weaknesses.
                                       Please refer to the exam preparation section for better guidance,book recommendations and exam tips.<br><br>
 
                                       The exam will be divided into sections as follows: <br><br>
 
                                       <strong>Class 1-10:</strong>  &nbsp   Science section<br><br>
-                                      <!-- Achievers section -->
 
-                                      <strong>Class 11&12: </strong> &nbspPhysics & Chemistry<br>
-                                      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp Mathematics/Biology <br>
-                                    <!-- Achievers section -->
                                   </p>
                                   <p>
                                     <a href="{% url 'rankingcriteria' %}">Ranking Criteria</a> -  For ranking criteria of all subjects, please visit here<br>

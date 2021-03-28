@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load static %}
+<style>
+  .sizing{
+            box-sizing:content-box;
+            background-color: rgb(179, 243, 154);
+            border-width: 20px;
+            margin: 5px 50px 50px 50px;
+            border-radius: 75px;
+
+        }
+</style>
                       <div class="container-fluid p-0" >
                         <div class="site-content" style="height: 450px; background-image: url({% static 'Stock/awards_bg2.jpg' %});">
                           <div class="d-flex justify-content-center" >
@@ -17,6 +27,7 @@
                   
                   <div class="container shown" id="profile"><br>
                   <br><br>
+                  <div class="sizing">
                     <div class="row" style="color: #000;">
                     <h3 style="text-decoration: underline;"><b>CRITERIA FOR RANKING- SINGLE LEVEL OLYMPIAD EXAMS:</b></h3>
                     <br>
@@ -72,10 +83,10 @@
                   </div>
 
                     <div class="row">
-                    <p style="font-size: 30px;"><b>
+                    <p style="font-size: 30px;" class="col-2"><b>
                       ISC0
                     </p></p>
-                    <ol>
+                    <ol class="col-11">
                       <li> Achievers section</li>
                       <li> Computer and Information Technology</li>
                       <li> Logical and Analytical Reasoning</li>
@@ -83,10 +94,10 @@
                   </div>
 
                   <div class="row">
-                    <p style="font-size: 30px;"><b>
+                    <p style="font-size: 30px;" class="col-2"><b>
                       ISS0
                     </p></p>
-                    <ol>
+                    <ol class="col-11">
                       <li> Achievers section</li>
                       <li> Science</li>
                       <li> Logical Reasoning</li>
@@ -102,10 +113,10 @@
                     </ol><br>
                   </div>
                   <div class="row">
-                    <p style="font-size: 30px;"><b>
+                    <p style="font-size: 30px;" class="col-2"><b>
                       ISM0
                     </p></p>
-                    <ol>
+                    <ol class="col-11">
                       <li> Achievers section</li>
                       <li> Mathematical Reasoning</li>
                       <li>  Everyday Mathematics</li>
@@ -114,10 +125,10 @@
                   </div>
 
                   <div class="row">
-                    <p style="font-size: 30px;"><b>
+                    <p style="font-size: 30px;" class="col-2"><b>
                       ISE0
                     </p></p>
-                    <ol>
+                    <ol class="col-11">
                       <li> Achievers section</li>
                       <li> Word & Structure Knowledge</li>
                       <li> Reading</li>
@@ -126,17 +137,17 @@
                   </div>
 
                   <div class="row">
-                    <p style="font-size: 30px;"><b>
+                    <p style="font-size: 30px;" class="col-2"><b>
                       ISGK0
                     </p></p>
-                    <ol>
+                    <ol class="col-11">
                       <li> Achievers section</li>
                       <li> General Awareness</li>
                       <li> Current Affairs</li>
                       <li> Life Skills</li>
                     </ol><br>
                   </div>
-
+                </div>
                   </div>
 {% endblock %}
                    {% block js %}
