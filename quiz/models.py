@@ -33,7 +33,7 @@ class Student(AbstractUser):
     school_city=models.CharField(max_length=100,null=False,default="abc")
     school_country =CountryField(default="Afganistan")
     pincode = models.IntegerField(null=False, default=0)
-    number = models.IntegerField(null=False, default=0)
+    number = models.CharField(null=False, default="",max_length=15)
     standard = models.CharField(null=False, max_length=10,default=1)
     email = models.CharField(max_length=150, null=False,unique=True)
     email_confirmed = models.BooleanField(default=False)

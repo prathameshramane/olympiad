@@ -156,7 +156,7 @@
         <div class="group col-md-5">
           <label for="dob" class="form-label form-label-profile">Date of Birth *</label>
           <input type="date" name="dob" id="dob" class="form-control" required>
-          <div class="invalid-feedback" style="font-size: 12px;">
+          <div class="invalid-feedback" style="font-size: 16px;">
             Please enter a valid date.
           </div>
         </div>
@@ -166,14 +166,13 @@
           </ion-icon>
         </div>
         <div class="group col-md-5">
-          <input type="tel" name="number" id="number" class="form-control" required>
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label for="number" class="form-label">Mobile Number</label>
+          <label for="mobile_number" class="form-label">Mobile Number</label> 
+          <input type="tel" name="mobile_number" id="mobile_number" class="form-control is-invalid" required>
           <div class="invalid-feedback" style="font-size: 16px;">
-            Please provide a valid Mobile Number. The length of the number should be 10.
+            Please provide a valid Mobile Number.
           </div>
         </div>
+          <input type="hidden" name="number" id="number">
 
         <div class="col-md-1">
           <ion-icon name="mail"></ion-icon>
@@ -244,7 +243,7 @@
         <div class="group col-md-5">
           {% load countries %}
           {% get_countries as countries %}
-          <select name="country" id="country" placeholder="Choose Your country" required>
+          <select name="country" id="country" placeholder="Choose Your country"required>
             {% for country in countries %}
             <option value="{{ country.code }}">{{ country.name }}</option>
             {% endfor %}
@@ -471,6 +470,12 @@
     }
   }
 
+  const phoneInputField = document.querySelector("#mobile_number");
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  });
+
+
   function regEx() {
     function check_names() {
       var check = true
@@ -534,16 +539,19 @@
         school_state.classList.add("is-valid");
         school_state.classList.remove("is-invalid");
       }
-      const mobile_number = document.getElementById('number');
+      const mobile_number = document.getElementById('mobile_number');
+      const number = document.getElementById('number');
+      const phoneNumber = phoneInput.getNumber();
       const pincode = document.getElementById('pincode');
       const regEx_Number = /^[0-9]*$/;
-      if (!regEx_Number.test(mobile_number.value) && mobile_number.value.length != 10) {
+      if (!regEx_Number.test(mobile_number.value)) {
         check = false;
         mobile_number.classList.add("is-invalid");
         mobile_number.classList.remove("is-valid");
       } else {
         mobile_number.classList.add("is-valid");
         mobile_number.classList.remove("is-invalid");
+        number.value = phoneNumber;
       }
       if (!regEx_Number.test(pincode.value)) {
         check = false;
