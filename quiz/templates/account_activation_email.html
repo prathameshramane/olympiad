@@ -1,7 +1,330 @@
 {% autoescape off %}
-Hi {{ user.username }},
+{% load static %}
+<table bgcolor="#fdfdfd" width="736" border="0" cellspacing="0" cellpadding="0" align="center" style="
+    border: 4px solid #1f5a7d;
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Arial', 'sans-serif';
+  ">
+  <tbody>
+    <tr bgcolor="#fdfdfd" style="border-bottom: 4px solid #1f5a7d">
+      <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td width="100%" style="text-align: center">
+                <a href="http://{{ domain }}" target="_blank">
+                  <img src="{% static 'Stock/logo.png' %}" width="150" alt="School Olympiads" height="90"
+                    style="margin: 6px; text-align: center" /></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
 
-Please click on the link below to confirm your registration:
+    <tr>
+      <td align="center" valign="bottom" style="
+          color: #145452;
+          border-top: 1px solid #e7e7e7;
+          background: #e7e7e7;
+          font-size: 12px;
+          padding-bottom: 3px;
+          margin-top: 0px;
+        ">
+        <div style="height: 22px; line-height: 22px; text-align: right">
+          Date: {% now "l dS F, Y" %}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="
+          font-size: 22px;
+          text-align: center;
+          color: #000;
+          padding: 10px;
+          font-weight: bold;
+        ">
+        Confirm registration
+      </td>
+    </tr>
 
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+    <tr>
+      <td align="left" valign="top" width="736" height="90" style="color: #000; padding-top: 10px">
+        <table border="0" style="
+            width: 75%;
+            margin: 0px auto;
+            border: 2px solid #000;
+            padding: 15px 30px;
+          ">
+          <tbody>
+            <tr>
+              <td style="width: 48%; text-align: right">Username</td>
+              <td style="width: 3%">:</td>
+              <td><strong>{{user.username}}</strong></td>
+            </tr>
+            <tr>
+              <td style="width: 48%; text-align: right">Student Name</td>
+              <td style="width: 3%">:</td>
+              <td><strong>{{user.first_name}} {{user.last_name}}</strong></td>
+            </tr>
+            <tr>
+              <td style="width: 48%; text-align: right">Guardian Name</td>
+              <td style="width: 3%">:</td>
+              <td><strong>{{user.parent_name}}</strong></td>
+            </tr>
+            <tr>
+              <td style="width: 48%; text-align: right">Class</td>
+              <td style="width: 3%">:</td>
+              <td><strong>{{user.standard}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table style="margin: auto;">
+          <tbody>
+            <tr>
+              <td>
+                <div style="margin:15px auto;display:flex">
+                  <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}"
+                    style="background-color:#b31c1c;text-decoration:none;color:white;padding:7px;font-size:17px"
+                    target="_blank"
+                    data-saferedirecturl="https://www.google.com/url?q=http://127.0.0.1:8000/activate/NjI/5pf-2a5ee1536d13a4c2ae5b/&amp;source=gmail&amp;ust=1617323108872000&amp;usg=AFQjCNEZPJveiSxEKt-BK0uOL-eTjIYeJQ">Click
+                    here to confirm your email</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="clear: both"></div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <ul style="padding: 20px 20px 0px 20px">
+          <li style="
+              text-align: center;
+              list-style: none;
+              padding-left: 1px;
+              height: 25px;
+              margin-left: 5px;
+              color: #000;
+              font-size: 16px;
+              margin-bottom: 5px;
+              margin-top: 15px;
+            ">
+            <strong>Important Instructions to Parents and Students</strong>
+          </li>
+          <li style="
+              padding-left: 6px;
+              background-size: 8px 8px;
+              line-height: 23px;
+              margin-left: 20px;
+              color: #0e5d26;
+              font-size: 16px;
+            ">
+            School Olympiads will be conducted online and the student will have
+            to take the exams from their residence or any other place where they
+            have access to computer with good internet connectivity. Schools,
+            subscribing to these exams, may decide to conduct these exams using
+            their computer lab. The exam can't be taken using Mobile device.
+            Hence, the student should have access to a good laptop/desktop with
+            latest version of the browser (preferably Google Chrome) and 2 Mbps
+            Internet connectivity.
+          </li>
+          <br />
+
+          <li style="
+              padding-left: 6px;
+              background-size: 8px 8px;
+              line-height: 23px;
+              margin-left: 20px;
+              color: #0e5d26;
+              font-size: 16px;
+            ">
+            It’s in the best interest of students not to use any unfair means
+            while attempting these exams. These exams are just a first step for
+            a much bigger goal of appearing for competitive exams that are being
+            conducted online.
+          </li>
+          <br />
+
+          <li style="
+              padding-left: 6px;
+              background-size: 8px 8px;
+              line-height: 23px;
+              margin-left: 20px;
+              color: #0e5d26;
+              font-size: 16px;
+            ">
+            Please check the
+            <a href="http://{{ domain }}/examdates/" target="_blank">exam
+              schedule</a>.
+          </li>
+          <br />
+
+          <li style="
+              padding-left: 6px;
+              background-size: 8px 8px;
+              line-height: 23px;
+              margin-left: 20px;
+              color: #0e5d26;
+              font-size: 16px;
+            ">
+            Please make sure that you book the slots in Slot/Access section of
+            your dashboard before the exam dates to avoid missing the practice
+            papers and main exam.
+          </li>
+          <br />
+
+          <li style="
+              padding-left: 6px;
+              background-size: 8px 8px;
+              line-height: 23px;
+              margin-left: 20px;
+              color: #0e5d26;
+              font-size: 16px;
+            ">
+            Do read the Frequently Asked Questions (<a href="http://{{ domain }}/faqs/" target="_blank">FAQs</a>)
+            thoroughly.
+          </li>
+          <br />
+
+          <li style="
+              padding-left: 6px;
+              background-size: 8px 8px;
+              line-height: 23px;
+              margin-left: 20px;
+              color: #0e5d26;
+              font-size: 16px;
+            ">
+            Please remember to add
+            <a href="mailto:contact@schoololympiads.com" target="_blank">contact@schoololympiads.com</a>
+            to your primary inbox, else you may miss important updates on Online
+            Olympiad Exams.
+          </li>
+          <br />
+        </ul>
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td style="
+          font-size: 22px;
+          text-align: center;
+          color: #000;
+          padding: 10px;
+          font-weight: bold;
+        ">
+        <div style="
+            color: #505050;
+            font-family: 'Times New Roman', 'serif';
+            background: #fff;
+            border: 7px double #cb2027;
+            padding: 5px;
+            width: 80%;
+            margin: 0px auto;
+            text-align: left;
+          ">
+          <br />&nbsp; What do we do next?
+
+          <ul style="padding: 0px 20px 0px 20px">
+            <li style="
+                padding-left: 6px;
+                background-size: 8px 8px;
+                line-height: 23px;
+                color: #000;
+                font-size: 16px;
+                float: left;
+              ">
+              Please mark this mail as 'Important' so that you don't miss any
+              important information.
+            </li>
+            <li style="
+                padding-left: 6px;
+                background-size: 8px 8px;
+                line-height: 23px;
+                color: #000;
+                font-size: 16px;
+              ">
+              Start preparing for the Olympiad Exams. You may wish to practice
+              from Olympiad Success (<a href="http://{{domain}}" target="_blank">www.schoololympiads.com</a>),
+              India's largest preparation platform for Olympiad preparation.
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div style="
+            float: left;
+            width: 32px;
+            height: 32px;
+            margin: 15px 5px 15px 15px;
+          ">
+          <img style="height: inherit; width: inherit"
+            src="https://ci6.googleusercontent.com/proxy/xBZtYpDAt2exX1EaY-XZwGn6ZneZCkLwhQGZDvOzhaPzM7tdEc2oNsiOhRfGvIqxfcEFYElX-CFyMYCeyZeHCcqs4gkE0JrHQXqHF-UO8IvkVJwLvMVZzb2d=s0-d-e1-ft#https://www.olympiadsuccess.com/assets/designs/images/mailer/p_logo.png"
+            class="CToWUd" />
+        </div>
+        <div style="
+            float: left;
+            width: auto;
+            height: 32px;
+            margin-top: 17px;
+            color: #fb7e1d;
+            font-size: 12px;
+          ">
+          +91-7280-072-600<br />School Olympiads Support
+        </div>
+        <div style="
+            float: right;
+            width: auto;
+            height: 32px;
+            margin: 17px 5px 15px 5px;
+            color: #fb7e1d;
+            font-size: 12px;
+          ">
+          40 Sreet 133/2
+          <br />India,
+        </div>
+        <div style="float: left; margin: 15px 5px 15px 75px">
+          <a style="width: 32px; height: 32px" href="#" target="_blank">
+            <img style="height: inherit; width: inherit"
+              src="https://ci3.googleusercontent.com/proxy/28kN-7M6TFbB46ypEcgM_fttLupV1ViXs2vllQFJoz76wqhgH9rmoDbKq4Iw-jXW-O3KQXNeo89s8PnaZ-w5vbvHLklTVWEC4_-rxFjMFeKcZ3a10qs=s0-d-e1-ft#https://www.olympiadsuccess.com/assets/designs/images/mailer/fb.png" /></a>
+        </div>
+        <div style="float: left; margin: 15px 5px 15px 5px">
+          <a style="width: 32px; height: 32px" href="#" target="_blank">
+            <img style="height: inherit; width: inherit"
+              src="https://ci6.googleusercontent.com/proxy/RV_GOXwZn8QJGrJkRAQ510Qt9Rkrj1HbFPw1KpjLYbPwq5nzurBbZXVU0u3xAWcarVeaPtPQkHr9Ul4LgvWA7fXpCXqj8dJi9tJQZlHTdOcZ4Et2xtM=s0-d-e1-ft#https://www.olympiadsuccess.com/assets/designs/images/mailer/li.png" /></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="bottom" style="
+          color: #145452;
+          border-top: 1px solid #e7e7e7;
+          background: #e7e7e7;
+          font-size: 12px;
+          height: 22px;
+          line-height: 22px;
+          padding-bottom: 3px;
+          margin-top: 0px;
+        ">
+        <div style="
+            height: 22px;
+            line-height: 22px;
+            text-align: left;
+            padding-left: 18px;
+          ">
+          Powered by: SCHOOL Olympiads
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 {% endautoescape %}

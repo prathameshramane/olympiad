@@ -43,9 +43,30 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{% static 'Owl/docs/assets/vendors/jquery.min.js' %}"></script>
     <script src="{% static 'Owl/docs/assets/owlcarousel/owl.carousel.js' %}"></script>
+    <style>
+    a {
+      color: #0058a5;
+      line-height: inherit;
+      text-decoration: none;
+    }
+    </style>
   </head>
 
   <body>
+
+    <div id="preloader">
+      {% comment %} <svg version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" width="100px">
+        <circle fill="none" stroke="#222" stroke-width="4" cx="50" cy="50" r="44" style="opacity:0.5;" />
+        <circle fill="#222" stroke="#222" stroke-width="3" cx="8" cy="54" r="6" id="rotating-circle" >
+           <animateTransform attributeName="transform" dur="2s" type="rotate" from="0 50 48" to="360 50 52"
+            repeatCount="indefinite" />  
+
+        </circle>
+      </svg> {% endcomment %}
+      <div class="Loader"></div>
+      <img src="{% static 'logo.png' %}" alt="" style="    position: absolute;width: 227px;" />
+    </div>
 
     <header class="header_area" id="header">
       <nav class="navbar navbar-expand-lg " style="z-index: 10;">
@@ -936,18 +957,7 @@
     </section>
     <!-- ./Footer -->
 
-    <div id="preloader">
-      <svg version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" width="100px">
-        <circle fill="none" stroke="#222" stroke-width="4" cx="50" cy="50" r="44" style="opacity:0.5;" />
-        <circle fill="#222" stroke="#222" stroke-width="3" cx="8" cy="54" r="6">
-          <animateTransform attributeName="transform" dur="2s" type="rotate" from="0 50 48" to="360 50 52"
-            repeatCount="indefinite" />
-
-        </circle>
-      </svg>
-      <img src="{% static 'logo.png' %}" alt="" style="    position: absolute;width: 74px;" />
-    </div>
+    
 
 
 
@@ -973,7 +983,7 @@
     <script>
       $(window).on("load", function () {
         $("#preloader").fadeOut();
-      })
+      }) 
     </script>
     <script>
       $(document).ready(function () {

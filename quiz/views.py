@@ -34,6 +34,8 @@ from django.contrib.auth.models import User
 from mcq.models import MCQQuestion,Answer
 from django.http import HttpResponse
 import os
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
 
 my_list =[]
 my_answers= []
@@ -722,7 +724,7 @@ class DownloadPDF(View):
         pdf=render_to_pdf('response.html', data)
         response= HttpResponse(pdf, content_type='application/pdf')
         filename= "Invoice_%s.pdf" %("12341231")
-        content = "attachment; filename='%s'" %(filename)
+        content = "attachment; filename=%s" %(filename)
         response['Content-Disposition'] = content
         return response
 
@@ -984,15 +986,25 @@ def register(request):
 
                 current_site = get_current_site(request)
                 subject = 'Activate Your School Olympiad Account'
-                message = render_to_string('account_activation_email.html', {
+                # message = render_to_string('account_activation_email.html', {
+                # 'user': student_context,
+                # 'domain': current_site.domain,
+                # 'uid': urlsafe_base64_encode(force_bytes(student_context.pk)),
+                # 'token': account_activation_token.make_token(student_context),
+                #  })
+                # send_mail(subject, message,settings.EMAIL_HOST_USER,[student_context.email,],fail_silently=False,)
+                html_content = render_to_string('account_activation_email.html', {
                 'user': student_context,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(student_context.pk)),
                 'token': account_activation_token.make_token(student_context),
                  })
-                send_mail(subject, message,settings.EMAIL_HOST_USER,[student_context.email,],fail_silently=False,)
+                text_content = strip_tags(html_content)
 
-
+                html_email = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [email])
+                html_email.attach_alternative(html_content, "text/html")
+                html_email.send()
+                
                 messages.success(request, ('Please Confirm your email to complete registration.'))
                 return redirect('loginhandle')
 
@@ -1015,10 +1027,10 @@ class ActivateAccount(View):
                 user.save()
                 login(request, user)
                 messages.success(request, ('Your account has been confirmed.'))
-                return redirect('/')
+                return redirect('profile')
             else:
                 messages.warning(request, ('The confirmation link was invalid, possibly because it has already been used.'))
-                return redirect('/')
+                return redirect('loginhandle')
 
 
 

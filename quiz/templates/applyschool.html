@@ -17,7 +17,7 @@
   }
 
   .border {
-    background-color: lightgray;
+    background-color: #292929;
     align-items: center;
     justify-content: center;
     z-index: 1;
@@ -153,15 +153,15 @@
             {% csrf_token %}
             <div class="border">
               <br>
-              <h3><b>You are*</b></h3>
+              <h3 style="color: white"><b>You are*</b></h3>
               <input type="radio" id="Principal" name="button" value="Principal">
-              <label for="Principal" class="radio-label">Principal</label>
+              <label for="Principal" class="radio-label" style="color: white">Principal</label>
               <input type="radio" id="Teacher" name="button" value="Teacher">
-              <label for="Teacher" class="radio-label">Teacher</label><br>
+              <label for="Teacher" class="radio-label" style="color: white">Teacher</label><br>
               <input type="radio" id="student/parent" name="button" value="student/parent">
-              <label for="student/parent" class="radio-label">Student/Parent</label>
+              <label for="student/parent" class="radio-label" style="color: white">Student/Parent</label>
               <input type="radio" id="other" name="button" value="other">
-              <label for="other" class="radio-label">Other</label>
+              <label for="other" class="radio-label" style="color: white">Other</label>
 
               <div class="group col-md-11 mt-5">
                 <input type="text" class="school-input" name="name" id="name" required>
@@ -179,7 +179,7 @@
                 <p style="color: red; display: none;" id="email-error">*Invalid Email </p>
               </div>
               <div class="group col-md-11">
-                <label for="country">Country</label>
+                <label for="country" style="color: white">Country</label>
                 {% load countries %}
                 {% get_countries as countries %}
                 <select name="country" id="country" placeholder="Choose Your country" required>
@@ -252,9 +252,9 @@
               </div>
               <div class="col-md-11">
                 <input type="radio" id="offline" name="exammode" value="offline">
-                <label for="offline" class="radio-label">Pen / Paper</label>
+                <label for="offline" class="radio-label" style="color: white">Pen / Paper</label>
                 <input type="radio" id="online" name="exammode" value="online">
-                <label for="online" class="radio-label">Online</label><br>
+                <label for="online" class="radio-label" style="color: white">Online</label><br>
               </div><br>
               <div class="col-md-11">
                 <textarea name="" class="school-textarea" placeholder="Your message..."></textarea>

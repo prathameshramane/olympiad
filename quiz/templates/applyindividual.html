@@ -93,10 +93,16 @@
     </div>
     <div class="row">
       {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        <strong>{{message}}</strong>
-
-      </div>
+      <script>
+        window.onload = function () {
+          Swal.fire({
+            title: '{{ message.tags }}',
+            text: '{{message}}',
+            icon: "{{ message.tags }}",
+            confirmButtonText: 'Ok'
+          })
+        }
+      </script>
       {% endfor %}
     </div>
   </div><br>
@@ -166,13 +172,13 @@
           </ion-icon>
         </div>
         <div class="group col-md-5">
-          <label for="mobile_number" class="form-label">Mobile Number</label> 
+          <label for="mobile_number" class="form-label">Mobile Number</label>
           <input type="tel" name="mobile_number" id="mobile_number" class="form-control is-invalid" required>
           <div class="invalid-feedback" style="font-size: 16px;">
             Please provide a valid Mobile Number.
           </div>
         </div>
-          <input type="hidden" name="number" id="number">
+        <input type="hidden" name="number" id="number">
 
         <div class="col-md-1">
           <ion-icon name="mail"></ion-icon>
@@ -243,7 +249,7 @@
         <div class="group col-md-5">
           {% load countries %}
           {% get_countries as countries %}
-          <select name="country" id="country" placeholder="Choose Your country"required>
+          <select name="country" id="country" placeholder="Choose Your country" required>
             {% for country in countries %}
             <option value="{{ country.code }}">{{ country.name }}</option>
             {% endfor %}

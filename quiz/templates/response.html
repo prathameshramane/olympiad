@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1 align="center">PG Response</h1>
+    <h1 align="center">Invoice</h1>
     {% if is_paid %}
     <div class="container">
       <div class="panel panel-success">
@@ -56,7 +56,7 @@
     </div>
     <center>
       {% comment %} <a href="{% url 'pdf_save' %}">Save Invoice</a> {% endcomment %}
-      <a href="{% url 'bookslot' %}"
+      <a href="{% url 'bookslot' %}" style="background-color: #36ab10;color: white;padding: 10px;border-radius: 6px;"
         >Your payment is successful click on the link to enable the Subscription
         and Book the Slot</a
       >
@@ -102,7 +102,8 @@
       </div>
     </div>
     <center>
-      <a href="{% url 'profile' %}">Back to dashboard</a>
+      <a href="{% url 'profile' %}" style="background-color: #e72929;color: white;padding: 10px;border-radius: 6px;">
+      Back to dashboard</a>
     </center>
     {% endif %}
   </body>
