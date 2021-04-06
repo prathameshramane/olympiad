@@ -42,33 +42,6 @@ my_answers= []
 my_ques= []
 dict_pdf={}
 lst=[]
-#and user.email_confirmed
-# def loginhandle(request):
-#     if(request.method=='POST'):
-#         username=request.POST['email']
-#         password=request.POST['pass']
-#         user=authenticate(username=username, password=password)
-#         print(user)
-#         if(user):
-#             if(user.is_active ):
-#                 login(request,user)
-#                 messages.success(request,"Successfully logged in")
-#                 return render(request,"loginhandle.html")
-
-#         else:
-#             messages.error(request,"User is not registered")
-
-#     return render(request,"loginhandle.html")
-
-
-# def logouthandle(request):
-# 	logout(request)
-# 	messages.success(request,"Successfully logged out")
-# 	return redirect('/')
-
-#def home(request):
-#    return render(request,"home.html")
-
 
 import hashlib
 import hmac
@@ -87,7 +60,7 @@ def invoice_view(request):
     print(val)
 
     return render(request,"invoice.html",{'val':val})
-    # q=Invoice.objects.get(student=request.user)
+
 
 def invoice_ind(request,sub_order_id):
     l=Invoice.objects.get(order_id=sub_order_id)
@@ -125,13 +98,11 @@ def changeslot(request):
 
             return render(request,'cyber.html')
 
-        #return render(request,'bookafterchange.html',context)
-
     return render(request,'changeslot.html')
 
 @csrf_exempt
 def response_changeslot(request):
-
+        
         print(request.POST)
         postData = {
         "orderId" : request.POST['orderId'],
@@ -160,8 +131,7 @@ def response_changeslot(request):
         }
 
 
-        # print(request)
-        if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
+        if request.POST.get("txStatus") == "SUCCESS":
             context['is_paid']= True
 
 
@@ -176,12 +146,14 @@ def changeafterbook(request):
         mode = "PROD"
 
         quiz = request.POST['slot']
+        quiz_finalexam = request.POST['slot_finalexam']
 
         student = request.user
         sub=Student.objects.get(pk=student.id)
 
         sub.quiz_to_change = quiz
-        sub.save(update_fields=['quiz_to_change'])
+        sub.quiz_to_change_finalexam = quiz_finalexam
+        sub.save(update_fields=['quiz_to_change','quiz_to_change_finalexam'])
 
         student = request.user
         sub=Student.objects.get(pk=student.id)
@@ -205,27 +177,12 @@ def changeafterbook(request):
                   "notifyUrl" : 'https://github.com/'
         }
 
-
-        # dict_pdf={"appId" : '21845d9c06b478a19ac3040ce54812',
-        #           "orderId" : temp,
-        #           "orderAmount" : '30',
-        #           "orderCurrency" : 'INR',
-        #           "orderNote" : "payment",
-        #           "customerName" : str(request.user.first_name),
-        #           "customerPhone" : str(request.user.number),
-        #           "customerEmail" : str(request.user.email),
-        #           "returnUrl" : 'http://127.0.0.1:8000/response_changeslot/',
-        #           "notifyUrl" : 'https://github.com/'
-        #           }
         print(postData)
-        # print(dict_pdf)
         sortedKeys = sorted(postData)
         signatureData = ""
         for key in sortedKeys:
-
             signatureData += key+postData[key]
         message = signatureData.encode('utf-8')
-          #get secret key from your config
         secret = secretKey.encode('utf-8')
         signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
         if mode == 'PROD':
@@ -246,7 +203,6 @@ def changeafterbook(request):
     return render(request,'changeslot.html')
 
 def invoice(request,dict_pdf):
-    # sub=Student.objects.get(pk=student.id)
     order_id=dict_pdf['orderId']
     order_amount=dict_pdf['orderAmount']
     reference_id=dict_pdf['referenceId']
@@ -255,12 +211,9 @@ def invoice(request,dict_pdf):
     k=order_id.split("_")
     student=k[0]
     inv=Invoice(student=student,order_id=order_id,order_amount=order_amount,reference_id=reference_id,payment_mode=payment_mode,pay_time=pay_time)
-    # sub.email=request.user.email
     inv.save()
 
 def bookslot(request):
-
-
     student = request.user
     print(student)
     sub=Student.objects.get(pk=student.id)
@@ -278,78 +231,70 @@ def bookslot(request):
         sub.final_generalolym=sub.generalolym
     print ("hi")
     print(request.user.first_name)
-    # if(mathsolym==True):
-    #     lst.append("ISMO")
-    # if(scienceolym==True):
-    #     lst.append("ISSO")
-    # if(englisholym==True):
-    #     lst.aapend("ISEO")
-    # if(reasoningolym==True):
-    #     lst.append("ISCTO")
-    # if(cyberolym==True):
-    #     lst.append("ISCO")
-    # if(generalolym==True):
-    #     lst.append("ISGKO")
-    # invoice(request,student,lst)
     sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
-
-
-
-
 
     if request.method=='POST':
         student = request.user
         sub=Student.objects.get(pk=student.id)
         if   'scienceslot' in request.POST:
-
-
             scienceslot = request.POST['scienceslot']
         else:
             scienceslot='nil'
-
-
         if  'englishslot'  in request.POST:
-
             englishslot = request.POST['englishslot']
         else:
             englishslot='nil'
-
         if  'cyberslot' in  request.POST:
-
             cyberslot = request.POST['cyberslot']
         else:
             cyberslot='nil'
-
         if  'mathslot' in request.POST:
-
             mathslot = request.POST['mathslot']
         else:
             mathslot='nil'
-
         if 'reasoningslot' in  request.POST:
-
             reasoningslot = request.POST['reasoningslot']
         else:
             reasoningslot='nil'
-
         if  'gkslot' in  request.POST:
-
             gkslot = request.POST['gkslot']
         else:
             gkslot='nil'
+        if   'scienceslot_finalexam' in request.POST:
+            scienceslot_finalexam = request.POST['scienceslot_finalexam']
+        else:
+            scienceslot_finalexam='nil'
+        if  'englishslot_finalexam'  in request.POST:
+            englishslot_finalexam = request.POST['englishslot_finalexam']
+        else:
+            englishslot_finalexam='nil'
+        if  'cyberslot_finalexam' in  request.POST:
+            cyberslot_finalexam = request.POST['cyberslot_finalexam']
+        else:
+            cyberslot_finalexam='nil'
+        if  'mathslot_finalexam' in request.POST:
+            mathslot_finalexam = request.POST['mathslot_finalexam']
+        else:
+            mathslot_finalexam='nil'
+        if 'reasoningslot_finalexam' in  request.POST:
+            reasoningslot_finalexam = request.POST['reasoningslot_finalexam']
+        else:
+            reasoningslot_finalexam='nil'
+        if  'gkslot_finalexam' in  request.POST:
+            gkslot_finalexam = request.POST['gkslot_finalexam']
+        else:
+            gkslot_finalexam='nil'
 
-        print(scienceslot,mathslot,reasoningslot,gkslot,englishslot,cyberslot)
+        print(scienceslot,mathslot,reasoningslot,gkslot,englishslot,cyberslot,
+        scienceslot_finalexam ,mathslot_finalexam ,reasoningslot_finalexam ,gkslot_finalexam ,englishslot_finalexam ,cyberslot_finalexam )
 
         if scienceslot !='nil':
             sq,st =scienceslot.split('@', 1)
-
             sub.sciencequiz = sq
             sub.sciencetime= st
             sub.save(update_fields=['sciencequiz','sciencetime'])
-
-        print(englishslot)
+            
         if str(englishslot) != str("nil"):
-
             sq,st = englishslot.split('@', 1)
             sub.englishquiz = sq
             sub.englishtime= st
@@ -379,6 +324,36 @@ def bookslot(request):
             sub.reasoningtime= st
             sub.save(update_fields=['reasoningquiz','reasoningtime'])
 
+        if scienceslot_finalexam !='nil':
+            sq,st =scienceslot_finalexam.split('@', 1)
+            sub.sciencetime_finalexam = st
+            sub.save(update_fields=['sciencetime_finalexam'])
+
+        if str(englishslot_finalexam) != str("nil"):
+            sq,st = englishslot_finalexam.split('@', 1)
+            sub.englishtime_finalexam = st
+            sub.save(update_fields=['englishtime_finalexam'])
+
+        if cyberslot_finalexam !='nil':
+            sq,st = cyberslot_finalexam.split('@', 1)
+            sub.cybertime_finalexam = st
+            sub.save(update_fields=['cybertime_finalexam'])
+
+        if mathslot_finalexam !='nil':
+            sq,st = mathslot_finalexam.split('@', 1)
+            sub.mathtime_finalexam = st
+            sub.save(update_fields=['mathtime_finalexam'])
+
+        if gkslot_finalexam !='nil':
+            sq,st = gkslot_finalexam.split('@', 1)
+            sub.gktime_finalexam = st
+            sub.save(update_fields=['gktime_finalexam'])
+
+        if reasoningslot_finalexam !='nil':
+            sq,st = reasoningslot_finalexam.split('@', 1)
+            sub.reasoningtime_finalexam = st
+            sub.save(update_fields=['reasoningtime_finalexam'])
+
 
         sub.mathsolym = False;
         sub.scienceolym = False;
@@ -387,11 +362,8 @@ def bookslot(request):
         sub.cyberolym = False;
         sub.generalolym = False;
         sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
-
-
-
         messages.success(request, 'Slot booked successfully')
-        return render(request,'index.html')
+        return redirect("profile")
 
 
 
@@ -399,7 +371,6 @@ def bookslot(request):
 
 def profile(request,context={"feedback":False}):
     all_quizzes = Quiz.objects.all()
-    # print(all_quizzes)
 
     quizlist=[]
     for quiz in all_quizzes:
@@ -409,36 +380,29 @@ def profile(request,context={"feedback":False}):
         else:
             quiz_title= quiz.title
 
-        #print(quiz)
-        #print(quiz.title[0:2])
-
-        #print(quiz_title[0:2])
         b = quiz_title[2:]
 
-        # print(request.user.standard)
-        # print(quiz_title[0:2])
         if str(request.user.standard if len(request.user.standard) > 1 else "0" + str(request.user.standard))==str(quiz_title[0:2]):
             if quiz_title[2:]=='mathsolym' and request.user.final_mathsolym==True:
-                quizlist.append([quiz, request.user.mathtime])
+                quizlist.append([quiz, request.user.mathtime, request.user.mathtime_finalexam])
             if quiz_title[2:]=='scienceolym' and request.user.final_scienceolym==True:
-                quizlist.append([quiz, request.user.sciencetime])
+                quizlist.append([quiz, request.user.sciencetime, request.user.sciencetime_finalexam])
             if quiz_title[2:]=='englisholym' and request.user.final_englisholym==True:
-                quizlist.append([quiz, request.user.englishtime])
+                quizlist.append([quiz, request.user.englishtime, request.user.englishtime_finalexam])
             if quiz_title[2:]=='generalolym' and request.user.final_generalolym==True:
-                quizlist.append([quiz, request.user.generaltime])
+                quizlist.append([quiz, request.user.generaltime, request.user.generaltime_finalexam])
             if quiz_title[2:]=='cyberolym' and request.user.final_cyberolym==True:
-                quizlist.append([quiz, request.user.cybertime])
+                quizlist.append([quiz, request.user.cybertime, request.user.cybertime_finalexam])
             if quiz_title[2:]=='reasoningolym' and request.user.final_reasoningolym==True:
-                quizlist.append([quiz, request.user.reasoningtime])
+                quizlist.append([quiz, request.user.reasoningtime, request.user.reasoningtime_finalexam])
     print(quizlist)
     return render(request,'dashboard.html',{"quiz_list": quizlist})
 
 secretKey = "bb221fbe28841cb1a7eb30599b5dcad2a3e8dae2"
-#@app.route('/request', methods=["POST"])
+
 def handlerequest(request):
 
-    mode = "PROD" # <-------Change to TEST for test server, PROD for production
-    print('win')
+    mode = "PROD" 
 
     if request.method =='POST':
         print('lost')
@@ -463,7 +427,6 @@ def handlerequest(request):
 
             signatureData += key+postData[key]
         message = signatureData.encode('utf-8')
-          #get secret key from your config
         secret = secretKey.encode('utf-8')
         signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
         if mode == 'PROD':
@@ -477,16 +440,12 @@ def handlerequest(request):
             'url' : url,
             'signature' :signature
         }
-    #    context
-    #    context['url']= url
-    #    context['signature']= signature
+
         return render(request,'request.html', context)
 
 
     return render(request,"sub.html")
 
-
-#@app.route('/response', methods=["GET","POST"])
 @csrf_exempt
 def handleresponse(request):
     print(request.POST)
@@ -515,20 +474,6 @@ def handleresponse(request):
 
     invoice(request,dict_pdf)
 
-
-
-
-    # dict_pdf = {
-    # "orderId" : request.POST['orderId'],
-    # "orderAmount" : request.POST['orderAmount'],
-    # "referenceId" : request.POST['referenceId'],
-    # "txStatus" : request.POST['txStatus'],
-    # "paymentMode" : request.POST['paymentMode'],
-    # "txMsg" : request.POST['txMsg'],
-    # "signature" : request.POST['signature'],
-    # "txTime" : request.POST['txTime']
-    # }
-
     print(postData)
 
     print("------------------")
@@ -549,39 +494,8 @@ def handleresponse(request):
 
 
     print(request)
-    # if computedsignature==postData['signature'] and request.POST.get("txStatus") == "OK":
     if request.POST.get("txStatus") == "SUCCESS":
         context['is_paid']= True
-
-    """
-    student = request.user
-    sub=Student.objects.get(pk=student.id)
-    if(sub.mathsolym==True):
-        sub.final_mathsolym=mathsolym
-    if(sub.scienceolym==True):
-        sub.final_scienceolym=scienceolym
-    if(sub.englisholym==True):
-        sub.final_englisholym=englisholym
-    if(sub.reasoningolym==True):
-        sub.final_reasoningolym=reasoningolym
-    if(sub.cyberolym==True):
-        sub.final_cyberolym= cyberolym
-    if(sub.generalolym==True):
-        sub.final_generalolym=generalolym
-    print ("hi")
-    print(request.user.first_name)
-    sub.save(update_fields=['final_mathsolym','final_scienceolym','final_englisholym','final_reasoningolym','final_cyberolym','final_generalolym'])
-
-
-    sub.mathsolym = False;
-    sub.scienceolym = False;
-    sub.englisholym = False;
-    sub.reasoningolym = False;
-    sub.cyberolym = False;
-    sub.generalolym = False;
-    sub.save(update_fields=['mathsolym','scienceolym','englisholym','reasoningolym','cyberolym','generalolym'])
-    """
-
     return render(request,'response.html', context)
 
 
@@ -647,14 +561,12 @@ def subscribe(request):
 
         print(postData)
 
-        # lst2=[]
-        # lst.append(postData)
+    
         sortedKeys = sorted(postData)
         signatureData = ""
         for key in sortedKeys:
             signatureData += key+postData[key]
         message = signatureData.encode('utf-8')
-        #get secret key from your config
         secret = secretKey.encode('utf-8')
         signature = base64.b64encode(hmac.new(secret,message,digestmod=hashlib.sha256).digest()).decode("utf-8")
         if mode == 'PROD':
@@ -687,7 +599,6 @@ def faqs(request):
     return render(request,"faqs.html")
 
 
-# print(dict_pdf['orderId'])
 
 
 def render_to_pdf(template_src,content_type={}):
@@ -700,10 +611,6 @@ def render_to_pdf(template_src,content_type={}):
     return None
 
 
-# class ViewPDF(View):
-#     def get(self, request , *args, **kwargs):
-#         pdf=render_to_pdf('response.html',data)
-#         return HttpResponse(pdf, content_type='application/pdf')
 
 
 class DownloadPDF(View):
@@ -729,30 +636,6 @@ class DownloadPDF(View):
         return response
 
 
-# def doc_upload(request):
-#     print(')))))))))))))))))))))))')
-#     if(request.method=='POST'):
-#         stud=request.user
-#         school_id=request.POST.get('school_id'," ")
-#         print("*******************")
-#         print(request.POST)
-#         prev_marksheet=request.POST.get('prev_marksheet'," ")
-#         photo=request.POST.get('photo'," ")
-#         if(school_id!=" "):
-#             stud.idproof=school_id
-#             stud.save(update_fields=['idproof'])
-#         if(prev_marksheet!=" "):
-#             stud.marksheet=prev_marksheet
-#             stud.save(update_fields=['marksheet'])
-#         if(photo!=" "):
-#             stud.photograph=photo
-#             stud.save(update_fields=['photograph'])
-#         # stud.save(update_fields=['school_id','prev_marksheet','photo'])
-#         messages.success(request, 'Documents successfully uploaded')
-#     return render(request,"dashboard.html")
-
-
-
 from django.contrib.auth.hashers import check_password
 
 def change_password(request):
@@ -774,7 +657,7 @@ def change_password(request):
                 student.set_password(newpass)
                 student.save(update_fields=['password'])
                 messages.success(request, 'Password changed successful. Login again.')
-                return redirect('/loginhandle')
+                return redirect('loginhandle')
             else:
                 messages.warning(request, 'Wrong user password ')
 
@@ -786,8 +669,6 @@ def change_password(request):
 
 def update_student(request):
     sub = request.user
-    # print(student)
-    # sub=Student.objects.get(pk=student.id)
     if(request.method=="POST"):
 
         print(request.POST)
@@ -837,7 +718,6 @@ def uploadfiles(request):
             stud.photograph=photograph
             stud.photograph_date="photograph"
             stud.save(update_fields=['photograph','photograph_date'])
-        # stud.save(update_fields=['school_id','prev_marksheet','photo'])
         messages.success(request, 'Documents successfully uploaded')
     return render(request,"dashboard.html",{'stud':stud})
 
@@ -907,7 +787,6 @@ def register(request):
     if(request.method=='POST'):
 
         ref_code = request.POST.get('ref_code', '000')
-        # print(ref_code, "ref_Code")
         first_name=request.POST['first_name']
         last_name=request.POST['last_name']
         username= request.POST['username']
@@ -980,19 +859,12 @@ def register(request):
                 student_context=Student(ref_code = ref_code ,first_name=first_name,username=username, last_name=last_name,parent_name = parent_name,dob = dob,country= country,address= address,city=city,state=state,school=school,school_state= school_state,school_address= school_address,school_city= school_city,school_country=school_country,pincode=pincode,number=number,email=email,standard= standard)
                 student_context.set_password(password)
                 student_context.save()
-                # messages.success(request, 'Registration successful')
                 print("okkkkkkk")
 
 
                 current_site = get_current_site(request)
                 subject = 'Activate Your School Olympiad Account'
-                # message = render_to_string('account_activation_email.html', {
-                # 'user': student_context,
-                # 'domain': current_site.domain,
-                # 'uid': urlsafe_base64_encode(force_bytes(student_context.pk)),
-                # 'token': account_activation_token.make_token(student_context),
-                #  })
-                # send_mail(subject, message,settings.EMAIL_HOST_USER,[student_context.email,],fail_silently=False,)
+
                 html_content = render_to_string('account_activation_email.html', {
                 'user': student_context,
                 'domain': current_site.domain,
@@ -1076,13 +948,8 @@ def mock(request):
             else:
                 quiz_title= quiz.title
 
-            #print(quiz)
-            #print(quiz.title[0:2])
-
-            #print(quiz_title[0:2])
             b = quiz_title[2:]
 
-            #print(request.user.b)
             print(quiz_title[2:])
             if str(request.user.standard)==str(quiz_title[0:2]):
                 quizlist.append(quiz)
@@ -1097,7 +964,6 @@ def mock(request):
 def myquiz(request):
 
     all_quizzes = Quiz.objects.all()
-    # print(all_quizzes)
 
     quizlist=[]
     for quiz in all_quizzes:
@@ -1106,15 +972,8 @@ def myquiz(request):
             _,quiz_title = quiz.title.split('_', 1)
         else:
             quiz_title= quiz.title
-
-        #print(quiz)
-        #print(quiz.title[0:2])
-
-        #print(quiz_title[0:2])
         b = quiz_title[2:]
 
-        # print(request.user.standard)
-        # print(quiz_title[0:2])
         if str(request.user.standard if len(request.user.standard) > 1 else "0" + str(request.user.standard))==str(quiz_title[0:2]):
             if quiz_title[2:]=='mathsolym' and request.user.final_mathsolym==True:
                 quizlist.append(quiz)
@@ -1257,20 +1116,14 @@ class QuizTake(TemplateView):
 
                 bro = 0
                 for ques in allquestion:
-                    # if(request.POST==None):
-                    #     self.question = ques
-                    #     answer = Answer.objects.get(id=guess)
-                    #     self.sitting.add_incorrect_question(self.question)
-                    #     progress.update_score(self.question, 0, 1)
-                    # else:
+                    
                     guess =request.POST.get('%s'%ques.id,00)
                     print(guess)
                     
                     self.question = ques
                     if(guess==00):
                         print("*************************************")
-                        # self.sitting.add_incorrect_question(self.question)
-                        # progress.update_score(self.question, 0, 1)
+                 
                     else:
                         answer = Answer.objects.get(id=guess)
                         print(answer)
@@ -1292,17 +1145,6 @@ class QuizTake(TemplateView):
                 return self.final_result_user()
 
         return super(QuizTake, self).dispatch(request, *args, **kwargs)
-
-    # def get_form(self, form_class=QuestionForm):
-    #     if self.logged_in_user:
-    #         self.question = self.sitting.get_first_question()
-    #         self.progress = self.sitting.progress()
-    #     return form_class(**self.get_form_kwargs())
-
-    # def get_form_kwargs(self):
-    #     kwargs = super(QuizTake, self).get_form_kwargs()
-
-    #     return dict(kwargs, question=self.question ,my_ques = my_ques)
 
 
     answers = []
@@ -1326,15 +1168,9 @@ class QuizTake(TemplateView):
             q['question'] = ques
             ques_c = MCQQuestion.objects.get(id = int(ques.id))
             ques_choices = [x for x in ques_c.get_answers_list()]
-            # q[ques.content]=ques_choices
-            # print(ques_choices)
             for choice in ques_choices:
                 my_answers.append(choice)
-            # print(q)
-                # q[ques.content]=choice[1]
             q['answers']=my_answers
-            # print(q)
-                # q.answers.append(choice[1])
             d.append(q)
 
         context['my_ques'] = d
@@ -1355,7 +1191,6 @@ class QuizTake(TemplateView):
             'percent': per,
             'sitting': self.sitting,
 
-            #'previous': self.previous,
         }
 
         self.sitting.mark_quiz_complete()
@@ -1391,20 +1226,13 @@ class FreeTrial(TemplateView):
 
                 bro = 0
                 for ques in allquestion:
-                    # if(request.POST==None):
-                    #     self.question = ques
-                    #     answer = Answer.objects.get(id=guess)
-                    #     self.sitting.add_incorrect_question(self.question)
-                    #     progress.update_score(self.question, 0, 1)
-                    # else:
+                    
                     guess =request.POST.get('%s'%ques.id,00)
                     print(guess)
                     
                     self.question = ques
                     if(guess==00):
                         print("*************************************")
-                        # self.sitting.add_incorrect_question(self.question)
-                        # progress.update_score(self.question, 0, 1)
                     else:
                         answer = Answer.objects.get(id=guess)
                         print(answer)
@@ -1427,22 +1255,11 @@ class FreeTrial(TemplateView):
 
         return super(FreeTrial, self).dispatch(request, *args, **kwargs)
 
-    # def get_form(self, form_class=QuestionForm):
-    #     if self.logged_in_user:
-    #         self.question = self.sitting.get_first_question()
-    #         self.progress = self.sitting.progress()
-    #     return form_class(**self.get_form_kwargs())
-
-    # def get_form_kwargs(self):
-    #     kwargs = super(QuizTake, self).get_form_kwargs()
-
-    #     return dict(kwargs, question=self.question ,my_ques = my_ques)
 
 
     answers = []
     def get_context_data(self, **kwargs):
         context = super(FreeTrial, self).get_context_data(**kwargs)
-        # print(self.quiz.get_questions())
         allquestion = self.quiz.get_questions()
         my_answers=[]
         d=[]
@@ -1460,15 +1277,9 @@ class FreeTrial(TemplateView):
             q['question'] = ques
             ques_c = MCQQuestion.objects.get(id = int(ques.id))
             ques_choices = [x for x in ques_c.get_answers_list()]
-            # q[ques.content]=ques_choices
-            # print(ques_choices)
             for choice in ques_choices:
                 my_answers.append(choice)
-            # print(q)
-                # q[ques.content]=choice[1]
             q['answers']=my_answers
-            # print(q)
-                # q.answers.append(choice[1])
             d.append(q)
 
         context['my_ques'] = d
@@ -1489,7 +1300,6 @@ class FreeTrial(TemplateView):
             'percent': per,
             'sitting': self.sitting,
 
-            #'previous': self.previous,
         }
 
         self.sitting.mark_quiz_complete()
@@ -1507,9 +1317,9 @@ def index(request):
         student = request.user
         print(student)
         sub=Student.objects.get(pk=student.id)
+        print(request.GET.get("ispaid"))
 
-
-        if sub.quiz_to_change != "nil":
+        if sub.quiz_to_change != "nil" and request.GET.get("ispaid") == "SUCCESS":
             temp1 = sub.quiz_to_change
             sq,st = temp1.split('@', 1)
 
@@ -1555,7 +1365,52 @@ def index(request):
 
             sub.quiz_to_change = 'nil'
             sub.save(update_fields=['quiz_to_change'])
+            messages.success(request, "Change slot successfully")
+        else:
+            sub.quiz_to_change = 'nil'
+            sub.save(update_fields=['quiz_to_change'])
+        if sub.quiz_to_change_finalexam != "nil" and request.GET.get("ispaid") == "SUCCESS":
+            temp1 = sub.quiz_to_change_finalexam
+            sq,st = temp1.split('@', 1)
 
+            print (sq)
+            print(st)
+            temp = sq
+            _,quiz = temp.split('_', 1)
+            print(quiz)
+
+            if ( quiz[2:]=='mathsolym'):
+                sub.mathtime_finalexam= st
+                sub.save(update_fields=['mathtime_finalexam'])
+
+
+            elif (quiz[2:]=='englisholym'):
+                sub.englishtime_finalexam= st
+                sub.save(update_fields=['englishtime_finalexam'])
+
+            elif (quiz[2:]=='scienceolym'):
+                sub.sciencetime_finalexam = st
+                sub.save(update_fields=['sciencetime_finalexam'])
+
+
+            elif (quiz[2:]=='generalolym'):
+                sub.gktime_finalexam= st
+                sub.save(update_fields=['gktime_finalexam'])
+
+            elif (quiz[2:]=='reasoningolym'):
+                sub.reasoningtime_finalexam= st
+                sub.save(update_fields=['reasoningtime_finalexam'])
+
+            elif (quiz[2:]=='cyberolym'):
+                sub.cybertime_finalexam= st
+                sub.save(update_fields=['cyberquiz','cybertime_finalexam'])
+
+            sub.quiz_to_change_finalexam = 'nil'
+            sub.save(update_fields=['quiz_to_change_finalexam'])
+            messages.success(request, "Change slot successfully")
+        else:
+            sub.quiz_to_change_finalexam = 'nil'
+            sub.save(update_fields=['quiz_to_change_finalexam'])
 
     return render(request, 'index.html', {})
 
@@ -1588,21 +1443,12 @@ def logout_user(request):
 
 from tablib import Dataset
 @permission_required('admin.can_add_log_entry')
-def paper(request):
-    # template="paper.html"
-    # prompt={
-    #     'order':'Order of CSV should be quiz_name,questions,option_1,option_2,option_3,option_4,correct'
-    # }
-
-    # if(request.method=='POST'):
-    #     return render(request,template,prompt)
+def paper(request): 
     if(request.method=='POST'):
         print("==========================================")
         csv_file=request.FILES['file']
         dataset= Dataset()
         data_set=dataset.load(csv_file.read(),format= 'xlsx')
-        #io_string=io.StringIO(data_set)
-        # next(io_string)
         print(data_set)
         for column in dataset:
 
@@ -1612,13 +1458,10 @@ def paper(request):
             stan = Standard.objects.filter(standard=column[11])
             print(stan[0])
             print(my)
-            # print(my[0].id)
             pap= MCQQuestion(
                 # id=column[0],
                 content=column[0],
                 category=my[0].category,
-                #quiz=my[0].title,
-                #explanation=column[3],
                 standard=stan[0],
                 answer_order= "content"
             )
@@ -1660,7 +1503,6 @@ def paper(request):
             four = Answer(question =pap , content = column[9] ,correct= is_corr)
             four.save()
 
-            # context={}
     return render(request,"paper.html")
 
 
@@ -1678,34 +1520,6 @@ def feedback(request):
 def samplepaper(request,sub,std):
     tem = 'sample'+sub+std+'.html'
     return render(request,tem)
-
-
-
-
-
-
-# def loginhandle(request):
-#     if(request.method=='POST'):
-#         username=request.POST['email']
-#         password=request.POST['pass']
-#         user=authenticate(username=username, password=password)
-#         print(user)
-#         if(user):
-#             if(user.is_active ):
-#                 login(request,user)
-#                 messages.success(request,"Successfully logged in")
-#                 return render(request,"loginhandle.html")
-
-#         else:
-#             messages.error(request,"User is not registered")
-
-#     return render(request,"loginhandle.html")
-
-
-# def logouthandle(request):
-# 	logout(request)
-# 	messages.success(request,"Successfully logged out")
-# 	return redirect('/')
 
 
 def awards(request):

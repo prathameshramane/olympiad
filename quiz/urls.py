@@ -32,11 +32,7 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("update_student/",views.update_student, name="update_student"),
                         path("bookslot/",views.bookslot, name="bookslot"),
                         path("changeslot/",views.changeslot, name="changeslot"),
-                        # path("subscriptions/doc_upload/" , view=views.doc_upload, name="doc_upload"),
-                        # path("loginhandle/",views.loginhandle, name="loginhandle"),
                         path("loginhandle/",views.login_user, name="loginhandle"),
-                        #path("loginhandle/subscriptions/", views.subscriptions, name="subscriptions"),
-                        # path("loginhandle/logouthandle/",views.logouthandle, name="logouthandle"),
                         path("loginhandle/logouthandle/",views.logout_user, name="logout"),
                         path('activate/<uidb64>/<token>/', views.ActivateAccount.as_view(), name='activate'),
                         path("contact/",views.contact, name="contact"),
@@ -53,13 +49,10 @@ urlpatterns = [         path('applyindividual/',view =  views.register, name="ap
                         path("response_changeslot/",view = views.response_changeslot , name="response_changeslot"),
 
                         path('pdf_download/<sub_order_id>/' ,view=views.DownloadPDF.as_view(), name='pdf_download'),
-                        # path
                         path('syllabus/<olympiad>/<std>',view=views.syllabus,name='syllabus'),
 
                          path("feedback/",view = views.feedback , name="feedback"),
                         url(regex=r'^$', view=index, name='index'),
-                        # url(regex=r'^login/$', view=login_user, name='login'),
-                        # url(regex=r'^logout/$', view=logout_user, name='logout'),
                        url(regex=r'^quizzes/$',
                            view= views.myquiz,
                            name='quiz_index'),

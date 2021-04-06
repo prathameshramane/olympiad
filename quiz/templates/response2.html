@@ -53,7 +53,7 @@
 	</div>
 	</div>
 	<center>
-		<a  href="{% url 'index' %}">Your payment is successful click on the link to enable the subscription for the Booked Slot</a>
+		<a  href="{% url 'index' %}?ispaid=SUCCESS" style="background-color: #36ab10;color: white;padding: 10px;border-radius: 6px;">Your payment is successful click here to change the slot</a>
 	</center>
 	{% else %}
 	<div class="container">
@@ -96,7 +96,7 @@
 	</div>
 	</div>
 	<center>
-		<a  href="{% url 'index' %}">Back to home</a>
+		<a  href="{% url 'index' %}?ispaid=FAILED" style="background-color: #e72929;color: white;padding: 10px;border-radius: 6px;">Back to home</a>
 	</center>
 	{% endif %}
 </body>

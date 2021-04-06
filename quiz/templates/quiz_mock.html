@@ -7,27 +7,27 @@
 <div class="d" style="background-color: #0007;"><br><br><br><br><br></div><br><br><br>
 <div class="container row">
 
-    {% if quiz_list %}
-	
-    <h2>{% trans "List of quizzes" %}</h2>
-		<table class="table table-bordered table-striped resp-table">
+	{% if quiz_list %}
 
-		  <thead>
+	<h2>{% trans "List of quizzes" %}</h2>
+	<table class="table table-bordered table-striped resp-table">
+
+		<thead>
 			<tr>
-			  <th>{% trans "Title" %}</th>
-			  <th>{% trans "Category" %}</th>
-			
-			  <th>{% trans "Give Exam" %}</th>
+				<th>{% trans "Title" %}</th>
+				<th>{% trans "Category" %}</th>
+
+				<th>{% trans "Give Exam" %}</th>
 			</tr>
-		  </thead>
+		</thead>
 
-		  <tbody>
+		<tbody>
 
-        {% for quiz in quiz_list %}
+			{% for quiz in quiz_list %}
 
 
 
-  			<tr>
+			<tr>
 				{% if quiz.category|slugify ==  "mathsolym" %}
 				<td>Mathematics Olympiad</td>
 				{% endif %}
@@ -46,23 +46,23 @@
 				{% if quiz.category|slugify ==  "reasoningolym" %}
 				<td>Reasoning Olympiad</td>
 				{% endif %}
-			  <td>Class {{ quiz.title|slice:"2:4" }}</td>
-			  
-			  <td>
-				<a href="{% url 'trial_quiz_start_page' slug=quiz.url %}">
-				  {% trans "View details" %}
-				</a>
+				<td>Class {{ quiz.title|slice:"2:4" }}</td>
+
+				<td>
+					<a href="{% url 'trial_quiz_start_page' slug=quiz.url %}">
+						{% trans "View details" %}
+					</a>
 			</tr>
 
-        {% endfor %}
-		  </tbody>
+			{% endfor %}
+		</tbody>
 
-		</table>
+	</table>
 
 	{% else %}
 
-    <h2>{% trans "There are no available quizzes" %}</h2>
+	<h2>{% trans "There are no available quizzes" %}</h2>
 
 	{% endif %}
-	</div><br><br>
+</div><br><br>
 {% endblock %}

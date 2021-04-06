@@ -8,9 +8,9 @@
 <ul>
   {% for cat in category_list %}
   <li>
-	<a href="{% url 'quiz_category_list_matching' category_name=cat.category %}">
-	  {{ cat.category }}
-	</a>
+    <a href="{% url 'quiz_category_list_matching' category_name=cat.category %}">
+      {{ cat.category }}
+    </a>
   </li>
   {% endfor %}
 </ul>

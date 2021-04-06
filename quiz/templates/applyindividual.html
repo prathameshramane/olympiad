@@ -3,8 +3,6 @@
 {% block body %}
 {% load static %}
 
-<body>
-</body>
 <style>
   body {
     background-color: lightgrey;
@@ -118,7 +116,7 @@
 
 
         <div class="col-md-1">
-          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-icon name="person-circle-outline" style="margin-bottom:10px"></ion-icon>
         </div>
         <div class="group col-md-5">
           <input type="text" name="first_name" id="first_name" class="form-control" required>
@@ -131,7 +129,7 @@
         </div>
 
         <div class="col-md-1">
-          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-icon name="person-circle-outline" style="margin-bottom:10px"></ion-icon>
         </div>
         <div class="group col-md-5">
           <input type="text" name="last_name" id="last_name" class="form-control" required>
@@ -144,7 +142,7 @@
         </div>
 
         <div class="col-md-1">
-          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-icon name="person-circle-outline" style="margin-bottom:10px"></ion-icon>
         </div>
         <div class="group col-md-5">
           <input type="text" name="parent_name" id="parent_name">
@@ -157,7 +155,7 @@
 
 
         <div class="col-md-1">
-          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-icon name="calendar-outline" style="margin-bottom:10px"></ion-icon>
         </div>
         <div class="group col-md-5">
           <label for="dob" class="form-label form-label-profile">Date of Birth *</label>
@@ -168,12 +166,12 @@
         </div>
 
         <div class="col-md-1">
-          <ion-icon name="call"></ion-icon>
-          </ion-icon>
+          <ion-icon name="call" style="margin-bottom:10px"></ion-icon>
+         
         </div>
         <div class="group col-md-5">
-          <label for="mobile_number" class="form-label">Mobile Number</label>
-          <input type="tel" name="mobile_number" id="mobile_number" class="form-control is-invalid" required>
+          <label for="mobile_number" class="form-label" style="margin-top:10px;">Mobile Number</label>
+          <input type="tel" name="mobile_number" id="mobile_number" class="form-control is-invalid"  required>
           <div class="invalid-feedback" style="font-size: 16px;">
             Please provide a valid Mobile Number.
           </div>
@@ -181,8 +179,8 @@
         <input type="hidden" name="number" id="number">
 
         <div class="col-md-1">
-          <ion-icon name="mail"></ion-icon>
-          </ion-icon>
+          <ion-icon name="mail" style="margin-bottom:10px"></ion-icon>
+          
         </div>
         <div class="group col-md-5">
           <input type="text" name="email" id="user_email" class="form-control" required>
@@ -199,8 +197,8 @@
 
 
         <div class="col-md-1">
-          <ion-icon name="location"></ion-icon>
-          </ion-icon>
+          <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+          
         </div>
         <div class="group col-md-5">
           <input type="text" name="address" id="address" required>
@@ -212,8 +210,8 @@
 
 
         <div class="col-md-1">
-          <ion-icon name="location"></ion-icon>
-          </ion-icon>
+          <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+         
         </div>
         <div class="group col-md-5">
           <input type="text" name="city" id="street" class="form-control" required>
@@ -228,8 +226,8 @@
 
 
         <div class="col-md-1">
-          <ion-icon name="location"></ion-icon>
-          </ion-icon>
+          <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+         
         </div>
         <div class="group col-md-5">
           <input type="text" name="state" id="state" class="form-control" required>
@@ -244,12 +242,12 @@
 
 
         <div class="col-md-1">
-          <ion-icon name="pencil"></ion-icon>
+          <ion-icon name="pencil" style="margin-bottom:10px"></ion-icon>
         </div>
         <div class="group col-md-5">
           {% load countries %}
           {% get_countries as countries %}
-          <select name="country" id="country" placeholder="Choose Your country" required>
+          <select name="country" id="country" placeholder="Choose Your country" style="display: flex;" required>
             {% for country in countries %}
             <option value="{{ country.code }}">{{ country.name }}</option>
             {% endfor %}
@@ -259,8 +257,8 @@
         </div>
 
         <div class="col-md-1">
-          <ion-icon name="location"></ion-icon>
-          </ion-icon>
+          <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+          
         </div>
         <div class="group col-md-5">
           <input name="pincode" id="pincode" type="text" class="form-control" required>
@@ -280,7 +278,7 @@
     </div><br>
     <div class="row">
       <div class="col-md-1">
-        <ion-icon name="school"></ion-icon>
+        <ion-icon name="school" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
         <input type="TEXT" name="school" id="school" required>
@@ -291,12 +289,12 @@
       </div>
 
       <div class="col-md-1">
-        <ion-icon name="pencil"></ion-icon>
+        <ion-icon name="pencil" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
         {% load countries %}
         {% get_countries as countries %}
-        <select name="school_country" id="country" placeholder="Choose Your country" required>
+        <select name="school_country" id="country" placeholder="Choose Your country" style="display: flex;" required>
           {% for country in countries %}
           <option value="{{ country.code }}">{{ country.name }}</option>
           {% endfor %}
@@ -306,8 +304,8 @@
       </div>
 
       <div class="col-md-1">
-        <ion-icon name="location"></ion-icon>
-        </ion-icon>
+        <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+       
       </div>
       <div class="group col-md-5">
         <input name="school_address" id="school_address" type="text" required>
@@ -317,8 +315,8 @@
       </div>
 
       <div class="col-md-1">
-        <ion-icon name="location"></ion-icon>
-        </ion-icon>
+        <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+        
       </div>
       <div class="group col-md-5">
         <input name="school_state" id="school_state" class="form-control" type="TEXT" required>
@@ -334,8 +332,8 @@
 
 
       <div class="col-md-1">
-        <ion-icon name="location"></ion-icon>
-        </ion-icon>
+        <ion-icon name="location" style="margin-bottom:10px"></ion-icon>
+       
       </div>
       <div class="group col-md-5">
         <input name="school_city" id="school_city" class="form-control" type="TEXT" required>
@@ -349,10 +347,10 @@
 
 
       <div class="col-md-1">
-        <ion-icon name="pencil"></ion-icon>
+        <ion-icon name="pencil" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
-        <select name="standard" id="standard" class="select-css">
+        <select name="standard" id="standard" class="select-css" style="display: flex;">
           <option value="01">Class 1</option>
           <option value="02">Class 2</option>
           <option value="03">Class 3</option>
@@ -377,7 +375,7 @@
     <div class="row">
 
       <div class="col-md-1">
-        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-icon name="person-circle-outline" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
         <input type="text" name="ref_code" id="ref_code">
@@ -387,7 +385,7 @@
       </div>
 
       <div class="col-md-1">
-        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-icon name="person-circle-outline" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
         <input type="text" name="username" id="username">
@@ -397,7 +395,7 @@
       </div>
 
       <div class="col-md-1">
-        <ion-icon name="lock-closed"></ion-icon>
+        <ion-icon name="lock-closed" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
         <input type="password" name="password" id="password" class="form-control" required>
@@ -407,7 +405,7 @@
       </div>
 
       <div class="col-md-1">
-        <ion-icon name="lock-closed"></ion-icon>
+        <ion-icon name="lock-closed" style="margin-bottom:10px"></ion-icon>
       </div>
       <div class="group col-md-5">
         <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" required>
@@ -451,7 +449,7 @@
     </div>
   </div><br>
   <div class="row">
-    <input type="checkbox" name="" id="checkbox" id="cbc" onchange="sub(this)">
+    <input type="checkbox" name="" id="checkbox" id="cbc" onchange="sub(this)" style="margin: 7px -8px;">
     <span class="check-label"> I acknowledge that I have read all the above instructions</span>
     <br><br>
   </div>

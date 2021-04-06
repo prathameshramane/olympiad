@@ -147,273 +147,231 @@
 
     <p>
 
-      {% comment %} {% for ques in my_ques %}
-      {{ ques }}
-
-
-      {% endfor %}
-
-      {% for my_answer in my_answers %}
-      {% for answer in my_answer %}
-      {{ answer.0 }}
-
-
-      {% endfor %}
-      {% endfor %} {% endcomment %}
-
-
-
-      {% comment %} {% if  my_list %}
-      <div style="float: right;">
-        {% trans "mylist" %}
-      </div>
-      {% endif %}
-
-    </p> {% endcomment %}
-
-    <div class="questions">
-      <!--Content-->
-      <div class="row content container-fluid" style="margin-bottom:0;padding:0;">
-        <!--left column containing instructions and timer-->
-        <div class="col-md-3">
-          <!--timer-->
-          <div class="rows container-fluid" id="timer">
-            Time remaining:<br />
-            <div class="progress" style="margin-top:3%;">
-              <div class="progress-bar progress-bar-striped" id="#bar" style="width:100%;">
-                1 : 00 : 00
+      <div class="questions">
+        <!--Content-->
+        <div class="row content container-fluid" style="margin-bottom:0;padding:0;">
+          <!--left column containing instructions and timer-->
+          <div class="col-md-3">
+            <!--timer-->
+            <div class="rows container-fluid" id="timer">
+              Time remaining:<br />
+              <div class="progress" style="margin-top:3%;">
+                <div class="progress-bar progress-bar-striped" id="#bar" style="width:100%;">
+                  1 : 00 : 00
+                </div>
               </div>
             </div>
+            <video id="videoElement" style="width: 220px; background-color: #222;color: white;">Allow Camera
+              Access</video>
           </div>
-          <video id="videoElement" style="width: 220px; background-color: #222;color: white;">Allow Camera
-            Access</video>
-        </div>
 
-        <script>
-          var video = document.querySelector("#videoElement");
-          //Core
-          window.navigator.mediaDevices.getUserMedia({
-              video: true
-            })
-            .then(stream => {
-              video.srcObject = stream;
-              video.onloadedmetadata = (e) => {
-                video.play();
-              };
-            })
-            .catch(() => {
-              alert('You have give browser the permission to run Webcam and mic ;( ');
+          <script>
+            var video = document.querySelector("#videoElement");
+            //Core
+            window.navigator.mediaDevices.getUserMedia({
+                video: true
+              })
+              .then(stream => {
+                video.srcObject = stream;
+                video.onloadedmetadata = (e) => {
+                  video.play();
+                };
+              })
+              .catch(() => {
+                alert('You have give browser the permission to run Webcam and mic ;( ');
+              });
+          </script>
+
+          <script>
+            //for slide up and down instructions
+            $(document).ready(function () {
+              $("#marking").mousedown(function () {
+                $("#marklist").slideToggle(1000);
+              });
+              $("#general").mousedown(function () {
+                $("#generallist").slideToggle(1000);
+              });
+              $("#gridinstruction").mousedown(function () {
+                $("#gridlist").slideToggle(1000);
+              });
             });
-        </script>
+          </script>
+          <div class="col-md-6">
+            <form class="form-horizontal" method="POST">
 
-        <script>
-          //for slide up and down instructions
-          $(document).ready(function () {
-            $("#marking").mousedown(function () {
-              $("#marklist").slideToggle(1000);
-            });
-            $("#general").mousedown(function () {
-              $("#generallist").slideToggle(1000);
-            });
-            $("#gridinstruction").mousedown(function () {
-              $("#gridlist").slideToggle(1000);
-            });
-          });
-        </script>
-        <div class="col-md-6">
-          <form class="form-horizontal" method="POST">
+              {% for i in my_ques %}
 
-            {% for i in my_ques %}
-
-            {% ifequal forloop.counter 1 %}
-            <div class="question-no show-question" id={{forloop.counter}}>
-              {% if i %}
+              {% ifequal forloop.counter 1 %}
+              <div class="question-no show-question" id="{{forloop.counter}}">
+                {% if i %}
 
 
-              {% comment %} <p>
-                <small class="muted">{% trans "Question category" %}:</small>
-                <strong>{{ question.category }}</strong>
-              </p> {% endcomment %}
+                {{ forloop.counter  }}. )
+                {% if i.question.figure %}
+                <img src="{{ i.question.figure.url }}" />
+                <br>
+                {% endif %}
+                {% if i.question.img1 %}
+                <img src="{{ i.question.img1.url }}" />
+                {% endif %}
 
-              {% comment %} <p class="question lead" style="font-size: 2rem;">{{ question.content }}</p>
-              {% endcomment %}
+                {% if i.question.img2 %}
+                <img src="{{ i.question.img2.url }}" />
+                <br>
 
-              {{ forloop.counter  }}. )
-              {% if i.question.figure %}
-              {% comment %} {{ i.question.figure }} {% endcomment %}
-              <img src="{{ i.question.figure.url }}" />
-              <br>
-              {% endif %}
-              {% if i.question.img1 %}
-              <img src="{{ i.question.img1.url }}" />
-              {% endif %}
+                {% endif %}
 
-              {% if i.question.img2 %}
-              <img src="{{ i.question.img2.url }}" />
-              <br>
+                {% if i.question.img3 %}
+                <img src="{{ i.question.img3.url }}" />
+                <br>
 
-              {% endif %}
+                {% endif %}
 
-              {% if i.question.img3 %}
-              <img src="{{ i.question.img3.url }}" />
-              <br>
+                {% if i.question.img4 %}
+                <img src="{{ i.question.img4.url }}" />
+                <br>
 
-              {% endif %}
+                {% endif %}
 
-              {% if i.question.img4 %}
-              <img src="{{ i.question.img4.url }}" />
-              <br>
+                <div class="radio">
+                  <ul class="list-unstyled">{% csrf_token %}
+                    <p></p>
+                    <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
+                    <br>
+                    {% for ans in i.answers %}
+                    <li><label style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}"
+                          name={{i.question.id}}
+                          onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label>
+                    </li>
 
-              {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
 
-              <div class="radio">
-                <ul class="list-unstyled">{% csrf_token %}
-                  <p></p>
-                  <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
-                  <br>
-                  {% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
-                  {% for ans in i.answers %}
-                  <li><label style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}"
-                        name={{i.question.id}} onchange="setAnswered('{{i.question.id}}');"></input>{{ ans.1 }}</label>
-                  </li>
+              {% else %}
+              <div class="question-no" id="{{forloop.counter}}">
+                {% if i %}
+                {{ forloop.counter  }}. )
+                <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% if i.question.figure %}
+                    <img src="{{ i.question.figure.url }}" class="question-img" />
+                    <br>
+                    {% endif %}
+                  </div><br>
+                  <div class="col-md-6">
+                    {% if i.question.img1 %}
+                    <img src="{{ i.question.img1.url }} " class="question-img" />
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                    {% if i.question.img2 %}
+                    <img src="{{ i.question.img2.url }} " class="question-img" />
+                    {% endif %}
+                  </div>
 
-                  {% endfor %}
+                  <div class="col-md-6">
+                    {% if i.question.img3 %}
+                    <img src="{{ i.question.img3.url }} " class="question-img" />
+                    {% endif %}
+                  </div>
+
+                  <div class="col-md-6">
+                    {% if i.question.img4 %}
+                    <img src="{{ i.question.img4.url }}" class="question-img" />
+                    {% endif %}
+                  </div>
+
+                </div>
+                <div class="radio">
+                  <ul class="list-unstyled">{% csrf_token %}
+                    <p></p>
+                    <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
+                    <br>
+                    {% for ans in i.answers %}
+                    <li><label style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}"
+                          name={{i.question.id}}
+                          onchange="setAnswered('table{{forloop.counter}}');"></input>{{ ans.1 }}</label></li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+                {% endif %}
+              </div>
+              {% endifequal %}
+
+              {% endfor %}
+              <center>
+                <ul class="pager row">
+                  <div class="col-sm-3">
+                    <li class="previous pgr" id="prev"><a
+                        onclick="(counter>1)?showQuestion(--counter):showQuestion(counter);">Previous</a></li>
+                  </div>
+                  <div class="col-md-6"></div>
+                  <div class="col-sm-3">
+                    <li class="next pgr" id="next"><a
+                        onclick="(counter<{{q_length}})?showQuestion(++counter):showQuestion(counter);">Next</a></li>
+                  </div>
                 </ul>
-              </div>
-              {% endif %}
-            </div>
+              </center>
 
-            {% else %}
-            <div class="question-no" id="{{forloop.counter}}">
-              {% if i %}
-
-
-              {% comment %} <p>
-                <small class="muted">{% trans "Question category" %}:</small>
-                <strong>{{ question.category }}</strong>
-              </p> {% endcomment %}
-
-              {% comment %} <p class="question lead" style="font-size: 2rem;">{{ question.content }}</p>
-              {% endcomment %}
-              {{ forloop.counter  }}. )
-              <br>
-              <div class="row">
-                <div class="col-md-12">
-                  {% if i.question.figure %}
-                  {% comment %} {{ i.question.figure }} {% endcomment %}
-                  <img src="{{ i.question.figure.url }}" class="question-img" />
-                  <br>
-                  {% endif %}
-                </div><br>
-                <div class="col-md-6">
-                  {% if i.question.img1 %}
-                  <img src="{{ i.question.img1.url }} " class="question-img" />
-                  {% endif %}
-                </div>
-                <div class="col-md-6">
-                  {% if i.question.img2 %}
-                  <img src="{{ i.question.img2.url }} " class="question-img" />
-                  {% endif %}
-                </div>
-
-                <div class="col-md-6">
-                  {% if i.question.img3 %}
-                  <img src="{{ i.question.img3.url }} " class="question-img" />
-                  {% endif %}
-                </div>
-
-                <div class="col-md-6">
-                  {% if i.question.img4 %}
-                  <img src="{{ i.question.img4.url }}" class="question-img" />
-                  {% endif %}
-                </div>
-
-              </div>
-              <div class="radio">
-                <ul class="list-unstyled">{% csrf_token %}
-                  <p></p>
-                  <label style="font-size:20px" for="{{i.question}}">{{i.question}} </label>
-                  <br>
-                  {% comment %} <p>{{ i.question.id }}</p> {% endcomment %}
-                  {% for ans in i.answers %}
-                  <li><label style="font-size: 1.2rem;"><input type="radio" id="question" value="{{ ans.0 }}"
-                        name={{forloop.parentloop.counter}}
-                        onchange="setAnswered('table{{forloop.counter}}');"></input>{{ ans.1 }}</label></li>
-                  {% endfor %}
-                </ul>
-              </div>
-
-              {% endif %}
-            </div>
-            {% endifequal %}
-
-            {% endfor %}
-            <center>
-              <ul class="pager row">
+              <div class="row container-fluid buttons" style="margin-bottom:0;">
                 <div class="col-sm-3">
-                  <li class="previous pgr" id="prev"><a
-                      onclick="(counter>1)?showQuestion(--counter):showQuestion(counter);">Previous</a></li>
+                  <center>
+                    <button id="mark" type="button" class="btn btn-info" onclick="setMarked();"
+                      style="box-shadow: 2px 2px 4px #0004;color: #fff;background-color: #f04124;border-color: #f04124;">
+                      Mark
+                    </button>
+                  </center>
                 </div>
-                <div class="col-md-6"></div>
                 <div class="col-sm-3">
-                  <li class="next pgr" id="next"><a
-                      onclick="(counter<{{q_length}})?showQuestion(++counter):showQuestion(counter);">Next</a></li>
+                  <center>
+                    <button id="unmark" type="button" class="btn btn-info" onclick="unmarkbtn();"
+                      style="box-shadow: 2px 2px 4px #0004;color: #fff;background-color: #f04124;border-color: #f04124;">
+                      Unmark
+                    </button>
+                  </center>
                 </div>
-              </ul>
-            </center>
+                <div class="col-sm-3">
+                  <center>
+                    <button id="undo" type="button" class="btn btn-warning" onclick="undobtn();" style="box-shadow: 2px 2px 4px #0004;color: #ffffff;
+    background-color: #85375d;
+    border-color: #ffc107;">
+                      Undo
+                    </button>
+                  </center>
+                </div>
+                <div class="col-md-3">
+                  <center>
+                    {% if progress.0|add:1 == progress.1 %}
+                    <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;color: #ffffff;
+    background-color: #85375d;
+    border-color: #ffc107;">
+                    {% else %}
+                    <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;color: #ffffff;
+    background-color: #85375d;
+    border-color: #ffc107;">
+                    {% endif %}
+                  </center>
+                </div>
+              </div>
+            </form>
+          </div>
 
-            <div class="row container-fluid buttons" style="margin-bottom:0;">
-              <div class="col-sm-3">
-                <center>
-                  <button id="mark" type="button" class="btn btn-info" onclick="setMarked();" style="box-shadow: 2px 2px 4px #0004;color: #fff;background-color: #f04124;border-color: #f04124;">
-                    Mark
-                  </button>
-                </center>
+          <div class="col-md-3 question-grid" style="margin:0;">
+            <div class="row">
+              {% for i in my_ques %}
+              <div class="col-md-2 td" id='table{{forloop.counter}}' onclick="showQuestion('{{forloop.counter}}');">
+                {{ forloop.counter }}
               </div>
-              <div class="col-sm-3">
-                <center>
-                  <button id="unmark" type="button" class="btn btn-info" onclick="unmarkbtn();" style="box-shadow: 2px 2px 4px #0004;color: #fff;background-color: #f04124;border-color: #f04124;">
-                    Unmark
-                  </button>
-                </center>
-              </div>
-              <div class="col-sm-3">
-                <center>
-                  <button id="undo" type="button" class="btn btn-warning" onclick="undobtn();" style="box-shadow: 2px 2px 4px #0004;color: #ffffff;
-    background-color: #85375d;
-    border-color: #ffc107;">
-                    Undo
-                  </button>
-                </center>
-              </div>
-              <div class="col-md-3">
-                <center>
-                  {% if progress.0|add:1 == progress.1 %}
-                  <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;color: #ffffff;
-    background-color: #85375d;
-    border-color: #ffc107;">
-                  {% else %}
-                  <input type="submit" value={% trans "Submit" %} class="btn btn-warning" style="padding: 7px 30px 7px 30px;border-radius: 5px; box-shadow: 2px 2px 4px #0004;color: #ffffff;
-    background-color: #85375d;
-    border-color: #ffc107;">
-                  {% endif %}
-                </center>
-              </div>
+              {% endfor %}
             </div>
-          </form>
-        </div>
-
-        <div class="col-md-3 question-grid" style="margin:0;">
-          <div class="row">
-            {% for i in my_ques %}
-            <div class="col-md-2 td" id='table{{forloop.counter}}' onclick="showQuestion('{{forloop.counter}}');">
-              {{ forloop.counter }}
-            </div>
-            {% endfor %}
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 

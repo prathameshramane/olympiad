@@ -2,298 +2,485 @@
 {% block body %}
 <div class="d" style="background-color: #0007;"><br><br><br><br></div>
 <div class="show-book-modal book-modal" id="book-modal">
-    <center>
-        <h2>Book Slot</h2>
-    </center>
-<div class="row">
+  <center>
+    <h2>Book Slot</h2>
+  </center>
+  <div class="row">
     <p><b>1. All the timings are in Indian Standard Time (IST).</b></p>
-</div>
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col-md-6">
-        Select Slot :
+      Select Slot :
     </div>
     <div class="col-md-6"></div><br><br>
-</div>
-<form  action="" method="post">
-  {% csrf_token %}
-    {% if request.user.scienceolym %}
-<div class="row">
-
-
-
-  <div class="col-md-6">
-  <p>ISSO LEVEL 1:</p>
   </div>
-    <div class="col-md-6">
+  <form action="" method="post">
+    {% csrf_token %}
+    {% if request.user.scienceolym %}
 
-
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISSO LEVEL 1: (Mock Test)</p>
+      </div>
+      <div class="col-md-6">
         <select name="scienceslot" id="isgko" class="select-css">
           <option value="nil">SELECT</option>
-            <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 11:00 AM - 12:00 PM">04 Apr, 2021 11:00 AM - 12:00 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 12:15 PM - 01:15 PM">04 Apr, 2021 12:15 PM - 01:15 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 01:30 PM - 02:30 PM">04 Apr, 2021 01:30 PM - 02:30 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 02:45 PM - 03:45 PM">04 Apr, 2021 02:45 PM - 03:45 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 04:00 PM - 05:00 PM">04 Apr, 2021 04:00 PM - 05:00 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 05:15 PM - 06:15 PM">04 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 11:00 AM - 12:00 PM">04 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 12:15 PM - 01:15 PM">04 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 01:30 PM - 02:30 PM">04 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 02:45 PM - 03:45 PM">04 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 04:00 PM - 05:00 PM">04 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Apr, 2021 05:15 PM - 06:15 PM">04 Apr, 2021 05:15
+            PM - 06:15 PM</option>
 
-            <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 11:00 AM - 12:00 PM">24 Apr, 2021 11:00 AM - 12:00 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 12:15 PM - 01:15 PM">24 Apr, 2021 12:15 PM - 01:15 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 01:30 PM - 02:30 PM">24 Apr, 2021 01:30 PM - 02:30 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 02:45 PM - 03:45 PM">24 Apr, 2021 02:45 PM - 03:45 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 04:00 PM - 05:00 PM">24 Apr, 2021 04:00 PM - 05:00 PM</option>
-            <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 05:15 PM - 06:15 PM">24 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 11:00 AM - 12:00 PM">24 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 12:15 PM - 01:15 PM">24 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 01:30 PM - 02:30 PM">24 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 02:45 PM - 03:45 PM">24 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 04:00 PM - 05:00 PM">24 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Apr, 2021 05:15 PM - 06:15 PM">24 Apr, 2021 05:15
+            PM - 06:15 PM</option>
         </select>
       </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISSO LEVEL 1: (Final Exam)</p>
+      </div>
+      <div class="col-md-6">
+        <select name="scienceslot_finalexam" id="isgko" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Jul, 2021 11:00 AM - 12:00 PM">04 Jul, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Jul, 2021 12:15 PM - 01:15 PM">04 Jul, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Jul, 2021 01:30 PM - 02:30 PM">04 Jul, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Jul, 2021 02:45 PM - 03:45 PM">04 Jul, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Jul, 2021 04:00 PM - 05:00 PM">04 Jul, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@04 Jul, 2021 05:15 PM - 06:15 PM">04 Jul, 2021 05:15
+            PM - 06:15 PM</option>
 
-</div>
-{% endif %}
-{% if request.user.englisholym %}
+          <option value="1_{{ request.user.standard }}scienceolym@17 Jul, 2021 11:00 AM - 12:00 PM">17 Jul, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@17 Jul, 2021 12:15 PM - 01:15 PM">17 Jul, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@17 Jul, 2021 01:30 PM - 02:30 PM">17 Jul, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@17 Jul, 2021 02:45 PM - 03:45 PM">17 Jul, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@17 Jul, 2021 04:00 PM - 05:00 PM">17 Jul, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@17 Jul, 2021 05:15 PM - 06:15 PM">17 Jul, 2021 05:15
+            PM - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+    {% endif %}
+    {% if request.user.englisholym %}
 
-      <div class="row">
-
-        <div class="col-md-6">
-        <p>ISEO LEVEL 1:</p>
-        </div>
-        <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISEO LEVEL 1: (Mock Test)</p>
+      </div>
+      <div class="col-md-6">
         <select name="englishslot" id="iseo" class="select-css">
           <option value="nil">SELECT</option>
-          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 11:00 AM - 12:00 PM">06 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 12:15 PM - 01:15 PM">06 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 01:30 PM - 02:30 PM">06 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 02:45 PM - 03:45 PM">06 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 04:00 PM - 05:00 PM">06 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 05:15 PM - 06:15 PM">06 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 11:00 AM - 12:00 PM">06 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 12:15 PM - 01:15 PM">06 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 01:30 PM - 02:30 PM">06 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 02:45 PM - 03:45 PM">06 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 04:00 PM - 05:00 PM">06 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@06 Apr, 2021 05:15 PM - 06:15 PM">06 Apr, 2021 05:15
+            PM - 06:15 PM</option>
 
-          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 11:00 AM - 12:00 PM">20 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 12:15 PM - 01:15 PM">20 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 01:30 PM - 02:30 PM">20 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 02:45 PM - 03:45 PM">20 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 04:00 PM - 05:00 PM">20 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 05:15 PM - 06:15 PM">20 Apr, 2021 05:15 PM - 06:15 PM</option>
-
+          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 11:00 AM - 12:00 PM">20 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 12:15 PM - 01:15 PM">20 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 01:30 PM - 02:30 PM">20 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 02:45 PM - 03:45 PM">20 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 04:00 PM - 05:00 PM">20 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@20 Apr, 2021 05:15 PM - 06:15 PM">20 Apr, 2021 05:15
+            PM - 06:15 PM</option>
         </select>
       </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISEO LEVEL 1: (Final Exam)</p>
+      </div>
+      <div class="col-md-6">
+        <select name="englishslot_finalexam" id="iseo" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}englisholym@10 Jul, 2021 11:00 AM - 12:00 PM">10 Jul, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@10 Jul, 2021 12:15 PM - 01:15 PM">10 Jul, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@10 Jul, 2021 01:30 PM - 02:30 PM">10 Jul, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@10 Jul, 2021 02:45 PM - 03:45 PM">10 Jul, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@10 Jul, 2021 04:00 PM - 05:00 PM">10 Jul, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@10 Jul, 2021 05:15 PM - 06:15 PM">10 Jul, 2021 05:15
+            PM - 06:15 PM</option>
 
-</div>
-{% endif %}
-{% if request.user.generalolym %}
+          <option value="1_{{ request.user.standard }}englisholym@18 Jul, 2021 11:00 AM - 12:00 PM">18 Jul, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@18 Jul, 2021 12:15 PM - 01:15 PM">18 Jul, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@18 Jul, 2021 01:30 PM - 02:30 PM">18 Jul, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@18 Jul, 2021 02:45 PM - 03:45 PM">18 Jul, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@18 Jul, 2021 04:00 PM - 05:00 PM">18 Jul, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}englisholym@18 Jul, 2021 05:15 PM - 06:15 PM">18 Jul, 2021 05:15
+            PM - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+    {% endif %}
+    {% if request.user.generalolym %}
 
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISGKO LEVEL 1:</p>
-        </div>
-        <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISGKO LEVEL 1: (Mock Test)</p>
+      </div>
+      <div class="col-md-6">
         <select name="gkslot" id="isso" class="select-css">
           <option value="nil">SELECT</option>
 
-          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 11:00 AM - 12:00 PM">14 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 12:15 PM - 01:15 PM">14 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 01:30 PM - 02:30 PM">14 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}scienceolym@14 Apr, 2021 02:45 PM - 03:45 PM">14 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 04:00 PM - 05:00 PM">14 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 05:15 PM - 06:15 PM">14 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 11:00 AM - 12:00 PM">14 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 12:15 PM - 01:15 PM">14 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 01:30 PM - 02:30 PM">14 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@14 Apr, 2021 02:45 PM - 03:45 PM">14 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 04:00 PM - 05:00 PM">14 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@14 Apr, 2021 05:15 PM - 06:15 PM">14 Apr, 2021 05:15
+            PM - 06:15 PM</option>
 
-          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 11:00 AM - 12:00 PM">26 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 12:15 PM - 01:15 PM">26 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 01:30 PM - 02:30 PM">26 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 02:45 PM - 03:45 PM">26 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 04:00 PM - 05:00 PM">26 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 05:15 PM - 06:15 PM">26 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 11:00 AM - 12:00 PM">26 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 12:15 PM - 01:15 PM">26 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 01:30 PM - 02:30 PM">26 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 02:45 PM - 03:45 PM">26 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 04:00 PM - 05:00 PM">26 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@26 Apr, 2021 05:15 PM - 06:15 PM">26 Apr, 2021 05:15
+            PM - 06:15 PM</option>
         </select>
       </div>
-      </div>
-      {% endif %}
-      {% if request.user.mathsolym %}
+    </div>
 
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISMO LEVEL 1:</p>
-        </div>
-        <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISGKO LEVEL 1: (Final Exam)</p>
+      </div>
+      <div class="col-md-6">
+        <select name="gkslot_finalexam" id="isso" class="select-css">
+          <option value="nil">SELECT</option>
+
+          <option value="1_{{ request.user.standard }}generalolym@24 Jul, 2021 11:00 AM - 12:00 PM">24 Jul, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@24 Jul, 2021 12:15 PM - 01:15 PM">24 Jul, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@24 Jul, 2021 01:30 PM - 02:30 PM">24 Jul, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}scienceolym@24 Jul, 2021 02:45 PM - 03:45 PM">24 Jul, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@24 Jul, 2021 04:00 PM - 05:00 PM">24 Jul, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@24 Jul, 2021 05:15 PM - 06:15 PM">24 Jul, 2021 05:15
+            PM - 06:15 PM</option>
+
+          <option value="1_{{ request.user.standard }}generalolym@01 Aug, 2021 11:00 AM - 12:00 PM">01 Aug, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@01 Aug, 2021 12:15 PM - 01:15 PM">01 Aug, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@01 Aug, 2021 01:30 PM - 02:30 PM">01 Aug, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@01 Aug, 2021 02:45 PM - 03:45 PM">01 Aug, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@01 Aug, 2021 04:00 PM - 05:00 PM">01 Aug, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}generalolym@01 Aug, 2021 05:15 PM - 06:15 PM">01 Aug, 2021 05:15
+            PM - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+    {% endif %}
+    {% if request.user.mathsolym %}
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISMO LEVEL 1: (Mock Test)</p>
+      </div>
+      <div class="col-md-6">
         <select name="mathslot" id="ismo" class="select-css">
           <option value="nil">SELECT</option>
-          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 11:00 AM - 12:00 PM">19 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 12:15 PM - 01:15 PM">19 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 01:30 PM - 02:30 PM">19 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 02:45 PM - 03:45 PM">19 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 04:00 PM - 05:00 PM">19 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 05:15 PM - 06:15 PM">19 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 11:00 AM - 12:00 PM">19 Apr, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 12:15 PM - 01:15 PM">19 Apr, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 01:30 PM - 02:30 PM">19 Apr, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 02:45 PM - 03:45 PM">19 Apr, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 04:00 PM - 05:00 PM">19 Apr, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@19 Apr, 2021 05:15 PM - 06:15 PM">19 Apr, 2021 05:15 PM
+            - 06:15 PM</option>
 
 
-          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 11:00 AM - 12:00 PM">28 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 12:15 PM - 01:15 PM">28 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 01:30 PM - 02:30 PM">28 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 02:45 PM - 03:45 PM">28 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 04:00 PM - 05:00 PM">28 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 05:15 PM - 06:15 PM">28 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 11:00 AM - 12:00 PM">28 Apr, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 12:15 PM - 01:15 PM">28 Apr, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 01:30 PM - 02:30 PM">28 Apr, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 02:45 PM - 03:45 PM">28 Apr, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 04:00 PM - 05:00 PM">28 Apr, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@28 Apr, 2021 05:15 PM - 06:15 PM">28 Apr, 2021 05:15 PM
+            - 06:15 PM</option>
         </select>
       </div>
-      </div>
-      {% endif %}
-      {% if request.user.cyberolym %}
+    </div>
 
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISCO LEVEL 1:</p>
-        </div>
-        <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISMO LEVEL 1: (Final Exam)</p>
+      </div>
+      <div class="col-md-6">
+        <select name="mathslot_finalexam" id="ismo" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}mathsolym@03 Jul, 2021 11:00 AM - 12:00 PM">03 Jul, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@03 Jul, 2021 12:15 PM - 01:15 PM">03 Jul, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@03 Jul, 2021 01:30 PM - 02:30 PM">03 Jul, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@03 Jul, 2021 02:45 PM - 03:45 PM">03 Jul, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@03 Jul, 2021 04:00 PM - 05:00 PM">03 Jul, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@03 Jul, 2021 05:15 PM - 06:15 PM">03 Jul, 2021 05:15 PM
+            - 06:15 PM</option>
+
+
+          <option value="1_{{ request.user.standard }}mathsolym@25 Jul, 2021 11:00 AM - 12:00 PM">25 Jul, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@25 Jul, 2021 12:15 PM - 01:15 PM">25 Jul, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@25 Jul, 2021 01:30 PM - 02:30 PM">25 Jul, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@25 Jul, 2021 02:45 PM - 03:45 PM">25 Jul, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@25 Jul, 2021 04:00 PM - 05:00 PM">25 Jul, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}mathsolym@25 Jul, 2021 05:15 PM - 06:15 PM">25 Jul, 2021 05:15 PM
+            - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+    {% endif %}
+    {% if request.user.cyberolym %}
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISCO LEVEL 1: (Mock Test)</p>
+      </div>
+      <div class="col-md-6">
         <select name="cyberslot" id="isco" class="select-css">
           <option value="nil">SELECT</option>
-          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 11:00 AM - 12:00 PM">05 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 12:15 PM - 01:15 PM">05 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 01:30 PM - 02:30 PM">05 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 02:45 PM - 03:45 PM">05 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 04:00 PM - 05:00 PM">05 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 05:15 PM - 06:15 PM">05 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 11:00 AM - 12:00 PM">05 Apr, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 12:15 PM - 01:15 PM">05 Apr, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 01:30 PM - 02:30 PM">05 Apr, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 02:45 PM - 03:45 PM">05 Apr, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 04:00 PM - 05:00 PM">05 Apr, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@05 Apr, 2021 05:15 PM - 06:15 PM">05 Apr, 2021 05:15 PM
+            - 06:15 PM</option>
 
 
-          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 11:00 AM - 12:00 PM">23 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 12:15 PM - 01:15 PM">23 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 01:30 PM - 02:30 PM">23 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 02:45 PM - 03:45 PM">23 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 04:00 PM - 05:00 PM">23 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 05:15 PM - 06:15 PM">23 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 11:00 AM - 12:00 PM">23 Apr, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 12:15 PM - 01:15 PM">23 Apr, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 01:30 PM - 02:30 PM">23 Apr, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 02:45 PM - 03:45 PM">23 Apr, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 04:00 PM - 05:00 PM">23 Apr, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@23 Apr, 2021 05:15 PM - 06:15 PM">23 Apr, 2021 05:15 PM
+            - 06:15 PM</option>
         </select>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISCO LEVEL 1: (Final Exam)</p>
       </div>
-      {% endif %}
+      <div class="col-md-6">
+        <select name="cyberslot_finalexam" id="isco" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}cyberolym@26 Jun, 2021 11:00 AM - 12:00 PM">26 Jun, 2021 11:00 AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@26 Jun, 2021 12:15 PM - 01:15 PM">26 Jun, 2021 12:15 PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@26 Jun, 2021 01:30 PM - 02:30 PM">26 Jun, 2021 01:30 PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@26 Jun, 2021 02:45 PM - 03:45 PM">26 Jun, 2021 02:45 PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@26 Jun, 2021 04:00 PM - 05:00 PM">26 Jun, 2021 04:00 PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@26 Jun, 2021 05:15 PM - 06:15 PM">26 Jun, 2021 05:15 PM
+            - 06:15 PM</option>
 
-      {% if request.user.reasoningolym %}
 
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISCTO LEVEL 1:</p>
-        </div>
-        <div class="col-md-6">
+          <option value="1_{{ request.user.standard }}cyberolym@11 July, 2021 11:00 AM - 12:00 PM">11 July, 2021 11:00
+            AM
+            - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@11 July, 2021 12:15 PM - 01:15 PM">11 July, 2021 12:15
+            PM
+            - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@11 July, 2021 01:30 PM - 02:30 PM">11 July, 2021 01:30
+            PM
+            - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@11 July, 2021 02:45 PM - 03:45 PM">11 July, 2021 02:45
+            PM
+            - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@11 July, 2021 04:00 PM - 05:00 PM">11 July, 2021 04:00
+            PM
+            - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}cyberolym@11 July, 2021 05:15 PM - 06:15 PM">11 July, 2021 05:15
+            PM
+            - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if request.user.reasoningolym %}
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISCTO LEVEL 1: (Mock Test)</p>
+      </div>
+      <div class="col-md-6">
         <select name="reasoningslot" id="iscto" class="select-css">
           <option value="nil">SELECT</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 11:00 AM - 12:00 PM">16 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 12:15 PM - 01:15 PM">16 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 01:30 PM - 02:30 PM">16 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 02:45 PM - 03:45 PM">16 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 04:00 PM - 05:00 PM">16 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 05:15 PM - 06:15 PM">16 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 11:00 AM - 12:00 PM">16 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 12:15 PM - 01:15 PM">16 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 01:30 PM - 02:30 PM">16 Apr, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 02:45 PM - 03:45 PM">16 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 04:00 PM - 05:00 PM">16 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@16 Apr, 2021 05:15 PM - 06:15 PM">16 Apr, 2021 05:15
+            PM - 06:15 PM</option>
 
-          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 11:00 AM - 12:00 PM">27 Apr, 2021 11:00 AM - 12:00 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 12:15 PM - 01:15 PM">27 Apr, 2021 12:15 PM - 01:15 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@>27 Apr, 2021 01:30 PM - 02:30 PM">27 Apr, 2021 01:30 PM - 02:30 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 02:45 PM - 03:45 PM">27 Apr, 2021 02:45 PM - 03:45 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 04:00 PM - 05:00 PM">27 Apr, 2021 04:00 PM - 05:00 PM</option>
-          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 05:15 PM - 06:15 PM">27 Apr, 2021 05:15 PM - 06:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 11:00 AM - 12:00 PM">27 Apr, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 12:15 PM - 01:15 PM">27 Apr, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@>27 Apr, 2021 01:30 PM - 02:30 PM">27 Apr, 2021
+            01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 02:45 PM - 03:45 PM">27 Apr, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 04:00 PM - 05:00 PM">27 Apr, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Apr, 2021 05:15 PM - 06:15 PM">27 Apr, 2021 05:15
+            PM - 06:15 PM</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>ISCTO LEVEL 1: (Final Exam)</p>
+      </div>
+      <div class="col-md-6">
+        <select name="reasoningslot_finalexam" id="iscto" class="select-css">
+          <option value="nil">SELECT</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Jun, 2021 11:00 AM - 12:00 PM">27 Jun, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Jun, 2021 12:15 PM - 01:15 PM">27 Jun, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Jun, 2021 01:30 PM - 02:30 PM">27 Jun, 2021 01:30
+            PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Jun, 2021 02:45 PM - 03:45 PM">27 Jun, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Jun, 2021 04:00 PM - 05:00 PM">27 Jun, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@27 Jun, 2021 05:15 PM - 06:15 PM">27 Jun, 2021 05:15
+            PM - 06:15 PM</option>
+
+          <option value="1_{{ request.user.standard }}reasoningolym@31 Jul, 2021 11:00 AM - 12:00 PM">31 Jul, 2021 11:00
+            AM - 12:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@31 Jul, 2021 12:15 PM - 01:15 PM">31 Jul, 2021 12:15
+            PM - 01:15 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@>31 Jul, 2021 01:30 PM - 02:30 PM">31 Jul, 2021
+            01:30 PM - 02:30 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@31 Jul, 2021 02:45 PM - 03:45 PM">31 Jul, 2021 02:45
+            PM - 03:45 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@31 Jul, 2021 04:00 PM - 05:00 PM">31 Jul, 2021 04:00
+            PM - 05:00 PM</option>
+          <option value="1_{{ request.user.standard }}reasoningolym@31 Jul, 2021 05:15 PM - 06:15 PM">31 Jul, 2021 05:15
+            PM - 06:15 PM</option>
         </select>
       </div>
     </div>
     {% endif %}
 
     <center>
-       <input type="submit" value='BOOK' class="review-btn">
+      <input type="submit" value='BOOK' class="review-btn">
     </center>
 
-    </form>
-    {% comment %}
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISGKO LEVEL 2:</p>
-        </div>
-        <div class="col-md-6">
-        <select name="" id="isgko2" class="select-css">
-          <option value="25 Jan, 2021 11:00:00">25 Jan, 2021 11:00 AM - 12:00 PM</option>
-          <option value="25 Jan, 2021 12:15:00">25 Jan, 2021 12:15 PM - 01:15 PM</option>
-          <option value="25 Jan, 2021 13:30:00">25 Jan, 2021 01:30 PM - 02:30 PM</option>
-          <option value="25 Jan, 2021 14:45:00">25 Jan, 2021 02:45 PM - 03:45 PM</option>
-          <option value="25 Jan, 2021 16:00:00">25 Jan, 2021 04:00 PM - 05:00 PM</option>
-          <option value="25 Jan, 2021 17:15:00">25 Jan, 2021 05:15 PM - 06:15 PM</option>
-        </select>
-        </div>
-      </div>
+  </form>
 
-      <div class="row">
-        <div class="col-md-6">
-          <p>ISEO LEVEL 2:</p>
-        </div>
-        <div class="col-md-6">
-        <select name="" id="iseo2" class="select-css">
-
-          <option value="31 Jan, 2021 12:15:00">31 Jan, 2021 12:15 PM - 01:15 PM</option>
-          <option value="31 Jan, 2021 13:30:00">31 Jan, 2021 01:30 PM - 02:30 PM</option>
-          <option value="31 Jan, 2021 14:45:00">31 Jan, 2021 02:45 PM - 03:45 PM</option>
-          <option value="31 Jan, 2021 11:00:00">31 Jan, 2021 11:00 AM - 12:00 PM</option>
-          <option value="31 Jan, 2021 16:00:00">31 Jan, 2021 04:00 PM - 05:00 PM</option>
-          <option value="31 Jan, 2021 17:15:00">31 Jan, 2021 05:15 PM - 06:15 PM</option>
-        </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISSO LEVEL 2:</p>
-        </div>
-        <div class="col-md-6">
-        <select name="" id="isso2" class="select-css">
-
-          <option value="29 Jan, 2021 11:00:00">29 Jan, 2021 11:00 AM - 12:00 PM</option>
-          <option value="29 Jan, 2021 12:15:00">29 Jan, 2021 12:15 PM - 01:15 PM</option>
-          <option value="29 Jan, 2021 13:30:00">29 Jan, 2021 01:30 PM - 02:30 PM</option>
-          <option value="29 Jan, 2021 14:45:00">29 Jan, 2021 02:45 PM - 03:45 PM</option>
-          <option value="29 Jan, 2021 16:00:00">29 Jan, 2021 04:00 PM - 05:00 PM</option>
-          <option value="29 Jan, 2021 17:15:00">29 Jan, 2021 05:15 PM - 06:15 PM</option>
-
-        </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISMO LEVEL 2:</p>
-        </div>
-        <div class="col-md-6">
-        <select name="" id="ismo2" class="select-css">
-          <option value="2 Jan, 2021 11:00:00">02 Jan, 2021 11:00 AM - 12:00 PM</option>
-          <option value="2 Jan, 2021 12:15:00">02 Jan, 2021 12:15 PM - 01:15 PM</option>
-          <option value="2 Jan, 2021 13:30:00">02 Jan, 2021 01:30 PM - 02:30 PM</option>
-          <option value="2 Jan, 2021 14:45:00">02 Jan, 2021 02:45 PM - 03:45 PM</option>
-          <option value="2 Jan, 2021 16:00:00">02 Jan, 2021 04:00 PM - 05:00 PM</option>
-          <option value="2 Jan, 2021 17:15:00">02 Jan, 2021 05:15 PM - 06:15 PM</option>
-
-        </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISCO LEVEL 2:</p>
-        </div>
-        <div class="col-md-6">
-        <select name="" id="isco2" class="select-css">
-          <option value="15 Jan, 2021 11:00:00">15 Jan, 2021 11:00 AM - 12:00 PM</option>
-          <option value="15 Jan, 2021 12:15:00">15 Jan, 2021 12:15 PM - 01:15 PM</option>
-          <option value="15 Jan, 2021 13:30:00">15 Jan, 2021 01:30 PM - 02:30 PM</option>
-          <option value="15 Jan, 2021 14:45:00">15 Jan, 2021 02:45 PM - 03:45 PM</option>
-          <option value="15 Jan, 2021 16:00:00">15 Jan, 2021 04:00 PM - 05:00 PM</option>
-          <option value="15 Jan, 2021 17:15:00">15 Jan, 2021 05:15 PM - 06:15 PM</option>
-        </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-        <p>ISGKO LEVEL 2:</p>
-        </div>
-        <div class="col-md-6">
-        <select name="" id="iscto" class="select-css">
-          <option value="22 Jan, 2021 11:00:00">22 Jan, 2021 11:00 AM - 12:00 PM</option>
-          <option value="22 Jan, 2021 12:15:00">22 Jan, 2021 12:15 PM - 01:15 PM</option>
-          <option value="22 Jan, 2021 13:30:00">22 Jan, 2021 01:30 PM - 02:30 PM</option>
-          <option value="22 Jan, 2021 14:45:00">22 Jan, 2021 02:45 PM - 03:45 PM</option>
-          <option value="22 Jan, 2021 16:00:00">22 Jan, 2021 04:00 PM - 05:00 PM</option>
-          <option value="22 Jan, 2021 17:15:00">22 Jan, 2021 05:15 PM - 06:15 PM</option>
-        </select>
-        </div>
-    </div>
-    {% endcomment %}
-    </div>
+</div>
 </div><br>
 
 </div>

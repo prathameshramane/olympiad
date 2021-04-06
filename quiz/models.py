@@ -73,7 +73,15 @@ class Student(AbstractUser):
     reasoningtime = models.CharField(max_length=100,null=True,default="nil")
     englishtime = models.CharField(max_length=100,null=True,default="nil")
 
+    mathtime_finalexam = models.CharField(max_length=100,null=True,default="nil")
+    sciencetime_finalexam = models.CharField(max_length=100,null=True,default="nil")
+    gktime_finalexam = models.CharField(max_length=100,null=True,default="nil")
+    cybertime_finalexam = models.CharField(max_length=100,null=True,default="nil")
+    reasoningtime_finalexam = models.CharField(max_length=100,null=True,default="nil")
+    englishtime_finalexam = models.CharField(max_length=100,null=True,default="nil")
+
     quiz_to_change = models.CharField(max_length=100,null=True,default="nil")
+    quiz_to_change_finalexam = models.CharField(max_length=100,null=True,default="nil")
 
 
 
@@ -113,7 +121,7 @@ class Contact(models.Model):
     id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=250,default="")
     email=models.CharField(max_length=250,default="")
-    phonenum=models.IntegerField()
+    phonenum=models.CharField(max_length=15)
     message=models.TextField()
 
     def __str__(self):
@@ -123,7 +131,7 @@ class Coordinator(models.Model):
     id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=250,default="")
     email=models.CharField(max_length=250,default="")
-    phonenum=models.IntegerField()
+    phonenum=models.CharField(max_length=15)
     message=models.TextField()
 
     def __str__(self):
@@ -158,7 +166,7 @@ class School_register(models.Model):
     name=models.CharField(max_length=150)
     email=models.EmailField(max_length=154)
     country=models.CharField(max_length=150)
-    contact=models.IntegerField()
+    contact=models.CharField(max_length=15)
     school_name=models.CharField(max_length=150)
     school_address=models.CharField(max_length=250)
     school_city=models.CharField(max_length=150)
@@ -166,7 +174,7 @@ class School_register(models.Model):
     school_website=models.CharField(max_length=250)
     school_email=models.EmailField(max_length=254)
     pname=models.CharField(max_length=150)
-    pmobile=models.IntegerField()
+    pmobile=models.CharField(max_length=15)
     exammode=models.CharField(max_length=50)
 
 

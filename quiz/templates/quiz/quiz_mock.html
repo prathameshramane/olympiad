@@ -7,46 +7,46 @@
 <div class="d" style="background-color: #0007;"><br><br><br><br><br></div><br><br><br>
 <div class="container row">
 
-    {% if quiz_list %}
-    <h2>{% trans "List of quizzes" %}</h2>
-		<table class="table table-bordered table-responsive">
+	{% if quiz_list %}
+	<h2>{% trans "List of quizzes" %}</h2>
+	<table class="table table-bordered table-responsive">
 
-		  <thead>
+		<thead>
 			<tr>
-			  <th>{% trans "Title" %}</th>
-			  <th>{% trans "Category" %}</th>
-			  <th>{% trans "Exam" %}</th>
-			  <th>{% trans "Single attempt" %}</th>
-			  <th></th>
+				<th>{% trans "Title" %}</th>
+				<th>{% trans "Category" %}</th>
+				<th>{% trans "Exam" %}</th>
+				<th>{% trans "Single attempt" %}</th>
+				<th></th>
 			</tr>
-		  </thead>
+		</thead>
 
-		  <tbody>
+		<tbody>
 
-        {% for quiz in quiz_list %}
+			{% for quiz in quiz_list %}
 
 
 
-  			<tr>
-			  <td>{{ quiz.title }}</td>
-			  <td>{{ quiz.category }}</td>
-			  <td>{{ quiz.exam_paper }}</td>
-			  <td>{{ quiz.single_attempt }}</td>
-			  <td>
-				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
-				  {% trans "View details" %}
-				</a>
+			<tr>
+				<td>{{ quiz.title }}</td>
+				<td>{{ quiz.category }}</td>
+				<td>{{ quiz.exam_paper }}</td>
+				<td>{{ quiz.single_attempt }}</td>
+				<td>
+					<a href="{% url 'quiz_start_page' slug=quiz.url %}">
+						{% trans "View details" %}
+					</a>
 			</tr>
 
-        {% endfor %}
-		  </tbody>
+			{% endfor %}
+		</tbody>
 
-		</table>
+	</table>
 
 	{% else %}
 
-    <h2>{% trans "There are no available quizzes" %}</h2>
+	<h2>{% trans "There are no available quizzes" %}</h2>
 
 	{% endif %}
-	</div><br><br>
+</div><br><br>
 {% endblock %}

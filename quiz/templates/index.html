@@ -85,6 +85,18 @@
     color: white;
   }
 </style>
+{% for message in messages %}
+<script>
+  window.onload = function () {
+    Swal.fire({
+      title: '{{ message.tags }}',
+      text: '{{message}}',
+      icon: "{{ message.tags }}",
+      confirmButtonText: 'Ok'
+    })
+  }
+</script>
+{% endfor %}
 <section style="padding-top: 0; margin-bottom: 0">
 
   <!-- <div id="div_left" class="d-none d-lg-block " > -->

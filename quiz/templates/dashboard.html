@@ -20,14 +20,11 @@
       width: auto;
       width: auto;
       max-width: 1000px;
-
-      border: 15px solid rgb(185, 61, 61);
-      padding: 50px;
+      border: 10px solid rgb(185, 61, 61);
+      padding: 15px;
       justify-content: center;
       align-items: center;
-      /* margin-bottom: 60px;
-  margin-left: 170px; */
-      border-radius: 30px;
+      border-radius: 35px;
       margin: auto auto 60px auto;
     }
 
@@ -116,16 +113,6 @@
         <a class="dropdown-item" data-toggle="modal" data-target="#previewCerificate">Preview Certificate</a>
       </div>
     </div>
-    {% comment %} <a href="#" class="menu-link" onclick="show('slot')">Book a Slot</a> {% endcomment %}
-    <!-- <div class="dropdown nav-item">
-                            <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Take Exams
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Mock Test</a>
-                              <a class="dropdown-item" href="#" onclick="show('mocktest')">Final exam</a>
-                            </div>
-                          </div> -->
     <div class="dropdown nav-item">
       <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -137,24 +124,16 @@
       </div>
     </div>
     <div class="dropdown nav-item">
-      {% comment %} <button class="btn nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false" onclick="location.href='/mock'">
-        Free Trial
-      </button> {% endcomment %}
-      {% comment %} <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
-        <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a>
-      </div> {% endcomment %}
     </div>
     <div class="dropdown nav-item">
       <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Give Quiz
+        Give Test
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#" onclick="show('subjects')">Quiz</a>
+        <a class="dropdown-item" href="#" onclick="show('subjects')">Mock Test</a>
+        <a class="dropdown-item" href="#" onclick="show('subjects_finalexam')">Final Exam</a>
         <a class="dropdown-item" href="{% url 'quiz_progress' %}">Progress</a>
-        <!-- <a class="dropdown-item" href="#" onclick="show('challenge-one')">Challenge</a> -->
       </div>
     </div>
     <div class="dropdown nav-item">
@@ -164,9 +143,8 @@
       </button>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        {% comment %} <a class="dropdown-item" href="/subscriptions">Subscriptions</a>
-        <a class="dropdown-item" href="/invoice_view" onclick="show('invoice')">Invoice</a> {% endcomment %}
         <a class="dropdown-item" data-toggle="modal" data-target="#feedback">Feedback</a>
+        <a class="dropdown-item" href="{% url 'contact' %}"> Contact Us</a>
       </div>
     </div>
 
@@ -177,14 +155,6 @@
 
 
   {% for message in messages %}
-  {% comment %} <div class="container">
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-      <strong>{{message}}</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  </div> {% endcomment %}
   <script>
     window.onload = function () {
       Swal.fire({
@@ -205,7 +175,7 @@
         {% csrf_token %}
         <div class="row">
           <div class="col-md-1">
-            <ion-icon name="person-circle-outline"></ion-icon>
+            <ion-icon name="person-circle-outline" style="margin-bottom:10px"></ion-icon>
           </div>
           <div class="group col-md-5">
             <input type="text" value="{{ request.user.first_name}}" readonly="true">
@@ -293,7 +263,6 @@
             </ion-icon>
           </div>
           <div class="group col-md-5">
-            <!--input type="text" value="{{ request.user.country.name }}" readonly-->
             <span class="highlight"></span>
             <span class="bar"></span>
             <label class="form-label-profile">Country *</label>
@@ -365,7 +334,6 @@
             </ion-icon>
           </div>
           <div class="group col-md-5">
-            <!--input type="text" value="{{ request.user.country.name }}" readonly-->
             <span class="highlight"></span>
             <span class="bar"></span>
             <label class="form-label-profile">School Country *</label>
@@ -433,8 +401,6 @@
 
           <span class="highlight"></span>
           <span class="bar"></sub.country= request.POST['country']span>
-
-            {% comment %} <label for="oldpass">Old Password *</label> {% endcomment %}
             <input type="password" name="oldpass" id="oldpass" placeholder="Old Password*" required>
         </div>
       </div>
@@ -447,7 +413,6 @@
 
           <span class="highlight"></span>
           <span class="bar"></span>
-          {% comment %} <label name="newpass">New Password *</label> {% endcomment %}
           <input type="password" name="newpass" id="newpass" placeholder="New Password*" required>
         </div>
         <div class="col-md-1">
@@ -457,7 +422,6 @@
 
           <span class="highlight"></span>
           <span class="bar"></span>
-          {% comment %} <label name="newpass2">Confirm Password *</label> {% endcomment %}
           <input type="password" name="newpass2" id="newpass2" placeholder="Confirm Password*" required>
 
         </div>
@@ -581,36 +545,7 @@
             <input type="file" name="photograph"></div>
 
           {% endif %}
-
-
-
-
-
-
-          {% comment %} <input type="file" name="idproof">
         </div>
-        <div class="col-md-4">
-          <img src="{{stud.idproof.url}}" width="5" height="5">
-          <embed src="{{stud.idproof.url}}" width="100%" height="auto" />
-        </div>
-    </div>
-
-
-    <div class="row mt-3">
-      <div class="col-md-4">Previous Year Marksheet (pdf, jpg and png formats accepted):</div>
-      <div class="col-md-4"><input type="file" name="marksheet"></div>
-      <div class="col-md-4">
-        <img src="{{stud.marksheet.url}}" width="5" height="5">
-        <embed src="{{stud.marksheet.url}}" width="100%" height="auto" />
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-4">Student Photograph (jpg and png formats accepted):</div>
-      <div class="col-md-4"><input type="file" name="photograph"></div>
-      <div class="col-md-4">
-        <img src="{{stud.photograph.url}}" width="5" height="5">
-        <embed src="{{stud.photograph.url}}" width="100%" height="auto" /> {% endcomment %}
-      </div>
     </div>
 
     <div class="container">
@@ -810,114 +745,14 @@
     <center><br>
       <h4 style="color: red;" class="register-title ">No Answer keys available!</h4><br>
     </center>
-    <!-- <div class="row table-head">
-                            <div class="col-md-2">
-                                  <b>Sr. no.</b>
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                              <b><p>
-                                <b>Name</b>
-                              </p></b>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
 
-                            <div class="row">
-                              <div class="col-md-2">
-                                1
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                                <a href="">
-                            International Mathematics Olympiad (IMO)
-                                </a>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-
-                            <div class="row">
-                              <div class="col-md-2">
-                                1
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                                <a href="">
-                            International Mathematics Olympiad (IMO)
-                                </a>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-                            <div class="row">
-                              <div class="col-md-2">
-                                1
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                                <a href="">
-                            International Mathematics Olympiad (IMO)
-                                </a>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-                            <div class="row">
-                              <div class="col-md-2">
-                                1
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                                <a href="">
-                            International Mathematics Olympiad (IMO)
-                                </a>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-                            <div class="row">
-                              <div class="col-md-2">
-                                1
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                                <a href="">
-                            International Mathematics Olympiad (IMO)
-                                </a>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
-
-                            </div>
-
-                          </div> -->
   </div>
 
   <div class="box container hide" id="result">
     <center><br>
       <h3 style="color: red;" class="register-title">No results are available</h3>
     </center>
-    <!-- <div class="row table-head">
-                            <div class="col-md-2">
-                                  <b>Sr. no.</b>
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                              <b><p>
-                                <b>Name</b>
-                              </p></b>
-                            </div>
-                            </div>
-                            <hr style="border-bottom: 1px solid #0009;">
 
-                            <div class="row">
-                              <div class="col-md-2">
-                                1
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-9">
-                                <a href="">
-                            International Mathematics Olympiad (IMO)
-                                </a>
-                            </div>
-                            </div> -->
     <hr style="border-bottom: 1px solid #0009;">
   </div>
 
@@ -932,6 +767,7 @@
       <thead>
         <tr>
           <th>{% trans "Name" %}</th>
+          <th>{% trans "Class" %}</th>
           <th>{% trans "Duration" %}</th>
           <th>{% trans "Time" %}</th>
           <th>{% trans "Action" %}</th>
@@ -943,12 +779,126 @@
         {% for quiz in quiz_list %}
 
         <tr>
-          <td>{{ quiz.0.title }}</td>
+          {% if quiz.0.category|slugify ==  "mathsolym" %}
+          <td>Mathematics Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "scienceolym" %}
+          <td>Science Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "cyberolym" %}
+          <td>Cyber Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "generalolym" %}
+          <td>General Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "englisholym" %}
+          <td>English Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "reasoningolym" %}
+          <td>Reasoning Olympiad</td>
+          {% endif %}
+          <td>Class {{ quiz.0.title|slice:"2:4" }}</td>
           <td>60 mins</td>
           <td>{{quiz.1}}</td>
 
           <td>
             <button onclick="takeExam('{% url 'quiz_start_page' slug=quiz.0.url %}', '{{quiz.1}}')"
+              class="slot-btn">TAKE EXAM</a>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+
+    </table>
+
+    <script>
+      function takeExam(url, time) {
+        console.log(url, time);
+        date = time;
+        date = date.replace(",", "").split(" ");
+        start_time = new Date(`${date[1]}, ${date[0]}, ${date[2]}`)
+        end_time = new Date(`${date[1]}, ${date[0]}, ${date[2]}`)
+        current_time = Date.now()
+        if (date[4] == "AM") {
+          start_time.setHours(date[3].substr(0, 2), date[3].substr(3, 2))
+          end_time.setHours(date[6].substr(0, 2), date[6].substr(3, 2))
+        } else {
+          start_time.setHours(Number(date[3].substr(0, 2)) + 12, date[3].substr(3, 2))
+          end_time.setHours(Number(date[6].substr(0, 2)) + 12, date[6].substr(3, 2))
+        }
+        console.log(start_time)
+        console.log(end_time)
+        console.log(current_time)
+        if (current_time < start_time) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Too Early',
+            text: 'You can give the exam in the given time slot only',
+          })
+        }
+        if (current_time > end_time) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Time up',
+            text: 'The time to give this exam is over',
+          })
+        }
+        if (current_time > start_time && current_time < end_time) {
+          location.href = url
+        }
+
+      }
+    </script>
+    {% else %}
+    <p>{% trans "There are no available Test. Please Book an Exam to view quiz" %}.</p><br><br>
+    {% endif %}
+
+  </div>
+
+  <div class="container row hide" id="subjects_finalexam">
+
+    {% if quiz_list %}
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>{% trans "Name" %}</th>
+          <th>{% trans "Class" %}</th>
+          <th>{% trans "Duration" %}</th>
+          <th>{% trans "Time" %}</th>
+          <th>{% trans "Action" %}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for quiz in quiz_list %}
+
+        <tr>
+          {% if quiz.0.category|slugify ==  "mathsolym" %}
+          <td>Mathematics Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "scienceolym" %}
+          <td>Science Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "cyberolym" %}
+          <td>Cyber Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "generalolym" %}
+          <td>General Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "englisholym" %}
+          <td>English Olympiad</td>
+          {% endif %}
+          {% if quiz.0.category|slugify ==  "reasoningolym" %}
+          <td>Reasoning Olympiad</td>
+          {% endif %}
+          <td>Class {{ quiz.0.title|slice:"2:4" }}</td>
+          <td>60 mins</td>
+          <td>{{quiz.2}}</td>
+
+          <td>
+            <button onclick="takeExam('{% url 'quiz_start_page' slug=quiz.0.url %}', '{{quiz.2}}')"
               class="slot-btn">TAKE EXAM</a>
         </tr>
 
@@ -1235,16 +1185,11 @@
       menuOpen();
     }
     let getSiblings = function (e) {
-      // for collecting siblings
       let siblings = [];
-      // if no parent, return no sibling
       if (!e.parentNode) {
         return siblings;
       }
-      // first child of the parent node
       let sibling = e.parentNode.firstChild;
-
-      // collecting siblings
       while (sibling) {
         if (sibling.nodeType === 1 && sibling !== e) {
           siblings.push(sibling);

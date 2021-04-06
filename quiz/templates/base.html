@@ -49,27 +49,21 @@
       line-height: inherit;
       text-decoration: none;
     }
+    .black-bg {
+      background:black;
+    }
     </style>
   </head>
 
   <body>
 
     <div id="preloader">
-      {% comment %} <svg version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" width="100px">
-        <circle fill="none" stroke="#222" stroke-width="4" cx="50" cy="50" r="44" style="opacity:0.5;" />
-        <circle fill="#222" stroke="#222" stroke-width="3" cx="8" cy="54" r="6" id="rotating-circle" >
-           <animateTransform attributeName="transform" dur="2s" type="rotate" from="0 50 48" to="360 50 52"
-            repeatCount="indefinite" />  
-
-        </circle>
-      </svg> {% endcomment %}
       <div class="Loader"></div>
       <img src="{% static 'logo.png' %}" alt="" style="    position: absolute;width: 227px;" />
     </div>
 
     <header class="header_area" id="header">
-      <nav class="navbar navbar-expand-lg " style="z-index: 10;">
+      <nav class="navbar navbar-expand-lg black-bg" style="z-index: 10;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
           aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i></i>
@@ -787,16 +781,11 @@
                 <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
                 <a class="dropdown-item" href="{% url 'awards' %}">Awards</a>
                 <a class="dropdown-item" href="{% url 'workshops' %}">Workshop</a>
-                <!-- <a class="dropdown-item" href="#">Scholarships</a> -->
-                <!-- <a class="dropdown-item" href="{% url 'career' %}">Career</a>
-                                      <a class="dropdown-item" href="{% url 'workshops' %}">Educational Workshop</a>
-                                      <a class="dropdown-item" href="{% url 'workshops' %}">Training Workshop</a> -->
+               
               </div>
             </div>
 
-            {% comment %} <li class="nav-item ml-3">
-              <a class="nav-link" href="#">Subject Rankers</a>
-            </li> {% endcomment %}
+           
 
             <li class="nav-item ml-3">
               <a class="nav-link" href="{% url 'quiz_mock' %}">Free Trial</a>
@@ -804,7 +793,7 @@
             {% if user.is_authenticated %}
 
             <li class="nav-item ml-3">
-              <a class="nav-link" href="{% url 'quiz_index' %}">Quizzes</a>
+              <a class="nav-link" href="{% url 'quiz_index' %}">Practice</a>
             </li>
 
             <li class="nav-item ml-3">
@@ -832,17 +821,13 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {% if user.is_authenticated %}
-                {% comment %} <a href="{% url 'profile'%}" class="dropdown-item">Dashboard</a> {% endcomment %}
-                {% comment %} <a class="dropdown-item" href="{% url 'subscriptions' %}">Book your exam</a>
-                {% endcomment %}
+                
                 <a class="dropdown-item" href="/invoice_view">Invoice</a>
                 <a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
                 <a class="dropdown-item" href="{% url 'changeslot' %}">Change Slot</a>
 
                 <a class="dropdown-item" href="{% url 'profile' %}">Your Profile</a>
-                <!--  <a class="dropdown-item" href="#">My Result : Enroll for notification</a>
-                                     <a class="dropdown-item" href="#">Map Your Enrollment</a>-->
-                {% comment %} <a class="dropdown-item" href="#">View Result</a> {% endcomment %}
+               
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
 
 
@@ -887,8 +872,7 @@
                           aria-hidden="true"></i> Sample Papers</a></li>
                     <li><a href="{% url 'awards' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right"
                           aria-hidden="true"></i>Awards & Recognition</a></li>
-                    {% comment %} <li><a href="#" style="color: #B5AEB0;"><i class="fa fa-angle-double-right"
-                          aria-hidden="true"></i> Subject Rankers</a></li> {% endcomment %}
+                   
                     <li><a href="{% url 'examdates' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right"
                           aria-hidden="true"></i> Exam Schedule</a></li>
                     <li><a href="{% url 'examprep' %}" style="color: #B5AEB0;"><i class="fa fa-angle-double-right"
@@ -978,6 +962,7 @@
     <script>
       $(window).scroll(function () {
         $('nav').toggleClass('scrolled', $(this).scrollTop() > 0);
+        $('nav').toggleClass('black-bg', $(this).scrollTop() == 0);
       });
     </script>
     <script>
