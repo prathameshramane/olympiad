@@ -997,7 +997,7 @@ class QuizDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-
+        print(self.object)
         if self.object.draft and not request.user.has_perm('quiz.change_quiz'):
             raise PermissionDenied
 

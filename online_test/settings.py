@@ -27,8 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['192.168.0.105','127.0.0.1','localhost', '1da85e9035f0.ngrok.io']
-
+ALLOWED_HOSTS = ['192.168.0.105','127.0.0.1','localhost']
+SECURE_SSL_REDIRECT = False
 
 # Application definition
 
@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'online_test.urls'
@@ -140,7 +142,6 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# EMAIL_HOST_USER = 'hayaabidi2000@gmail.com'
-# EMAIL_HOST_PASSWORD = 'hayaZillion'
-# 'ayukumawat1999@gmail.com'
-# EMAIL_HOST_PASSWORD = 'kumawat1999'
+
+#django-minhtml
+HTML_MINIFY = True
